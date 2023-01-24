@@ -1,0 +1,1090 @@
+{
+    "config": "CODEGEN_COMPLETE_CODEFORM_COMMENTFORM_NOCOMMENT",
+    "data": {
+        "Chart_4_source/org/jfree/chart/plot/XYPlot.java_4493-4493": {
+            "loc": "4493-4493",
+            "input": "public Range getDataRange(ValueAxis axis) {\n    Range result = null;\n    List mappedDatasets = new ArrayList();\n    List includedAnnotations = new ArrayList();\n    boolean isDomainAxis = true;\n    int domainIndex = getDomainAxisIndex(axis);\n    if (domainIndex >= 0) {\n        isDomainAxis = true;\n        mappedDatasets.addAll(getDatasetsMappedToDomainAxis(\n                new Integer(domainIndex)));\n        if (domainIndex == 0) {\n            Iterator iterator = this.annotations.iterator();\n            while (iterator.hasNext()) {\n                XYAnnotation annotation = (XYAnnotation) iterator.next();\n                if (annotation instanceof XYAnnotationBoundsInfo) {\n                    includedAnnotations.add(annotation);\n                }\n            }\n        }\n    }\n    int rangeIndex = getRangeAxisIndex(axis);\n    if (rangeIndex >= 0) {\n        isDomainAxis = false;\n        mappedDatasets.addAll(getDatasetsMappedToRangeAxis(\n                new Integer(rangeIndex)));\n        if (rangeIndex == 0) {\n            Iterator iterator = this.annotations.iterator();\n            while (iterator.hasNext()) {\n                XYAnnotation annotation = (XYAnnotation) iterator.next();\n                if (annotation instanceof XYAnnotationBoundsInfo) {\n                    includedAnnotations.add(annotation);\n                }\n            }\n        }\n    }\n    Iterator iterator = mappedDatasets.iterator();\n    while (iterator.hasNext()) {\n        XYDataset d = (XYDataset) iterator.next();\n        if (d != null) {\n            XYItemRenderer r = getRendererForDataset(d);\n            if (isDomainAxis) {\n                if (r != null) {\n                    result = Range.combine(result, r.findDomainBounds(d));\n                }\n                else {\n                    result = Range.combine(result,\n                            DatasetUtilities.findDomainBounds(d));\n                }\n            }\n            else {\n                if (r != null) {\n                    result = Range.combine(result, r.findRangeBounds(d));\n                }\n                else {\n                    result = Range.combine(result,\n                            DatasetUtilities.findRangeBounds(d));\n                }\n            }\n// buggy line:                Collection c = r.getAnnotations();",
+            "function range": "4425,5-4519,5"
+        },
+        "Chart_14_source/org/jfree/chart/plot/CategoryPlot.java_2166-2167": {
+            "loc": "2166-2167",
+            "input": "public boolean removeDomainMarker(int index, Marker marker, Layer layer,\n\t\tboolean notify) {\n    ArrayList markers;\n    if (layer == Layer.FOREGROUND) {\n        markers = (ArrayList) this.foregroundDomainMarkers.get(new Integer(\n                index));\n    }\n    else {\n        markers = (ArrayList) this.backgroundDomainMarkers.get(new Integer(\n                index));\n    }\n// buggy line:    boolean removed = markers.remove(marker);",
+            "function range": "2155,5-2171,5"
+        },
+        "Chart_26_source/org/jfree/chart/axis/Axis.java_1192-1193": {
+            "loc": "1192-1193",
+            "input": "protected AxisState drawLabel(String label, Graphics2D g2, \n        Rectangle2D plotArea, Rectangle2D dataArea, RectangleEdge edge, \n        AxisState state, PlotRenderingInfo plotState) {\n    if (state == null) {\n        throw new IllegalArgumentException(\"Null 'state' argument.\");\n    }\n    if ((label == null) || (label.equals(\"\"))) {\n        return state;\n    }\n    Font font = getLabelFont();\n    RectangleInsets insets = getLabelInsets();\n    g2.setFont(font);\n    g2.setPaint(getLabelPaint());\n    FontMetrics fm = g2.getFontMetrics();\n    Rectangle2D labelBounds = TextUtilities.getTextBounds(label, g2, fm);\n    Shape hotspot = null;\n    if (edge == RectangleEdge.TOP) {\n        AffineTransform t = AffineTransform.getRotateInstance(\n                getLabelAngle(), labelBounds.getCenterX(), \n                labelBounds.getCenterY());\n        Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);\n        labelBounds = rotatedLabelBounds.getBounds2D();\n        float w = (float) labelBounds.getWidth();\n        float h = (float) labelBounds.getHeight();\n        float labelx = (float) dataArea.getCenterX();\n        float labely = (float) (state.getCursor() - insets.getBottom() \n                - h / 2.0);\n        TextUtilities.drawRotatedString(label, g2, labelx, labely, \n                TextAnchor.CENTER, getLabelAngle(), TextAnchor.CENTER);\n        hotspot = new Rectangle2D.Float(labelx - w / 2.0f, \n                labely - h / 2.0f, w, h);\n        state.cursorUp(insets.getTop() + labelBounds.getHeight() \n                + insets.getBottom());\n    }\n    else if (edge == RectangleEdge.BOTTOM) {\n        AffineTransform t = AffineTransform.getRotateInstance(\n                getLabelAngle(), labelBounds.getCenterX(), \n                labelBounds.getCenterY());\n        Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);\n        labelBounds = rotatedLabelBounds.getBounds2D();\n        float w = (float) labelBounds.getWidth();\n        float h = (float) labelBounds.getHeight();\n        float labelx = (float) dataArea.getCenterX();\n        float labely = (float) (state.getCursor() + insets.getTop() \n                + h / 2.0);\n        TextUtilities.drawRotatedString(label, g2, labelx, labely, \n                TextAnchor.CENTER, getLabelAngle(), TextAnchor.CENTER);\n        hotspot = new Rectangle2D.Float(labelx - w / 2.0f, \n                labely - h / 2.0f, w, h);\n        state.cursorDown(insets.getTop() + labelBounds.getHeight() \n                + insets.getBottom());\n    }\n    else if (edge == RectangleEdge.LEFT) {\n        AffineTransform t = AffineTransform.getRotateInstance(\n                getLabelAngle() - Math.PI / 2.0, labelBounds.getCenterX(), \n                labelBounds.getCenterY());\n        Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);\n        labelBounds = rotatedLabelBounds.getBounds2D();\n        float w = (float) labelBounds.getWidth();\n        float h = (float) labelBounds.getHeight();\n        float labelx = (float) (state.getCursor() - insets.getRight() \n                - w / 2.0);\n        float labely = (float) dataArea.getCenterY();\n        TextUtilities.drawRotatedString(label, g2, labelx, labely, \n                TextAnchor.CENTER, getLabelAngle() - Math.PI / 2.0, \n                TextAnchor.CENTER);\n        hotspot = new Rectangle2D.Float(labelx - w / 2.0f, \n                labely - h / 2.0f, w, h);\n        state.cursorLeft(insets.getLeft() + labelBounds.getWidth() \n                + insets.getRight());\n    }\n    else if (edge == RectangleEdge.RIGHT) {\n        AffineTransform t = AffineTransform.getRotateInstance(\n                getLabelAngle() + Math.PI / 2.0, \n                labelBounds.getCenterX(), labelBounds.getCenterY());\n        Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);\n        labelBounds = rotatedLabelBounds.getBounds2D();\n        float w = (float) labelBounds.getWidth();\n        float h = (float) labelBounds.getHeight();\n        float labelx = (float) (state.getCursor() \n                        + insets.getLeft() + w / 2.0);\n        float labely = (float) (dataArea.getY() + dataArea.getHeight() \n                / 2.0);\n        TextUtilities.drawRotatedString(label, g2, labelx, labely, \n                TextAnchor.CENTER, getLabelAngle() + Math.PI / 2.0, \n                TextAnchor.CENTER);\n        hotspot = new Rectangle2D.Float(labelx - w / 2.0f, \n                labely - h / 2.0f, w, h);\n        state.cursorRight(insets.getLeft() + labelBounds.getWidth() \n                + insets.getRight());\n    }\n    if (plotState != null && hotspot != null) {\n        ChartRenderingInfo owner = plotState.getOwner();\n// buggy line:            EntityCollection entities = owner.getEntityCollection();",
+            "function range": "1092,5-1200,5"
+        },
+        "Closure_40_src/com/google/javascript/jscomp/NameAnalyzer.java_635-636": {
+            "loc": "635-636",
+            "input": "@Override\npublic void visit(NodeTraversal t, Node n, Node parent) {\n  if (t.inGlobalScope()) {\n    if (NodeUtil.isVarDeclaration(n)) {\n      NameInformation ns = createNameInformation(t, n, parent);\n      Preconditions.checkNotNull(ns);\n      recordSet(ns.name, n);\n    } else if (NodeUtil.isFunctionDeclaration(n)) {\n      Node nameNode = n.getFirstChild();\n      NameInformation ns = createNameInformation(t, nameNode, n);\n      if (ns != null) {\n        JsName nameInfo = getName(nameNode.getString(), true);\n        recordSet(nameInfo.name, nameNode);\n      }\n    } else if (NodeUtil.isObjectLitKey(n, parent)) {\n      NameInformation ns = createNameInformation(t, n, parent);\n      if (ns != null) {\n        recordSet(ns.name, n);\n      }\n    }\n  }\n  if (n.isAssign()) {\n    Node nameNode = n.getFirstChild();\n    NameInformation ns = createNameInformation(t, nameNode, n);\n    if (ns != null) {\n      if (ns.isPrototype) {\n        recordPrototypeSet(ns.prototypeClass, ns.prototypeProperty, n);\n      } else {\n        recordSet(ns.name, nameNode);\n      }\n    }\n  } else if (n.isCall()) {\n    Node nameNode = n.getFirstChild();\n    NameInformation ns = createNameInformation(t, nameNode, n);\n    if (ns != null && ns.onlyAffectsClassDef) {\n// buggy line:      JsName name = getName(ns.name, false);",
+            "function range": "595,5-642,5"
+        },
+        "Closure_46_src/com/google/javascript/rhino/jstype/RecordType.java_142-145": {
+            "loc": "142-145",
+            "input": "@Override\npublic JSType getLeastSupertype(JSType that) {\n// buggy line:  if (!that.isRecordType()) {\n// buggy line:    return super.getLeastSupertype(that);\n// buggy line:  }",
+            "function range": "140,3-155,3"
+        },
+        "Closure_77_src/com/google/javascript/jscomp/CodeGenerator.java_967-967": {
+            "loc": "967-967",
+            "input": "static String strEscape(String s, char quote,\n                        String doublequoteEscape,\n                        String singlequoteEscape,\n                        String backslashEscape,\n                        CharsetEncoder outputCharsetEncoder) {\n  StringBuilder sb = new StringBuilder(s.length() + 2);\n  sb.append(quote);\n  for (int i = 0; i < s.length(); i++) {\n    char c = s.charAt(i);\n    switch (c) {\n      case '\\n': sb.append(\"\\\\n\"); break;\n// buggy line:      case '\\r': sb.append(\"\\\\r\"); break;",
+            "function range": "956,3-1025,3"
+        },
+        "Closure_119_src/com/google/javascript/jscomp/GlobalNamespace.java_366-366": {
+            "loc": "366-366",
+            "input": "public void collect(JSModule module, Scope scope, Node n) {\n  Node parent = n.getParent();\n  String name;\n  boolean isSet = false;\n  Name.Type type = Name.Type.OTHER;\n  boolean isPropAssign = false;\n  switch (n.getType()) {\n    case Token.GETTER_DEF:\n    case Token.SETTER_DEF:\n    case Token.STRING_KEY:\n      name = null;\n      if (parent != null && parent.isObjectLit()) {\n        name = getNameForObjLitKey(n);\n      }\n      if (name == null) {\n        return;\n      }\n      isSet = true;\n      switch (n.getType()) {\n        case Token.STRING_KEY:\n          type = getValueType(n.getFirstChild());\n          break;\n        case Token.GETTER_DEF:\n          type = Name.Type.GET;\n          break;\n        case Token.SETTER_DEF:\n          type = Name.Type.SET;\n          break;\n        default:\n          throw new IllegalStateException(\"unexpected:\" + n);\n      }\n      break;\n    case Token.NAME:\n      if (parent != null) {\n        switch (parent.getType()) {\n          case Token.VAR:\n            isSet = true;\n            Node rvalue = n.getFirstChild();\n            type = rvalue == null ? Name.Type.OTHER : getValueType(rvalue);\n            break;\n          case Token.ASSIGN:\n            if (parent.getFirstChild() == n) {\n              isSet = true;\n              type = getValueType(n.getNext());\n            }\n            break;\n          case Token.GETPROP:\n            return;\n          case Token.FUNCTION:\n            Node gramps = parent.getParent();\n            if (gramps == null || NodeUtil.isFunctionExpression(parent)) {\n              return;\n            }\n            isSet = true;\n            type = Name.Type.FUNCTION;\n            break;\n// buggy line:          case Token.INC:",
+            "function range": "306,5-430,5"
+        },
+        "Closure_123_src/com/google/javascript/jscomp/CodeGenerator.java_285-286": {
+            "loc": "285-286",
+            "input": "void add(Node n, Context context) {\n  if (!cc.continueProcessing()) {\n    return;\n  }\n  int type = n.getType();\n  String opstr = NodeUtil.opToStr(type);\n  int childCount = n.getChildCount();\n  Node first = n.getFirstChild();\n  Node last = n.getLastChild();\n  if (opstr != null && first != last) {\n    Preconditions.checkState(\n        childCount == 2,\n        \"Bad binary operator \\\"%s\\\": expected 2 arguments but got %s\",\n        opstr, childCount);\n    int p = NodeUtil.precedence(type);\n    Context rhsContext = getContextForNoInOperator(context);\n    if (last.getType() == type &&\n        NodeUtil.isAssociative(type)) {\n      addExpr(first, p, context);\n      cc.addOp(opstr, true);\n      addExpr(last, p, rhsContext);\n    } else if (NodeUtil.isAssignmentOp(n) && NodeUtil.isAssignmentOp(last)) {\n      addExpr(first, p, context);\n      cc.addOp(opstr, true);\n      addExpr(last, p, rhsContext);\n    } else {\n      unrollBinaryOperator(n, type, opstr, context, rhsContext, p, p + 1);\n    }\n    return;\n  }\n  cc.startSourceMapping(n);\n  switch (type) {\n    case Token.TRY: {\n      Preconditions.checkState(first.getNext().isBlock() &&\n              !first.getNext().hasMoreThanOneChild());\n      Preconditions.checkState(childCount >= 2 && childCount <= 3);\n      add(\"try\");\n      add(first, Context.PRESERVE_BLOCK);\n      Node catchblock = first.getNext().getFirstChild();\n      if (catchblock != null) {\n        add(catchblock);\n      }\n      if (childCount == 3) {\n        add(\"finally\");\n        add(last, Context.PRESERVE_BLOCK);\n      }\n      break;\n    }\n    case Token.CATCH:\n      Preconditions.checkState(childCount == 2);\n      add(\"catch(\");\n      add(first);\n      add(\")\");\n      add(last, Context.PRESERVE_BLOCK);\n      break;\n    case Token.THROW:\n      Preconditions.checkState(childCount == 1);\n      add(\"throw\");\n      add(first);\n      cc.endStatement(true);\n      break;\n    case Token.RETURN:\n      add(\"return\");\n      if (childCount == 1) {\n        add(first);\n      } else {\n        Preconditions.checkState(childCount == 0);\n      }\n      cc.endStatement();\n      break;\n    case Token.VAR:\n      if (first != null) {\n        add(\"var \");\n        addList(first, false, getContextForNoInOperator(context));\n      }\n      break;\n    case Token.LABEL_NAME:\n      Preconditions.checkState(!n.getString().isEmpty());\n      addIdentifier(n.getString());\n      break;\n    case Token.NAME:\n      if (first == null || first.isEmpty()) {\n        addIdentifier(n.getString());\n      } else {\n        Preconditions.checkState(childCount == 1);\n        addIdentifier(n.getString());\n        cc.addOp(\"=\", true);\n        if (first.isComma()) {\n          addExpr(first, NodeUtil.precedence(Token.ASSIGN), Context.OTHER);\n        } else {\n          addExpr(first, 0, getContextForNoInOperator(context));\n        }\n      }\n      break;\n    case Token.ARRAYLIT:\n      add(\"[\");\n      addArrayList(first);\n      add(\"]\");\n      break;\n    case Token.PARAM_LIST:\n      add(\"(\");\n      addList(first);\n      add(\")\");\n      break;\n    case Token.COMMA:\n      Preconditions.checkState(childCount == 2);\n      unrollBinaryOperator(n, Token.COMMA, \",\", context,\n          getContextForNoInOperator(context), 0, 0);\n      break;\n    case Token.NUMBER:\n      Preconditions.checkState(childCount == 0);\n      cc.addNumber(n.getDouble());\n      break;\n    case Token.TYPEOF:\n    case Token.VOID:\n    case Token.NOT:\n    case Token.BITNOT:\n    case Token.POS: {\n      Preconditions.checkState(childCount == 1);\n      cc.addOp(NodeUtil.opToStrNoFail(type), false);\n      addExpr(first, NodeUtil.precedence(type), Context.OTHER);\n      break;\n    }\n    case Token.NEG: {\n      Preconditions.checkState(childCount == 1);\n      if (n.getFirstChild().isNumber()) {\n        cc.addNumber(-n.getFirstChild().getDouble());\n      } else {\n        cc.addOp(NodeUtil.opToStrNoFail(type), false);\n        addExpr(first, NodeUtil.precedence(type), Context.OTHER);\n      }\n      break;\n    }\n    case Token.HOOK: {\n      Preconditions.checkState(childCount == 3);\n      int p = NodeUtil.precedence(type);\n// buggy line:      Context rhsContext = Context.OTHER;",
+            "function range": "107,3-771,3"
+        },
+        "Lang_10_src/main/java/org/apache/commons/lang3/time/FastDateParser.java_307-314": {
+            "loc": "307-314",
+            "input": "private static StringBuilder escapeRegex(StringBuilder regex, String value, boolean unquote) {\n    boolean wasWhite= false;\n    for(int i= 0; i<value.length(); ++i) {\n        char c= value.charAt(i);\n// buggy line:        if(Character.isWhitespace(c)) {\n// buggy line:            if(!wasWhite) {\n// buggy line:                wasWhite= true;\n// buggy line:                regex.append(\"\\\\s*+\");\n// buggy line:            }\n// buggy line:            continue;\n// buggy line:        }",
+            "function range": "303,5-343,5"
+        },
+        "Lang_24_src/main/java/org/apache/commons/lang3/math/NumberUtils.java_1413-1414": {
+            "loc": "1413-1414",
+            "input": "public static boolean isNumber(String str) {\n    if (StringUtils.isEmpty(str)) {\n        return false;\n    }\n    char[] chars = str.toCharArray();\n    int sz = chars.length;\n    boolean hasExp = false;\n    boolean hasDecPoint = false;\n    boolean allowSigns = false;\n    boolean foundDigit = false;\n    int start = (chars[0] == '-') ? 1 : 0;\n    if (sz > start + 1) {\n        if (chars[start] == '0' && chars[start + 1] == 'x') {\n            int i = start + 2;\n            if (i == sz) {\n                return false; \n            }\n            for (; i < chars.length; i++) {\n                if ((chars[i] < '0' || chars[i] > '9')\n                    && (chars[i] < 'a' || chars[i] > 'f')\n                    && (chars[i] < 'A' || chars[i] > 'F')) {\n                    return false;\n                }\n            }\n            return true;\n        }\n    }\n    sz--; \n    int i = start;\n    while (i < sz || (i < sz + 1 && allowSigns && !foundDigit)) {\n        if (chars[i] >= '0' && chars[i] <= '9') {\n            foundDigit = true;\n            allowSigns = false;\n        } else if (chars[i] == '.') {\n            if (hasDecPoint || hasExp) {\n                return false;\n            }\n            hasDecPoint = true;\n        } else if (chars[i] == 'e' || chars[i] == 'E') {\n            if (hasExp) {\n                return false;\n            }\n            if (!foundDigit) {\n                return false;\n            }\n            hasExp = true;\n            allowSigns = true;\n        } else if (chars[i] == '+' || chars[i] == '-') {\n            if (!allowSigns) {\n                return false;\n            }\n            allowSigns = false;\n            foundDigit = false; \n        } else {\n            return false;\n        }\n        i++;\n    }\n    if (i < chars.length) {\n        if (chars[i] >= '0' && chars[i] <= '9') {\n            return true;\n        }\n        if (chars[i] == 'e' || chars[i] == 'E') {\n            return false;\n        }\n        if (chars[i] == '.') {\n            if (hasDecPoint || hasExp) {\n                return false;\n            }\n            return foundDigit;\n        }\n        if (!allowSigns\n            && (chars[i] == 'd'\n                || chars[i] == 'D'\n                || chars[i] == 'f'\n                || chars[i] == 'F')) {\n            return foundDigit;\n        }\n        if (chars[i] == 'l'\n            || chars[i] == 'L') {\n// buggy line:            return foundDigit && !hasExp;",
+            "function range": "1319,5-1421,5"
+        },
+        "Lang_38_src/java/org/apache/commons/lang3/time/FastDateFormat.java_872-872": {
+            "loc": "872-872",
+            "input": "public StringBuffer format(Calendar calendar, StringBuffer buf) {\n    if (mTimeZoneForced) {\n// buggy line:        calendar = (Calendar) calendar.clone();",
+            "function range": "870,5-876,5"
+        },
+        "Math_65_src/main/java/org/apache/commons/math/optimization/general/AbstractLeastSquaresOptimizer.java_258-259": {
+            "loc": "258-259",
+            "input": "public double getChiSquare() {\n    double chiSquare = 0;\n    for (int i = 0; i < rows; ++i) {\n        final double residual = residuals[i];\n// buggy line:        chiSquare += residual * residual / residualsWeights[i];",
+            "function range": "254,5-261,5"
+        },
+        "Math_79_src/main/java/org/apache/commons/math/util/MathUtils.java_1624-1625": {
+            "loc": "1624-1625",
+            "input": "public static double distance(int[] p1, int[] p2) {\n// buggy line:  int sum = 0;",
+            "function range": "1623,5-1630,5"
+        },
+        "Math_98_src/java/org/apache/commons/math/linear/BigMatrixImpl.java_991-992": {
+            "loc": "991-992",
+            "input": "public BigDecimal[] operate(BigDecimal[] v) throws IllegalArgumentException {\n    if (v.length != this.getColumnDimension()) {\n        throw new IllegalArgumentException(\"vector has wrong length\");\n    }\n    final int nRows = this.getRowDimension();\n    final int nCols = this.getColumnDimension();\n// buggy line:    final BigDecimal[] out = new BigDecimal[v.length];",
+            "function range": "985,5-1000,5"
+        },
+        "Chart_1_/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java_1797-1798": {
+            "loc": "1797-1798",
+            "input": "public LegendItemCollection getLegendItems() {\n    LegendItemCollection result = new LegendItemCollection();\n    if (this.plot == null) {\n        return result;\n    }\n    int index = this.plot.getIndexOf(this);\n    CategoryDataset dataset = this.plot.getDataset(index);\n// buggy line:    if (dataset != null) {",
+            "function range": "1790,5-1822,5"
+        },
+        "Chart_3_/source/org/jfree/data/time/TimeSeries.java_1057-1058": {
+            "loc": "1057-1058",
+            "input": "public TimeSeries createCopy(int start, int end)\n        throws CloneNotSupportedException {\n    if (start < 0) {\n        throw new IllegalArgumentException(\"Requires start >= 0.\");\n    }\n    if (end < start) {\n        throw new IllegalArgumentException(\"Requires start <= end.\");\n    }\n    TimeSeries copy = (TimeSeries) super.clone();\n// buggy line:    copy.data = new java.util.ArrayList();",
+            "function range": "1048,5-1072,5"
+        },
+        "Chart_6_/source/org/jfree/chart/util/ShapeList.java_111-112": {
+            "loc": "111-112",
+            "input": "public boolean equals(Object obj) {\n    if (obj == this) {\n        return true;\n    }\n    if (!(obj instanceof ShapeList)) {\n        return false;\n    }\n// buggy line:    return super.equals(obj);",
+            "function range": "103,5-113,5"
+        },
+        "Chart_8_/source/org/jfree/data/time/Week.java_175-176": {
+            "loc": "175-176",
+            "input": "public Week(Date time, TimeZone zone) {\n// buggy line:    this(time, RegularTimePeriod.DEFAULT_TIME_ZONE, Locale.getDefault());",
+            "function range": "173,5-176,5"
+        },
+        "Chart_9_/source/org/jfree/data/time/TimeSeries.java_944-945": {
+            "loc": "944-945",
+            "input": "public TimeSeries createCopy(RegularTimePeriod start, RegularTimePeriod end)\n    throws CloneNotSupportedException {\n    if (start == null) {\n        throw new IllegalArgumentException(\"Null 'start' argument.\");\n    }\n    if (end == null) {\n        throw new IllegalArgumentException(\"Null 'end' argument.\");\n    }\n    if (start.compareTo(end) > 0) {\n        throw new IllegalArgumentException(\n                \"Requires start on or before end.\");\n    }\n    boolean emptyRange = false;\n    int startIndex = getIndex(start);\n    if (startIndex < 0) {\n        startIndex = -(startIndex + 1);\n        if (startIndex == this.data.size()) {\n            emptyRange = true;  \n        }\n    }\n    int endIndex = getIndex(end);\n    if (endIndex < 0) {             \n        endIndex = -(endIndex + 1); \n        endIndex = endIndex - 1;    \n    }\n// buggy line:    if (endIndex < 0) {",
+            "function range": "918,5-956,5"
+        },
+        "Chart_10_/source/org/jfree/chart/imagemap/StandardToolTipTagFragmentGenerator.java_65-66": {
+            "loc": "65-66",
+            "input": "public String generateToolTipFragment(String toolTipText) {\n// buggy line:    return \" title=\\\"\" + toolTipText",
+            "function range": "64,5-67,5"
+        },
+        "Chart_11_/source/org/jfree/chart/util/ShapeUtilities.java_275-276": {
+            "loc": "275-276",
+            "input": "public static boolean equal(GeneralPath p1, GeneralPath p2) {\n    if (p1 == null) {\n        return (p2 == null);\n    }\n    if (p2 == null) {\n        return false;\n    }\n    if (p1.getWindingRule() != p2.getWindingRule()) {\n        return false;\n    }\n    PathIterator iterator1 = p1.getPathIterator(null);\n// buggy line:    PathIterator iterator2 = p1.getPathIterator(null);",
+            "function range": "264,5-296,5"
+        },
+        "Chart_12_/source/org/jfree/chart/plot/MultiplePiePlot.java_145-146": {
+            "loc": "145-146",
+            "input": "public MultiplePiePlot(CategoryDataset dataset) {\n    super();\n// buggy line:    this.dataset = dataset;",
+            "function range": "143,5-158,5"
+        },
+        "Chart_13_/source/org/jfree/chart/block/BorderArrangement.java_455-456": {
+            "loc": "455-456",
+            "input": "protected Size2D arrangeFF(BlockContainer container, Graphics2D g2,\n                           RectangleConstraint constraint) {\n    double[] w = new double[5];\n    double[] h = new double[5];\n    w[0] = constraint.getWidth();\n    if (this.topBlock != null) {\n        RectangleConstraint c1 = new RectangleConstraint(w[0], null,\n                LengthConstraintType.FIXED, 0.0,\n                new Range(0.0, constraint.getHeight()),\n                LengthConstraintType.RANGE);\n        Size2D size = this.topBlock.arrange(g2, c1);\n        h[0] = size.height;\n    }\n    w[1] = w[0];\n    if (this.bottomBlock != null) {\n        RectangleConstraint c2 = new RectangleConstraint(w[0], null,\n                LengthConstraintType.FIXED, 0.0, new Range(0.0,\n                constraint.getHeight() - h[0]), LengthConstraintType.RANGE);\n        Size2D size = this.bottomBlock.arrange(g2, c2);\n        h[1] = size.height;\n    }\n    h[2] = constraint.getHeight() - h[1] - h[0];\n    if (this.leftBlock != null) {\n        RectangleConstraint c3 = new RectangleConstraint(0.0,\n                new Range(0.0, constraint.getWidth()),\n                LengthConstraintType.RANGE, h[2], null,\n                LengthConstraintType.FIXED);\n        Size2D size = this.leftBlock.arrange(g2, c3);\n        w[2] = size.width;\n    }\n    h[3] = h[2];\n    if (this.rightBlock != null) {\n        RectangleConstraint c4 = new RectangleConstraint(0.0,\n// buggy line:                new Range(0.0, constraint.getWidth() - w[2]),",
+            "function range": "422,5-489,5"
+        },
+        "Chart_17_/source/org/jfree/data/time/TimeSeries.java_857-858": {
+            "loc": "857-858",
+            "input": "public Object clone() throws CloneNotSupportedException {\n// buggy line:    Object clone = createCopy(0, getItemCount() - 1);",
+            "function range": "856,5-859,5"
+        },
+        "Chart_20_/source/org/jfree/chart/plot/ValueMarker.java_95-96": {
+            "loc": "95-96",
+            "input": "public ValueMarker(double value, Paint paint, Stroke stroke, \n                   Paint outlinePaint, Stroke outlineStroke, float alpha) {\n// buggy line:    super(paint, stroke, paint, stroke, alpha);",
+            "function range": "93,5-97,5"
+        },
+        "Chart_24_/source/org/jfree/chart/renderer/GrayPaintScale.java_126-127": {
+            "loc": "126-127",
+            "input": "public Paint getPaint(double value) {\n    double v = Math.max(value, this.lowerBound);\n    v = Math.min(v, this.upperBound);\n// buggy line:    int g = (int) ((value - this.lowerBound) / (this.upperBound ",
+            "function range": "123,5-129,5"
+        },
+        "Cli_4_/src/java/org/apache/commons/cli/Parser.java_298-299": {
+            "loc": "298-299",
+            "input": "private void checkRequiredOptions()\n    throws MissingOptionException\n{\n    if (requiredOptions.size() > 0)\n    {\n        Iterator iter = requiredOptions.iterator();\n// buggy line:        StringBuffer buff = new StringBuffer();",
+            "function range": "290,5-309,5"
+        },
+        "Cli_8_/src/java/org/apache/commons/cli/HelpFormatter.java_812-813": {
+            "loc": "812-813",
+            "input": "protected StringBuffer renderWrappedText(StringBuffer sb, int width, \n                                         int nextLineTabStop, String text)\n{\n    int pos = findWrapPos(text, width, 0);\n    if (pos == -1)\n    {\n        sb.append(rtrim(text));\n        return sb;\n    }\n    sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);\n    final String padding = createPadding(nextLineTabStop);\n    while (true)\n    {\n        text = padding + text.substring(pos).trim();\n// buggy line:        pos = findWrapPos(text, width, nextLineTabStop);",
+            "function range": "792,5-823,5"
+        },
+        "Cli_11_/src/java/org/apache/commons/cli/HelpFormatter.java_632-633": {
+            "loc": "632-633",
+            "input": "private static void appendOption(final StringBuffer buff, \n                                 final Option option, \n                                 final boolean required)\n{\n    if (!required)\n    {\n        buff.append(\"[\");\n    }\n    if (option.getOpt() != null)\n    {\n        buff.append(\"-\").append(option.getOpt());\n    }\n    else\n    {\n        buff.append(\"--\").append(option.getLongOpt());\n    }\n// buggy line:    if (option.hasArg() && (option.getArgName() != null))",
+            "function range": "613,5-642,5"
+        },
+        "Cli_24_/src/java/org/apache/commons/cli/HelpFormatter.java_825-827": {
+            "loc": "825-827",
+            "input": "protected StringBuffer renderWrappedText(StringBuffer sb, int width, \n                                         int nextLineTabStop, String text)\n{\n    int pos = findWrapPos(text, width, 0);\n    if (pos == -1)\n    {\n        sb.append(rtrim(text));\n        return sb;\n    }\n    sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);\n    if (nextLineTabStop >= width)\n    {\n// buggy line:        throw new IllegalStateException(\"Total width is less than the width of the argument and indent \" + \n// buggy line:                                        \"- no room for the description\");",
+            "function range": "809,5-852,5"
+        },
+        "Cli_25_/src/java/org/apache/commons/cli/HelpFormatter.java_825-826": {
+            "loc": "825-826",
+            "input": "protected StringBuffer renderWrappedText(StringBuffer sb, int width, \n                                         int nextLineTabStop, String text)\n{\n    int pos = findWrapPos(text, width, 0);\n    if (pos == -1)\n    {\n        sb.append(rtrim(text));\n        return sb;\n    }\n    sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);\n    if (nextLineTabStop >= width)\n    {\n// buggy line:        nextLineTabStop = width - 1;",
+            "function range": "809,5-851,5"
+        },
+        "Cli_28_/src/java/org/apache/commons/cli/Parser.java_290-291": {
+            "loc": "290-291",
+            "input": "protected void processProperties(Properties properties)\n{\n    if (properties == null)\n    {\n        return;\n    }\n    for (Enumeration e = properties.propertyNames(); e.hasMoreElements();)\n    {\n        String option = e.nextElement().toString();\n        if (!cmd.hasOption(option))\n        {\n            Option opt = getOptions().getOption(option);\n            String value = properties.getProperty(option);\n            if (opt.hasArg())\n            {\n                if (opt.getValues() == null || opt.getValues().length == 0)\n                {\n                    try\n                    {\n                        opt.addValueForProcessing(value);\n                    }\n                    catch (RuntimeException exp)\n                    {\n                    }\n                }\n            }\n            else if (!(\"yes\".equalsIgnoreCase(value)\n                    || \"true\".equalsIgnoreCase(value)\n                    || \"1\".equalsIgnoreCase(value)))\n            {\n// buggy line:                break;",
+            "function range": "252,5-296,5"
+        },
+        "Cli_32_/src/main/java/org/apache/commons/cli/HelpFormatter.java_937-942": {
+            "loc": "937-942",
+            "input": "protected int findWrapPos(String text, int width, int startPos)\n{\n    int pos;\n    if (((pos = text.indexOf('\\n', startPos)) != -1 && pos <= width)\n            || ((pos = text.indexOf('\\t', startPos)) != -1 && pos <= width))\n    {\n        return pos + 1;\n    }\n    else if (startPos + width >= text.length())\n    {\n        return -1;\n    }\n    pos = startPos + width;\n    char c;\n    while ((pos >= startPos) && ((c = text.charAt(pos)) != ' ')\n            && (c != '\\n') && (c != '\\r'))\n    {\n        --pos;\n    }\n    if (pos > startPos)\n    {\n        return pos;\n    }\n    pos = startPos + width;\n// buggy line:    while ((pos <= text.length()) && ((c = text.charAt(pos)) != ' ')\n// buggy line:           && (c != '\\n') && (c != '\\r'))\n// buggy line:    {\n// buggy line:        ++pos;\n// buggy line:    }        ",
+            "function range": "902,5-943,5"
+        },
+        "Cli_40_/src/main/java/org/apache/commons/cli/TypeHandler.java_103-104": {
+            "loc": "103-104",
+            "input": "@SuppressWarnings(\"unchecked\") \npublic static <T> T createValue(final String str, final Class<T> clazz) throws ParseException\n{\n    if (PatternOptionBuilder.STRING_VALUE == clazz)\n    {\n        return (T) str;\n    }\n    else if (PatternOptionBuilder.OBJECT_VALUE == clazz)\n    {\n        return (T) createObject(str);\n    }\n    else if (PatternOptionBuilder.NUMBER_VALUE == clazz)\n    {\n        return (T) createNumber(str);\n    }\n    else if (PatternOptionBuilder.DATE_VALUE == clazz)\n    {\n        return (T) createDate(str);\n    }\n    else if (PatternOptionBuilder.CLASS_VALUE == clazz)\n    {\n        return (T) createClass(str);\n    }\n    else if (PatternOptionBuilder.FILE_VALUE == clazz)\n    {\n        return (T) createFile(str);\n    }\n    else if (PatternOptionBuilder.EXISTING_FILE_VALUE == clazz)\n    {\n        return (T) openFile(str);\n    }\n    else if (PatternOptionBuilder.FILES_VALUE == clazz)\n    {\n        return (T) createFiles(str);\n    }\n    else if (PatternOptionBuilder.URL_VALUE == clazz)\n    {\n        return (T) createURL(str);\n    }\n    else\n    {\n// buggy line:        return null;",
+            "function range": "62,5-105,5"
+        },
+        "Closure_1_/src/com/google/javascript/jscomp/RemoveUnusedVars.java_379-380": {
+            "loc": "379-380",
+            "input": "private void removeUnreferencedFunctionArgs(Scope fnScope) {",
+            "function range": "369,3-406,3"
+        },
+        "Closure_5_/src/com/google/javascript/jscomp/InlineObjectLiterals.java_176-177": {
+            "loc": "176-177",
+            "input": "private boolean isInlinableObject(List<Reference> refs) {\n  boolean ret = false;\n  Set<String> validProperties = Sets.newHashSet();\n  for (Reference ref : refs) {\n    Node name = ref.getNode();\n    Node parent = ref.getParent();\n    Node gramps = ref.getGrandparent();\n    if (parent.isGetProp()) {\n      Preconditions.checkState(parent.getFirstChild() == name);\n      if (gramps.isCall()\n          && gramps.getFirstChild() == parent) {\n        return false;\n      }",
+            "function range": "155,5-253,5"
+        },
+        "Closure_10_/src/com/google/javascript/jscomp/NodeUtil.java_1417-1418": {
+            "loc": "1417-1418",
+            "input": "static boolean mayBeString(Node n, boolean recurse) {\n  if (recurse) {\n// buggy line:    return allResultsMatch(n, MAY_BE_STRING_PREDICATE);",
+            "function range": "1415,3-1421,3"
+        },
+        "Closure_11_/src/com/google/javascript/jscomp/TypeCheck.java_1314-1316": {
+            "loc": "1314-1316",
+            "input": "private void visitGetProp(NodeTraversal t, Node n, Node parent) {\n  Node property = n.getLastChild();\n  Node objNode = n.getFirstChild();\n  JSType childType = getJSType(objNode);\n  if (childType.isDict()) {\n    report(t, property, TypeValidator.ILLEGAL_PROPERTY_ACCESS, \"'.'\", \"dict\");\n// buggy line:  } else if (n.getJSType() != null && parent.isAssign()) {\n// buggy line:    return;",
+            "function range": "1303,3-1321,3"
+        },
+        "Closure_14_/src/com/google/javascript/jscomp/ControlFlowAnalysis.java_767-768": {
+            "loc": "767-768",
+            "input": "private static Node computeFollowNode(\n    Node fromNode, Node node, ControlFlowAnalysis cfa) {\n  Node parent = node.getParent();\n  if (parent == null || parent.isFunction() ||\n      (cfa != null && node == cfa.root)) {\n    return null;\n  }\n  switch (parent.getType()) {\n    case Token.IF:\n      return computeFollowNode(fromNode, parent, cfa);\n    case Token.CASE:\n    case Token.DEFAULT_CASE:\n      if (parent.getNext() != null) {\n        if (parent.getNext().isCase()) {\n          return parent.getNext().getFirstChild().getNext();\n        } else if (parent.getNext().isDefaultCase()) {\n          return parent.getNext().getFirstChild();\n        } else {\n          Preconditions.checkState(false, \"Not reachable\");\n        }\n      } else {\n        return computeFollowNode(fromNode, parent, cfa);\n      }\n      break;\n    case Token.FOR:\n      if (NodeUtil.isForIn(parent)) {\n        return parent;\n      } else {\n        return parent.getFirstChild().getNext().getNext();\n      }\n    case Token.WHILE:\n    case Token.DO:\n      return parent;\n    case Token.TRY:\n      if (parent.getFirstChild() == node) {\n        if (NodeUtil.hasFinally(parent)) { \n          return computeFallThrough(parent.getLastChild());\n        } else { \n          return computeFollowNode(fromNode, parent, cfa);\n        }\n      } else if (NodeUtil.getCatchBlock(parent) == node){\n        if (NodeUtil.hasFinally(parent)) { \n          return computeFallThrough(node.getNext());\n        } else {\n          return computeFollowNode(fromNode, parent, cfa);\n        }\n      } else if (parent.getLastChild() == node){\n        if (cfa != null) {\n          for (Node finallyNode : cfa.finallyMap.get(parent)) {\n// buggy line:            cfa.createEdge(fromNode, Branch.UNCOND, finallyNode);",
+            "function range": "692,3-789,3"
+        },
+        "Closure_15_/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java_102-103": {
+            "loc": "102-103",
+            "input": "@Override\npublic boolean apply(Node n) {\n  if (n == null) {\n    return false;\n  }\n  if (n.isCall() && NodeUtil.functionCallHasSideEffects(n)) {\n    return true;\n  }\n  if (n.isNew() && NodeUtil.constructorCallHasSideEffects(n)) {\n    return true;\n  }",
+            "function range": "83,7-109,7"
+        },
+        "Closure_18_/src/com/google/javascript/jscomp/Compiler.java_1288-1289": {
+            "loc": "1288-1289",
+            "input": "Node parseInputs() {\n  boolean devMode = options.devMode != DevMode.OFF;\n  if (externsRoot != null) {\n    externsRoot.detachChildren();\n  }\n  if (jsRoot != null) {\n    jsRoot.detachChildren();\n  }\n  jsRoot = IR.block();\n  jsRoot.setIsSyntheticBlock(true);\n  externsRoot = IR.block();\n  externsRoot.setIsSyntheticBlock(true);\n  externAndJsRoot = IR.block(externsRoot, jsRoot);\n  externAndJsRoot.setIsSyntheticBlock(true);\n  if (options.tracer.isOn()) {\n    tracker = new PerformanceTracker(jsRoot, options.tracer);\n    addChangeHandler(tracker.getCodeChangeHandler());\n  }\n  Tracer tracer = newTracer(\"parseInputs\");\n  try {\n    for (CompilerInput input : externs) {\n      Node n = input.getAstRoot(this);\n      if (hasErrors()) {\n        return null;\n      }\n      externsRoot.addChildToBack(n);\n    }\n    if (options.transformAMDToCJSModules || options.processCommonJSModules) {\n      processAMDAndCommonJSModules();\n    }\n    hoistExterns(externsRoot);\n    boolean staleInputs = false;\n// buggy line:    if (options.dependencyOptions.needsManagement() && options.closurePass) {",
+            "function range": "1240,3-1362,3"
+        },
+        "Closure_20_/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java_220-221": {
+            "loc": "220-221",
+            "input": "private Node tryFoldSimpleFunctionCall(Node n) {\n  Preconditions.checkState(n.isCall());\n  Node callTarget = n.getFirstChild();\n  if (callTarget != null && callTarget.isName() &&\n        callTarget.getString().equals(\"String\")) {\n    Node value = callTarget.getNext();\n// buggy line:    if (value != null) {",
+            "function range": "208,3-230,3"
+        },
+        "Closure_31_/src/com/google/javascript/jscomp/Compiler.java_1285-1286": {
+            "loc": "1285-1286",
+            "input": "Node parseInputs() {\n  boolean devMode = options.devMode != DevMode.OFF;\n  if (externsRoot != null) {\n    externsRoot.detachChildren();\n  }\n  if (jsRoot != null) {\n    jsRoot.detachChildren();\n  }\n  jsRoot = IR.block();\n  jsRoot.setIsSyntheticBlock(true);\n  externsRoot = IR.block();\n  externsRoot.setIsSyntheticBlock(true);\n  externAndJsRoot = IR.block(externsRoot, jsRoot);\n  externAndJsRoot.setIsSyntheticBlock(true);\n  if (options.tracer.isOn()) {\n    tracker = new PerformanceTracker(jsRoot, options.tracer);\n    addChangeHandler(tracker.getCodeChangeHandler());\n  }\n  Tracer tracer = newTracer(\"parseInputs\");\n  try {\n    for (CompilerInput input : externs) {\n      Node n = input.getAstRoot(this);\n      if (hasErrors()) {\n        return null;\n      }\n      externsRoot.addChildToBack(n);\n    }\n    if (options.transformAMDToCJSModules || options.processCommonJSModules) {\n      processAMDAndCommonJSModules();\n    }\n    boolean staleInputs = false;\n    if (options.dependencyOptions.needsManagement() &&\n// buggy line:        !options.skipAllPasses &&",
+            "function range": "1236,3-1387,3"
+        },
+        "Closure_33_/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java_557-558": {
+            "loc": "557-558",
+            "input": "@Override\npublic void matchConstraint(ObjectType constraintObj) {",
+            "function range": "554,3-580,3"
+        },
+        "Closure_35_/src/com/google/javascript/jscomp/TypeInference.java_1121-1136": {
+            "loc": "1121-1136",
+            "input": "private void inferPropertyTypesToMatchConstraint(\n    JSType type, JSType constraint) {\n  if (type == null || constraint == null) {\n    return;\n  }\n  ObjectType constraintObj =\n      ObjectType.cast(constraint.restrictByNotNullOrUndefined());\n// buggy line:  if (constraintObj != null && constraintObj.isRecordType()) {\n// buggy line:    ObjectType objType = ObjectType.cast(type.restrictByNotNullOrUndefined());\n// buggy line:    if (objType != null) {\n// buggy line:      for (String prop : constraintObj.getOwnPropertyNames()) {\n// buggy line:        JSType propType = constraintObj.getPropertyType(prop);\n// buggy line:        if (!objType.isPropertyTypeDeclared(prop)) {\n// buggy line:          JSType typeToInfer = propType;\n// buggy line:          if (!objType.hasProperty(prop)) {\n// buggy line:            typeToInfer =\n// buggy line:                getNativeType(VOID_TYPE).getLeastSupertype(propType);\n// buggy line:          }\n// buggy line:          objType.defineInferredProperty(prop, typeToInfer, null);\n// buggy line:        }\n// buggy line:      }\n// buggy line:    }",
+            "function range": "1113,3-1137,3"
+        },
+        "Closure_36_/src/com/google/javascript/jscomp/InlineVariables.java_575-576": {
+            "loc": "575-576",
+            "input": "private boolean canInline(\n    Reference declaration,\n    Reference initialization,\n    Reference reference) {\n  if (!isValidDeclaration(declaration)\n      || !isValidInitialization(initialization)\n      || !isValidReference(reference)) {\n    return false;\n  }\n  if (declaration != initialization &&\n      !initialization.getGrandparent().isExprResult()) {\n    return false;\n  }\n  if (declaration.getBasicBlock() != initialization.getBasicBlock()\n      || declaration.getBasicBlock() != reference.getBasicBlock()) {\n    return false;\n  }\n  Node value = initialization.getAssignedValue();\n  Preconditions.checkState(value != null);\n  if (value.isGetProp()\n      && reference.getParent().isCall()\n      && reference.getParent().getFirstChild() == reference.getNode()) {\n    return false;\n  }\n  if (value.isFunction()) {\n    Node callNode = reference.getParent();\n    if (reference.getParent().isCall()) {\n      CodingConvention convention = compiler.getCodingConvention();\n      SubclassRelationship relationship =\n          convention.getClassesDefinedByCall(callNode);\n      if (relationship != null) {\n        return false;\n      }\n// buggy line:    }",
+            "function range": "519,5-580,5"
+        },
+        "Closure_38_/src/com/google/javascript/jscomp/CodeConsumer.java_245-246": {
+            "loc": "245-246",
+            "input": "void addNumber(double x) {\n  char prev = getLastChar();\n  boolean negativeZero = isNegativeZero(x);\n// buggy line:  if (x < 0 && prev == '-') {",
+            "function range": "240,3-267,3"
+        },
+        "Closure_52_/src/com/google/javascript/jscomp/CodeGenerator.java_745-746": {
+            "loc": "745-746",
+            "input": "static boolean isSimpleNumber(String s) {\n  int len = s.length();\n  for (int index = 0; index < len; index++) {\n    char c = s.charAt(index);\n    if (c < '0' || c > '9') {\n      return false;\n    }\n  }\n// buggy line:  return len > 0;",
+            "function range": "737,3-746,3"
+        },
+        "Closure_55_/src/com/google/javascript/jscomp/FunctionRewriter.java_117-118": {
+            "loc": "117-118",
+            "input": "private static boolean isReduceableFunctionExpression(Node n) {\n// buggy line:  return NodeUtil.isFunctionExpression(n);",
+            "function range": "116,3-118,3"
+        },
+        "Closure_57_/src/com/google/javascript/jscomp/ClosureCodingConvention.java_197-198": {
+            "loc": "197-198",
+            "input": "private static String extractClassNameIfGoog(Node node, Node parent,\n    String functionName){\n  String className = null;\n  if (NodeUtil.isExprCall(parent)) {\n    Node callee = node.getFirstChild();\n    if (callee != null && callee.getType() == Token.GETPROP) {\n      String qualifiedName = callee.getQualifiedName();\n      if (functionName.equals(qualifiedName)) {\n        Node target = callee.getNext();\n// buggy line:        if (target != null) {",
+            "function range": "188,3-204,3"
+        },
+        "Closure_59_/src/com/google/javascript/jscomp/Compiler.java_255-256": {
+            "loc": "255-256",
+            "input": "public void initOptions(CompilerOptions options) {\n  this.options = options;\n  if (errorManager == null) {\n    if (outStream == null) {\n      setErrorManager(\n          new LoggerErrorManager(createMessageFormatter(), logger));\n    } else {\n      PrintStreamErrorManager printer =\n          new PrintStreamErrorManager(createMessageFormatter(), outStream);\n      printer.setSummaryDetailLevel(options.summaryDetailLevel);\n      setErrorManager(printer);\n    }\n  }\n  if (options.enables(DiagnosticGroups.CHECK_TYPES)) {\n    options.checkTypes = true;\n  } else if (options.disables(DiagnosticGroups.CHECK_TYPES)) {\n    options.checkTypes = false;\n  } else if (!options.checkTypes) {\n    options.setWarningLevel(\n        DiagnosticGroup.forType(\n            RhinoErrorReporter.TYPE_PARSE_ERROR),\n        CheckLevel.OFF);\n  }\n// buggy line:  if (options.checkGlobalThisLevel.isOn()) {",
+            "function range": "226,3-288,3"
+        },
+        "Closure_62_/src/com/google/javascript/jscomp/LightweightMessageFormatter.java_98-99": {
+            "loc": "98-99",
+            "input": "private String format(JSError error, boolean warning) {\n  SourceExcerptProvider source = getSource();\n  String sourceExcerpt = source == null ? null :\n      excerpt.get(\n          source, error.sourceName, error.lineNumber, excerptFormatter);\n  StringBuilder b = new StringBuilder();\n  if (error.sourceName != null) {\n    b.append(error.sourceName);\n    if (error.lineNumber > 0) {\n      b.append(':');\n      b.append(error.lineNumber);\n    }\n    b.append(\": \");\n  }\n  b.append(getLevelName(warning ? CheckLevel.WARNING : CheckLevel.ERROR));\n  b.append(\" - \");\n  b.append(error.description);\n  b.append('\\n');\n  if (sourceExcerpt != null) {\n    b.append(sourceExcerpt);\n    b.append('\\n');\n    int charno = error.getCharno();\n    if (excerpt.equals(LINE)\n// buggy line:        && 0 <= charno && charno < sourceExcerpt.length()) {",
+            "function range": "66,3-111,3"
+        },
+        "Closure_65_/src/com/google/javascript/jscomp/CodeGenerator.java_1015-1016": {
+            "loc": "1015-1016",
+            "input": "static String strEscape(String s, char quote,\n                        String doublequoteEscape,\n                        String singlequoteEscape,\n                        String backslashEscape,\n                        CharsetEncoder outputCharsetEncoder) {\n  StringBuilder sb = new StringBuilder(s.length() + 2);\n  sb.append(quote);\n  for (int i = 0; i < s.length(); i++) {\n    char c = s.charAt(i);\n    switch (c) {\n// buggy line:      case '\\0': sb.append(\"\\\\0\"); break;",
+            "function range": "1005,3-1075,3"
+        },
+        "Closure_67_/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java_318-319": {
+            "loc": "318-319",
+            "input": "private boolean isPrototypePropertyAssign(Node assign) {\n  Node n = assign.getFirstChild();\n  if (n != null && NodeUtil.isVarOrSimpleAssignLhs(n, assign)\n      && n.getType() == Token.GETPROP\n// buggy line:      ) {",
+            "function range": "314,5-334,5"
+        },
+        "Closure_70_/src/com/google/javascript/jscomp/TypedScopeCreator.java_1745-1746": {
+            "loc": "1745-1746",
+            "input": "private void declareArguments(Node functionNode) {\n  Node astParameters = functionNode.getFirstChild().getNext();\n  Node body = astParameters.getNext();\n  FunctionType functionType = (FunctionType) functionNode.getJSType();\n  if (functionType != null) {\n    Node jsDocParameters = functionType.getParametersNode();\n    if (jsDocParameters != null) {\n      Node jsDocParameter = jsDocParameters.getFirstChild();\n      for (Node astParameter : astParameters.children()) {\n        if (jsDocParameter != null) {\n          defineSlot(astParameter, functionNode,\n// buggy line:              jsDocParameter.getJSType(), true);",
+            "function range": "1734,5-1753,5"
+        },
+        "Closure_71_/src/com/google/javascript/jscomp/CheckAccessControls.java_416-417": {
+            "loc": "416-417",
+            "input": "private void checkPropertyVisibility(NodeTraversal t,\n    Node getprop, Node parent) {\n  ObjectType objectType =\n      ObjectType.cast(dereference(getprop.getFirstChild().getJSType()));\n  String propertyName = getprop.getLastChild().getString();\n  if (objectType != null) {\n// buggy line:    boolean isOverride = t.inGlobalScope() &&",
+            "function range": "407,3-500,3"
+        },
+        "Closure_73_/src/com/google/javascript/jscomp/CodeGenerator.java_1045-1046": {
+            "loc": "1045-1046",
+            "input": "static String strEscape(String s, char quote,\n                        String doublequoteEscape,\n                        String singlequoteEscape,\n                        String backslashEscape,\n                        CharsetEncoder outputCharsetEncoder) {\n  StringBuilder sb = new StringBuilder(s.length() + 2);\n  sb.append(quote);\n  for (int i = 0; i < s.length(); i++) {\n    char c = s.charAt(i);\n    switch (c) {\n      case '\\0': sb.append(\"\\\\0\"); break;\n      case '\\n': sb.append(\"\\\\n\"); break;\n      case '\\r': sb.append(\"\\\\r\"); break;\n      case '\\t': sb.append(\"\\\\t\"); break;\n      case '\\\\': sb.append(backslashEscape); break;\n      case '\\\"': sb.append(doublequoteEscape); break;\n      case '\\'': sb.append(singlequoteEscape); break;\n      case '>':                       \n        if (i >= 2 &&\n            ((s.charAt(i - 1) == '-' && s.charAt(i - 2) == '-') ||\n             (s.charAt(i - 1) == ']' && s.charAt(i - 2) == ']'))) {\n          sb.append(\"\\\\>\");\n        } else {\n          sb.append(c);\n        }\n        break;\n      case '<':\n        final String END_SCRIPT = \"/script\";\n        final String START_COMMENT = \"!--\";\n        if (s.regionMatches(true, i + 1, END_SCRIPT, 0,\n                            END_SCRIPT.length())) {\n          sb.append(\"<\\\\\");\n        } else if (s.regionMatches(false, i + 1, START_COMMENT, 0,\n                                   START_COMMENT.length())) {\n          sb.append(\"<\\\\\");\n        } else {\n          sb.append(c);\n        }\n        break;\n      default:\n        if (outputCharsetEncoder != null) {\n          if (outputCharsetEncoder.canEncode(c)) {\n            sb.append(c);\n          } else {\n            appendHexJavaScriptRepresentation(sb, c);\n          }\n        } else {\n// buggy line:          if (c > 0x1f && c <= 0x7f) {",
+            "function range": "988,3-1058,3"
+        },
+        "Closure_82_/src/com/google/javascript/rhino/jstype/JSType.java_163-164": {
+            "loc": "163-164",
+            "input": "public final boolean isEmptyType() {\n// buggy line:  return isNoType() || isNoObjectType() || isNoResolvedType();",
+            "function range": "162,3-164,3"
+        },
+        "Closure_83_/src/com/google/javascript/jscomp/CommandLineRunner.java_334-335": {
+            "loc": "334-335",
+            "input": "@Override\npublic int parseArguments(Parameters params) throws CmdLineException {\n// buggy line:  String param = params.getParameter(0);",
+            "function range": "332,7-351,7"
+        },
+        "Closure_86_/src/com/google/javascript/jscomp/NodeUtil.java_2465-2466": {
+            "loc": "2465-2466",
+            "input": "static boolean evaluatesToLocalValue(Node value, Predicate<Node> locals) {\n  switch (value.getType()) {\n    case Token.ASSIGN:\n      return NodeUtil.isImmutableValue(value.getLastChild())\n          || (locals.apply(value)\n              && evaluatesToLocalValue(value.getLastChild(), locals));\n    case Token.COMMA:\n      return evaluatesToLocalValue(value.getLastChild(), locals);\n    case Token.AND:\n    case Token.OR:\n      return evaluatesToLocalValue(value.getFirstChild(), locals)\n         && evaluatesToLocalValue(value.getLastChild(), locals);\n    case Token.HOOK:\n      return evaluatesToLocalValue(value.getFirstChild().getNext(), locals)\n         && evaluatesToLocalValue(value.getLastChild(), locals);\n    case Token.INC:\n    case Token.DEC:\n      if (value.getBooleanProp(Node.INCRDECR_PROP)) {\n        return evaluatesToLocalValue(value.getFirstChild(), locals);\n      } else {\n        return true;\n      }\n    case Token.THIS:\n      return locals.apply(value);\n    case Token.NAME:\n      return isImmutableValue(value) || locals.apply(value);\n    case Token.GETELEM:\n    case Token.GETPROP:\n      return locals.apply(value);\n    case Token.CALL:\n      return callHasLocalResult(value)\n          || isToStringMethodCall(value)\n          || locals.apply(value);\n    case Token.NEW:\n// buggy line:      return true;",
+            "function range": "2424,3-2489,3"
+        },
+        "Closure_92_/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java_789-790": {
+            "loc": "789-790",
+            "input": "void replace() {\n  if (firstNode == null) {\n    replacementNode = candidateDefinition;\n    return;\n  }\n  if (candidateDefinition != null && explicitNode != null) {\n    explicitNode.detachFromParent();\n    compiler.reportCodeChange();\n    replacementNode = candidateDefinition;\n    if (NodeUtil.isExpressionNode(candidateDefinition)) {\n      candidateDefinition.putBooleanProp(Node.IS_NAMESPACE, true);\n      Node assignNode = candidateDefinition.getFirstChild();\n      Node nameNode = assignNode.getFirstChild();\n      if (nameNode.getType() == Token.NAME) {\n        Node valueNode = nameNode.getNext();\n        assignNode.removeChild(nameNode);\n        assignNode.removeChild(valueNode);\n        nameNode.addChildToFront(valueNode);\n        Node varNode = new Node(Token.VAR, nameNode);\n        varNode.copyInformationFrom(candidateDefinition);\n        candidateDefinition.getParent().replaceChild(\n            candidateDefinition, varNode);\n        nameNode.setJSDocInfo(assignNode.getJSDocInfo());\n        compiler.reportCodeChange();\n        replacementNode = varNode;\n      }\n    }\n  } else {\n    replacementNode = createDeclarationNode();\n    if (firstModule == minimumModule) {\n      firstNode.getParent().addChildBefore(replacementNode, firstNode);\n    } else {\n// buggy line:      int indexOfDot = namespace.indexOf('.');",
+            "function range": "747,5-809,5"
+        },
+        "Closure_97_/src/com/google/javascript/jscomp/PeepholeFoldConstants.java_698-699": {
+            "loc": "698-699",
+            "input": "private Node tryFoldShift(Node n, Node left, Node right) {\n  if (left.getType() == Token.NUMBER &&\n      right.getType() == Token.NUMBER) {\n    double result;\n    double lval = left.getDouble();\n    double rval = right.getDouble();\n    if (!(lval >= Integer.MIN_VALUE && lval <= Integer.MAX_VALUE)) {\n      error(BITWISE_OPERAND_OUT_OF_RANGE, left);\n      return n;\n    }\n    if (!(rval >= 0 && rval < 32)) {\n      error(SHIFT_AMOUNT_OUT_OF_BOUNDS, right);\n      return n;\n    }\n    int lvalInt = (int) lval;\n    if (lvalInt != lval) {\n      error(FRACTIONAL_BITWISE_OPERAND, left);\n      return n;\n    }\n    int rvalInt = (int) rval;\n    if (rvalInt != rval) {\n      error(FRACTIONAL_BITWISE_OPERAND, right);\n      return n;\n    }\n    switch (n.getType()) {\n      case Token.LSH:\n        result = lvalInt << rvalInt;\n        break;\n      case Token.RSH:\n        result = lvalInt >> rvalInt;\n        break;\n      case Token.URSH:\n// buggy line:        result = lvalInt >>> rvalInt;",
+            "function range": "652,3-713,3"
+        },
+        "Closure_104_/src/com/google/javascript/rhino/jstype/UnionType.java_291-292": {
+            "loc": "291-292",
+            "input": "JSType meet(JSType that) {\n  UnionTypeBuilder builder = new UnionTypeBuilder(registry);\n  for (JSType alternate : alternates) {\n    if (alternate.isSubtype(that)) {\n      builder.addAlternate(alternate);\n    }\n  }\n  if (that instanceof UnionType) {\n    for (JSType otherAlternate : ((UnionType) that).alternates) {\n      if (otherAlternate.isSubtype(this)) {\n        builder.addAlternate(otherAlternate);\n      }\n    }\n  } else if (that.isSubtype(this)) {\n    builder.addAlternate(that);\n  }\n  JSType result = builder.build();\n// buggy line:  if (result != null) {",
+            "function range": "273,3-298,3"
+        },
+        "Closure_109_/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java_1908-1909": {
+            "loc": "1908-1909",
+            "input": "private Node parseContextTypeExpression(JsDocToken token) {\n// buggy line:        return parseTypeName(token);",
+            "function range": "1907,3-1909,3"
+        },
+        "Closure_111_/src/com/google/javascript/jscomp/type/ClosureReverseAbstractInterpreter.java_54-55": {
+            "loc": "54-55",
+            "input": "@Override\nprotected JSType caseTopType(JSType topType) {\n// buggy line:  return topType;",
+            "function range": "52,9-55,9"
+        },
+        "Closure_113_/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java_329-330": {
+            "loc": "329-330",
+            "input": "private void processRequireCall(NodeTraversal t, Node n, Node parent) {\n  Node left = n.getFirstChild();\n  Node arg = left.getNext();\n  if (verifyLastArgumentIsString(t, left, arg)) {\n    String ns = arg.getString();\n    ProvidedName provided = providedNames.get(ns);\n    if (provided == null || !provided.isExplicitlyProvided()) {\n      unrecognizedRequires.add(\n          new UnrecognizedRequire(n, ns, t.getSourceName()));\n    } else {\n      JSModule providedModule = provided.explicitModule;\n      Preconditions.checkNotNull(providedModule);\n      JSModule module = t.getModule();\n      if (moduleGraph != null &&\n          module != providedModule &&\n          !moduleGraph.dependsOn(module, providedModule)) {\n        compiler.report(\n            t.makeError(n, XMODULE_REQUIRE_ERROR, ns,\n                providedModule.getName(),\n                module.getName()));\n      }\n    }\n    maybeAddToSymbolTable(left);\n    maybeAddStringNodeToSymbolTable(arg);\n// buggy line:    if (provided != null) {",
+            "function range": "295,3-334,3"
+        },
+        "Closure_114_/src/com/google/javascript/jscomp/NameAnalyzer.java_578-579": {
+            "loc": "578-579",
+            "input": "private void recordAssignment(NodeTraversal t, Node n, Node recordNode) {\n  Node nameNode = n.getFirstChild();\n  Node parent = n.getParent();\n  NameInformation ns = createNameInformation(t, nameNode);\n  if (ns != null) {\n    if (parent.isFor() && !NodeUtil.isForIn(parent)) {\n      if (parent.getFirstChild().getNext() != n) {\n        recordDepScope(recordNode, ns);\n      } else {\n        recordDepScope(nameNode, ns);\n      }\n// buggy line:    } else {",
+            "function range": "558,5-588,5"
+        },
+        "Closure_118_/src/com/google/javascript/jscomp/DisambiguateProperties.java_495-496": {
+            "loc": "495-496",
+            "input": "private void handleObjectLit(NodeTraversal t, Node n) {\n  for (Node child = n.getFirstChild();\n      child != null;\n      child = child.getNext()) {",
+            "function range": "490,5-513,5"
+        },
+        "Closure_120_/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java_431-432": {
+            "loc": "431-432",
+            "input": "boolean isAssignedOnceInLifetime() {\n  Reference ref = getOneAndOnlyAssignment();\n  if (ref == null) {\n    return false;\n  }\n  for (BasicBlock block = ref.getBasicBlock();\n       block != null; block = block.getParent()) {\n    if (block.isFunction) {\n// buggy line:      break;",
+            "function range": "421,5-438,5"
+        },
+        "Closure_122_/src/com/google/javascript/jscomp/parsing/IRFactory.java_252-253": {
+            "loc": "252-253",
+            "input": "private void handleBlockComment(Comment comment) {\n// buggy line:  if (comment.getValue().indexOf(\"/* @\") != -1 || comment.getValue().indexOf(\"\\n * @\") != -1) {",
+            "function range": "251,3-258,3"
+        },
+        "Closure_125_/src/com/google/javascript/jscomp/TypeCheck.java_1661-1662": {
+            "loc": "1661-1662",
+            "input": "private void visitNew(NodeTraversal t, Node n) {\n  Node constructor = n.getFirstChild();\n  JSType type = getJSType(constructor).restrictByNotNullOrUndefined();\n  if (type.isConstructor() || type.isEmptyType() || type.isUnknownType()) {\n    FunctionType fnType = type.toMaybeFunctionType();\n// buggy line:    if (fnType != null) {",
+            "function range": "1656,3-1671,3"
+        },
+        "Closure_126_/src/com/google/javascript/jscomp/MinimizeExitPoints.java_141-145": {
+            "loc": "141-145",
+            "input": "void tryMinimizeExits(Node n, int exitType, String labelName) {\n  if (matchingExitNode(n, exitType, labelName)) {\n    NodeUtil.removeChild(n.getParent(), n);\n    compiler.reportCodeChange();\n    return;\n  }\n  if (n.isIf()) {\n    Node ifBlock = n.getFirstChild().getNext();\n    tryMinimizeExits(ifBlock, exitType, labelName);\n    Node elseBlock = ifBlock.getNext();\n    if (elseBlock != null) {\n      tryMinimizeExits(elseBlock, exitType, labelName);\n    }\n    return;\n  }\n  if (n.isTry()) {\n    Node tryBlock = n.getFirstChild();\n    tryMinimizeExits(tryBlock, exitType, labelName);\n    Node allCatchNodes = NodeUtil.getCatchBlock(n);\n    if (NodeUtil.hasCatchHandler(allCatchNodes)) {\n      Preconditions.checkState(allCatchNodes.hasOneChild());\n      Node catchNode = allCatchNodes.getFirstChild();\n      Node catchCodeBlock = catchNode.getLastChild();\n      tryMinimizeExits(catchCodeBlock, exitType, labelName);\n    }\n// buggy line:    if (NodeUtil.hasFinally(n)) {\n// buggy line:      Node finallyBlock = n.getLastChild();\n// buggy line:      tryMinimizeExits(finallyBlock, exitType, labelName);\n// buggy line:    }",
+            "function range": "106,3-201,3"
+        },
+        "Closure_129_/src/com/google/javascript/jscomp/PrepareAst.java_166-167": {
+            "loc": "166-167",
+            "input": "private void annotateCalls(Node n) {\n  Preconditions.checkState(n.isCall());\n  Node first = n.getFirstChild();",
+            "function range": "158,5-177,5"
+        },
+        "Closure_130_/src/com/google/javascript/jscomp/CollapseProperties.java_172-173": {
+            "loc": "172-173",
+            "input": "private void inlineAliases(GlobalNamespace namespace) {\n  Deque<Name> workList = new ArrayDeque<Name>(namespace.getNameForest());\n  while (!workList.isEmpty()) {\n    Name name = workList.pop();\n    if (name.type == Name.Type.GET || name.type == Name.Type.SET) {\n      continue;\n    }\n// buggy line:    if (name.globalSets == 1 && name.localSets == 0 &&",
+            "function range": "161,3-197,3"
+        },
+        "Closure_132_/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java_782-783": {
+            "loc": "782-783",
+            "input": "private Node tryMinimizeIf(Node n) {\n  Node parent = n.getParent();\n  Node cond = n.getFirstChild();\n  if (NodeUtil.isLiteralValue(cond, true)) {\n    return n;\n  }\n  Node thenBranch = cond.getNext();\n  Node elseBranch = thenBranch.getNext();\n  if (elseBranch == null) {\n    if (isFoldableExpressBlock(thenBranch)) {\n      Node expr = getBlockExpression(thenBranch);\n      if (!late && isPropertyAssignmentInExpression(expr)) {\n        return n;\n      }\n      if (cond.isNot()) {\n        if (isLowerPrecedenceInExpression(cond, OR_PRECEDENCE) &&\n            isLowerPrecedenceInExpression(expr.getFirstChild(),\n                OR_PRECEDENCE)) {\n          return n;\n        }\n        Node or = IR.or(\n            cond.removeFirstChild(),\n            expr.removeFirstChild()).srcref(n);\n        Node newExpr = NodeUtil.newExpr(or);\n        parent.replaceChild(n, newExpr);\n        reportCodeChange();\n        return newExpr;\n      }\n      if (isLowerPrecedenceInExpression(cond, AND_PRECEDENCE) &&\n          isLowerPrecedenceInExpression(expr.getFirstChild(),\n              AND_PRECEDENCE)) {\n        return n;\n      }\n      n.removeChild(cond);\n      Node and = IR.and(cond, expr.removeFirstChild()).srcref(n);\n      Node newExpr = NodeUtil.newExpr(and);\n      parent.replaceChild(n, newExpr);\n      reportCodeChange();\n      return newExpr;\n    } else {\n      if (NodeUtil.isStatementBlock(thenBranch) &&\n          thenBranch.hasOneChild()) {\n        Node innerIf = thenBranch.getFirstChild();\n        if (innerIf.isIf()) {\n          Node innerCond = innerIf.getFirstChild();\n          Node innerThenBranch = innerCond.getNext();\n          Node innerElseBranch = innerThenBranch.getNext();\n          if (innerElseBranch == null &&\n               !(isLowerPrecedenceInExpression(cond, AND_PRECEDENCE) &&\n                 isLowerPrecedenceInExpression(innerCond, AND_PRECEDENCE))) {\n            n.detachChildren();\n            n.addChildToBack(\n                IR.and(\n                    cond,\n                    innerCond.detachFromParent())\n                    .srcref(cond));\n            n.addChildrenToBack(innerThenBranch.detachFromParent());\n            reportCodeChange();\n            return n;\n          }\n        }\n      }\n    }\n    return n;\n  }\n  tryRemoveRepeatedStatements(n);\n  if (cond.isNot() && !consumesDanglingElse(elseBranch)) {\n    n.replaceChild(cond, cond.removeFirstChild());\n    n.removeChild(thenBranch);\n    n.addChildToBack(thenBranch);\n    reportCodeChange();\n    return n;\n  }\n  if (isReturnExpressBlock(thenBranch) && isReturnExpressBlock(elseBranch)) {\n    Node thenExpr = getBlockReturnExpression(thenBranch);\n    Node elseExpr = getBlockReturnExpression(elseBranch);\n    n.removeChild(cond);\n    thenExpr.detachFromParent();\n    elseExpr.detachFromParent();\n    Node returnNode = IR.returnNode(\n                          IR.hook(cond, thenExpr, elseExpr)\n                              .srcref(n));\n    parent.replaceChild(n, returnNode);\n    reportCodeChange();\n    return returnNode;\n  }\n  boolean thenBranchIsExpressionBlock = isFoldableExpressBlock(thenBranch);\n  boolean elseBranchIsExpressionBlock = isFoldableExpressBlock(elseBranch);\n  if (thenBranchIsExpressionBlock && elseBranchIsExpressionBlock) {\n    Node thenOp = getBlockExpression(thenBranch).getFirstChild();\n    Node elseOp = getBlockExpression(elseBranch).getFirstChild();\n    if (thenOp.getType() == elseOp.getType()) {\n      if (NodeUtil.isAssignmentOp(thenOp)) {\n        Node lhs = thenOp.getFirstChild();\n        if (areNodesEqualForInlining(lhs, elseOp.getFirstChild()) &&\n// buggy line:            !mayEffectMutableState(lhs)) {",
+            "function range": "636,3-868,3"
+        },
+        "Closure_133_/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java_2401-2402": {
+            "loc": "2401-2402",
+            "input": "private String getRemainingJSDocLine() {\n  String result = stream.getRemainingJSDocLine();\n// buggy line:  return result;",
+            "function range": "2399,3-2402,3"
+        },
+        "Closure_146_/src/com/google/javascript/rhino/jstype/JSType.java_706-707": {
+            "loc": "706-707",
+            "input": "public TypePair getTypesUnderInequality(JSType that) {\n  if (that instanceof UnionType) {\n    TypePair p = that.getTypesUnderInequality(this);\n    return new TypePair(p.typeB, p.typeA);\n  }\n  switch (this.testForEquality(that)) {\n    case TRUE:\n// buggy line:      return new TypePair(null, null);",
+            "function range": "696,3-715,3"
+        },
+        "Closure_150_/src/com/google/javascript/jscomp/TypedScopeCreator.java_1451-1466": {
+            "loc": "1451-1466",
+            "input": "@Override public void visit(NodeTraversal t, Node n, Node parent) {\n  if (n == scope.getRootNode()) return;\n  if (n.getType() == Token.LP && parent == scope.getRootNode()) {\n    handleFunctionInputs(parent);\n    return;\n  }\n// buggy line:  attachLiteralTypes(n);\n// buggy line:  switch (n.getType()) {\n// buggy line:    case Token.FUNCTION:\n// buggy line:      if (parent.getType() == Token.NAME) {\n// buggy line:        return;\n// buggy line:      }\n// buggy line:      defineDeclaredFunction(n, parent);\n// buggy line:      break;\n// buggy line:    case Token.CATCH:\n// buggy line:      defineCatch(n, parent);\n// buggy line:      break;\n// buggy line:    case Token.VAR:\n// buggy line:      defineVar(n, parent);\n// buggy line:      break;\n// buggy line:  }",
+            "function range": "1443,5-1466,5"
+        },
+        "Closure_152_/src/com/google/javascript/rhino/jstype/FunctionType.java_871-872": {
+            "loc": "871-872",
+            "input": "@Override\nJSType resolveInternal(ErrorReporter t, StaticScope<JSType> scope) {\n  setResolvedTypeInternal(this);\n  call = (ArrowType) safeResolve(call, t, scope);\n  prototype = (FunctionPrototypeType) safeResolve(prototype, t, scope);\n// buggy line:  typeOfThis = (ObjectType) safeResolve(typeOfThis, t, scope);",
+            "function range": "861,3-892,3"
+        },
+        "Closure_159_/src/com/google/javascript/jscomp/InlineFunctions.java_777-781": {
+            "loc": "777-781",
+            "input": "private void findCalledFunctions(\n    Node node, Set<String> changed) {\n  Preconditions.checkArgument(changed != null);\n// buggy line:  if (node.getType() == Token.CALL) {\n// buggy line:    Node child = node.getFirstChild();\n// buggy line:    if (child.getType() == Token.NAME) {\n// buggy line:      changed.add(child.getString());",
+            "function range": "773,3-787,3"
+        },
+        "Closure_168_/src/com/google/javascript/jscomp/TypedScopeCreator.java_1996-1997": {
+            "loc": "1996-1997",
+            "input": "@Override public void visit(NodeTraversal t, Node n, Node parent) {\n  if (t.inGlobalScope()) {\n    return;\n  }\n  if (n.isReturn() && n.getFirstChild() != null) {\n    data.get(t.getScopeRoot()).recordNonEmptyReturn();\n  }\n// buggy line:  if (t.getScopeDepth() <= 2) {",
+            "function range": "1987,5-2038,5"
+        },
+        "Codec_2_/src/java/org/apache/commons/codec/binary/Base64.java_446-447": {
+            "loc": "446-447",
+            "input": "void encode(byte[] in, int inPos, int inAvail) {\n    if (eof) {\n        return;\n    }\n    if (inAvail < 0) {\n        eof = true;\n        if (buf == null || buf.length - pos < encodeSize) {\n            resizeBuf();\n        }\n        switch (modulus) {\n            case 1:\n                buf[pos++] = encodeTable[(x >> 2) & MASK_6BITS];\n                buf[pos++] = encodeTable[(x << 4) & MASK_6BITS];\n                if (encodeTable == STANDARD_ENCODE_TABLE) {\n                    buf[pos++] = PAD;\n                    buf[pos++] = PAD;\n                }\n                break;\n            case 2:\n                buf[pos++] = encodeTable[(x >> 10) & MASK_6BITS];\n                buf[pos++] = encodeTable[(x >> 4) & MASK_6BITS];\n                buf[pos++] = encodeTable[(x << 2) & MASK_6BITS];\n                if (encodeTable == STANDARD_ENCODE_TABLE) {\n                    buf[pos++] = PAD;\n                }\n                break;\n        }\n// buggy line:        if (lineLength > 0) {",
+            "function range": "414,5-473,5"
+        },
+        "Codec_3_/src/java/org/apache/commons/codec/language/DoubleMetaphone.java_455-456": {
+            "loc": "455-456",
+            "input": "private int handleG(String value, \n                    DoubleMetaphoneResult result, \n                    int index, \n                    boolean slavoGermanic) {\n    if (charAt(value, index + 1) == 'H') {\n        index = handleGH(value, result, index);\n    } else if (charAt(value, index + 1) == 'N') {\n        if (index == 1 && isVowel(charAt(value, 0)) && !slavoGermanic) {\n            result.append(\"KN\", \"N\");\n        } else if (!contains(value, index + 2, 2, \"EY\") && \n                   charAt(value, index + 1) != 'Y' && !slavoGermanic) {\n            result.append(\"N\", \"KN\");\n        } else {\n            result.append(\"KN\");\n        }\n        index = index + 2;\n    } else if (contains(value, index + 1, 2, \"LI\") && !slavoGermanic) {\n        result.append(\"KL\", \"L\");\n        index += 2;\n    } else if (index == 0 && (charAt(value, index + 1) == 'Y' || contains(value, index + 1, 2, ES_EP_EB_EL_EY_IB_IL_IN_IE_EI_ER))) {\n        result.append('K', 'J');\n        index += 2;\n    } else if ((contains(value, index + 1, 2, \"ER\") || \n                charAt(value, index + 1) == 'Y') &&\n               !contains(value, 0, 6, \"DANGER\", \"RANGER\", \"MANGER\") &&\n               !contains(value, index - 1, 1, \"E\", \"I\") && \n               !contains(value, index - 1, 3, \"RGY\", \"OGY\")) {\n        result.append('K', 'J');\n        index += 2;\n    } else if (contains(value, index + 1, 1, \"E\", \"I\", \"Y\") || \n               contains(value, index - 1, 4, \"AGGI\", \"OGGI\")) {\n        if ((contains(value, 0 ,4, \"VAN \", \"VON \") || contains(value, 0, 3, \"SCH\")) || contains(value, index + 1, 2, \"ET\")) {\n            result.append('K');\n// buggy line:        } else if (contains(value, index + 1, 4, \"IER\")) {",
+            "function range": "418,5-469,5"
+        },
+        "Codec_4_/src/java/org/apache/commons/codec/binary/Base64.java_225-226": {
+            "loc": "225-226",
+            "input": "public Base64() {\n// buggy line:    this(false);",
+            "function range": "224,5-226,5"
+        },
+        "Codec_7_/src/java/org/apache/commons/codec/binary/Base64.java_670-671": {
+            "loc": "670-671",
+            "input": "public static String encodeBase64String(byte[] binaryData) {\n// buggy line:    return StringUtils.newStringUtf8(encodeBase64(binaryData, true));",
+            "function range": "669,5-671,5"
+        },
+        "Codec_9_/src/java/org/apache/commons/codec/binary/Base64.java_827-828": {
+            "loc": "827-828",
+            "input": "public static byte[] encodeBase64(byte[] binaryData, boolean isChunked, boolean urlSafe, int maxResultSize) {\n    if (binaryData == null || binaryData.length == 0) {\n        return binaryData;\n    }\n// buggy line:    long len = getEncodeLength(binaryData, MIME_CHUNK_SIZE, CHUNK_SEPARATOR);",
+            "function range": "822,5-837,5"
+        },
+        "Codec_10_/src/java/org/apache/commons/codec/language/Caverphone.java_76-77": {
+            "loc": "76-77",
+            "input": "public String caverphone(String txt) {\n    if( txt == null || txt.length() == 0 ) {\n        return \"1111111111\";\n    }\n    txt = txt.toLowerCase(java.util.Locale.ENGLISH);\n    txt = txt.replaceAll(\"[^a-z]\", \"\");\n    txt = txt.replaceAll(\"e$\", \"\");             \n    txt = txt.replaceAll(\"^cough\", \"cou2f\");\n    txt = txt.replaceAll(\"^rough\", \"rou2f\");\n    txt = txt.replaceAll(\"^tough\", \"tou2f\");\n    txt = txt.replaceAll(\"^enough\", \"enou2f\");  \n    txt = txt.replaceAll(\"^trough\", \"trou2f\");  \n    txt = txt.replaceAll(\"^gn\", \"2n\");\n// buggy line:    txt = txt.replaceAll(\"^mb\", \"m2\");",
+            "function range": "50,5-142,5"
+        },
+        "Codec_17_/src/main/java/org/apache/commons/codec/binary/StringUtils.java_339-340": {
+            "loc": "339-340",
+            "input": "public static String newStringIso8859_1(final byte[] bytes) {\n// buggy line:    return new String(bytes, Charsets.ISO_8859_1);",
+            "function range": "338,5-340,5"
+        },
+        "Codec_18_/src/main/java/org/apache/commons/codec/binary/StringUtils.java_81-82": {
+            "loc": "81-82",
+            "input": "public static boolean equals(final CharSequence cs1, final CharSequence cs2) {\n    if (cs1 == cs2) {\n        return true;\n    }\n    if (cs1 == null || cs2 == null) {\n        return false;\n    }\n    if (cs1 instanceof String && cs2 instanceof String) {\n        return cs1.equals(cs2);\n    }\n// buggy line:    return CharSequenceUtils.regionMatches(cs1, false, 0, cs2, 0, Math.max(cs1.length(), cs2.length()));",
+            "function range": "71,5-82,5"
+        },
+        "Collections_26_/src/main/java/org/apache/commons/collections4/keyvalue/MultiKey.java_277-278": {
+            "loc": "277-278",
+            "input": "\n// buggy line:private Object readResolve() {",
+            "function range": "277,5-280,5"
+        },
+        "Compress_5_/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveInputStream.java_239-241": {
+            "loc": "239-241",
+            "input": "public int read(byte[] buffer, int start, int length) throws IOException {\n    if (closed) {\n        throw new IOException(\"The stream is closed\");\n    }\n    if (inf.finished() || current == null) {\n        return -1;\n    }\n    if (start <= buffer.length && length >= 0 && start >= 0\n        && buffer.length - start >= length) {\n        if (current.getMethod() == ZipArchiveOutputStream.STORED) {\n            int csize = (int) current.getSize();\n            if (readBytesOfEntry >= csize) {\n                return -1;\n            }\n            if (offsetInBuffer >= lengthOfLastRead) {\n                offsetInBuffer = 0;\n                if ((lengthOfLastRead = in.read(buf)) == -1) {\n                    return -1;\n                }\n                count(lengthOfLastRead);\n                bytesReadFromStream += lengthOfLastRead;\n            }\n            int toRead = length > lengthOfLastRead\n                ? lengthOfLastRead - offsetInBuffer\n                : length;\n            if ((csize - readBytesOfEntry) < toRead) {\n                toRead = csize - readBytesOfEntry;\n            }\n            System.arraycopy(buf, offsetInBuffer, buffer, start, toRead);\n            offsetInBuffer += toRead;\n            readBytesOfEntry += toRead;\n            crc.update(buffer, start, toRead);\n            return toRead;\n        }\n        if (inf.needsInput()) {\n            fill();\n            if (lengthOfLastRead > 0) {\n                bytesReadFromStream += lengthOfLastRead;\n            }\n        }\n        int read = 0;\n        try {\n            read = inf.inflate(buffer, start, length);\n        } catch (DataFormatException e) {\n            throw new ZipException(e.getMessage());\n        }\n// buggy line:        if (read == 0 && inf.finished()) {\n// buggy line:            return -1;",
+            "function range": "191,5-246,5"
+        },
+        "Compress_12_/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java_198-199": {
+            "loc": "198-199",
+            "input": "public TarArchiveEntry getNextTarEntry() throws IOException {\n    if (hasHitEOF) {\n        return null;\n    }\n    if (currEntry != null) {\n        long numToSkip = entrySize - entryOffset;\n        while (numToSkip > 0) {\n            long skipped = skip(numToSkip);\n            if (skipped <= 0) {\n                throw new RuntimeException(\"failed to skip current tar entry\");\n            }\n            numToSkip -= skipped;\n        }\n        readBuf = null;\n    }\n    byte[] headerBuf = getRecord();\n    if (hasHitEOF) {\n        currEntry = null;\n        return null;\n    }\n// buggy line:    currEntry = new TarArchiveEntry(headerBuf);",
+            "function range": "172,5-238,5"
+        },
+        "Compress_14_/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java_65-73": {
+            "loc": "65-73",
+            "input": "public static long parseOctal(final byte[] buffer, final int offset, final int length) {\n    long    result = 0;\n    int     end = offset + length;\n    int     start = offset;\n    if (length < 2){\n        throw new IllegalArgumentException(\"Length \"+length+\" must be at least 2\");\n    }\n// buggy line:    boolean allNUL = true;\n// buggy line:    for (int i = start; i < end; i++){\n// buggy line:        if (buffer[i] != 0){\n// buggy line:            allNUL = false;\n// buggy line:            break;\n// buggy line:        }\n// buggy line:    }\n// buggy line:    if (allNUL) {",
+            "function range": "56,5-112,5"
+        },
+        "Compress_19_/src/main/java/org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java_259-260": {
+            "loc": "259-260",
+            "input": "public void reparseCentralDirectoryData(boolean hasUncompressedSize,\n                                        boolean hasCompressedSize,\n                                        boolean hasRelativeHeaderOffset,\n                                        boolean hasDiskStart)\n    throws ZipException {\n    if (rawCentralDirectoryData != null) {\n        int expectedLength = (hasUncompressedSize ? DWORD : 0)\n            + (hasCompressedSize ? DWORD : 0)\n            + (hasRelativeHeaderOffset ? DWORD : 0)\n            + (hasDiskStart ? WORD : 0);\n// buggy line:        if (rawCentralDirectoryData.length != expectedLength) {",
+            "function range": "249,5-287,5"
+        },
+        "Compress_23_/src/main/java/org/apache/commons/compress/archivers/sevenz/Coders.java_112-113": {
+            "loc": "112-113",
+            "input": "@Override\nInputStream decode(final InputStream in, final Coder coder,\n        byte[] password) throws IOException {\n    byte propsByte = coder.properties[0];\n    long dictSize = coder.properties[1];\n    for (int i = 1; i < 4; i++) {\n// buggy line:        dictSize |= (coder.properties[i + 1] << (8 * i));",
+            "function range": "106,9-118,9"
+        },
+        "Compress_27_/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java_133-137": {
+            "loc": "133-137",
+            "input": "public static long parseOctal(final byte[] buffer, final int offset, final int length) {\n    long    result = 0;\n    int     end = offset + length;\n    int     start = offset;\n    if (length < 2){\n        throw new IllegalArgumentException(\"Length \"+length+\" must be at least 2\");\n    }\n    if (buffer[start] == 0) {\n        return 0L;\n    }\n    while (start < end){\n        if (buffer[start] == ' '){\n            start++;\n        } else {\n            break;\n        }\n    }\n    byte trailer = buffer[end - 1];\n    while (start < end && (trailer == 0 || trailer == ' ')) {\n        end--;\n        trailer = buffer[end - 1];\n    }\n// buggy line:    if (start == end) {\n// buggy line:        throw new IllegalArgumentException(\n// buggy line:                exceptionMessage(buffer, offset, length, start, trailer));\n// buggy line:    }",
+            "function range": "102,5-150,5"
+        },
+        "Compress_31_/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java_135-138": {
+            "loc": "135-138",
+            "input": "public static long parseOctal(final byte[] buffer, final int offset, final int length) {\n    long    result = 0;\n    int     end = offset + length;\n    int     start = offset;\n    if (length < 2){\n        throw new IllegalArgumentException(\"Length \"+length+\" must be at least 2\");\n    }\n    if (buffer[start] == 0) {\n        return 0L;\n    }\n    while (start < end){\n        if (buffer[start] == ' '){\n            start++;\n        } else {\n            break;\n        }\n    }\n    byte trailer = buffer[end - 1];\n    while (start < end && (trailer == 0 || trailer == ' ')) {\n        end--;\n        trailer = buffer[end - 1];\n    }\n    for ( ;start < end; start++) {\n        final byte currentByte = buffer[start];\n// buggy line:        if (currentByte == 0) {\n// buggy line:            break;\n// buggy line:        }",
+            "function range": "101,5-148,5"
+        },
+        "Compress_38_/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java_859-860": {
+            "loc": "859-860",
+            "input": "@Override\npublic boolean isDirectory() {\n    if (file != null) {\n        return file.isDirectory();\n    }\n    if (linkFlag == LF_DIR) {\n        return true;\n    }\n// buggy line:    if (getName().endsWith(\"/\")) {",
+            "function range": "849,5-864,5"
+        },
+        "Compress_46_/src/main/java/org/apache/commons/compress/archivers/zip/X5455_ExtendedTimestamp.java_529-531": {
+            "loc": "529-531",
+            "input": "private static ZipLong unixTimeToZipLong(long l) {\n// buggy line:    final long TWO_TO_32 = 0x100000000L;\n// buggy line:    if (l >= TWO_TO_32) {",
+            "function range": "528,5-534,5"
+        },
+        "Csv_1_/src/main/java/org/apache/commons/csv/ExtendedBufferedReader.java_58-59": {
+            "loc": "58-59",
+            "input": "@Override\npublic int read() throws IOException {\n    int current = super.read();\n// buggy line:    if (current == '\\n') {",
+            "function range": "55,5-63,5"
+        },
+        "Csv_4_/src/main/java/org/apache/commons/csv/CSVParser.java_288-289": {
+            "loc": "288-289",
+            "input": "public Map<String, Integer> getHeaderMap() {\n// buggy line:    return new LinkedHashMap<String, Integer>(this.headerMap);",
+            "function range": "287,5-289,5"
+        },
+        "Csv_11_/src/main/java/org/apache/commons/csv/CSVParser.java_384-385": {
+            "loc": "384-385",
+            "input": "private Map<String, Integer> initializeHeader() throws IOException {\n    Map<String, Integer> hdrMap = null;\n    final String[] formatHeader = this.format.getHeader();\n    if (formatHeader != null) {\n        hdrMap = new LinkedHashMap<String, Integer>();\n        String[] headerRecord = null;\n        if (formatHeader.length == 0) {\n            final CSVRecord nextRecord = this.nextRecord();\n            if (nextRecord != null) {\n                headerRecord = nextRecord.values();\n            }\n        } else {\n            if (this.format.getSkipHeaderRecord()) {\n                this.nextRecord();\n            }\n            headerRecord = formatHeader;\n        }\n        if (headerRecord != null) {\n            for (int i = 0; i < headerRecord.length; i++) {\n                final String header = headerRecord[i];\n                final boolean containsHeader = hdrMap.containsKey(header);\n// buggy line:                final boolean emptyHeader = header.trim().isEmpty();",
+            "function range": "359,5-394,5"
+        },
+        "Csv_14_/src/main/java/org/apache/commons/csv/CSVFormat.java_1039-1040": {
+            "loc": "1039-1040",
+            "input": "private void printAndQuote(final Object object, final CharSequence value, final int offset, final int len,\n        final Appendable out, final boolean newRecord) throws IOException {\n    boolean quote = false;\n    int start = offset;\n    int pos = offset;\n    final int end = offset + len;\n    final char delimChar = getDelimiter();\n    final char quoteChar = getQuoteCharacter().charValue();\n    QuoteMode quoteModePolicy = getQuoteMode();\n    if (quoteModePolicy == null) {\n        quoteModePolicy = QuoteMode.MINIMAL;\n    }\n    switch (quoteModePolicy) {\n    case ALL:\n        quote = true;\n        break;\n    case NON_NUMERIC:\n        quote = !(object instanceof Number);\n        break;\n    case NONE:\n        printAndEscape(value, offset, len, out);\n        return;\n    case MINIMAL:\n        if (len <= 0) {\n            if (newRecord) {\n                quote = true;\n            }\n        } else {\n            char c = value.charAt(pos);\n// buggy line:            if (newRecord && (c < '0' || c > '9' && c < 'A' || c > 'Z' && c < 'a' || c > 'z')) {",
+            "function range": "1001,5-1106,5"
+        },
+        "Csv_15_/src/main/java/org/apache/commons/csv/CSVFormat.java_1189-1192": {
+            "loc": "1189-1192",
+            "input": "private void printAndQuote(final Object object, final CharSequence value, final int offset, final int len,\n        final Appendable out, final boolean newRecord) throws IOException {\n    boolean quote = false;\n    int start = offset;\n    int pos = offset;\n    final int end = offset + len;\n    final char delimChar = getDelimiter();\n    final char quoteChar = getQuoteCharacter().charValue();\n    QuoteMode quoteModePolicy = getQuoteMode();\n    if (quoteModePolicy == null) {\n        quoteModePolicy = QuoteMode.MINIMAL;\n    }\n    switch (quoteModePolicy) {\n    case ALL:\n    case ALL_NON_NULL:\n        quote = true;\n        break;\n    case NON_NUMERIC:\n        quote = !(object instanceof Number);\n        break;\n    case NONE:\n        printAndEscape(value, offset, len, out);\n        return;\n    case MINIMAL:\n        if (len <= 0) {\n            if (newRecord) {\n                quote = true;\n            }\n        } else {\n            char c = value.charAt(pos);\n// buggy line:            if (newRecord && (c < 0x20 || c > 0x21 && c < 0x23 || c > 0x2B && c < 0x2D || c > 0x7E)) {\n// buggy line:                quote = true;\n// buggy line:            } else if (c <= COMMENT) {",
+            "function range": "1151,5-1256,5"
+        },
+        "Gson_10_/gson/src/main/java/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.java_122-124": {
+            "loc": "122-124",
+            "input": "@SuppressWarnings({\"unchecked\", \"rawtypes\"}) \n@Override void write(JsonWriter writer, Object value)\n    throws IOException, IllegalAccessException {\n  Object fieldValue = field.get(value);\n// buggy line:  TypeAdapter t =\n// buggy line:    new TypeAdapterRuntimeTypeWrapper(context, typeAdapter, fieldType.getType());",
+            "function range": "118,7-125,7"
+        },
+        "Gson_13_/gson/src/main/java/com/google/gson/stream/JsonReader.java_731-732": {
+            "loc": "731-732",
+            "input": "private int peekNumber() throws IOException {\n  char[] buffer = this.buffer;\n  int p = pos;\n  int l = limit;\n  long value = 0; \n  boolean negative = false;\n  boolean fitsInLong = true;\n  int last = NUMBER_CHAR_NONE;\n  int i = 0;\n  charactersOfNumber:\n  for (; true; i++) {\n    if (p + i == l) {\n      if (i == buffer.length) {\n        return PEEKED_NONE;\n      }\n      if (!fillBuffer(i + 1)) {\n        break;\n      }\n      p = pos;\n      l = limit;\n    }\n    char c = buffer[p + i];\n    switch (c) {\n    case '-':\n      if (last == NUMBER_CHAR_NONE) {\n        negative = true;\n        last = NUMBER_CHAR_SIGN;\n        continue;\n      } else if (last == NUMBER_CHAR_EXP_E) {\n        last = NUMBER_CHAR_EXP_SIGN;\n        continue;\n      }\n      return PEEKED_NONE;\n    case '+':\n      if (last == NUMBER_CHAR_EXP_E) {\n        last = NUMBER_CHAR_EXP_SIGN;\n        continue;\n      }\n      return PEEKED_NONE;\n    case 'e':\n    case 'E':\n      if (last == NUMBER_CHAR_DIGIT || last == NUMBER_CHAR_FRACTION_DIGIT) {\n        last = NUMBER_CHAR_EXP_E;\n        continue;\n      }\n      return PEEKED_NONE;\n    case '.':\n      if (last == NUMBER_CHAR_DIGIT) {\n        last = NUMBER_CHAR_DECIMAL;\n        continue;\n      }\n      return PEEKED_NONE;\n    default:\n      if (c < '0' || c > '9') {\n        if (!isLiteral(c)) {\n          break charactersOfNumber;\n        }\n        return PEEKED_NONE;\n      }\n      if (last == NUMBER_CHAR_SIGN || last == NUMBER_CHAR_NONE) {\n        value = -(c - '0');\n        last = NUMBER_CHAR_DIGIT;\n      } else if (last == NUMBER_CHAR_DIGIT) {\n        if (value == 0) {\n          return PEEKED_NONE; \n        }\n        long newValue = value * 10 - (c - '0');\n        fitsInLong &= value > MIN_INCOMPLETE_INTEGER\n            || (value == MIN_INCOMPLETE_INTEGER && newValue < value);\n        value = newValue;\n      } else if (last == NUMBER_CHAR_DECIMAL) {\n        last = NUMBER_CHAR_FRACTION_DIGIT;\n      } else if (last == NUMBER_CHAR_EXP_E || last == NUMBER_CHAR_EXP_SIGN) {\n        last = NUMBER_CHAR_EXP_DIGIT;\n      }\n    }\n  }\n// buggy line:  if (last == NUMBER_CHAR_DIGIT && fitsInLong && (value != Long.MIN_VALUE || negative)) {",
+            "function range": "641,3-742,3"
+        },
+        "Gson_15_/gson/src/main/java/com/google/gson/stream/JsonWriter.java_495-496": {
+            "loc": "495-496",
+            "input": "public JsonWriter value(double value) throws IOException {\n  writeDeferredName();\n// buggy line:  if (Double.isNaN(value) || Double.isInfinite(value)) {",
+            "function range": "493,3-501,3"
+        },
+        "Gson_17_/gson/src/main/java/com/google/gson/DefaultDateTypeAdapter.java_99-101": {
+            "loc": "99-101",
+            "input": "@Override\npublic Date read(JsonReader in) throws IOException {\n// buggy line:  if (in.peek() != JsonToken.STRING) {\n// buggy line:    throw new JsonParseException(\"The date should be a string value\");",
+            "function range": "97,3-113,3"
+        },
+        "JacksonCore_5_/src/main/java/com/fasterxml/jackson/core/JsonPointer.java_193-194": {
+            "loc": "193-194",
+            "input": "private final static int _parseIndex(String str) {\n    final int len = str.length();\n    if (len == 0 || len > 10) {\n        return -1;\n    }\n    for (int i = 0; i < len; ++i) {\n// buggy line:        char c = str.charAt(i++);",
+            "function range": "185,5-205,5"
+        },
+        "JacksonCore_6_/src/main/java/com/fasterxml/jackson/core/JsonPointer.java_193-195": {
+            "loc": "193-195",
+            "input": "private final static int _parseIndex(String str) {\n    final int len = str.length();\n    if (len == 0 || len > 10) {\n        return -1;\n    }\n// buggy line:    for (int i = 0; i < len; ++i) {\n// buggy line:        char c = str.charAt(i);",
+            "function range": "185,5-206,5"
+        },
+        "JacksonCore_8_/src/main/java/com/fasterxml/jackson/core/util/TextBuffer.java_307-308": {
+            "loc": "307-308",
+            "input": "public char[] getTextBuffer()\n{\n    if (_inputStart >= 0) return _inputBuffer;\n    if (_resultArray != null)  return _resultArray;\n    if (_resultString != null) {\n        return (_resultArray = _resultString.toCharArray());\n    }\n// buggy line:    if (!_hasSegments)  return _currentSegment;",
+            "function range": "298,5-310,5"
+        },
+        "JacksonCore_20_/src/main/java/com/fasterxml/jackson/core/JsonGenerator.java_1330-1331": {
+            "loc": "1330-1331",
+            "input": "public void writeEmbeddedObject(Object object) throws IOException {\n// buggy line:    throw new JsonGenerationException(\"No native support for writing embedded objects\",",
+            "function range": "1328,5-1332,5"
+        },
+        "JacksonCore_25_/src/main/java/com/fasterxml/jackson/core/json/ReaderBasedJsonParser.java_1963-1964": {
+            "loc": "1963-1964",
+            "input": "private String _handleOddName2(int startPtr, int hash, int[] codes) throws IOException\n{\n    _textBuffer.resetWithShared(_inputBuffer, startPtr, (_inputPtr - startPtr));\n    char[] outBuf = _textBuffer.getCurrentSegment();\n    int outPtr = _textBuffer.getCurrentSegmentSize();\n    final int maxCode = codes.length;\n    while (true) {\n        if (_inputPtr >= _inputEnd) {\n            if (!_loadMore()) { \n                break;\n            }\n        }\n        char c = _inputBuffer[_inputPtr];\n        int i = (int) c;\n// buggy line:        if (i <= maxCode) {",
+            "function range": "1948,5-1990,5"
+        },
+        "JacksonDatabind_12_/src/main/java/com/fasterxml/jackson/databind/deser/std/MapDeserializer.java_303-304": {
+            "loc": "303-304",
+            "input": "@Override\npublic boolean isCachable() {\n// buggy line:    return (_valueTypeDeserializer == null)",
+            "function range": "298,5-305,5"
+        },
+        "JacksonDatabind_16_/src/main/java/com/fasterxml/jackson/databind/introspect/AnnotationMap.java_112-113": {
+            "loc": "112-113",
+            "input": "protected final boolean _add(Annotation ann) {\n    if (_annotations == null) {\n        _annotations = new HashMap<Class<? extends Annotation>,Annotation>();\n    }\n    Annotation previous = _annotations.put(ann.annotationType(), ann);\n// buggy line:    return (previous != null) && previous.equals(ann);",
+            "function range": "107,5-113,5"
+        },
+        "JacksonDatabind_17_/src/main/java/com/fasterxml/jackson/databind/ObjectMapper.java_180-181": {
+            "loc": "180-181",
+            "input": "public boolean useForType(JavaType t)\n{\n    switch (_appliesFor) {\n    case NON_CONCRETE_AND_ARRAYS:\n        while (t.isArrayType()) {\n            t = t.getContentType();\n        }\n    case OBJECT_AND_NON_CONCRETE:\n        return (t.getRawClass() == Object.class)\n                || (!t.isConcrete()\n// buggy line:                || TreeNode.class.isAssignableFrom(t.getRawClass()));",
+            "function range": "167,9-193,9"
+        },
+        "JacksonDatabind_27_/src/main/java/com/fasterxml/jackson/databind/deser/BeanDeserializer.java_794-795": {
+            "loc": "794-795",
+            "input": "@SuppressWarnings(\"resource\")\nprotected Object deserializeUsingPropertyBasedWithExternalTypeId(JsonParser p, DeserializationContext ctxt)\n    throws IOException\n{\n    final ExternalTypeHandler ext = _externalTypeIdHandler.start();\n    final PropertyBasedCreator creator = _propertyBasedCreator;\n    PropertyValueBuffer buffer = creator.startBuilding(p, ctxt, _objectIdReader);\n    TokenBuffer tokens = new TokenBuffer(p);\n    tokens.writeStartObject();\n    JsonToken t = p.getCurrentToken();\n    for (; t == JsonToken.FIELD_NAME; t = p.nextToken()) {\n        String propName = p.getCurrentName();\n        p.nextToken(); \n        SettableBeanProperty creatorProp = creator.findCreatorProperty(propName);\n        if (creatorProp != null) {\n// buggy line:            if (ext.handlePropertyValue(p, ctxt, propName, buffer)) {",
+            "function range": "773,5-857,5"
+        },
+        "JacksonDatabind_33_/src/main/java/com/fasterxml/jackson/databind/introspect/JacksonAnnotationIntrospector.java_748-749": {
+            "loc": "748-749",
+            "input": "@Override\npublic PropertyName findNameForSerialization(Annotated a)\n{\n    String name = null;\n    JsonGetter jg = _findAnnotation(a, JsonGetter.class);\n    if (jg != null) {\n        name = jg.value();\n    } else {\n        JsonProperty pann = _findAnnotation(a, JsonProperty.class);\n        if (pann != null) {\n            name = pann.value();\n        } else if (_hasAnnotation(a, JsonSerialize.class)\n                || _hasAnnotation(a, JsonView.class)\n// buggy line:                || _hasAnnotation(a, JsonRawValue.class)) {",
+            "function range": "730,5-755,5"
+        },
+        "JacksonDatabind_34_/src/main/java/com/fasterxml/jackson/databind/ser/std/NumberSerializer.java_81-82": {
+            "loc": "81-82",
+            "input": "@Override\npublic void acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMappingException\n{\n    if (_isInt) {\n        visitIntFormat(visitor, typeHint, JsonParser.NumberType.BIG_INTEGER);\n    } else {\n        Class<?> h = handledType();\n        if (h == BigDecimal.class) {\n// buggy line:            visitFloatFormat(visitor, typeHint, JsonParser.NumberType.BIG_INTEGER);",
+            "function range": "73,5-87,5"
+        },
+        "JacksonDatabind_37_/src/main/java/com/fasterxml/jackson/databind/type/SimpleType.java_135-136": {
+            "loc": "135-136",
+            "input": "@Override\nprotected JavaType _narrow(Class<?> subclass)\n{\n    if (_class == subclass) {\n        return this;\n    }\n// buggy line:    return new SimpleType(subclass, _bindings, _superClass, _superInterfaces,",
+            "function range": "119,5-137,5"
+        },
+        "JacksonDatabind_45_/src/main/java/com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase.java_63-64": {
+            "loc": "63-64",
+            "input": "@Override\npublic JsonSerializer<?> createContextual(SerializerProvider serializers,\n        BeanProperty property) throws JsonMappingException\n{\n    if (property != null) {\n        JsonFormat.Value format = serializers.getAnnotationIntrospector().findFormat((Annotated)property.getMember());\n        if (format != null) {\n            JsonFormat.Shape shape = format.getShape();\n            if (shape.isNumeric()) {\n                return withFormat(Boolean.TRUE, null);\n            }\n// buggy line:            if (format.getShape() == JsonFormat.Shape.STRING) {",
+            "function range": "49,5-81,5"
+        },
+        "JacksonDatabind_46_/src/main/java/com/fasterxml/jackson/databind/type/ReferenceType.java_156-157": {
+            "loc": "156-157",
+            "input": "@Override\npublic StringBuilder getGenericSignature(StringBuilder sb)\n{\n    _classSignature(_class, sb, false);\n    sb.append('<');\n    sb = _referencedType.getGenericSignature(sb);\n// buggy line:    sb.append(';');",
+            "function range": "150,5-158,5"
+        },
+        "JacksonDatabind_57_/src/main/java/com/fasterxml/jackson/databind/ObjectReader.java_1441-1442": {
+            "loc": "1441-1442",
+            "input": "public <T> MappingIterator<T> readValues(byte[] src, int offset, int length)\n    throws IOException, JsonProcessingException\n{\n    if (_dataFormatReaders != null) {\n        return _detectBindAndReadValues(_dataFormatReaders.findFormat(src, offset, length), false);\n    }\n// buggy line:    return _bindAndReadValues(_considerFilter(_parserFactory.createParser(src), ",
+            "function range": "1435,5-1443,5"
+        },
+        "JacksonDatabind_70_/src/main/java/com/fasterxml/jackson/databind/deser/impl/BeanPropertyMap.java_440-441": {
+            "loc": "440-441",
+            "input": "public void remove(SettableBeanProperty propToRm)\n{\n    ArrayList<SettableBeanProperty> props = new ArrayList<SettableBeanProperty>(_size);\n    String key = getPropertyName(propToRm);\n    boolean found = false;\n    for (int i = 1, end = _hashArea.length; i < end; i += 2) {\n        SettableBeanProperty prop = (SettableBeanProperty) _hashArea[i];\n        if (prop == null) {\n            continue;\n        }\n        if (!found) {\n// buggy line:            found = key.equals(prop.getName());",
+            "function range": "426,5-453,5"
+        },
+        "JacksonDatabind_71_/src/main/java/com/fasterxml/jackson/databind/deser/std/StdKeyDeserializer.java_75-76": {
+            "loc": "75-76",
+            "input": "public static StdKeyDeserializer forType(Class<?> raw)\n{\n    int kind;\n// buggy line:    if (raw == String.class || raw == Object.class) {",
+            "function range": "70,5-116,5"
+        },
+        "JacksonDatabind_76_/src/main/java/com/fasterxml/jackson/databind/deser/BuilderBasedDeserializer.java_583-604": {
+            "loc": "583-604",
+            "input": "@SuppressWarnings(\"resource\")\nprotected Object deserializeUsingPropertyBasedWithUnwrapped(JsonParser p,\n\t\tDeserializationContext ctxt)\n    throws IOException, JsonProcessingException\n{\n    final PropertyBasedCreator creator = _propertyBasedCreator;\n    PropertyValueBuffer buffer = creator.startBuilding(p, ctxt, _objectIdReader);\n    TokenBuffer tokens = new TokenBuffer(p, ctxt);\n    tokens.writeStartObject();\n    JsonToken t = p.getCurrentToken();\n    for (; t == JsonToken.FIELD_NAME; t = p.nextToken()) {\n        String propName = p.getCurrentName();\n        p.nextToken(); \n        SettableBeanProperty creatorProp = creator.findCreatorProperty(propName);\n        if (creatorProp != null) {\n// buggy line:            if (buffer.assignParameter(creatorProp, creatorProp.deserialize(p, ctxt))) {\n// buggy line:                t = p.nextToken();\n// buggy line:                Object bean;\n// buggy line:                try {\n// buggy line:                    bean = creator.build(ctxt, buffer);\n// buggy line:                } catch (Exception e) {\n// buggy line:                    wrapAndThrow(e, _beanType.getRawClass(), propName, ctxt);\n// buggy line:                    continue;\n// buggy line:                }\n// buggy line:                while (t == JsonToken.FIELD_NAME) {\n// buggy line:                    p.nextToken();\n// buggy line:                    tokens.copyCurrentStructure(p);\n// buggy line:                    t = p.nextToken();\n// buggy line:                }\n// buggy line:                tokens.writeEndObject();\n// buggy line:                if (bean.getClass() != _beanType.getRawClass()) {\n// buggy line:                    ctxt.reportMappingException(\"Can not create polymorphic instances with unwrapped values\");\n// buggy line:                    return null;\n// buggy line:                }\n// buggy line:                return _unwrappedPropertyHandler.processUnwrapped(p, ctxt, bean, tokens);\n// buggy line:            }",
+            "function range": "565,5-637,5"
+        },
+        "JacksonDatabind_82_/src/main/java/com/fasterxml/jackson/databind/deser/BeanDeserializerFactory.java_495-496": {
+            "loc": "495-496",
+            "input": "protected void addBeanProps(DeserializationContext ctxt,\n        BeanDescription beanDesc, BeanDeserializerBuilder builder)\n    throws JsonMappingException\n{\n    final boolean isConcrete = !beanDesc.getType().isAbstract();\n    final SettableBeanProperty[] creatorProps = isConcrete\n            ? builder.getValueInstantiator().getFromObjectArguments(ctxt.getConfig())\n            : null;\n    final boolean hasCreatorProps = (creatorProps != null);\n    JsonIgnoreProperties.Value ignorals = ctxt.getConfig()\n            .getDefaultPropertyIgnorals(beanDesc.getBeanClass(),\n                    beanDesc.getClassInfo());\n    Set<String> ignored;\n    if (ignorals != null) {\n        boolean ignoreAny = ignorals.getIgnoreUnknown();\n        builder.setIgnoreUnknownProperties(ignoreAny);\n// buggy line:        ignored = ignorals.getIgnored();",
+            "function range": "472,5-615,5"
+        },
+        "JacksonDatabind_93_/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/SubTypeValidator.java_83-85": {
+            "loc": "83-85",
+            "input": "public void validateSubType(DeserializationContext ctxt, JavaType type) throws JsonMappingException\n{\n    final Class<?> raw = type.getRawClass();\n    String full = raw.getName();\n    main_check:\n    do {\n        if (_cfgIllegalClassNames.contains(full)) {\n            break;\n        }\n// buggy line:        if (full.startsWith(PREFIX_STRING)) {\n// buggy line:            for (Class<?> cls = raw; cls != Object.class; cls = cls.getSuperclass()) {",
+            "function range": "67,5-99,5"
+        },
+        "JacksonDatabind_96_/src/main/java/com/fasterxml/jackson/databind/deser/BasicDeserializerFactory.java_735-736": {
+            "loc": "735-736",
+            "input": "protected void _addExplicitAnyCreator(DeserializationContext ctxt,\n        BeanDescription beanDesc, CreatorCollector creators,\n        CreatorCandidate candidate)\n    throws JsonMappingException\n{\n    if (1 != candidate.paramCount()) {\n        int oneNotInjected = candidate.findOnlyParamWithoutInjection();\n        if (oneNotInjected >= 0) {\n            if (candidate.paramName(oneNotInjected) == null) {\n                _addExplicitDelegatingCreator(ctxt, beanDesc, creators, candidate);\n                return;\n            }\n        }\n        _addExplicitPropertyCreator(ctxt, beanDesc, creators, candidate);\n        return;\n    }\n    AnnotatedParameter param = candidate.parameter(0);\n    JacksonInject.Value injectId = candidate.injection(0);\n    PropertyName paramName = candidate.explicitParamName(0);\n    BeanPropertyDefinition paramDef = candidate.propertyDef(0);\n    boolean useProps = (paramName != null) || (injectId != null);\n    if (!useProps && (paramDef != null)) {\n// buggy line:        paramName = candidate.findImplicitParamName(0);",
+            "function range": "701,5-752,5"
+        },
+        "JacksonDatabind_97_/src/main/java/com/fasterxml/jackson/databind/node/POJONode.java_114-115": {
+            "loc": "114-115",
+            "input": "@Override\npublic final void serialize(JsonGenerator gen, SerializerProvider ctxt) throws IOException\n{\n    if (_value == null) {\n        ctxt.defaultSerializeNull(gen);\n    } else if (_value instanceof JsonSerializable) {\n        ((JsonSerializable) _value).serialize(gen, ctxt);\n    } else {\n// buggy line:        gen.writeObject(_value);",
+            "function range": "104,5-116,5"
+        },
+        "JacksonDatabind_98_/src/main/java/com/fasterxml/jackson/databind/deser/impl/ExternalTypeHandler.java_298-299": {
+            "loc": "298-299",
+            "input": "public Object complete(JsonParser p, DeserializationContext ctxt,\n        PropertyValueBuffer buffer, PropertyBasedCreator creator)\n    throws IOException\n{\n    final int len = _properties.length;\n    Object[] values = new Object[len];\n    for (int i = 0; i < len; ++i) {\n        String typeId = _typeIds[i];\n        final ExtTypedProperty extProp = _properties[i];\n        if (typeId == null) {\n            if (_tokens[i] == null) {\n                continue;\n            }\n            if (!extProp.hasDefaultType()) {\n                ctxt.reportInputMismatch(_beanType,\n                        \"Missing external type id property '%s'\",\n                        extProp.getTypePropertyName());\n            } else {\n                typeId = extProp.getDefaultTypeId();\n            }\n        } else if (_tokens[i] == null) {\n            SettableBeanProperty prop = extProp.getProperty();\n            ctxt.reportInputMismatch(_beanType,\n                    \"Missing property '%s' for external type id '%s'\",\n                    prop.getName(), _properties[i].getTypePropertyName());\n        }\n        values[i] = _deserialize(p, ctxt, i, typeId);\n        final SettableBeanProperty prop = extProp.getProperty();\n        if (prop.getCreatorIndex() >= 0) {\n            buffer.assignParameter(prop, values[i]);\n            SettableBeanProperty typeProp = extProp.getTypeProperty();\n            if ((typeProp != null) && (typeProp.getCreatorIndex() >= 0)) {\n// buggy line:                buffer.assignParameter(typeProp, typeId);",
+            "function range": "255,5-311,5"
+        },
+        "JacksonDatabind_102_/src/main/java/com/fasterxml/jackson/databind/ser/std/DateTimeSerializerBase.java_67-70": {
+            "loc": "67-70",
+            "input": "@Override\npublic JsonSerializer<?> createContextual(SerializerProvider serializers,\n        BeanProperty property) throws JsonMappingException\n{\n// buggy line:    if (property == null) {\n// buggy line:        return this;\n// buggy line:    }",
+            "function range": "61,5-136,5"
+        },
+        "JacksonDatabind_107_/src/main/java/com/fasterxml/jackson/databind/jsontype/impl/TypeDeserializerBase.java_165-166": {
+            "loc": "165-166",
+            "input": "protected final JsonDeserializer<Object> _findDeserializer(DeserializationContext ctxt,\n        String typeId) throws IOException\n{\n    JsonDeserializer<Object> deser = _deserializers.get(typeId);\n    if (deser == null) {\n        JavaType type = _idResolver.typeFromId(ctxt, typeId);\n        if (type == null) {\n            deser = _findDefaultImplDeserializer(ctxt);\n            if (deser == null) {\n                JavaType actual = _handleUnknownTypeId(ctxt, typeId);\n                if (actual == null) { \n// buggy line:                    return null;",
+            "function range": "146,5-199,5"
+        },
+        "JacksonXml_5_/src/main/java/com/fasterxml/jackson/dataformat/xml/ser/XmlSerializerProvider.java_59-60": {
+            "loc": "59-60",
+            "input": "protected XmlSerializerProvider(XmlSerializerProvider src) {\n    super(src);\n// buggy line:    _rootNameLookup = src._rootNameLookup;",
+            "function range": "55,5-60,5"
+        },
+        "Jsoup_1_/src/main/java/org/jsoup/nodes/Document.java_125-127": {
+            "loc": "125-127",
+            "input": "private void normalise(Element element) {\n    List<Node> toMove = new ArrayList<Node>();\n    for (Node node: element.childNodes) {\n        if (node instanceof TextNode) {\n            TextNode tn = (TextNode) node;\n            if (!tn.isBlank())\n                toMove.add(tn);\n        }\n    }\n    for (Node node: toMove) {\n        element.removeChild(node);\n// buggy line:        body().appendChild(new TextNode(\" \", \"\"));\n// buggy line:        body().appendChild(node);",
+            "function range": "113,5-128,5"
+        },
+        "Jsoup_15_/src/main/java/org/jsoup/parser/TreeBuilderState.java_283-284": {
+            "loc": "283-284",
+            "input": "boolean process(Token t, TreeBuilder tb) {\n    switch (t.type) {\n        case Character: {\n            Token.Character c = t.asCharacter();\n            if (c.getData().equals(nullString)) {\n                tb.error(this);\n                return false;\n            } else if (isWhitespace(c)) {\n                tb.reconstructFormattingElements();\n                tb.insert(c);\n            } else {\n                tb.reconstructFormattingElements();\n                tb.insert(c);\n                tb.framesetOk(false);\n            }\n            break;\n        }\n        case Comment: {\n            tb.insert(t.asComment());\n            break;\n        }\n        case Doctype: {\n            tb.error(this);\n            return false;\n        }\n        case StartTag:\n            Token.StartTag startTag = t.asStartTag();\n            String name = startTag.name();\n            if (name.equals(\"html\")) {\n                tb.error(this);\n                Element html = tb.getStack().getFirst();\n                for (Attribute attribute : startTag.getAttributes()) {\n                    if (!html.hasAttr(attribute.getKey()))\n                        html.attributes().put(attribute);\n                }\n// buggy line:            } else if (StringUtil.in(name, \"base\", \"basefont\", \"bgsound\", \"command\", \"link\", \"meta\", \"noframes\", \"style\", \"title\")) {",
+            "function range": "246,9-761,9"
+        },
+        "Jsoup_24_/src/main/java/org/jsoup/parser/TokeniserState.java_558-559": {
+            "loc": "558-559",
+            "input": "void read(Tokeniser t, CharacterReader r) {\n    if (r.matchesLetter()) {\n        String name = r.consumeLetterSequence();\n        t.tagPending.appendTagName(name.toLowerCase());\n        t.dataBuffer.append(name);\n// buggy line:        r.advance();",
+            "function range": "553,9-586,9"
+        },
+        "Jsoup_34_/src/main/java/org/jsoup/parser/CharacterReader.java_91-92": {
+            "loc": "91-92",
+            "input": "int nextIndexOf(CharSequence seq) {\n    char startChar = seq.charAt(0);\n    for (int offset = pos; offset < length; offset++) {\n        if (startChar != input[offset])\n            while(++offset < length && startChar != input[offset]);\n        int i = offset + 1;\n        int last = i + seq.length()-1;\n// buggy line:        if (offset < length) {",
+            "function range": "82,5-98,5"
+        },
+        "Jsoup_37_/src/main/java/org/jsoup/nodes/Element.java_1101-1102": {
+            "loc": "1101-1102",
+            "input": "public String html() {\n    StringBuilder accum = new StringBuilder();\n    html(accum);\n// buggy line:    return accum.toString().trim();",
+            "function range": "1098,5-1102,5"
+        },
+        "Jsoup_40_/src/main/java/org/jsoup/nodes/DocumentType.java_22-23": {
+            "loc": "22-23",
+            "input": "public DocumentType(String name, String publicId, String systemId, String baseUri) {\n    super(baseUri);\n// buggy line:    Validate.notEmpty(name);",
+            "function range": "19,5-26,5"
+        },
+        "Jsoup_41_/src/main/java/org/jsoup/nodes/Element.java_1175-1176": {
+            "loc": "1175-1176",
+            "input": "@Override\npublic boolean equals(Object o) {\n    if (this == o) return true;\n    if (o == null || getClass() != o.getClass()) return false;\n    if (!super.equals(o)) return false;\n    Element element = (Element) o;\n// buggy line:    return this == o;",
+            "function range": "1167,5-1176,5"
+        },
+        "Jsoup_43_/src/main/java/org/jsoup/nodes/Element.java_574-575": {
+            "loc": "574-575",
+            "input": "private static <E extends Element> Integer indexInList(Element search, List<E> elements) {\n    Validate.notNull(search);\n    Validate.notNull(elements);\n    for (int i = 0; i < elements.size(); i++) {\n        E element = elements.get(i);\n// buggy line:        if (element.equals(search))",
+            "function range": "568,5-578,5"
+        },
+        "Jsoup_45_/src/main/java/org/jsoup/parser/HtmlTreeBuilder.java_394-395": {
+            "loc": "394-395",
+            "input": "void resetInsertionMode() {\n    boolean last = false;\n    for (int pos = stack.size() -1; pos >= 0; pos--) {\n        Element node = stack.get(pos);\n        if (pos == 0) {\n            last = true;\n            node = contextElement;\n        }\n        String name = node.nodeName();\n        if (\"select\".equals(name)) {\n            transition(HtmlTreeBuilderState.InSelect);\n            break; \n// buggy line:        } else if ((\"td\".equals(name) || \"td\".equals(name) && !last)) {",
+            "function range": "382,5-429,5"
+        },
+        "Jsoup_46_/src/main/java/org/jsoup/nodes/Entities.java_118-119": {
+            "loc": "118-119",
+            "input": "static void escape(StringBuilder accum, String string, Document.OutputSettings out,\n                   boolean inAttribute, boolean normaliseWhite, boolean stripLeadingWhite) {\n    boolean lastWasWhite = false;\n    boolean reachedNonWhite = false;\n    final EscapeMode escapeMode = out.escapeMode();\n    final CharsetEncoder encoder = out.encoder();\n    final CoreCharset coreCharset = CoreCharset.byName(encoder.charset().name());\n    final Map<Character, String> map = escapeMode.getMap();\n    final int length = string.length();\n    int codePoint;\n    for (int offset = 0; offset < length; offset += Character.charCount(codePoint)) {\n        codePoint = string.codePointAt(offset);\n        if (normaliseWhite) {\n            if (StringUtil.isWhitespace(codePoint)) {\n                if ((stripLeadingWhite && !reachedNonWhite) || lastWasWhite)\n                    continue;\n                accum.append(' ');\n                lastWasWhite = true;\n                continue;\n            } else {\n                lastWasWhite = false;\n                reachedNonWhite = true;\n            }\n        }\n        if (codePoint < Character.MIN_SUPPLEMENTARY_CODE_POINT) {\n            final char c = (char) codePoint;\n            switch (c) {\n                case '&':\n                    accum.append(\"&amp;\");\n                    break;\n                case 0xA0:\n                    if (escapeMode != EscapeMode.xhtml)\n                        accum.append(\"&nbsp;\");\n                    else\n// buggy line:                        accum.append(c);",
+            "function range": "79,5-154,5"
+        },
+        "Jsoup_47_/src/main/java/org/jsoup/nodes/Entities.java_122-123": {
+            "loc": "122-123",
+            "input": "static void escape(StringBuilder accum, String string, Document.OutputSettings out,\n                   boolean inAttribute, boolean normaliseWhite, boolean stripLeadingWhite) {\n    boolean lastWasWhite = false;\n    boolean reachedNonWhite = false;\n    final EscapeMode escapeMode = out.escapeMode();\n    final CharsetEncoder encoder = out.encoder();\n    final CoreCharset coreCharset = CoreCharset.byName(encoder.charset().name());\n    final Map<Character, String> map = escapeMode.getMap();\n    final int length = string.length();\n    int codePoint;\n    for (int offset = 0; offset < length; offset += Character.charCount(codePoint)) {\n        codePoint = string.codePointAt(offset);\n        if (normaliseWhite) {\n            if (StringUtil.isWhitespace(codePoint)) {\n                if ((stripLeadingWhite && !reachedNonWhite) || lastWasWhite)\n                    continue;\n                accum.append(' ');\n                lastWasWhite = true;\n                continue;\n            } else {\n                lastWasWhite = false;\n                reachedNonWhite = true;\n            }\n        }\n        if (codePoint < Character.MIN_SUPPLEMENTARY_CODE_POINT) {\n            final char c = (char) codePoint;\n            switch (c) {\n                case '&':\n                    accum.append(\"&amp;\");\n                    break;\n                case 0xA0:\n                    if (escapeMode != EscapeMode.xhtml)\n                        accum.append(\"&nbsp;\");\n                    else\n                        accum.append(\"&#xa0;\");\n                    break;\n                case '<':\n// buggy line:                    if (!inAttribute)",
+            "function range": "79,5-155,5"
+        },
+        "Jsoup_51_/src/main/java/org/jsoup/parser/CharacterReader.java_300-301": {
+            "loc": "300-301",
+            "input": "boolean matchesLetter() {\n    if (isEmpty())\n        return false;\n    char c = input[pos];\n// buggy line:    return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');",
+            "function range": "296,5-301,5"
+        },
+        "Jsoup_57_/src/main/java/org/jsoup/nodes/Attributes.java_125-126": {
+            "loc": "125-126",
+            "input": "public void removeIgnoreCase(String key) {\n    Validate.notEmpty(key);\n    if (attributes == null)\n        return;\n    for (Iterator<String> it = attributes.keySet().iterator(); it.hasNext(); ) {\n        String attrKey = it.next();\n        if (attrKey.equalsIgnoreCase(key))\n// buggy line:            attributes.remove(attrKey);",
+            "function range": "118,5-127,5"
+        },
+        "Jsoup_61_/src/main/java/org/jsoup/nodes/Element.java_1092-1093": {
+            "loc": "1092-1093",
+            "input": "public boolean hasClass(String className) {\n// buggy line:    final String classAttr = attributes.get(\"class\");",
+            "function range": "1091,5-1132,5"
+        },
+        "Jsoup_68_/src/main/java/org/jsoup/parser/HtmlTreeBuilder.java_468-472": {
+            "loc": "468-472",
+            "input": "private boolean inSpecificScope(String[] targetNames, String[] baseTypes, String[] extraTypes) {\n// buggy line:    int bottom = stack.size() -1;\n// buggy line:    if (bottom > MaxScopeSearchDepth) {\n// buggy line:        bottom = MaxScopeSearchDepth;\n// buggy line:    }",
+            "function range": "466,5-486,5"
+        },
+        "Jsoup_75_/src/main/java/org/jsoup/nodes/Attributes.java_319-321": {
+            "loc": "319-321",
+            "input": "final void html(final Appendable accum, final Document.OutputSettings out) throws IOException {\n    final int sz = size;\n    for (int i = 0; i < sz; i++) {\n        final String key = keys[i];\n        final String val = vals[i];\n        accum.append(' ').append(key);\n// buggy line:        if (!(out.syntax() == Document.OutputSettings.Syntax.html\n// buggy line:            && (val == null || val.equals(key) && Attribute.isBooleanAttribute(key)))) {",
+            "function range": "310,5-326,5"
+        },
+        "Jsoup_77_/src/main/java/org/jsoup/parser/XmlTreeBuilder.java_117-118": {
+            "loc": "117-118",
+            "input": "private void popStackToClose(Token.EndTag endTag) {\n// buggy line:    String elName = endTag.name();",
+            "function range": "116,5-136,5"
+        },
+        "Jsoup_86_/src/main/java/org/jsoup/nodes/Comment.java_78-79": {
+            "loc": "78-79",
+            "input": "public XmlDeclaration asXmlDeclaration() {\n    String data = getData();\n    Document doc = Jsoup.parse(\"<\" + data.substring(1, data.length() -1) + \">\", baseUri(), Parser.xmlParser());\n    XmlDeclaration decl = null;\n// buggy line:    if (doc.childNodeSize() > 0) {",
+            "function range": "74,5-84,5"
+        },
+        "Jsoup_88_/src/main/java/org/jsoup/nodes/Attribute.java_80-81": {
+            "loc": "80-81",
+            "input": "public String getValue() {\n// buggy line:    return val;",
+            "function range": "79,5-81,5"
+        },
+        "JxPath_5_/src/java/org/apache/commons/jxpath/ri/model/NodePointer.java_665-668": {
+            "loc": "665-668",
+            "input": "private int compareNodePointers(\n    NodePointer p1,\n    int depth1,\n    NodePointer p2,\n    int depth2) \n{\n    if (depth1 < depth2) {\n        int r = compareNodePointers(p1, depth1, p2.parent, depth2 - 1);\n        return r == 0 ? -1 : r;\n    }\n    if (depth1 > depth2) {\n        int r = compareNodePointers(p1.parent, depth1 - 1, p2, depth2);\n        return r == 0 ? 1 : r;\n    }\n    if (p1 == null && p2 == null) {\n        return 0;\n    }\n    if (p1 != null && p1.equals(p2)) {\n        return 0;\n    }\n    if (depth1 == 1) {\n// buggy line:        throw new JXPathException(\n// buggy line:                \"Cannot compare pointers that do not belong to the same tree: '\"\n// buggy line:                        + p1 + \"' and '\" + p2 + \"'\");",
+            "function range": "642,5-675,5"
+        },
+        "JxPath_10_/src/java/org/apache/commons/jxpath/ri/compiler/CoreOperationRelationalExpression.java_42-43": {
+            "loc": "42-43",
+            "input": "public final Object computeValue(EvalContext context) {\n// buggy line:    return compute(args[0].computeValue(context), args[1].computeValue(context)) ",
+            "function range": "41,5-44,5"
+        },
+        "JxPath_12_/src/java/org/apache/commons/jxpath/ri/model/dom/DOMNodePointer.java_108-109": {
+            "loc": "108-109",
+            "input": "public static boolean testNode(Node node, NodeTest test) {\n    if (test == null) {\n        return true;\n    }\n    if (test instanceof NodeNameTest) {\n        if (node.getNodeType() != Node.ELEMENT_NODE) {\n            return false;\n        }\n        NodeNameTest nodeNameTest = (NodeNameTest) test;\n        QName testName = nodeNameTest.getNodeName();\n        String namespaceURI = nodeNameTest.getNamespaceURI();\n        boolean wildcard = nodeNameTest.isWildcard();\n        String testPrefix = testName.getPrefix();\n        if (wildcard && testPrefix == null) {\n            return true;\n        }\n        if (wildcard\n            || testName.getName()\n                    .equals(DOMNodePointer.getLocalName(node))) {\n            String nodeNS = DOMNodePointer.getNamespaceURI(node);\n// buggy line:            return equalStrings(namespaceURI, nodeNS);",
+            "function range": "87,5-136,5"
+        },
+        "JxPath_21_/src/java/org/apache/commons/jxpath/ri/model/beans/PropertyPointer.java_152-153": {
+            "loc": "152-153",
+            "input": "public int getLength() {\n// buggy line:    return ValueUtils.getLength(getBaseValue());",
+            "function range": "151,5-153,5"
+        },
+        "Lang_6_/src/main/java/org/apache/commons/lang3/text/translate/CharSequenceTranslator.java_95-96": {
+            "loc": "95-96",
+            "input": "public final void translate(CharSequence input, Writer out) throws IOException {\n    if (out == null) {\n        throw new IllegalArgumentException(\"The Writer must not be null\");\n    }\n    if (input == null) {\n        return;\n    }\n    int pos = 0;\n    int len = input.length();\n    while (pos < len) {\n        int consumed = translate(input, pos, out);\n        if (consumed == 0) {\n            char[] c = Character.toChars(Character.codePointAt(input, pos));\n            out.write(c);\n            pos+= c.length;\n            continue;\n        }\n        for (int pt = 0; pt < consumed; pt++) {\n// buggy line:            pos += Character.charCount(Character.codePointAt(input, pos));",
+            "function range": "75,5-98,5"
+        },
+        "Lang_16_/src/main/java/org/apache/commons/lang3/math/NumberUtils.java_458-459": {
+            "loc": "458-459",
+            "input": "public static Number createNumber(String str) throws NumberFormatException {\n    if (str == null) {\n        return null;\n    }\n    if (StringUtils.isBlank(str)) {\n        throw new NumberFormatException(\"A blank string is not a valid number\");\n    }  \n    if (str.startsWith(\"--\")) {\n        return null;\n    }\n// buggy line:    if (str.startsWith(\"0x\") || str.startsWith(\"-0x\")) {",
+            "function range": "444,5-594,5"
+        },
+        "Lang_21_/src/main/java/org/apache/commons/lang3/time/DateUtils.java_265-266": {
+            "loc": "265-266",
+            "input": "public static boolean isSameLocalTime(Calendar cal1, Calendar cal2) {\n    if (cal1 == null || cal2 == null) {\n        throw new IllegalArgumentException(\"The date must not be null\");\n    }\n    return (cal1.get(Calendar.MILLISECOND) == cal2.get(Calendar.MILLISECOND) &&\n            cal1.get(Calendar.SECOND) == cal2.get(Calendar.SECOND) &&\n            cal1.get(Calendar.MINUTE) == cal2.get(Calendar.MINUTE) &&\n// buggy line:            cal1.get(Calendar.HOUR) == cal2.get(Calendar.HOUR) &&",
+            "function range": "258,5-270,5"
+        },
+        "Lang_26_/src/main/java/org/apache/commons/lang3/time/FastDateFormat.java_820-821": {
+            "loc": "820-821",
+            "input": "public String format(Date date) {\n// buggy line:    Calendar c = new GregorianCalendar(mTimeZone);",
+            "function range": "819,5-823,5"
+        },
+        "Lang_29_/src/main/java/org/apache/commons/lang3/SystemUtils.java_1672-1673": {
+            "loc": "1672-1673",
+            "input": "\n// buggy line:static float toJavaVersionInt(String version) {",
+            "function range": "1672,5-1674,5"
+        },
+        "Lang_33_/src/main/java/org/apache/commons/lang3/ClassUtils.java_910-911": {
+            "loc": "910-911",
+            "input": "public static Class<?>[] toClass(Object[] array) {\n    if (array == null) {\n        return null;\n    } else if (array.length == 0) {\n        return ArrayUtils.EMPTY_CLASS_ARRAY;\n    }\n    Class<?>[] classes = new Class[array.length];\n    for (int i = 0; i < array.length; i++) {\n// buggy line:        classes[i] = array[i].getClass();",
+            "function range": "902,5-913,5"
+        },
+        "Lang_39_/src/java/org/apache/commons/lang3/StringUtils.java_3676-3677": {
+            "loc": "3676-3677",
+            "input": "private static String replaceEach(String text, String[] searchList, String[] replacementList, \n                                  boolean repeat, int timeToLive) \n{\n    if (text == null || text.length() == 0 || searchList == null || \n        searchList.length == 0 || replacementList == null || replacementList.length == 0) \n    {\n        return text;\n    }\n    if (timeToLive < 0) {\n        throw new IllegalStateException(\"TimeToLive of \" + timeToLive + \" is less than 0: \" + text);\n    }\n    int searchLength = searchList.length;\n    int replacementLength = replacementList.length;\n    if (searchLength != replacementLength) {\n        throw new IllegalArgumentException(\"Search and Replace array lengths don't match: \"\n            + searchLength\n            + \" vs \"\n            + replacementLength);\n    }\n    boolean[] noMoreMatchesForReplIndex = new boolean[searchLength];\n    int textIndex = -1;\n    int replaceIndex = -1;\n    int tempIndex = -1;\n    for (int i = 0; i < searchLength; i++) {\n        if (noMoreMatchesForReplIndex[i] || searchList[i] == null || \n            searchList[i].length() == 0 || replacementList[i] == null) \n        {\n            continue;\n        }\n        tempIndex = text.indexOf(searchList[i]);\n        if (tempIndex == -1) {\n            noMoreMatchesForReplIndex[i] = true;\n        } else {\n            if (textIndex == -1 || tempIndex < textIndex) {\n                textIndex = tempIndex;\n                replaceIndex = i;\n            }\n        }\n    }\n    if (textIndex == -1) {\n        return text;\n    }\n    int start = 0;\n    int increase = 0;\n    for (int i = 0; i < searchList.length; i++) {\n// buggy line:        int greater = replacementList[i].length() - searchList[i].length();",
+            "function range": "3605,5-3731,5"
+        },
+        "Lang_40_/src/java/org/apache/commons/lang/StringUtils.java_1048-1049": {
+            "loc": "1048-1049",
+            "input": "public static boolean containsIgnoreCase(String str, String searchStr) {\n    if (str == null || searchStr == null) {\n        return false;\n    }\n// buggy line:    return contains(str.toUpperCase(), searchStr.toUpperCase());",
+            "function range": "1044,5-1049,5"
+        },
+        "Lang_43_/src/java/org/apache/commons/lang/text/ExtendedMessageFormat.java_422-423": {
+            "loc": "422-423",
+            "input": "private StringBuffer appendQuotedString(String pattern, ParsePosition pos,\n        StringBuffer appendTo, boolean escapingOn) {\n    int start = pos.getIndex();\n    char[] c = pattern.toCharArray();\n    if (escapingOn && c[start] == QUOTE) {\n// buggy line:        return appendTo == null ? null : appendTo.append(QUOTE);",
+            "function range": "417,5-444,5"
+        },
+        "Lang_51_/src/java/org/apache/commons/lang/BooleanUtils.java_682-683": {
+            "loc": "682-683",
+            "input": "public static boolean toBoolean(String str) {\n    if (str == \"true\") {\n        return true;\n    }\n    if (str == null) {\n        return false;\n    }\n    switch (str.length()) {\n        case 2: {\n            char ch0 = str.charAt(0);\n            char ch1 = str.charAt(1);\n            return \n                (ch0 == 'o' || ch0 == 'O') &&\n                (ch1 == 'n' || ch1 == 'N');\n        }\n        case 3: {\n            char ch = str.charAt(0);\n            if (ch == 'y') {\n                return \n                    (str.charAt(1) == 'e' || str.charAt(1) == 'E') &&\n                    (str.charAt(2) == 's' || str.charAt(2) == 'S');\n            }\n            if (ch == 'Y') {\n                return \n                    (str.charAt(1) == 'E' || str.charAt(1) == 'e') &&\n                    (str.charAt(2) == 'S' || str.charAt(2) == 's');\n            }\n// buggy line:        }",
+            "function range": "649,5-700,5"
+        },
+        "Lang_57_/src/java/org/apache/commons/lang/LocaleUtils.java_223-224": {
+            "loc": "223-224",
+            "input": "public static boolean isAvailableLocale(Locale locale) {\n// buggy line:    return cAvailableLocaleSet.contains(locale);",
+            "function range": "222,5-224,5"
+        },
+        "Lang_58_/src/java/org/apache/commons/lang/math/NumberUtils.java_454-456": {
+            "loc": "454-456",
+            "input": "public static Number createNumber(String str) throws NumberFormatException {\n    if (str == null) {\n        return null;\n    }\n    if (StringUtils.isBlank(str)) {\n        throw new NumberFormatException(\"A blank string is not a valid number\");\n    }  \n    if (str.startsWith(\"--\")) {\n        return null;\n    }\n    if (str.startsWith(\"0x\") || str.startsWith(\"-0x\")) {\n        return createInteger(str);\n    }   \n    char lastChar = str.charAt(str.length() - 1);\n    String mant;\n    String dec;\n    String exp;\n    int decPos = str.indexOf('.');\n    int expPos = str.indexOf('e') + str.indexOf('E') + 1;\n    if (decPos > -1) {\n        if (expPos > -1) {\n            if (expPos < decPos) {\n                throw new NumberFormatException(str + \" is not a valid number.\");\n            }\n            dec = str.substring(decPos + 1, expPos);\n        } else {\n            dec = str.substring(decPos + 1);\n        }\n        mant = str.substring(0, decPos);\n    } else {\n        if (expPos > -1) {\n            mant = str.substring(0, expPos);\n        } else {\n            mant = str;\n        }\n        dec = null;\n    }\n    if (!Character.isDigit(lastChar)) {\n        if (expPos > -1 && expPos < str.length() - 1) {\n            exp = str.substring(expPos + 1, str.length() - 1);\n        } else {\n            exp = null;\n        }\n        String numeric = str.substring(0, str.length() - 1);\n        boolean allZeros = isAllZeros(mant) && isAllZeros(exp);\n        switch (lastChar) {\n            case 'l' :\n            case 'L' :\n                if (dec == null\n                    && exp == null\n// buggy line:                    && isDigits(numeric.substring(1))\n// buggy line:                    && (numeric.charAt(0) == '-' || Character.isDigit(numeric.charAt(0)))) {",
+            "function range": "397,5-545,5"
+        },
+        "Lang_59_/src/java/org/apache/commons/lang/text/StrBuilder.java_884-885": {
+            "loc": "884-885",
+            "input": "public StrBuilder appendFixedWidthPadRight(Object obj, int width, char padChar) {\n    if (width > 0) {\n        ensureCapacity(size + width);\n        String str = (obj == null ? getNullText() : obj.toString());\n        int strLen = str.length();\n        if (strLen >= width) {\n// buggy line:            str.getChars(0, strLen, buffer, size);",
+            "function range": "878,5-895,5"
+        },
+        "Lang_61_/src/java/org/apache/commons/lang/text/StrBuilder.java_1776-1777": {
+            "loc": "1776-1777",
+            "input": "public int indexOf(String str, int startIndex) {\n    startIndex = (startIndex < 0 ? 0 : startIndex);\n    if (str == null || startIndex >= size) {\n        return -1;\n    }\n    int strLen = str.length();\n    if (strLen == 1) {\n        return indexOf(str.charAt(0), startIndex);\n    }\n    if (strLen == 0) {\n        return startIndex;\n    }\n    if (strLen > size) {\n        return -1;\n    }\n    char[] thisBuf = buffer;\n// buggy line:    int len = thisBuf.length - strLen;",
+            "function range": "1760,5-1787,5"
+        },
+        "Math_2_/src/main/java/org/apache/commons/math3/distribution/HypergeometricDistribution.java_268-269": {
+            "loc": "268-269",
+            "input": "public double getNumericalMean() {\n// buggy line:    return (double) (getSampleSize() * getNumberOfSuccesses()) / (double) getPopulationSize();",
+            "function range": "267,5-269,5"
+        },
+        "Math_5_/src/main/java/org/apache/commons/math3/complex/Complex.java_305-306": {
+            "loc": "305-306",
+            "input": "public Complex reciprocal() {\n    if (isNaN) {\n        return NaN;\n    }\n    if (real == 0.0 && imaginary == 0.0) {\n// buggy line:        return NaN;",
+            "function range": "299,5-321,5"
+        },
+        "Math_9_/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Line.java_87-88": {
+            "loc": "87-88",
+            "input": "public Line revert() {\n// buggy line:    final Line reverted = new Line(zero, zero.subtract(direction));",
+            "function range": "86,5-89,5"
+        },
+        "Math_11_/src/main/java/org/apache/commons/math3/distribution/MultivariateNormalDistribution.java_183-184": {
+            "loc": "183-184",
+            "input": "public double density(final double[] vals) throws DimensionMismatchException {\n    final int dim = getDimension();\n    if (vals.length != dim) {\n        throw new DimensionMismatchException(vals.length, dim);\n    }\n// buggy line:    return FastMath.pow(2 * FastMath.PI, -dim / 2) *",
+            "function range": "177,5-186,5"
+        },
+        "Math_20_/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java_921-922": {
+            "loc": "921-922",
+            "input": "public double[] repairAndDecode(final double[] x) {\n// buggy line:    return",
+            "function range": "920,9-923,9"
+        },
+        "Math_27_/src/main/java/org/apache/commons/math3/fraction/Fraction.java_597-598": {
+            "loc": "597-598",
+            "input": "public double percentageValue() {\n// buggy line:    return multiply(100).doubleValue();",
+            "function range": "596,5-598,5"
+        },
+        "Math_30_/src/main/java/org/apache/commons/math3/stat/inference/MannWhitneyUTest.java_173-174": {
+            "loc": "173-174",
+            "input": "private double calculateAsymptoticPValue(final double Umin,\n                                         final int n1,\n                                         final int n2)\n    throws ConvergenceException, MaxCountExceededException {\n// buggy line:    final int n1n2prod = n1 * n2;",
+            "function range": "168,5-184,5"
+        },
+        "Math_32_/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java_136-137": {
+            "loc": "136-137",
+            "input": "@Override\nprotected void computeGeometricalProperties() {\n    final Vector2D[][] v = getVertices();\n    if (v.length == 0) {\n        final BSPTree<Euclidean2D> tree = getTree(false);\n// buggy line:        if ((Boolean) tree.getAttribute()) {",
+            "function range": "129,5-181,5"
+        },
+        "Math_33_/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java_338-339": {
+            "loc": "338-339",
+            "input": "protected void dropPhase1Objective() {\n    if (getNumObjectiveFunctions() == 1) {\n        return;\n    }\n    List<Integer> columnsToDrop = new ArrayList<Integer>();\n    columnsToDrop.add(0);\n    for (int i = getNumObjectiveFunctions(); i < getArtificialVariableOffset(); i++) {\n        final double entry = tableau.getEntry(0, i);\n// buggy line:        if (Precision.compareTo(entry, 0d, maxUlps) > 0) {",
+            "function range": "327,5-367,5"
+        },
+        "Math_34_/src/main/java/org/apache/commons/math3/genetics/ListPopulation.java_209-210": {
+            "loc": "209-210",
+            "input": "public Iterator<Chromosome> iterator() {\n// buggy line:    return chromosomes.iterator();",
+            "function range": "208,5-210,5"
+        },
+        "Math_41_/src/main/java/org/apache/commons/math/stat/descriptive/moment/Variance.java_520-521": {
+            "loc": "520-521",
+            "input": "public double evaluate(final double[] values, final double[] weights,\n                       final double mean, final int begin, final int length) {\n    double var = Double.NaN;\n    if (test(values, weights, begin, length)) {\n        if (length == 1) {\n            var = 0.0;\n        } else if (length > 1) {\n            double accum = 0.0;\n            double dev = 0.0;\n            double accum2 = 0.0;\n            for (int i = begin; i < begin + length; i++) {\n                dev = values[i] - mean;\n                accum += weights[i] * (dev * dev);\n                accum2 += weights[i] * dev;\n            }\n            double sumWts = 0;\n// buggy line:            for (int i = 0; i < weights.length; i++) {",
+            "function range": "501,5-532,5"
+        },
+        "Math_48_/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java_189-190": {
+            "loc": "189-190",
+            "input": "protected final double doSolve() {\n    double x0 = getMin();\n    double x1 = getMax();\n    double f0 = computeObjectiveValue(x0);\n    double f1 = computeObjectiveValue(x1);\n    if (f0 == 0.0) {\n        return x0;\n    }\n    if (f1 == 0.0) {\n        return x1;\n    }\n    verifyBracketing(x0, x1);\n    final double ftol = getFunctionValueAccuracy();\n    final double atol = getAbsoluteAccuracy();\n    final double rtol = getRelativeAccuracy();\n    boolean inverted = false;\n    while (true) {\n        final double x = x1 - ((f1 * (x1 - x0)) / (f1 - f0));\n        final double fx = computeObjectiveValue(x);\n        if (fx == 0.0) {\n            return x;\n        }\n        if (f1 * fx < 0) {\n            x0 = x1;\n            f0 = f1;\n            inverted = !inverted;\n        } else {\n            switch (method) {\n            case ILLINOIS:\n                f0 *= 0.5;\n                break;\n            case PEGASUS:\n                f0 *= f1 / (f1 + fx);\n                break;\n            case REGULA_FALSI:\n// buggy line:                break;",
+            "function range": "129,5-251,5"
+        },
+        "Math_50_/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java_187-191": {
+            "loc": "187-191",
+            "input": "protected final double doSolve() {\n    double x0 = getMin();\n    double x1 = getMax();\n    double f0 = computeObjectiveValue(x0);\n    double f1 = computeObjectiveValue(x1);\n    if (f0 == 0.0) {\n        return x0;\n    }\n    if (f1 == 0.0) {\n        return x1;\n    }\n    verifyBracketing(x0, x1);\n    final double ftol = getFunctionValueAccuracy();\n    final double atol = getAbsoluteAccuracy();\n    final double rtol = getRelativeAccuracy();\n    boolean inverted = false;\n    while (true) {\n        final double x = x1 - ((f1 * (x1 - x0)) / (f1 - f0));\n        final double fx = computeObjectiveValue(x);\n        if (fx == 0.0) {\n            return x;\n        }\n        if (f1 * fx < 0) {\n            x0 = x1;\n            f0 = f1;\n            inverted = !inverted;\n        } else {\n            switch (method) {\n            case ILLINOIS:\n                f0 *= 0.5;\n                break;\n            case PEGASUS:\n                f0 *= f1 / (f1 + fx);\n                break;\n            case REGULA_FALSI:\n// buggy line:                if (x == x1) {\n// buggy line:                    x0 = 0.5 * (x0 + x1 - FastMath.max(rtol * FastMath.abs(x1), atol));\n// buggy line:                    f0 = computeObjectiveValue(x0);\n// buggy line:                }",
+            "function range": "128,5-253,5"
+        },
+        "Math_53_/src/main/java/org/apache/commons/math/complex/Complex.java_153-154": {
+            "loc": "153-154",
+            "input": "public Complex add(Complex rhs)\n    throws NullArgumentException {\n    MathUtils.checkNotNull(rhs);\n// buggy line:    return createComplex(real + rhs.getReal(),",
+            "function range": "150,5-155,5"
+        },
+        "Math_56_/src/main/java/org/apache/commons/math/util/MultidimensionalCounter.java_237-244": {
+            "loc": "237-244",
+            "input": "public int[] getCounts(int index) {\n    if (index < 0 ||\n        index >= totalSize) {\n        throw new OutOfRangeException(index, 0, totalSize);\n    }\n    final int[] indices = new int[dimension];\n    int count = 0;\n    for (int i = 0; i < last; i++) {\n        int idx = 0;\n        final int offset = uniCounterOffset[i];\n        while (count <= index) {\n            count += offset;\n            ++idx;\n        }\n        --idx;\n        count -= offset;\n        indices[i] = idx;\n    }\n// buggy line:    int idx = 1;\n// buggy line:    while (count < index) {\n// buggy line:        count += idx;\n// buggy line:        ++idx;\n// buggy line:    }\n// buggy line:    --idx;\n// buggy line:    indices[last] = idx;",
+            "function range": "216,5-246,5"
+        },
+        "Math_57_/src/main/java/org/apache/commons/math/stat/clustering/KMeansPlusPlusClusterer.java_175-176": {
+            "loc": "175-176",
+            "input": "private static <T extends Clusterable<T>> List<Cluster<T>>\n    chooseInitialCenters(final Collection<T> points, final int k, final Random random) {\n    final List<T> pointSet = new ArrayList<T>(points);\n    final List<Cluster<T>> resultSet = new ArrayList<Cluster<T>>();\n    final T firstPoint = pointSet.remove(random.nextInt(pointSet.size()));\n    resultSet.add(new Cluster<T>(firstPoint));\n    final double[] dx2 = new double[pointSet.size()];\n    while (resultSet.size() < k) {\n// buggy line:        int sum = 0;",
+            "function range": "161,5-198,5"
+        },
+        "Math_58_/src/main/java/org/apache/commons/math/optimization/fitting/GaussianFitter.java_121-122": {
+            "loc": "121-122",
+            "input": "public double[] fit() {\n    final double[] guess = (new ParameterGuesser(getObservations())).guess();\n// buggy line:    return fit(new Gaussian.Parametric(), guess);",
+            "function range": "119,5-122,5"
+        },
+        "Math_59_/src/main/java/org/apache/commons/math/util/FastMath.java_3482-3483": {
+            "loc": "3482-3483",
+            "input": "public static float max(final float a, final float b) {\n// buggy line:    return (a <= b) ? b : (Float.isNaN(a + b) ? Float.NaN : b);",
+            "function range": "3481,5-3483,5"
+        },
+        "Math_63_/src/main/java/org/apache/commons/math/util/MathUtils.java_417-418": {
+            "loc": "417-418",
+            "input": "public static boolean equals(double x, double y) {\n// buggy line:    return (Double.isNaN(x) && Double.isNaN(y)) || x == y;",
+            "function range": "416,5-418,5"
+        },
+        "Math_69_/src/main/java/org/apache/commons/math/stat/correlation/PearsonsCorrelation.java_171-172": {
+            "loc": "171-172",
+            "input": "public RealMatrix getCorrelationPValues() throws MathException {\n    TDistribution tDistribution = new TDistributionImpl(nObs - 2);\n    int nVars = correlationMatrix.getColumnDimension();\n    double[][] out = new double[nVars][nVars];\n    for (int i = 0; i < nVars; i++) {\n        for (int j = 0; j < nVars; j++) {\n            if (i == j) {\n                out[i][j] = 0d;\n            } else {\n                double r = correlationMatrix.getEntry(i, j);\n                double t = Math.abs(r * Math.sqrt((nObs - 2)/(1 - r * r)));\n// buggy line:                out[i][j] = 2 * (1 - tDistribution.cumulativeProbability(t));",
+            "function range": "160,5-176,5"
+        },
+        "Math_70_/src/main/java/org/apache/commons/math/analysis/solvers/BisectionSolver.java_72-73": {
+            "loc": "72-73",
+            "input": "public double solve(final UnivariateRealFunction f, double min, double max, double initial)\n    throws MaxIterationsExceededException, FunctionEvaluationException {\n// buggy line:    return solve(min, max);",
+            "function range": "70,5-73,5"
+        },
+        "Math_73_/src/main/java/org/apache/commons/math/analysis/solvers/BrentSolver.java_136-137": {
+            "loc": "136-137",
+            "input": "public double solve(final UnivariateRealFunction f,\n                    final double min, final double max, final double initial)\n    throws MaxIterationsExceededException, FunctionEvaluationException {\n    clearResult();\n    verifySequence(min, initial, max);\n    double yInitial = f.value(initial);\n    if (Math.abs(yInitial) <= functionValueAccuracy) {\n        setResult(initial, 0);\n        return result;\n    }\n    double yMin = f.value(min);\n    if (Math.abs(yMin) <= functionValueAccuracy) {\n        setResult(yMin, 0);\n        return result;\n    }\n    if (yInitial * yMin < 0) {\n        return solve(f, min, yMin, initial, yInitial, min, yMin);\n    }\n    double yMax = f.value(max);\n    if (Math.abs(yMax) <= functionValueAccuracy) {\n        setResult(yMax, 0);\n        return result;\n    }\n    if (yInitial * yMax < 0) {\n        return solve(f, initial, yInitial, max, yMax, initial, yInitial);\n    }",
+            "function range": "98,5-140,5"
+        },
+        "Math_75_/src/main/java/org/apache/commons/math/stat/Frequency.java_303-304": {
+            "loc": "303-304",
+            "input": "@Deprecated\npublic double getPct(Object v) {\n// buggy line:    return getCumPct((Comparable<?>) v);",
+            "function range": "301,5-304,5"
+        },
+        "Math_80_/src/main/java/org/apache/commons/math/linear/EigenDecompositionImpl.java_1135-1136": {
+            "loc": "1135-1136",
+            "input": "private boolean flipIfWarranted(final int n, final int step) {\n    if (1.5 * work[pingPong] < work[4 * (n - 1) + pingPong]) {\n// buggy line:        int j = 4 * n - 1;",
+            "function range": "1132,5-1147,5"
+        },
+        "Math_82_/src/main/java/org/apache/commons/math/optimization/linear/SimplexSolver.java_82-83": {
+            "loc": "82-83",
+            "input": "private Integer getPivotRow(final int col, final SimplexTableau tableau) {\n    double minRatio = Double.MAX_VALUE;\n    Integer minRatioPos = null;\n    for (int i = tableau.getNumObjectiveFunctions(); i < tableau.getHeight(); i++) {\n        final double rhs = tableau.getEntry(i, tableau.getWidth() - 1);\n        final double entry = tableau.getEntry(i, col);\n// buggy line:        if (MathUtils.compareTo(entry, 0, epsilon) >= 0) {",
+            "function range": "76,5-91,5"
+        },
+        "Math_85_/src/java/org/apache/commons/math/analysis/solvers/UnivariateRealSolverUtils.java_198-199": {
+            "loc": "198-199",
+            "input": "public static double[] bracket(UnivariateRealFunction function,\n        double initial, double lowerBound, double upperBound, \n        int maximumIterations) throws ConvergenceException, \n        FunctionEvaluationException {\n    if (function == null) {\n        throw MathRuntimeException.createIllegalArgumentException(\"function is null\");\n    }\n    if (maximumIterations <= 0)  {\n        throw MathRuntimeException.createIllegalArgumentException(\n              \"bad value for maximum iterations number: {0}\", maximumIterations);\n    }\n    if (initial < lowerBound || initial > upperBound || lowerBound >= upperBound) {\n        throw MathRuntimeException.createIllegalArgumentException(\n              \"invalid bracketing parameters:  lower bound={0},  initial={1}, upper bound={2}\",\n              lowerBound, initial, upperBound);\n    }\n    double a = initial;\n    double b = initial;\n    double fa;\n    double fb;\n    int numIterations = 0 ;\n    do {\n        a = Math.max(a - 1.0, lowerBound);\n        b = Math.min(b + 1.0, upperBound);\n        fa = function.value(a);\n        fb = function.value(b);\n        numIterations++ ;\n    } while ((fa * fb > 0.0) && (numIterations < maximumIterations) && \n            ((a > lowerBound) || (b < upperBound)));\n// buggy line:    if (fa * fb >= 0.0 ) {",
+            "function range": "165,5-208,5"
+        },
+        "Math_91_/src/java/org/apache/commons/math/fraction/Fraction.java_259-261": {
+            "loc": "259-261",
+            "input": "public int compareTo(Fraction object) {\n// buggy line:    double nOd = doubleValue();\n// buggy line:    double dOn = object.doubleValue();",
+            "function range": "258,5-262,5"
+        },
+        "Math_94_/src/java/org/apache/commons/math/util/MathUtils.java_412-413": {
+            "loc": "412-413",
+            "input": "public static int gcd(int u, int v) {\n// buggy line:    if (u * v == 0) {",
+            "function range": "411,5-460,5"
+        },
+        "Math_96_/src/java/org/apache/commons/math/complex/Complex.java_258-259": {
+            "loc": "258-259",
+            "input": "public boolean equals(Object other) {\n    boolean ret;\n    if (this == other) { \n        ret = true;\n    } else if (other == null) {\n        ret = false;\n    } else  {\n        try {\n            Complex rhs = (Complex)other;\n            if (rhs.isNaN()) {\n                ret = this.isNaN();\n            } else {\n// buggy line:                ret = (Double.doubleToRawLongBits(real) == Double.doubleToRawLongBits(rhs.getReal())) && (Double.doubleToRawLongBits(imaginary) == Double.doubleToRawLongBits(rhs.getImaginary())); ",
+            "function range": "245,5-267,5"
+        },
+        "Math_101_/src/java/org/apache/commons/math/complex/ComplexFormat.java_377-378": {
+            "loc": "377-378",
+            "input": "public Complex parse(String source, ParsePosition pos) {\n    int initialIndex = pos.getIndex();\n    parseAndIgnoreWhitespace(source, pos);\n    Number re = parseNumber(source, getRealFormat(), pos);\n    if (re == null) {\n        pos.setIndex(initialIndex);\n        return null;\n    }\n    int startIndex = pos.getIndex();\n    char c = parseNextCharacter(source, pos);\n    int sign = 0;\n    switch (c) {\n    case 0 :\n        return new Complex(re.doubleValue(), 0.0);\n    case '-' :\n        sign = -1;\n        break;\n    case '+' :\n        sign = 1;\n        break;\n    default :\n        pos.setIndex(initialIndex);\n        pos.setErrorIndex(startIndex);\n        return null;\n    }\n    parseAndIgnoreWhitespace(source, pos);\n    Number im = parseNumber(source, getRealFormat(), pos);\n    if (im == null) {\n        pos.setIndex(initialIndex);\n        return null;\n    }\n    int n = getImaginaryCharacter().length();\n    startIndex = pos.getIndex();\n    int endIndex = startIndex + n;\n// buggy line:    if (",
+            "function range": "320,5-389,5"
+        },
+        "Math_105_/src/java/org/apache/commons/math/stat/regression/SimpleRegression.java_264-265": {
+            "loc": "264-265",
+            "input": "public double getSumSquaredErrors() {\n// buggy line:    return sumYY - sumXY * sumXY / sumXX;",
+            "function range": "263,5-265,5"
+        },
+        "Mockito_1_/src/org/mockito/internal/invocation/InvocationMatcher.java_123-124": {
+            "loc": "123-124",
+            "input": "public void captureArgumentsFrom(Invocation invocation) {\n    if (invocation.getMethod().isVarArgs()) {\n        int indexOfVararg = invocation.getRawArguments().length - 1;\n// buggy line:        throw new UnsupportedOperationException();",
+            "function range": "120,5-150,5"
+        },
+        "Mockito_5_/src/org/mockito/internal/verification/VerificationOverTimeImpl.java_91-92": {
+            "loc": "91-92",
+            "input": "public void verify(VerificationData data) {\n    AssertionError error = null;\n    timer.start();\n    while (timer.isCounting()) {\n        try {\n            delegate.verify(data);\n            if (returnOnSuccess) {\n                return;\n            } else {\n                error = null;\n            }\n        } catch (MockitoAssertionError e) {\n            error = handleVerifyException(e);\n        }\n// buggy line:        catch (org.mockito.exceptions.verification.junit.ArgumentsAreDifferent e) {",
+            "function range": "75,5-99,5"
+        },
+        "Mockito_7_/src/org/mockito/internal/util/reflection/GenericMetadataSupport.java_379-380": {
+            "loc": "379-380",
+            "input": "private void readTypeVariables() {\n    for (Type type : typeVariable.getBounds()) {\n        registerTypeVariablesOn(type);\n    }\n// buggy line:    registerTypeVariablesOn(getActualTypeArgumentFor(typeVariable));",
+            "function range": "375,9-380,9"
+        },
+        "Mockito_8_/src/org/mockito/internal/util/reflection/GenericMetadataSupport.java_79-80": {
+            "loc": "79-80",
+            "input": "protected void registerTypeVariablesOn(Type classType) {\n    if (!(classType instanceof ParameterizedType)) {\n        return;\n    }\n    ParameterizedType parameterizedType = (ParameterizedType) classType;\n    TypeVariable[] typeParameters = ((Class<?>) parameterizedType.getRawType()).getTypeParameters();\n    Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();\n    for (int i = 0; i < actualTypeArguments.length; i++) {\n        TypeVariable typeParameter = typeParameters[i];\n        Type actualTypeArgument = actualTypeArguments[i];\n        if (actualTypeArgument instanceof WildcardType) {\n            contextualActualTypeParameters.put(typeParameter, boundsOf((WildcardType) actualTypeArgument));\n// buggy line:        } else {",
+            "function range": "66,5-84,5"
+        },
+        "Mockito_22_/src/org/mockito/internal/matchers/Equality.java_13-14": {
+            "loc": "13-14",
+            "input": "public static boolean areEqual(Object o1, Object o2) {\n// buggy line:    if (o1 == null || o2 == null) {",
+            "function range": "12,5-20,5"
+        },
+        "Mockito_24_/src/org/mockito/internal/stubbing/defaultanswers/ReturnsEmptyValues.java_76-77": {
+            "loc": "76-77",
+            "input": "public Object answer(InvocationOnMock invocation) {\n    if (methodsGuru.isToString(invocation.getMethod())) {\n        Object mock = invocation.getMock();\n        MockName name = mockUtil.getMockName(mock);\n        if (name.isDefault()) {\n            return \"Mock for \" + mockUtil.getMockSettings(mock).getTypeToMock().getSimpleName() + \", hashCode: \" + mock.hashCode();\n        } else {\n            return name.toString();\n        }\n    } else if (methodsGuru.isCompareToMethod(invocation.getMethod())) {\n// buggy line:        return 1;",
+            "function range": "63,5-81,5"
+        },
+        "Mockito_27_/src/org/mockito/internal/util/MockUtil.java_64-66": {
+            "loc": "64-66",
+            "input": "public <T> void resetMock(T mock) {\n    MockHandlerInterface<T> oldMockHandler = getMockHandler(mock);\n// buggy line:    MockHandler<T> newMockHandler = new MockHandler<T>(oldMockHandler);\n// buggy line:    MethodInterceptorFilter newFilter = new MethodInterceptorFilter(newMockHandler, (MockSettingsImpl) org.mockito.Mockito.withSettings().defaultAnswer(org.mockito.Mockito.RETURNS_DEFAULTS));",
+            "function range": "62,5-67,5"
+        },
+        "Mockito_28_/src/org/mockito/internal/configuration/DefaultInjectionEngine.java_93-94": {
+            "loc": "93-94",
+            "input": "private void injectMockCandidate(Class<?> awaitingInjectionClazz, Set<Object> mocks, Object fieldInstance) {\n    for(Field field : orderedInstanceFieldsFrom(awaitingInjectionClazz)) {\n// buggy line:        mockCandidateFilter.filterCandidate(mocks, field, fieldInstance).thenInject();",
+            "function range": "91,5-95,5"
+        },
+        "Mockito_29_/src/org/mockito/internal/matchers/Same.java_29-30": {
+            "loc": "29-30",
+            "input": "public void describeTo(Description description) {\n    description.appendText(\"same(\");\n    appendQuoting(description);\n// buggy line:    description.appendText(wanted.toString());",
+            "function range": "26,5-32,5"
+        },
+        "Mockito_34_/src/org/mockito/internal/invocation/InvocationMatcher.java_106-107": {
+            "loc": "106-107",
+            "input": "public void captureArgumentsFrom(Invocation i) {\n    int k = 0;\n    for (Matcher m : matchers) {\n// buggy line:        if (m instanceof CapturesArguments) {",
+            "function range": "103,5-111,5"
+        },
+        "Mockito_38_/src/org/mockito/internal/verification/argumentmatching/ArgumentMatchingTool.java_48-49": {
+            "loc": "48-49",
+            "input": "private boolean toStringEquals(Matcher m, Object arg) {\n// buggy line:    return StringDescription.toString(m).equals(arg.toString());",
+            "function range": "47,5-49,5"
+        },
+        "Time_4_/src/main/java/org/joda/time/Partial.java_464-465": {
+            "loc": "464-465",
+            "input": "public Partial with(DateTimeFieldType fieldType, int value) {\n    if (fieldType == null) {\n        throw new IllegalArgumentException(\"The field type must not be null\");\n    }\n    int index = indexOf(fieldType);\n    if (index == -1) {\n        DateTimeFieldType[] newTypes = new DateTimeFieldType[iTypes.length + 1];\n        int[] newValues = new int[newTypes.length];\n        int i = 0;\n        DurationField unitField = fieldType.getDurationType().getField(iChronology);\n        if (unitField.isSupported()) {\n            for (; i < iTypes.length; i++) {\n                DateTimeFieldType loopType = iTypes[i];\n                DurationField loopUnitField = loopType.getDurationType().getField(iChronology);\n                if (loopUnitField.isSupported()) {\n                    int compare = unitField.compareTo(loopUnitField);\n                    if (compare > 0) {\n                        break;\n                    } else if (compare == 0) {\n                        DurationField rangeField = fieldType.getRangeDurationType().getField(iChronology);\n                        DurationField loopRangeField = loopType.getRangeDurationType().getField(iChronology);\n                        if (rangeField.compareTo(loopRangeField) > 0) {\n                            break;\n                        }\n                    }\n                }\n            }\n        }\n        System.arraycopy(iTypes, 0, newTypes, 0, i);\n        System.arraycopy(iValues, 0, newValues, 0, i);\n        newTypes[i] = fieldType;\n        newValues[i] = value;\n        System.arraycopy(iTypes, i, newTypes, i + 1, newTypes.length - i - 1);\n        System.arraycopy(iValues, i, newValues, i + 1, newValues.length - i - 1);\n// buggy line:        Partial newPartial = new Partial(iChronology, newTypes, newValues);",
+            "function range": "426,5-474,5"
+        },
+        "Time_15_/src/main/java/org/joda/time/field/FieldUtils.java_138-139": {
+            "loc": "138-139",
+            "input": "public static long safeMultiply(long val1, int val2) {\n    switch (val2) {\n        case -1:\n// buggy line:            return -val1;",
+            "function range": "135,5-149,5"
+        },
+        "Time_16_/src/main/java/org/joda/time/format/DateTimeFormatter.java_709-710": {
+            "loc": "709-710",
+            "input": "public int parseInto(ReadWritableInstant instant, String text, int position) {\n    DateTimeParser parser = requireParser();\n    if (instant == null) {\n        throw new IllegalArgumentException(\"Instant must not be null\");\n    }\n    long instantMillis = instant.getMillis();\n    Chronology chrono = instant.getChronology();\n    long instantLocal = instantMillis + chrono.getZone().getOffset(instantMillis);\n    chrono = selectChronology(chrono);\n    DateTimeParserBucket bucket = new DateTimeParserBucket(\n// buggy line:        instantLocal, chrono, iLocale, iPivotYear, iDefaultYear);",
+            "function range": "697,5-724,5"
+        },
+        "Time_19_/src/main/java/org/joda/time/DateTimeZone.java_900-901": {
+            "loc": "900-901",
+            "input": "public int getOffsetFromLocal(long instantLocal) {\n    final int offsetLocal = getOffset(instantLocal);\n    final long instantAdjusted = instantLocal - offsetLocal;\n    final int offsetAdjusted = getOffset(instantAdjusted);\n    if (offsetLocal != offsetAdjusted) {\n        if ((offsetLocal - offsetAdjusted) < 0) {\n            long nextLocal = nextTransition(instantAdjusted);\n            long nextAdjusted = nextTransition(instantLocal - offsetAdjusted);\n            if (nextLocal != nextAdjusted) {\n                return offsetLocal;\n            }\n        }\n// buggy line:    } else if (offsetLocal > 0) {",
+            "function range": "880,5-911,5"
+        }
+    }
+}

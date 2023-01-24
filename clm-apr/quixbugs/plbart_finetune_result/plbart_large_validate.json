@@ -1,0 +1,1845 @@
+{
+  "config": "finetune",
+  "data": {
+    "BITCOUNT": {
+      "loc": "15-16",
+      "input": "<s> public static int bitcount(int n) { int count = 0; while (n != 0) { </s> n = (n ^ (n - 1)); </s> count++; } return count; } </s> java",
+      "output": [
+        {
+          "patch": "n = (n & (n - 1));",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "n = n ^ (n - 1);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "n = (n ^ n - 1);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "n = (n | (n - 1));",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "n = (n ^ (n - 1));",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "n = (n ^ (n - 2));",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "n = n & (n - 1);",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "n = (n ^ (n + 1));",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "n = (n << 1);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "n = (n ^ n);",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "BREADTH_FIRST_SEARCH": {
+      "loc": "26-27",
+      "input": "<s> public static boolean breadth_first_search(Node startnode, Node goalnode) { Deque<Node> queue = new ArrayDeque<>(); queue.addLast(startnode); nodesvisited.add(startnode); </s> while (true) { </s> Node node = queue.removeFirst(); if (node == goalnode) { return true; } else { for (Node successor_node : node.getSuccessors()) { if (!nodesvisited.contains(successor_node)) { queue.addFirst(successor_node); nodesvisited.add(successor_node); } } } } } </s> java",
+      "output": [
+        {
+          "patch": "while (!queue.isEmpty()) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "while (true) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (queue.size() > 0) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "while (true &&!queue.isEmpty()) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "while (!stop) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (queue.isEmpty()) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "while (queue.size()!= 0) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "while (queue.size() > 1) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "while (!done) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (true)",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "BUCKETSORT": {
+      "loc": "24-25",
+      "input": "<s> public static ArrayList<Integer> bucketsort(ArrayList<Integer> arr, int k) { ArrayList<Integer> counts = new ArrayList<Integer>(Collections.nCopies(k,0)); for (Integer x : arr) { counts.set(x,counts.get(x)+1); } ArrayList<Integer> sorted_arr = new ArrayList<Integer>(100); int i = 0; </s> for (Integer count : arr) { </s> sorted_arr.addAll(Collections.nCopies(count, i)); i++; } return sorted_arr; } </s> java",
+      "output": [
+        {
+          "patch": "for (Integer count : counts) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "for (int count : arr) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (Integer count : sorted_arr) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "int count = 0; for (Integer count : arr) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "for (Integer count : counts.values()) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": ". for (Integer count : counts) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "for (int count : counts) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": ". for (int count : arr) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "for (Integer count : arr) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "int count = 0; for (Integer count : counts) {",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "DEPTH_FIRST_SEARCH": {
+      "loc": "23-23",
+      "input": "<s> boolean search(Node node) { if (nodesvisited.contains(node)) { return false; } else if (node == goalnode) { return true; } else { </s> for (Node successornodes : node.getSuccessors()) { </s> if (search(successornodes)) { return true; } } } return false; } </s> java",
+      "output": [
+        {
+          "patch": "for (Node successornodes : goalnode.getSuccessors()) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (Node successornodes : node.getPredecessors()) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (Node successornodes : node.getSuccessors(true)) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "for (Node successor : node.getSuccessors()) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "for (Node successornodes : node.getSuccessorNodes()) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "for (Node successornodes : node.getSuccessors()) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "for (Node successornodes : node.getSuccessors(false)) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "for (Node successornode : node.getSuccessors()) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "for (Node successornodes : node.getSuccessorList()) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "for (Node successornodes : successors) {",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "DETECT_CYCLE": {
+      "loc": "18-19",
+      "input": "<s> public static boolean detect_cycle(Node node) { Node hare = node; Node tortoise = node; while (true) { </s> if (hare.getSuccessor() == null) </s> return false; tortoise = tortoise.getSuccessor(); hare = hare.getSuccessor().getSuccessor(); if (hare == tortoise) return true; } } </s> java",
+      "output": [
+        {
+          "patch": "if (hare.getSuccessor() == null) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (hare == null)",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (tortoise.getSuccessor() == null)",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (hare.getSuccessor() == tortoise)",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (hare.getSuccessor() == null)",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (hare == null || tortoise == null)",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (hare == tortoise)",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (node.getSuccessor() == null)",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (hare == null) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (hare.isEmpty())",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "FIND_FIRST_IN_SORTED": {
+      "loc": "19-20",
+      "input": "<s> public static int find_first_in_sorted(int[] arr, int x) { int lo = 0; int hi = arr.length; </s> while (lo <= hi) { </s> int mid = (lo + hi) / 2; if (x == arr[mid] && (mid == 0 || x != arr[mid-1])) { return mid; } else if (x <= arr[mid]) { hi = mid; } else { lo = mid + 1; } } return -1; } </s> java",
+      "output": [
+        {
+          "patch": "while (lo < hi) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "while (lo <= hi && x <= arr[lo]) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "while (lo <= hi) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "while (lo <= hi && lo < arr.length) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "while (lo <= hi && x < arr[lo]) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "while (lo <= hi && x >= arr[lo]) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "while (lo <= hi && x!= arr[lo]) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "while (lo <= hi && x <= arr[hi]) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "while (lo <= hi && lo <= arr.length) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "while (lo <= hi - 1) {",
+          "correctness": "plausible"
+        }
+      ]
+    },
+    "FIND_IN_SORTED": {
+      "loc": "20-21",
+      "input": "<s> public static int binsearch(int[] arr, int x, int start, int end) { if (start == end) { return -1; } int mid = start + (end - start) / 2; if (x < arr[mid]) { return binsearch(arr, x, start, mid); } else if (x > arr[mid]) { </s> return binsearch(arr, x, mid, end); </s> } else { return mid; } } </s> java",
+      "output": [
+        {
+          "patch": "return binsearch(arr, x, start, mid);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return binsearch(arr, x, start, end);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return binsearch(arr, x, mid, end - 1);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return binsearch(arr, x, end, mid);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return binsearch(arr, x, mid + 1, end);",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "return binsearch(arr, x, mid - 1, end);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return binsearch(arr, x, mid, end + 1);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return binsearch(arr, x, mid, start);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return binsearch(x, mid, end);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return binsearch(arr, mid, end);",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "FLATTEN": {
+      "loc": "22-28",
+      "input": "<s> public static Object flatten(Object arr) { if(arr instanceof ArrayList) { ArrayList narr = (ArrayList) arr; ArrayList result = new ArrayList(50); for (Object x : narr) { if (x instanceof ArrayList) { result.addAll((ArrayList) flatten(x)); } else { </s> result.add(flatten(x)); } } return result; }else { return flatten(arr); </s> } } </s> java",
+      "output": [
+        {
+          "patch": "result.addAll((ArrayList) flatten(x));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "result.addAll(flatten(x));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "result.add(flatten(x));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "result.addAll((ArrayList)flatten(x));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "result.add(flatten(x, true));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "result.add(flatten(x, false));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "result.add(flatten(x.toString()));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "result.add(x);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return flatten(x);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "result.add(flatten(x)); } else {",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "GCD": {
+      "loc": "19-20",
+      "input": "<s> public static int gcd(int a, int b) { if (b == 0) { return a; } else { </s> return gcd(a % b, b); </s> } } </s> java",
+      "output": [
+        {
+          "patch": "return gcd(a, b);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return gcd(a % b, b - 1);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return gcd(a % b, b + 1);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return gcd(a % b, b);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return gcd(a / b, b);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return gcd(a % b, b / 2);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return gcd(b, a % b);",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "return gcd(b, a);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return a % b;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return b;",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "GET_FACTORS": {
+      "loc": "20-21",
+      "input": "<s> public static ArrayList<Integer> get_factors(int n) { if (n == 1) { return new ArrayList<Integer>(); } int max = (int)(Math.sqrt(n) + 1.0); for (int i=2; i < max; i++) { if (n % i == 0) { ArrayList<Integer> prepend = new ArrayList<Integer>(0); prepend.add(i); prepend.addAll(get_factors(n / i)); return prepend; } } </s> return new ArrayList<Integer>(); </s> } </s> java",
+      "output": [
+        {
+          "patch": "return new ArrayList<Integer>(1);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return new ArrayList<Integer>(0);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return new ArrayList<Integer>();",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return new ArrayList<>();",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return prepend;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return get_factors(n);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return Collections.emptyList();",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return Collections.EMPTY_LIST;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return new ArrayList<Integer>(2);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return null;",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "HANOI": {
+      "loc": "29-30",
+      "input": "<s> public static List<Pair<Integer,Integer>> hanoi(int height, int start, int end) { ArrayList<Pair<Integer,Integer>> steps = new ArrayList<Pair<Integer,Integer>>(); if (height > 0) { PriorityQueue<Integer> crap_set = new PriorityQueue<Integer>(); crap_set.add(1); crap_set.add(2); crap_set.add(3); crap_set.remove(start); crap_set.remove(end); int helper = crap_set.poll(); steps.addAll(hanoi(height-1, start, helper)); </s> steps.add(new Pair<Integer,Integer>(start, helper)); </s> steps.addAll(hanoi(height-1, helper, end)); } return steps; } </s> java",
+      "output": [
+        {
+          "patch": "steps.add(new Pair<Integer, Integer>(start, helper));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "steps.add(new Pair<>(start, helper));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "steps.add(new Pair<Integer,Integer>(end, helper));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "steps.add(new Pair<Integer,Integer>(start, end));",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "steps.add(new Pair<Integer,Integer>(helper, start));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "steps.add(new Pair<Integer,Integer>(start + 1, helper));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "steps.add(new Pair<Integer,Integer>(start, helper - 1);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "steps.add(new Pair<Integer,Integer>(start, helper + 1);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "steps.add(Pair.create(start, helper));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "steps.add(start); steps.add(helper);",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "IS_VALID_PARENTHESIZATION": {
+      "loc": "17-18",
+      "input": "<s> public static Boolean is_valid_parenthesization(String parens) { int depth = 0; for (int i = 0; i < parens.length(); i++) { Character paren = parens.charAt(i); if (paren.equals('(')) { depth++; } else { depth--; if (depth < 0) { return false; } } } </s> return true; </s> } </s> java",
+      "output": [
+        {
+          "patch": "return false;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return!parens.isEmpty();",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return valid_parenthesization;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return parens.length() == 0;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return parens.length() > 0;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return Boolean.TRUE;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return true;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return Boolean.valueOf(paren);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return null;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return valid;",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "KHEAPSORT": {
+      "loc": "28-29",
+      "input": "<s> public static ArrayList<Integer> kheapsort(ArrayList<Integer> arr, int k) { PriorityQueue<Integer> heap = new PriorityQueue<Integer>(); for (Integer v : arr.subList(0,k)) { heap.add(v); } ArrayList<Integer> output = new ArrayList<Integer>(); </s> for (Integer x : arr) { </s> heap.add(x); Integer popped = heap.poll(); output.add(popped); } while (!heap.isEmpty()) { output.add(heap.poll()); } return output; } </s> java",
+      "output": [
+        {
+          "patch": "for (int x : arr) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (Integer x : arr.subList(0,k)) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (Integer x : arr.subList(0, k)) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (Integer x : arr) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (Integer x : new ArrayList<Integer>(arr)) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (Integer x : arr.subList(1, k)) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (Integer x : arr.values()) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "for (Integer x : k) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "for (Integer x : arr.toArray()) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "for (Integer x : heap) {",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "KNAPSACK": {
+      "loc": "30-31",
+      "input": "<s> public static int knapsack(int capacity, int [][] items) { int weight = 0, value = 0; int n = items.length; int memo[][] = new int[n + 1][capacity + 1]; for (int i = 0; i <= n ; i++) { if (i - 1 >= 0) { weight = items[i - 1][0]; value = items[i - 1][1]; } for (int j = 0; j <= capacity; j++) { if (i == 0 || j == 0) { memo[i][j] = 0; } </s> else if (weight < j) { </s> memo[i][j] = Math.max(memo[i - 1][j], value + memo[i - 1][j - weight]); } else { memo[i][j] = memo [i-1][j]; } } } return memo[n][capacity]; } </s> java",
+      "output": [
+        {
+          "patch": "else if (weight > j) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "else if (weight < j) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "else if (weight < j - 1) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "else if (weight <= j) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "else if (weight >= j) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "else if (weight!= j) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "else if (weight == j) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (weight < j) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "else {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "else",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "KTH": {
+      "loc": "26-27",
+      "input": "<s> public static Integer kth(ArrayList<Integer> arr, int k) { int pivot = arr.get(0); ArrayList<Integer> below, above; below = new ArrayList<Integer>(arr.size()); above = new ArrayList<Integer>(arr.size()); for (Integer x : arr) { if (x < pivot) { below.add(x); } else if (x > pivot) { above.add(x); } } int num_less = below.size(); int num_lessoreq = arr.size() - above.size(); if (k < num_less) { return kth(below, k); } else if (k >= num_lessoreq) { </s> return kth(above, k); </s> } else { return pivot; } } </s> java",
+      "output": [
+        {
+          "patch": "return kth(above, k - 1);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return kth(below, k);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return kth(above, k + 1);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return kth(above, num_less);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return kth(arr, k);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return kth(Above, k);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return kth(above, arr.size());",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return kth(above, k, false);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return kth(above, k);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return kth(above, k - 1);",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "LCS_LENGTH": {
+      "loc": "35-37",
+      "input": "<s> public static Integer lcs_length(String s, String t) { Map<Integer, Map<Integer,Integer>> dp = new HashMap<Integer,Map<Integer,Integer>>(); for (int i=0; i < s.length(); i++) { Map<Integer,Integer> initialize = new HashMap<Integer,Integer>(); dp.put(i, initialize); for (int j=0; j < t.length(); j++) { Map<Integer,Integer> internal_map = dp.get(i); internal_map.put(j,0); dp.put(i, internal_map); } } for (int i=0; i < s.length(); i++) { for (int j=0; j < t.length(); j++) { if (s.charAt(i) == t.charAt(j)) { </s> if (dp.containsKey(i-1)) { Map<Integer, Integer> internal_map = dp.get(i); </s> int insert_value = dp.get(i-1).get(j) + 1; internal_map.put(j, insert_value); dp.put(i,internal_map); } else { Map<Integer, Integer> internal_map = dp.get(i); internal_map.put(j,1); dp.put(i,internal_map); } } } } if (!dp.isEmpty()) { List<Integer> ret_list = new ArrayList<Integer>(); for (int i=0; i<s.length(); i++) { ret_list.add(!dp.get(i).isEmpty() ? Collections.max(dp.get(i).values()) : 0); } return Collections.max(ret_list); } else { return 0; } } </s> java",
+      "output": [
+        {
+          "patch": "if (dp.containsKey(i)) { Map<Integer, Integer> internal_map = dp.get(i);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (dp.get(i).containsKey(j)) { Map<Integer, Integer> internal_map = dp.get(i).get(j);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (dp.containsKey(j)) { Map<Integer, Integer> internal_map = dp.get(j);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (dp.containsKey(i - 1)) { Map<Integer, Integer> internal_map = dp.get(i - 1);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (dp.get(i).containsKey(j)) { Map<Integer, Integer> internal_map = dp.get(i);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (dp.containsKey(j)) { Map<Integer, Integer> internal_map = dp.get(i);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (dp.containsKey(i - 1)) { Map<Integer, Integer> internal_map = dp.get(i);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "Map<Integer, Integer> internal_map = dp.get(i); if (internal_map!= null && internal_map.containsKey(j)) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "Map<Integer, Integer> internal_map = dp.get(i); if (internal_map.containsKey(j)) { internal_map.remove(j);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "Map<Integer, Integer> internal_map = dp.get(i); if (internal_map.containsKey(j)) {",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "LEVENSHTEIN": {
+      "loc": "17-18",
+      "input": "<s> public static int levenshtein(String source, String target) { if (source.isEmpty() || target.isEmpty()) { return source.isEmpty() ? target.length() : source.length(); } else if (source.charAt(0) == target.charAt(0)) { </s> return 1 + levenshtein(source.substring(1), target.substring(1)); </s> } else { return 1 + Math.min(Math.min( levenshtein(source, target.substring(1)), levenshtein(source.substring(1), target.substring(1))), levenshtein(source.substring(1), target) ); } } </s> java",
+      "output": [
+        {
+          "patch": "return 1 + levenshtein(source, target);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return 1 + levenshtein(source.substring(1), target);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return 1 + levenshtein(source.substring(0), target.substring(0));",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return 1 + levenshtein(source, target.substring(1));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return 1 + levenshtein(target.substring(1), source.substring(1));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return 1 + levenshtein(source.substring(1), target.substring(0));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return levenshtein(source.substring(1), target.substring(1));",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "return 1 + levenshtein(source.substring(1), target.substring(2));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return 1 + levenshtein(source.substring(1), target.substring(1) + 1);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return levenshtein(source, target);",
+          "correctness": "timeout"
+        }
+      ]
+    },
+    "LIS": {
+      "loc": "31-32",
+      "input": "<s> public static int lis(int[] arr) { Map<Integer,Integer> ends = new HashMap<Integer, Integer>(100); int longest = 0; int i = 0; for (int val : arr) { ArrayList<Integer> prefix_lengths = new ArrayList<Integer>(100); for (int j=1; j < longest+1; j++) { if (arr[ends.get(j)] < val) { prefix_lengths.add(j); } } int length = !prefix_lengths.isEmpty() ? Collections.max(prefix_lengths) : 0; if (length == longest || val < arr[ends.get(length+1)]) { ends.put(length+1, i); </s> longest = length + 1; </s> } i++; } return longest; } </s> java",
+      "output": [
+        {
+          "patch": "longest = length;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "longest = length + 1;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "longest = length + 2;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "longest = length - 1;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "longest += length + 1;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "longest = longest + 1;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "length = length + 1;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "longest = length + 3;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "longest = 0;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "longest += length;",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "LONGEST_COMMON_SUBSEQUENCE": {
+      "loc": "18-19",
+      "input": "<s> public static String longest_common_subsequence(String a, String b) { if (a.isEmpty() || b.isEmpty()) { return \"\"; } else if (a.charAt(0) == b.charAt(0)) { </s> return a.charAt(0) + longest_common_subsequence(a.substring(1), b); </s> } else { String fst = longest_common_subsequence(a, b.substring(1)); String snd = longest_common_subsequence(a.substring(1), b); return fst.length() >= snd.length() ? fst : snd; } } </s> java",
+      "output": [
+        {
+          "patch": "return a.charAt(0) + longest_common_subsequence(b, a);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return a.charAt(0) + longest_common_subsequence(b.substring(1), a);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return a.charAt(0) + longest_common_subsequence(a, b);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return a.charAt(0) + longest_common_subsequence(a.substring(0, 1), b);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return a.charAt(0) + longest_common_subsequence(a.substring(0), b);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return a.charAt(0) + longest_common_subsequence(b);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return longest_common_subsequence(a.substring(1), b);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return a.charAt(0) + longest_common_subsequence(b, a.substring(1));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return longest_common_subsequence(a, b);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return a + longest_common_subsequence(a.substring(1), b);",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "MAX_SUBLIST_SUM": {
+      "loc": "19-20",
+      "input": "<s> public static int max_sublist_sum(int[] arr) { int max_ending_here = 0; int max_so_far = 0; for (int x : arr) { </s> max_ending_here = max_ending_here + x; </s> max_so_far = Math.max(max_so_far, max_ending_here); } return max_so_far; } </s> java",
+      "output": [
+        {
+          "patch": "max_ending_here = max_ending_here + x - 1;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "max_ending_here = max_ending_here + x + 1;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "max_so_far = max_so_far + x;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "max_ending_here = max_ending_here + x;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "max_ending_here = max_ending_here + x + x;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "max_ending_here += x;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "max_ending_here = max_ending_here + arr[x];",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "max_ending_here = max_ending_here + x * x;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "max_ending_here = max_ending_here + (x - 1);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "max_ending_here = x;",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "MERGESORT": {
+      "loc": "38-39",
+      "input": "<s> public static ArrayList<Integer> mergesort(ArrayList<Integer> arr) { </s> if (arr.size() == 0) { </s> return arr; } else { int middle = arr.size() / 2; ArrayList<Integer> left = new ArrayList<Integer>(100); left.addAll(arr.subList(0,middle)); left = mergesort(left); ArrayList<Integer> right = new ArrayList<Integer>(100); right.addAll(arr.subList(middle, arr.size())); right = mergesort(right); return merge(left, right); } } </s> java",
+      "output": [
+        {
+          "patch": "if (arr.isEmpty()) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "if (arr.size() == 1) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "if (arr.size() == 0) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "if (arr.size() <= 0) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "if (arr.size() == 0)",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (arr.size() <= 1) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "if (arr == null) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "if (isEmpty(arr)) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (arr.size() == 2) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "if (!arr.isEmpty()) {",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "MINIMUM_SPANNING_TREE": {
+      "loc": "29-30",
+      "input": "<s> public static Set<WeightedEdge> minimum_spanning_tree(List<WeightedEdge> weightedEdges) { Map<Node,Set<Node>> groupByNode = new HashMap<>(); Set<WeightedEdge> minSpanningTree = new HashSet<>(); Collections.sort(weightedEdges); for (WeightedEdge edge : weightedEdges) { Node vertex_u = edge.node1; Node vertex_v = edge.node2; if (!groupByNode.containsKey(vertex_u)){ groupByNode.put(vertex_u, new HashSet<>(Arrays.asList(vertex_u))); } if (!groupByNode.containsKey(vertex_v)){ groupByNode.put(vertex_v, new HashSet<>(Arrays.asList(vertex_v))); } if (groupByNode.get(vertex_u) != groupByNode.get(vertex_v)) { minSpanningTree.add(edge); groupByNode = update(groupByNode, vertex_u, vertex_v); for (Node node : groupByNode.get(vertex_v)) { </s> groupByNode = update(groupByNode, node, vertex_u); </s> } } } return minSpanningTree; } </s> java",
+      "output": [
+        {
+          "patch": "groupByNode = update(groupByNode, node, vertex_v);",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "groupByNode = update(groupByNode, vertex_u, node);",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "groupByNode = update(groupByNode, node);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "groupByNode.put(node, vertex_u);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "update(groupByNode, node, vertex_u);",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "groupByNode = update(groupByNode, edge, node, vertex_u);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "groupByNode = update(groupByNode, vertex_v, node);",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "groupByNode = update(groupByNode, node, vertex_u, node);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "groupByNode = update(node, vertex_u);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "groupByNode.put(node, vertex_v);",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "NEXT_PALINDROME": {
+      "loc": "37-38",
+      "input": "<s> public static String next_palindrome(int[] digit_list) { int high_mid = Math.floorDiv(digit_list.length, 2); int low_mid = Math.floorDiv(digit_list.length - 1, 2); while (high_mid < digit_list.length && low_mid >= 0) { if (digit_list[high_mid] == 9) { digit_list[high_mid] = 0; digit_list[low_mid] = 0; high_mid += 1; low_mid -= 1; } else { digit_list[high_mid] += 1; if (low_mid != high_mid) { digit_list[low_mid] += 1; } return Arrays.toString(digit_list); } } ArrayList<Integer> otherwise = new ArrayList<Integer>(); otherwise.add(1); </s> otherwise.addAll(Collections.nCopies(digit_list.length, 0)); </s> otherwise.add(1); return String.valueOf(otherwise); } </s> java",
+      "output": [
+        {
+          "patch": "otherwise.addAll(Arrays.nCopies(digit_list.length, 0));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "otherwise.addAll(Arrays.copyOf(digit_list, 0));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "otherwise.addAll(Collections.nCopies(digit_list.length - 1, 0));",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "otherwise.addAll(Collections.nCopies(digit_list.length, 1));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "otherwise.addAll(Arrays.copyOfRange(digit_list, 0));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "otherwise.addAll(Arrays.asList(digit_list));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "otherwise.addAll(Collections.nCopies(digit_list.length + 1, 0));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "otherwise.addAll(Arrays.copyOfRange(digit_list.length, 0));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "otherwise.addAll(Arrays.copyOfRange(0, digit_list.length));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "otherwise.addAll(Collections.nCopies(digit_list.length, -1));",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "NEXT_PERMUTATION": {
+      "loc": "19-20",
+      "input": "<s> public static ArrayList<Integer> next_permutation(ArrayList<Integer> perm) { for (int i=perm.size()-2; i!=-1; i--) { if (perm.get(i) < perm.get(i+1)) { for (int j=perm.size()-1; j!=i; j--) { </s> if (perm.get(j) < perm.get(i)) { </s> ArrayList<Integer> next_perm = perm; int temp_j = perm.get(j); int temp_i = perm.get(i); next_perm.set(i,temp_j); next_perm.set(j,temp_i); ArrayList<Integer> reversed = new ArrayList<Integer>(100); for (int k=next_perm.size()-1; k!=i; k--) { reversed.add(next_perm.get(k)); } int q = i + 1; for (Integer replace : reversed) { next_perm.set(q, replace); q++; } return next_perm; } } } } return new ArrayList<Integer>(); } </s> java",
+      "output": [
+        {
+          "patch": "if (perm.get(j) > perm.get(i)) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "if (perm.get(i) < perm.get(j)) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "if (perm.get(j) < perm.get(i + 1)) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (perm.get(j) <= perm.get(i)) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (perm.get(j) >= perm.get(i)) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "if (perm.get(j) == perm.get(i)) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (perm.get(j) < perm.get(i - 1)) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (perm.get(j)!= perm.get(i)) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (perm.get(j) < i) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (j < i) {",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "PASCAL": {
+      "loc": "22-23",
+      "input": "<s> public static ArrayList<ArrayList<Integer>> pascal(int n) { ArrayList<ArrayList<Integer>> rows = new ArrayList<ArrayList<Integer>>(); ArrayList<Integer> init = new ArrayList<Integer>(); init.add(1); rows.add(init); for (int r=1; r<n; r++) { ArrayList<Integer> row = new ArrayList<Integer>(); </s> for (int c=0; c<r; c++) { </s> int upleft, upright; if (c > 0) { upleft = rows.get(r-1).get(c-1); } else { upleft = 0; } if (c < r) { upright = rows.get(r-1).get(c); } else { upright = 0; } row.add(upleft+upright); } rows.add(row); } return rows; } </s> java",
+      "output": [
+        {
+          "patch": "for (int c = 0; c < r; c++) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (int c = 0; c < n; c++) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (int c = 0; c <= r; c++) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "for (int c = r; c<n; c++) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (int c = r; c < n; c++) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (int c = 1; c < r; c++) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (int c = 0; c<r; c++) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (int c = 0; c < r - 1; c++) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (int c = 0; c<n; c++) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "for (int c = 1; c <= r; c++) {",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "POSSIBLE_CHANGE": {
+      "loc": "17-18",
+      "input": "<s> public static int possible_change(int[] coins, int total) { if (total == 0) { return 1; } </s> if (total < 0) { </s> return 0; } int first = coins[0]; int[] rest = Arrays.copyOfRange(coins, 1, coins.length); return possible_change(coins, total-first) + possible_change(rest, total); } </s> java",
+      "output": [
+        {
+          "patch": "if (total <= 0) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "if (total == 0) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "if (total < 0) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "if (total < 0)",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (total == 0 || total < 0) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "if (total < 1) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "if (total < 0 || coins.length < 1) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "if (total < 0 || coins.length == 0) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "if (total < 0 || coins.length <= 1) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (total == 0 || coins.length == 0) {",
+          "correctness": "timeout"
+        }
+      ]
+    },
+    "QUICKSORT": {
+      "loc": "26-27",
+      "input": "<s> public static ArrayList<Integer> quicksort(ArrayList<Integer> arr) { if (arr.isEmpty()) { return new ArrayList<Integer>(); } Integer pivot = arr.get(0); ArrayList<Integer> lesser = new ArrayList<Integer>(); ArrayList<Integer> greater = new ArrayList<Integer>(); for (Integer x : arr.subList(1, arr.size())) { if (x < pivot) { lesser.add(x); </s> } else if (x > pivot) { </s> greater.add(x); } } ArrayList<Integer> middle = new ArrayList<Integer>(); middle.add(pivot); lesser = quicksort(lesser); greater = quicksort(greater); middle.addAll(greater); lesser.addAll(middle); return lesser; } </s> java",
+      "output": [
+        {
+          "patch": "} else if (x >= pivot) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "} else if (x < pivot) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "} else if (x > pivot) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "} else if (x <= pivot) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "} else if (x > pivot - 1) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "} else {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "} else if (x == pivot) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "} else if (x > pivot + 1) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "} if (x > pivot) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "} else",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "REVERSE_LINKED_LIST": {
+      "loc": "20-20",
+      "input": "<s> public static Node reverse_linked_list(Node node) { Node prevnode = null; Node nextnode; while (node != null) { nextnode = node.getSuccessor(); node.setSuccessor(prevnode); </s> node = nextnode; </s> } return prevnode; } </s> java",
+      "output": [
+        {
+          "patch": "node.setSuccessor(nextnode);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "prevnode = nextnode;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "node = nextnode.getSuccessor();",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "prevnode = node; node = nextnode;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "prevnode.setSuccessor(nextnode);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "node = prevnode;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "node = nextnode;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "node = nextnode.getNext();",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return nextnode;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "nextnode = prevnode;",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "RPN_EVAL": {
+      "loc": "34-35",
+      "input": "<s> public static Double rpn_eval(ArrayList tokens) { Map<String, BinaryOperator<Double>> op = new HashMap<String, BinaryOperator<Double>>(); op.put(\"+\", (a, b) -> a + b); op.put(\"-\", (a, b) -> a - b); op.put(\"*\", (a, b) -> a * b); op.put(\"/\", (a, b) -> a / b); Stack stack = new Stack(); for (Object token : tokens) { if (Double.class.isInstance(token)) { stack.push((Double) token); } else { token = (String) token; Double a = (Double) stack.pop(); Double b = (Double) stack.pop(); Double c = 0.0; BinaryOperator<Double> bin_op = op.get(token); </s> c= bin_op.apply(a,b); </s> stack.push(c); } } return (Double) stack.pop(); } </s> java",
+      "output": [
+        {
+          "patch": "c = bin_op.apply(a, b);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "c = bin_op.apply(a,b);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": ". c = bin_op.apply(a, b);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "c += bin_op.apply(a, b);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "c = bin_op.apply(c, a, b);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "c = bin_op.apply(b, a);",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "Double c = bin_op.apply(a, b);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "c = bin_op.evaluate(a, b);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "c = bin_op.apply(a, b) ;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "c = bin_op.apply(a, b, stack);",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "SHORTEST_PATH_LENGTH": {
+      "loc": "39-40",
+      "input": "<s> public int shortest_path_length(Map<List<Node>, Integer> length_by_edge, Node startnode, Node goalnode) { int n = length_by_edge.size(); Map<Node, Integer> unvisitedNodes = new HashMap<>(); Set<Node> visitedNodes = new HashSet<>(); unvisitedNodes.put(startnode, 0); while (!unvisitedNodes.isEmpty()) { Node node = getNodeWithMinDistance(unvisitedNodes); int distance = unvisitedNodes.get(node); unvisitedNodes.remove(node); if (node.getValue() == goalnode.getValue()) { return distance; } visitedNodes.add(node); for (Node nextnode : node.getSuccessors()) { if (visitedNodes.contains(nextnode)) { continue; } if (unvisitedNodes.get(nextnode) == null) { unvisitedNodes.put(nextnode, Integer.MAX_VALUE); } unvisitedNodes.put(nextnode, Math.min(unvisitedNodes.get(nextnode), </s> unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode)))); </s> } } return Integer.MAX_VALUE; } </s> java",
+      "output": [
+        {
+          "patch": "unvisitedNodes.put(nextnode, unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode))));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "unvisitedNodes.put(nextnode, unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode)));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "unvisitedNodes.put(nextnode, unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode)));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "unvisitedNodes.set(nextnode, unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode))));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "unvisitedNodes.put(nextnode, unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode)) + 1);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "unvisitedNodes.put(nextnode, unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode, node))));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "unvisitedNodes.put(nextnode, (unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode)))));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "unvisitedNodes.put(nextnode, (unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode))) / 2);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return (unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode))));",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "SHORTEST_PATH_LENGTHS": {
+      "loc": "38-39",
+      "input": "<s> public static Map<List<Integer>,Integer> shortest_path_lengths(int numNodes, Map<List<Integer>,Integer> length_by_edge) { Map<List<Integer>,Integer> length_by_path = new HashMap<>(); for (int i = 0; i < numNodes; i++) { for (int j =0; j < numNodes; j++) { List<Integer> edge = new ArrayList<>(Arrays.asList(i,j)); if (i == j) { length_by_path.put(edge, 0); } else if (length_by_edge.containsKey(edge) ) { length_by_path.put(edge, length_by_edge.get(edge)); } else { length_by_path.put(edge, INF); } } } for (int k = 0; k < numNodes; k++) { for (int i = 0; i < numNodes; i++) { for (int j = 0; j < numNodes; j++) { int update_length = Math.min(length_by_path.get(Arrays.asList(i,j)), </s> length_by_path.get(Arrays.asList(i,k)) + length_by_path.get(Arrays.asList(j,k))); </s> length_by_path.put(Arrays.asList(i,j), update_length); } } } return length_by_path; } </s> java",
+      "output": [
+        {
+          "patch": "length_by_path.put(Arrays.asList(i, k), length_by_path.get(Arrays.asList(j, k)));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "length_by_path.put(Arrays.asList(i,k), length_by_path.get(Arrays.asList(j,k)));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "update_length = Math.min(update_length, length_by_path.get(Arrays.asList(i,k)) + length_by_path.get(Arrays.asList(j,k)));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "update_length = Math.min(update_length, length_by_path.get(Arrays.asList(i, k)) + length_by_path.get(Arrays.asList(j, k)));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "update_length = Math.min(update_length, length_by_path.get(Arrays.asList(i, k)) + length_by_path.get(Arrays.asList(j,k)));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "length_by_path.put(Arrays.asList(i, j), length_by_path.get(Arrays.asList(i, j)));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "length_by_path.put(Arrays.asList(i,j), length_by_path.get(Arrays.asList(i,j)));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "length_by_path.put(Arrays.asList(i, j), update_length);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "update_length += length_by_path.get(Arrays.asList(i,k));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "update_length += length_by_path.get(Arrays.asList(i, k));",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "SHORTEST_PATHS": {
+      "loc": "30-31",
+      "input": "<s> public static Map<String, Integer> shortest_paths(String source, Map<List<String>,Integer> weight_by_edge) { Map<String,Integer> weight_by_node = new HashMap<String,Integer>(); for (List<String> edge : weight_by_edge.keySet()) { weight_by_node.put(edge.get(1), INF); weight_by_node.put(edge.get(0), INF); } weight_by_node.put(source, 0); for (int i = 0; i < weight_by_node.size(); i++) { for (List<String> edge : weight_by_edge.keySet()) { int update_weight = Math.min( weight_by_node.get(edge.get(0)) + weight_by_edge.get(edge), weight_by_node.get(edge.get(1))); </s> weight_by_edge.put(edge, update_weight); </s> } } return weight_by_node; } </s> java",
+      "output": [
+        {
+          "patch": "weight_by_edge.put(edge.get(0), update_weight);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "weight_by_edge.put(edge, weight_by_edge.get(edge));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "weight_by_edge.put(edge, weight_by_node.get(edge));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "weight_by_edge.put(edge, update_weight + 1);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "weight_by_edge.put(edge, update_weight + edge.get(0));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "weight_by_edge.put(edge, update_weight + edge.get(1));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "weight_by_edge.put(edge, update_weight + edge);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "weight_by_edge.put(edge, update_weight - 1);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "weight_by_edge.put(source, update_weight);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "weight_by_edge.put(edge, update_weight - edge.get(0));",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "SHUNTING_YARD": {
+      "loc": "34-34",
+      "input": "<s> public static List shunting_yard(ArrayList tokens) { Map<String, Integer> precedence = new HashMap<String, Integer>(); precedence.put(\"+\",1); precedence.put(\"-\",1); precedence.put(\"*\",2); precedence.put(\"/\",2); ArrayList rpntokens = new ArrayList(100); ArrayDeque opstack = new ArrayDeque(); for (Object token: tokens) { if (Integer.class.isInstance(token)) { rpntokens.add((Integer) token); } else { String operator = (String) token; while (!opstack.isEmpty() && precedence.get(operator) <= precedence.get(opstack.getLast())) { rpntokens.add(opstack.pop()); } </s> } </s> } while (!opstack.isEmpty()) { rpntokens.add(opstack.pop()); } return rpntokens; } </s> java",
+      "output": [
+        {
+          "patch": "} else { rpntokens.add((Integer) token);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "} else rpntokens.add(opstack.pop());",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "} else rpntokens.add((Integer) token);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "} else { rpntokens.add(operator);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "} else { rpntokens.add(token);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return rpntokens;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "} return rpntokens;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "}",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "} else {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "});",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "SIEVE": {
+      "loc": "41-42",
+      "input": "<s> public static ArrayList<Integer> sieve(Integer max) { ArrayList<Integer> primes = new ArrayList<Integer>(); for (int n=2; n<max+1; n++) { </s> if (any(list_comp(n, primes))) { </s> primes.add(n); } } return primes; } </s> java",
+      "output": [
+        {
+          "patch": "if (!any(list_comp(n, primes))) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (any(list_comp(n, primes))) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (any(list_comp(n, primes)))) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (any(list_comp(n, primes, false))) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (all(list_comp(n, primes))) {",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "if (any(list_comp(n, primes, true))) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (list_comp(n, primes)) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (any(list(n, primes))) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (any(list_comp(n, primes)) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (any(list_comp(n, primes.toArray())) {",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "SQRT": {
+      "loc": "16-17",
+      "input": "<s> public static double sqrt(double x, double epsilon) { double approx = x / 2f; </s> while (Math.abs(x-approx) > epsilon) { </s> approx = 0.5f * (approx + x / approx); } return approx; } </s> java",
+      "output": [
+        {
+          "patch": "while (Math.abs(x - approx) > epsilon) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "while (Math.abs(approx - x) > epsilon) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "while (Math.abs(x) > epsilon) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "while (Math.abs(x - approx) < epsilon) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "while (Math.abs(x - approx) <= epsilon) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "while (Math.abs(approx + x) > epsilon) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "while (Math.abs(approx) > epsilon) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "while (Math.abs( approx - x) > epsilon) {",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "while (Math.abs(x) < epsilon) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "while ((Math.abs(x - approx) > epsilon)) {",
+          "correctness": "timeout"
+        }
+      ]
+    },
+    "SUBSEQUENCES": {
+      "loc": "16-17",
+      "input": "<s> public static ArrayList<ArrayList> subsequences(int a, int b, int k) { if (k == 0) { </s> return new ArrayList(); </s> } ArrayList ret = new ArrayList(50); for (int i=a; i<b+1-k; i++) { ArrayList base = new ArrayList(50); for (ArrayList rest : subsequences(i+1, b, k-1)) { rest.add(0,i); base.add(rest); } ret.addAll(base); } return ret; } </s> java",
+      "output": [
+        {
+          "patch": "return new ArrayList<ArrayList>();",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return Collections.emptyList();",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return null;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return new ArrayList(k);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "ArrayList ret = new ArrayList();",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return new ArrayList<>(k);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return EMPTY_LIST;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return new ArrayList<>();",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return new ArrayList();",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return EMPTY;",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "TO_BASE": {
+      "loc": "21-22",
+      "input": "<s> public static String to_base(int num, int b) { String result = \"\"; String alphabet = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\"; int i; while (num > 0) { i = num % b; num = num / b; </s> result = result + String.valueOf(alphabet.charAt(i)); </s> } return result; } </s> java",
+      "output": [
+        {
+          "patch": "result = result + alphabet.charAt(i);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "result = result + String.valueOf(alphabet.charAt(i));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "result = String.valueOf(alphabet.charAt(i));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "result += alphabet.charAt(i);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "result = alphabet.charAt(i);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "result = result.concat(alphabet.charAt(i));",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "result = String.valueOf(alphabet.charAt(i - 1));",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "result = alphabet.charAt(i) + result;",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "result = String.valueOf(alphabet.charAt(i).toUpperCase());",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "result = result + alphabet[i];",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "TOPOLOGICAL_ORDERING": {
+      "loc": "17-18",
+      "input": "<s> public static ArrayList<Node> topological_ordering (List<Node> directedGraph) { ArrayList<Node> orderedNodes = new ArrayList<Node>(); for (Node node : directedGraph) { if (node.getPredecessors().isEmpty()) { orderedNodes.add(node); } } int listSize = orderedNodes.size(); for (int i = 0; i < listSize; i++) { Node node = orderedNodes.get(i); for (Node nextNode : node.getSuccessors()) { </s> if (orderedNodes.containsAll(nextNode.getSuccessors()) && !orderedNodes.contains(nextNode)) { </s> orderedNodes.add(nextNode); listSize++; } } } return orderedNodes; } </s> java",
+      "output": [
+        {
+          "patch": "if (orderedNodes.containsAll(nextNode.getSuccessors())) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (orderedNodes.containsAll(nextNode.getSuccessors()) &&!orderedNodes.contains(node)) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (orderedNodes.containsAll(nextNode.getSuccessors()) && orderedNodes.contains(nextNode)) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (!orderedNodes.containsAll(nextNode.getSuccessors())) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (!orderedNodes.contains(nextNode)) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (orderedNodes.containsAll(nextNode.getSuccessors()) && nextNode!= node) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (orderedNodes.contains(nextNode)) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (nextNode.getSuccessors().size() > 0) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (nextNode.getPredecessors().isEmpty()) {",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "if (nextNode.getSuccessors().isEmpty()) {",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "WRAP": {
+      "loc": "32-32",
+      "input": "<s> public static ArrayList<String> wrap(String text, int cols) { ArrayList<String> lines = new ArrayList<String>(); String line; while (text.length() > cols) { int end = text.lastIndexOf(\" \", cols); if (end == -1) { end = cols; } line = text.substring(0,end); text = text.substring(end); lines.add(line); } </s> return lines; </s> } </s> java",
+      "output": [
+        {
+          "patch": "return new ArrayList<String>();",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return new ArrayList<>(lines);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return wrap(text, cols);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return wrap(lines, cols);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return lines.clone();",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return Arrays.asList(lines);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return new ArrayList<>();",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return wrapLines(lines);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return wrap(lines);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return null;",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "POWERSET": {
+      "loc": "23-30",
+      "input": "<s> public static ArrayList<ArrayList> powerset(ArrayList arr) { if (!arr.isEmpty()) { Object first = arr.get(0); arr.remove(0); ArrayList rest = arr; ArrayList<ArrayList> rest_subsets = powerset(rest); ArrayList<ArrayList> output = new ArrayList<ArrayList>(100); ArrayList to_add = new ArrayList(100); </s> to_add.add(first); for (ArrayList subset : rest_subsets) { to_add.addAll(subset); } output.add(to_add); return output; </s> } else { ArrayList empty_set = new ArrayList<ArrayList>(); empty_set.add(new ArrayList()); return empty_set; } } </s> java",
+      "output": [
+        {
+          "patch": "output.add(first); return output;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return powerset(rest_subsets);",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "return powerset(first, rest_subsets);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return powerset(rest, to_add);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return powerset(rest_subsets, first);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "to_add.add(first);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return powerset(rest);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "output.add(first);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return to_add;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return output;",
+          "correctness": "wrong"
+        }
+      ]
+    }
+  }
+}

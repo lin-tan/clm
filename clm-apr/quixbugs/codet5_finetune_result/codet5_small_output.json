@@ -1,0 +1,646 @@
+{
+  "config": "finetune",
+  "data": {
+    "BITCOUNT": {
+      "loc": "15-16",
+      "input": "public static int bitcount(int n) {\n    int count = 0;\n    while (n != 0) {\n</s>        n = (n ^ (n - 1));\n</s>        count++;\n    }\n    return count;\n}\n",
+      "output": [
+        "<pad><s>        n = (n ^ (n - 1));\n</s></s>",
+        "<pad><s>        n = (n ^ (n - 1));\n</s>",
+        "<pad><s>        n = (n & (n - 1));\n</s></s>",
+        "<pad><s>        n = n ^ (n - 1);\n</s></s></s>",
+        "<pad><s>        n = (n ^ (n + 1));\n</s></s>",
+        "<pad><s>        n = (n ^ (n >> 1));\n</s></s>",
+        "<pad><s>        n = (n ^ (n - 2));\n</s></s>",
+        "<pad><s>        n = (n >> 1);\n</s></s></s></s></s>",
+        "<pad><s>        n = (n ^ n);\n</s></s></s></s></s>",
+        "<pad><s>        n = (n >>> 1);\n</s></s></s></s></s>"
+      ]
+    },
+    "BREADTH_FIRST_SEARCH": {
+      "loc": "26-27",
+      "input": "public static boolean breadth_first_search(Node startnode, Node goalnode) {\n    Deque<Node> queue = new ArrayDeque<>();\n    queue.addLast(startnode);\n    nodesvisited.add(startnode);\n</s>    while (true) {\n</s>        Node node = queue.removeFirst();\n        if (node == goalnode) {\n            return true;\n        } else {\n            for (Node successor_node : node.getSuccessors()) {\n                if (!nodesvisited.contains(successor_node)) {\n                    queue.addFirst(successor_node);\n                    nodesvisited.add(successor_node);\n                }\n            }\n        }\n    }\n}\n",
+      "output": [
+        "<pad><s>    while (true) {\n</s></s></s></s></s></s>",
+        "<pad><s>    while (queue.size() > 0) {\n</s>",
+        "<pad><s>    while (queue.isEmpty()) {\n</s></s></s>",
+        "<pad><s>    while (false) {\n</s></s></s></s></s></s>",
+        "<pad><s>    while (!queue.isEmpty()) {\n</s></s></s>",
+        "<pad><s>    while (queue.size() > 1) {\n</s>",
+        "<pad><s>    while (queue.hasNext()) {\n</s></s></s>",
+        "<pad><s>    while (queue.contains(goalnode)) {\n</s>",
+        "<pad><s>    for (Node node : queue) {\n</s></s></s>",
+        "<pad><s>    while (queue.hasMoreElements()) {\n</s></s>"
+      ]
+    },
+    "BUCKETSORT": {
+      "loc": "24-25",
+      "input": "public static ArrayList<Integer> bucketsort(ArrayList<Integer> arr, int k) {\n    ArrayList<Integer> counts = new ArrayList<Integer>(Collections.nCopies(k,0));\n    for (Integer x : arr) {\n        counts.set(x,counts.get(x)+1);\n    }\n    ArrayList<Integer> sorted_arr = new ArrayList<Integer>(100);\nint i = 0;\n</s>    for (Integer count : arr) {\n</s> sorted_arr.addAll(Collections.nCopies(count, i));\n i++;\n    }\n    return sorted_arr;\n}\n",
+      "output": [
+        "<pad><s>    for (Integer count : counts) {\n</s></s></s></s></s></s></s>",
+        "<pad><s>    for (Integer count : arr) {\n</s></s></s></s></s></s></s>",
+        "<pad><s>    for (int count : counts) {\n</s></s></s></s></s></s></s>",
+        "<pad><s>    for (int count : arr) {\n</s></s></s></s></s></s></s>",
+        "<pad><s>    for (Integer count : sorted_arr) {\n</s></s></s></s></s>",
+        "<pad><s>    for (Integer count : Arrays.asList(arr)) {\n</s></s>",
+        "<pad><s>    for (Integer count : counts.values()) {\n</s></s></s></s></s>",
+        "<pad><s>    for (Integer count : new ArrayList<Integer>(arr)) {\n</s>",
+        "<pad><s>    for (int i = 0; i < count; i++) {\n</s>",
+        "<pad><s>    for (int i = 0; i < k; i++) {\n</s>"
+      ]
+    },
+    "DEPTH_FIRST_SEARCH": {
+      "loc": "23-23",
+      "input": "boolean search(Node node) {\n    if (nodesvisited.contains(node)) {\n        return false;\n    } else if (node == goalnode) {\n        return true;\n    } else {\n</s>        for (Node successornodes : node.getSuccessors()) {\n</s>         if (search(successornodes)) { return true; }\n        }\n    }\n    return false;\n}\n",
+      "output": [
+        "<pad><s>        for (Node successornodes : goalnode.getSuccessors()) {\n</s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        for (Node successornodes : node.getSuccessors()) {\n</s></s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        for (Node successornodes : node.getSuccessors().values()) {\n</s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        for (Node successornodes : goalnode.getSuccessors().values()) {\n</s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        List<Node> successornodes = node.getSuccessors();\n        if (successornodes!= null) {\n</s>",
+        "<pad><s>        List<Node> successornodes = node.getSuccessors();\n        for (Node successor : successorNodes) {\n</s>",
+        "<pad><s>        for (Node successornodes : goal.getSuccessors()) {\n</s></s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        List<Node> successornodes = node.getSuccessors();\n        for (Node successor : successornodes) {\n</s>",
+        "<pad><s>        for (Node successornodes : node.getSuccessors(true)) {\n</s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        for (Node successornodes : nodesvisited.values()) {\n</s></s></s></s></s></s></s></s></s></s></s></s></s>"
+      ]
+    },
+    "DETECT_CYCLE": {
+      "loc": "18-19",
+      "input": "public static boolean detect_cycle(Node node) {\n    Node hare = node;\n    Node tortoise = node;\n    while (true) {\n</s>        if (hare.getSuccessor() == null)\n</s>            return false;\n        tortoise = tortoise.getSuccessor();\n        hare = hare.getSuccessor().getSuccessor();\n        if (hare == tortoise)\n            return true;\n    }\n}\n",
+      "output": [
+        "<pad><s>        if (hare == null || tortoise == null)\n</s>",
+        "<pad><s>        if (hare.getSuccessor() == null) {\n</s></s>",
+        "<pad><s>        if (hare == null) {\n</s></s></s></s></s></s></s>",
+        "<pad><s>        if (hare.getSuccessor() == null)\n</s></s></s>",
+        "<pad><s>        if (hare == tortoise) {\n</s></s></s></s>",
+        "<pad><s>        if (tortoise == null) {\n</s></s></s></s></s>",
+        "<pad><s>        if (hare == tortoise)\n</s></s></s></s></s>",
+        "<pad><s>        if (tortoise == null)\n</s></s></s></s></s></s>",
+        "<pad><s>        if (hare == null)\n</s></s></s></s></s></s></s></s>",
+        "<pad><s>        if (tortoise.getSuccessor() == null)\n</s>"
+      ]
+    },
+    "FIND_FIRST_IN_SORTED": {
+      "loc": "19-20",
+      "input": "public static int find_first_in_sorted(int[] arr, int x) {\n    int lo = 0;\n    int hi = arr.length;\n</s>    while (lo <= hi) {\n</s>        int mid = (lo + hi) / 2;\n        if (x == arr[mid] && (mid == 0 || x != arr[mid-1])) {\n            return mid;\n        } else if (x <= arr[mid]) {\n            hi = mid;\n        } else {\n            lo = mid + 1;\n        }\n    }\n    return -1;\n}\n",
+      "output": [
+        "<pad><s>    while (lo < hi) {\n</s></s></s></s></s></s></s>",
+        "<pad><s>    while (lo <= hi) {\n</s></s></s></s></s></s></s>",
+        "<pad><s>    while (lo <= hi && lo < arr.length) {\n</s>",
+        "<pad><s>    while (lo < hi && lo < arr.length) {\n</s>",
+        "<pad><s>    while (lo <= hi && x <= arr[lo]) {\n</s>",
+        "<pad><s>    while (lo < hi && x <= arr[lo]) {\n</s>",
+        "<pad><s>    while (lo < hi && lo <= x) {\n</s></s></s>",
+        "<pad><s>    while (lo <= hi && lo <= x) {\n</s></s></s>",
+        "<pad><s>    while (lo <= hi - 1) {\n</s></s></s></s></s>",
+        "<pad><s>    while (lo < hi && lo < x) {\n</s></s></s>"
+      ]
+    },
+    "FIND_IN_SORTED": {
+      "loc": "20-21",
+      "input": "public static int binsearch(int[] arr, int x, int start, int end) {\n    if (start == end) {\n        return -1;\n    }\n    int mid = start + (end - start) / 2; \n    if (x < arr[mid]) {\n        return binsearch(arr, x, start, mid);\n    } else if (x > arr[mid]) {\n</s>        return binsearch(arr, x, mid, end);\n</s>    } else {\n        return mid;\n    }\n}\n",
+      "output": [
+        "<pad><s>        return binsearch(arr, x, mid + 1, end);\n</s></s></s>",
+        "<pad><s>        return binsearch(arr, x, mid, end);\n</s></s></s></s></s>",
+        "<pad><s>        return binsearch(arr, x, mid - start, end);\n</s></s></s>",
+        "<pad><s>        return binsearch(arr, x, mid - 1, end);\n</s></s></s>",
+        "<pad><s>        return binsearch(arr, x, mid, end - start);\n</s></s></s>",
+        "<pad><s>        return binsearch(arr, x, mid, end + 1);\n</s></s></s>",
+        "<pad><s>        return binsearch(arr, x, mid, mid + 1, end);\n</s>",
+        "<pad><s>        return binsearch(arr, x, mid, end - 1);\n</s></s></s>",
+        "<pad><s>        return binsearch(arr, x, mid, end - start, mid);\n</s>",
+        "<pad><s>        return binsearch(arr, x, mid + 1, end - start);\n</s>"
+      ]
+    },
+    "FLATTEN": {
+      "loc": "22-28",
+      "input": "public static Object flatten(Object arr) {\nif(arr instanceof ArrayList) {\n        ArrayList narr = (ArrayList) arr;\n ArrayList result = new ArrayList(50);\n for (Object x : narr) {\n            if (x instanceof ArrayList) {\n                result.addAll((ArrayList) flatten(x));\n            } else {\n</s>                result.add(flatten(x));\n}\n        }\n        return result;\n}else {\n return flatten(arr);\n</s>}\n}\n",
+      "output": [
+        "<pad><s>                result.addAll((ArrayList) flatten(x));\n</s>",
+        "<pad><s>                result.addAll(flatten(x));\n</s></s></s>",
+        "<pad><s>                result.add(flatten(x));\n</s></s></s></s>",
+        "<pad><s>                result.addAll((List) flatten(x));\n</s>",
+        "<pad><s>            result.addAll((ArrayList) flatten(x));\n</s>",
+        "<pad><s>                result.addAll((Object) flatten(x));\n</s>",
+        "<pad><s>            result.addAll(flatten(x));\n</s></s></s>",
+        "<pad><s>                return flatten(x);\n</s></s></s></s></s></s></s>",
+        "<pad><s>            result.add(flatten(x));\n</s></s></s></s>",
+        "<pad><s>                result.addAll(flatten(x, false));\n</s>"
+      ]
+    },
+    "GCD": {
+      "loc": "19-20",
+      "input": "public static int gcd(int a, int b) {\n    if (b == 0) {\n        return a;\n    } else {\n</s>        return gcd(a % b, b);\n</s>    }\n}\n",
+      "output": [
+        "<pad><s>        return gcd(a % b, b);\n</s></s></s>",
+        "<pad><s>        return gcd(a / b, b);\n</s></s></s>",
+        "<pad><s>        return gcd(a % b, b + 1);\n</s>",
+        "<pad><s>        return gcd(a % b, b - 1);\n</s>",
+        "<pad><s>        return gcd(a, b);\n</s></s></s></s></s>",
+        "<pad><s>        return gcd(a / b, b - 1);\n</s>",
+        "<pad><s>        return gcd(a - b, b);\n</s></s></s>",
+        "<pad><s>        return gcd(a + b, b);\n</s></s></s>",
+        "<pad><s>        return gcd(a % b, b, 0);\n</s>",
+        "<pad><s>        return gcd(a % b, b, 1);\n</s>"
+      ]
+    },
+    "GET_FACTORS": {
+      "loc": "20-21",
+      "input": "public static ArrayList<Integer> get_factors(int n) {\n    if (n == 1) {\n        return new ArrayList<Integer>();\n    }\n    int max = (int)(Math.sqrt(n) + 1.0);\n    for (int i=2; i < max; i++) {\n        if (n % i == 0) {\n            ArrayList<Integer> prepend = new ArrayList<Integer>(0);\n            prepend.add(i);\n            prepend.addAll(get_factors(n / i));\n            return prepend;\n        }\n    }\n</s>   \treturn new ArrayList<Integer>();\n</s>}\n",
+      "output": [
+        "<pad><s>    return new ArrayList<Integer>();\n</s>",
+        "<pad><s>    return new ArrayList<>();\n</s></s></s>",
+        "<pad><s>    return new ArrayList<>(n);\n</s>",
+        "<pad><s>    return get_factors(n);\n</s>",
+        "<pad><s>    return new ArrayList<>(0);\n</s>",
+        "<pad><s>    return null;\n</s></s></s></s></s>",
+        "<pad><s>\treturn new ArrayList<Integer>();\n</s>",
+        "<pad><s>\treturn new ArrayList<>();\n</s></s></s>",
+        "<pad><s>    return new ArrayList<>(max);\n</s>",
+        "<pad><s>\treturn new ArrayList<>(n);\n</s>"
+      ]
+    },
+    "HANOI": {
+      "loc": "29-30",
+      "input": "public static List<Pair<Integer,Integer>> hanoi(int height, int start, int end) {\n    ArrayList<Pair<Integer,Integer>> steps = new ArrayList<Pair<Integer,Integer>>();\n    if (height > 0) {\n        PriorityQueue<Integer> crap_set = new PriorityQueue<Integer>();\n        crap_set.add(1);\n        crap_set.add(2);\n        crap_set.add(3);\n        crap_set.remove(start);\n        crap_set.remove(end);\n        int helper = crap_set.poll();\n        steps.addAll(hanoi(height-1, start, helper));\n</s>        steps.add(new Pair<Integer,Integer>(start, helper));\n</s>        steps.addAll(hanoi(height-1, helper, end));\n    }\n    return steps;\n}\n",
+      "output": [
+        "<pad><s>        steps.add(new Pair<Integer, Integer>(end, helper));\n</s></s></s></s>",
+        "<pad><s>        steps.add(new Pair<Integer, Integer>(start, helper));\n</s></s></s></s>",
+        "<pad><s>        steps.add(new Pair<Integer,Integer>(end, helper));\n</s></s></s></s>",
+        "<pad><s>        steps.add(new Pair<Integer, Integer>>(start, helper));\n</s></s></s></s>",
+        "<pad><s>        steps.add(new Pair<Integer, Integer>(end - start, helper));\n</s></s>",
+        "<pad><s>        steps.add(new Pair<Integer, Integer>>(end, helper));\n</s></s></s></s>",
+        "<pad><s>        steps.add(new Pair<Integer, Integer>(end, start));\n</s></s></s></s>",
+        "<pad><s>        steps.add(new Pair<Integer, Integer>(crap_set, helper));\n</s>",
+        "<pad><s>        steps.add(new Pair<Integer, Integer>(start, helper + 1));\n</s></s>",
+        "<pad><s>        steps.add(new Pair<Integer, Integer>(crap_set, end));\n</s>"
+      ]
+    },
+    "IS_VALID_PARENTHESIZATION": {
+      "loc": "17-18",
+      "input": "public static Boolean is_valid_parenthesization(String parens) {\n    int depth = 0;\nfor (int i = 0; i < parens.length(); i++) {\n Character paren = parens.charAt(i);\n if (paren.equals('(')) {\n            depth++;\n } else {\ndepth--;\nif (depth < 0) { return false; }\n }\n}\n</s>return true;\n</s>}\n",
+      "output": [
+        "<pad><s>        return false;\n</s></s></s></s></s></s></s></s></s>",
+        "<pad><s>    return false;\n</s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        return true;\n</s></s></s></s></s></s></s></s></s>",
+        "<pad><s>            return false;\n</s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        return is_valid_parenthesization();\n</s></s></s>",
+        "<pad><s>    return is_valid_parenthesization();\n</s></s></s>",
+        "<pad><s>    return true;\n</s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        return is_valid_parens(parens);\n</s>",
+        "<pad><s>        return!is_valid_parenthesization();\n</s></s>",
+        "<pad><s>        return (depth == 0)? false : false;\n</s>"
+      ]
+    },
+    "KHEAPSORT": {
+      "loc": "28-29",
+      "input": "public static ArrayList<Integer> kheapsort(ArrayList<Integer> arr, int k) {\n    PriorityQueue<Integer> heap = new PriorityQueue<Integer>();\n    for (Integer v : arr.subList(0,k)) {\n        heap.add(v);\n    }\n    ArrayList<Integer> output = new ArrayList<Integer>();\n</s>    for (Integer x : arr) {\n</s>        heap.add(x);\n        Integer popped = heap.poll();\n        output.add(popped);\n    }\n    while (!heap.isEmpty()) {\n        output.add(heap.poll());\n    }\n    return output;\n}\n",
+      "output": [
+        "<pad><s>    for (Integer x : arr) {\n</s></s></s></s></s></s></s>",
+        "<pad><s>    for (int x : arr) {\n</s></s></s></s></s></s></s>",
+        "<pad><s>    for (Integer x : arr.values()) {\n</s></s></s></s></s>",
+        "<pad><s>    for (Integer x : new ArrayList<Integer>(arr)) {\n</s>",
+        "<pad><s>    for (int x : arr.values()) {\n</s></s></s></s></s>",
+        "<pad><s>    for (int i = 0; i < k; i++) {\n</s>",
+        "<pad><s>    for (int i : arr) {\n</s></s></s></s></s></s></s>",
+        "<pad><s>    for (Integer x : arr.get(k)) {\n</s></s></s>",
+        "<pad><s>    for (Integer x : new ArrayList<Integer>(arr));\n</s></s>",
+        "<pad><s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>"
+      ]
+    },
+    "KNAPSACK": {
+      "loc": "30-31",
+      "input": "public static int knapsack(int capacity, int [][] items) {\n    int weight = 0, value = 0;\n    int n = items.length;\n    int memo[][] = new int[n + 1][capacity + 1];\n    for (int i = 0; i <= n ; i++)\n    {\n        if (i - 1 >= 0) {\n            weight = items[i - 1][0];\n            value = items[i - 1][1];\n        }\n        for (int j = 0; j <= capacity; j++)\n        {\n            if (i == 0 || j == 0) {\n                memo[i][j] = 0;\n            }\n</s>            else if (weight < j) {\n</s>                memo[i][j] = Math.max(memo[i - 1][j], value + memo[i - 1][j - weight]);\n            }\n            else {\n                memo[i][j] = memo [i-1][j];\n            }\n        }\n    }\n    return memo[n][capacity];\n}\n",
+      "output": [
+        "<pad><s>            else if (weight > j) {\n</s></s></s></s></s>",
+        "<pad><s>            else if (weight < j) {\n</s></s></s></s></s>",
+        "<pad><s>            else if (weight >= j) {\n</s></s></s></s></s>",
+        "<pad><s>            else if (weight < j - 1) {\n</s></s></s>",
+        "<pad><s>            else if (weight > j - 1) {\n</s></s></s>",
+        "<pad><s>            else if (weight <= j) {\n</s></s></s></s></s>",
+        "<pad><s>            else if (weight > j && value < value) {\n</s>",
+        "<pad><s>            else if (weight > j && weight < i) {\n</s>",
+        "<pad><s>            else if (weight > j && weight < value) {\n</s>",
+        "<pad><s>            else if (weight > j && value < weight) {\n</s>"
+      ]
+    },
+    "KTH": {
+      "loc": "26-27",
+      "input": "public static Integer kth(ArrayList<Integer> arr, int k) {\n    int pivot = arr.get(0);\n    ArrayList<Integer> below, above;\n    below = new ArrayList<Integer>(arr.size());\n    above = new ArrayList<Integer>(arr.size());\n    for (Integer x : arr) {\n        if (x < pivot) {\n            below.add(x);\n        } else if (x > pivot) {\n            above.add(x);\n        }\n    }\n    int num_less = below.size();\n    int num_lessoreq = arr.size() - above.size();\n    if (k < num_less) {\n        return kth(below, k);\n    } else if (k >= num_lessoreq) {\n</s>        return kth(above, k);\n</s>    } else {\n        return pivot;\n    }\n}\n",
+      "output": [
+        "<pad><s>        return kth(below, k + 1);\n</s>",
+        "<pad><s>        return kth(below, k - 1);\n</s>",
+        "<pad><s>        return kth(above, k - 1);\n</s>",
+        "<pad><s>        return kth(above, k + 1);\n</s>",
+        "<pad><s>        return kth(above, k);\n</s></s></s>",
+        "<pad><s>        return kth(below, k);\n</s></s></s>",
+        "<pad><s>        return kth(above, num_less);\n</s>",
+        "<pad><s>        return kth(above, 0);\n</s></s></s>",
+        "<pad><s>        return k;\n</s></s></s></s></s></s></s></s>",
+        "<pad><s>        return 0;\n</s></s></s></s></s></s></s></s>"
+      ]
+    },
+    "LCS_LENGTH": {
+      "loc": "35-37",
+      "input": "public static Integer lcs_length(String s, String t) {\n    Map<Integer, Map<Integer,Integer>> dp = new HashMap<Integer,Map<Integer,Integer>>();\n    for (int i=0; i < s.length(); i++) {\n        Map<Integer,Integer> initialize = new HashMap<Integer,Integer>();\n        dp.put(i, initialize);\n        for (int j=0; j < t.length(); j++) {\n            Map<Integer,Integer> internal_map = dp.get(i);\n            internal_map.put(j,0);\n            dp.put(i, internal_map);\n        }\n    }\n    for (int i=0; i < s.length(); i++) {\n        for (int j=0; j < t.length(); j++) {\n            if (s.charAt(i) == t.charAt(j)) {\n</s>                if (dp.containsKey(i-1)) {\n                    Map<Integer, Integer> internal_map = dp.get(i);\n</s>                    int insert_value = dp.get(i-1).get(j) + 1;\n                    internal_map.put(j, insert_value);\n                    dp.put(i,internal_map);\n                } else {\n                    Map<Integer, Integer> internal_map = dp.get(i);\n                    internal_map.put(j,1);\n                    dp.put(i,internal_map);\n                }\n            }\n        }\n    }\n    if (!dp.isEmpty()) {\n        List<Integer> ret_list = new ArrayList<Integer>();\n        for (int i=0; i<s.length(); i++) {\n            ret_list.add(!dp.get(i).isEmpty() ? Collections.max(dp.get(i).values()) : 0);\n        }\n        return Collections.max(ret_list);\n    } else {\n        return 0;\n    }\n}\n",
+      "output": [
+        "<pad><s>                if (dp.containsKey(i)) {\n                    Map<Integer, Integer> internal_map = dp.get(i);\n</s></s>",
+        "<pad><s>                Map<Integer, Integer> internal_map = dp.get(i - 1);\n</s></s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>                Map<Integer, Integer> internal_map = dp.get(i);\n</s></s></s></s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>                Map<Integer, Integer> internal_map = dp.get(i - 1);\n                if (internal_map!= null) {\n</s>",
+        "<pad><s>                Map<Integer, Integer> internal_map = dp.get(i);\n                if (internal_map!= null) {\n</s></s></s>",
+        "<pad><s>                Map<Integer, Integer> internal_map = dp.get(i + 1);\n</s></s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>                Map<Integer, Integer> internal_map = dp.get(i - 1);\n                if (internal_map == null) {\n</s>",
+        "<pad><s>                Map<Integer, Integer> internal_map = initialize.get(i);\n</s></s></s></s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>                Map<Integer, Integer> internal_map = dp.get(i);\n                if (internal_map == null) {\n</s></s></s>",
+        "<pad><s>                if (dp.containsKey(i)) {\n</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>"
+      ]
+    },
+    "LEVENSHTEIN": {
+      "loc": "17-18",
+      "input": "public static int levenshtein(String source, String target) {\n    if (source.isEmpty() || target.isEmpty()) {\n        return source.isEmpty() ? target.length() : source.length();\n    } else if (source.charAt(0) == target.charAt(0)) {\n</s>        return 1 + levenshtein(source.substring(1), target.substring(1));\n</s>    } else {\n        return 1 + Math.min(Math.min(\n                levenshtein(source,              target.substring(1)),\n                levenshtein(source.substring(1), target.substring(1))),\n                levenshtein(source.substring(1), target)\n    );\n    }\n}\n",
+      "output": [
+        "<pad><s>        return 1 + levenshtein(source.substring(1), target.substring(1));\n</s>",
+        "<pad><s>        return 1 + levenshtein(source, target.substring(1));\n</s></s></s></s></s>",
+        "<pad><s>        return 2 + levenshtein(source.substring(1), target.substring(1));\n</s>",
+        "<pad><s>        return 1 + levenshtein(source.substring(1, target.substring(1));\n</s>",
+        "<pad><s>        return 1 + levenshtein(source, target);\n</s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        return 0 + levenshtein(source.substring(1), target.substring(1));\n</s>",
+        "<pad><s>        return 1 + levenshtein(source.substring(1), target);\n</s></s></s></s></s>",
+        "<pad><s>        return 1;\n</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        return 0;\n</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        return source.length();\n</s></s></s></s></s></s></s></s></s></s></s></s></s></s>"
+      ]
+    },
+    "LIS": {
+      "loc": "31-32",
+      "input": "public static int lis(int[] arr) {\n    Map<Integer,Integer> ends = new HashMap<Integer, Integer>(100);\n    int longest = 0;\n    int i = 0;\n    for (int val : arr) {\n        ArrayList<Integer> prefix_lengths = new ArrayList<Integer>(100);\n        for (int j=1; j < longest+1; j++) {\n            if (arr[ends.get(j)] < val) {\n                prefix_lengths.add(j);\n            }\n        }\n        int length = !prefix_lengths.isEmpty() ? Collections.max(prefix_lengths) : 0;\n        if (length == longest || val < arr[ends.get(length+1)]) {\n            ends.put(length+1, i);\n</s>            longest = length + 1;\n</s>        }\n        i++;\n    }\n    return longest;\n}\n",
+      "output": [
+        "<pad><s>            longest = length + 1;\n</s>",
+        "<pad><s>            longest = length;\n</s></s></s>",
+        "<pad><s>            longest = length + 2;\n</s>",
+        "<pad><s>            longest = length - 1;\n</s>",
+        "<pad><s>            longest += length;\n</s></s></s>",
+        "<pad><s>            longest += length + 1;\n</s>",
+        "<pad><s>            return length;\n</s></s></s></s>",
+        "<pad><s>            return length + 1;\n</s></s>",
+        "<pad><s>            length = length + 1;\n</s>",
+        "<pad><s>            longest = length + length;\n</s>"
+      ]
+    },
+    "LONGEST_COMMON_SUBSEQUENCE": {
+      "loc": "18-19",
+      "input": "public static String longest_common_subsequence(String a, String b) {\n    if (a.isEmpty() || b.isEmpty()) {\n        return \"\";\n    } else if (a.charAt(0) == b.charAt(0)) {\n</s>        return a.charAt(0) + longest_common_subsequence(a.substring(1), b);\n</s>    } else {\n        String fst = longest_common_subsequence(a, b.substring(1));\n        String snd = longest_common_subsequence(a.substring(1), b);\n        return fst.length() >= snd.length() ? fst : snd;\n    }\n}\n",
+      "output": [
+        "<pad><s>        return a.charAt(0) + longest_common_subsequence(b.substring(1));\n</s>",
+        "<pad><s>        return a.charAt(0) + longest_common_subsequence(b);\n</s></s></s></s></s>",
+        "<pad><s>        return longest_common_subsequence(a.substring(1), b);\n</s></s></s></s></s></s></s>",
+        "<pad><s>        return a.charAt(0) + longest_common_subsequence(a, b);\n</s></s></s>",
+        "<pad><s>        return a.charAt(0) + longest_common_subsequence(a.substring(1));\n</s>",
+        "<pad><s>        return a.substring(1) + longest_common_subsequence(b.substring(1));\n</s></s>",
+        "<pad><s>        return a.substring(0, b.length() - 1);\n</s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        return a.substring(1);\n</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        return longest_common_subsequence(a, b);\n</s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        return a.substring(0, b.substring(1));\n</s></s></s></s></s></s></s></s></s></s>"
+      ]
+    },
+    "MAX_SUBLIST_SUM": {
+      "loc": "19-20",
+      "input": "public static int max_sublist_sum(int[] arr) {\n    int max_ending_here = 0;\n    int max_so_far = 0;\n    for (int x : arr) {\n</s>        max_ending_here = max_ending_here + x;\n</s>        max_so_far = Math.max(max_so_far, max_ending_here);\n    }\n    return max_so_far;\n}\n",
+      "output": [
+        "<pad><s>        max_ending_here = max_ending_here + x;\n</s></s></s></s></s>",
+        "<pad><s>        max_ending_here = max_ending_here * x;\n</s></s></s></s></s>",
+        "<pad><s>        max_ending_here = max_ending_here - x;\n</s></s></s></s></s>",
+        "<pad><s>        max_ending_here = max_ending_here + x + 1;\n</s></s></s>",
+        "<pad><s>        max_ending_here = Math.max(max_ending_here, x);\n</s>",
+        "<pad><s>        max_ending_here = max_ending_here + x - 1;\n</s></s></s>",
+        "<pad><s>        max_ending_here = Math.min(max_ending_here, x);\n</s>",
+        "<pad><s>        max_ending_here = max_ending_here + x * 2;\n</s></s></s>",
+        "<pad><s>        max_ending_here = max_ending_here + (x - 1);\n</s></s>",
+        "<pad><s>        max_ending_here = max_ending_here + (x % 2);\n</s></s>"
+      ]
+    },
+    "MERGESORT": {
+      "loc": "38-39",
+      "input": "public static ArrayList<Integer> mergesort(ArrayList<Integer> arr) {\n</s>    if (arr.size() == 0) {\n</s>        return arr;\n    } else {\n        int middle = arr.size() / 2;\n        ArrayList<Integer> left = new ArrayList<Integer>(100);\n        left.addAll(arr.subList(0,middle));\n        left = mergesort(left);\n        ArrayList<Integer> right = new ArrayList<Integer>(100);\n        right.addAll(arr.subList(middle, arr.size()));\n        right = mergesort(right);\n        return merge(left, right);\n    }\n}\n",
+      "output": [
+        "<pad><s>    if (arr.isEmpty()) {\n</s></s></s></s></s></s></s>",
+        "<pad><s>    if (arr.size() == 0) {\n</s></s></s></s></s>",
+        "<pad><s>    if (arr == null || arr.size() == 0) {\n</s>",
+        "<pad><s>    if (arr == null || arr.size() == 1) {\n</s>",
+        "<pad><s>    if (arr.size() == 1) {\n</s></s></s></s></s>",
+        "<pad><s>    if (arr == null || arr.isEmpty()) {\n</s></s></s>",
+        "<pad><s>    if (arr == null || arr.size() <= 0) {\n</s>",
+        "<pad><s>    if (arr.size() <= 0) {\n</s></s></s></s></s>",
+        "<pad><s>    if (arr == null) {\n</s></s></s></s></s></s></s></s>",
+        "<pad><s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>"
+      ]
+    },
+    "MINIMUM_SPANNING_TREE": {
+      "loc": "29-30",
+      "input": "public static Set<WeightedEdge> minimum_spanning_tree(List<WeightedEdge> weightedEdges) {\n    Map<Node,Set<Node>> groupByNode = new HashMap<>();\n    Set<WeightedEdge> minSpanningTree = new HashSet<>();\n    Collections.sort(weightedEdges);\n    for (WeightedEdge edge : weightedEdges) {\n        Node vertex_u = edge.node1;\n        Node vertex_v = edge.node2;\n        if (!groupByNode.containsKey(vertex_u)){\n            groupByNode.put(vertex_u, new HashSet<>(Arrays.asList(vertex_u)));\n        }\n        if (!groupByNode.containsKey(vertex_v)){\n            groupByNode.put(vertex_v, new HashSet<>(Arrays.asList(vertex_v)));\n        }\n        if (groupByNode.get(vertex_u) != groupByNode.get(vertex_v)) {\n            minSpanningTree.add(edge);\n            groupByNode = update(groupByNode, vertex_u, vertex_v);\n            for (Node node : groupByNode.get(vertex_v)) {\n</s>                groupByNode = update(groupByNode, node, vertex_u);\n</s>            }\n        }\n    }\n    return minSpanningTree;\n}\n",
+      "output": [
+        "<pad><s>                groupByNode = update(groupByNode, node, vertex_v);\n</s></s></s></s></s></s>",
+        "<pad><s>                groupByNode = update(groupByNode, node, vertex_u);\n</s></s></s></s></s></s>",
+        "<pad><s>                groupByNode = update(groupByNode, node, vertex_u, vertex_v);\n</s></s>",
+        "<pad><s>                groupByNode = update(groupByNode, node, vertex_v, true);\n</s></s></s></s>",
+        "<pad><s>                groupByNode = update(groupByNode, node, vertex_v, false);\n</s></s></s></s>",
+        "<pad><s>                groupByNode = update(groupByNode, node, vertex_v, vertex_u);\n</s></s>",
+        "<pad><s>                groupByNode = update(groupByNode, node, vertex_v, node);\n</s></s></s></s>",
+        "<pad><s>                groupByNode = update(groupByNode, node, vertex_u, edge.node2);\n</s>",
+        "<pad><s>                groupByNode = update(groupByNode, node, vertex_u, node.node2);\n</s>",
+        "<pad><s>                groupByNode = update(groupByNode, node, vertex_u, node.getParent());\n</s>"
+      ]
+    },
+    "NEXT_PALINDROME": {
+      "loc": "37-38",
+      "input": "public static String next_palindrome(int[] digit_list) {\n    int high_mid = Math.floorDiv(digit_list.length, 2);\n    int low_mid = Math.floorDiv(digit_list.length - 1, 2);\n    while (high_mid < digit_list.length && low_mid >= 0) {\n        if (digit_list[high_mid] == 9) {\n            digit_list[high_mid] = 0;\n            digit_list[low_mid] = 0;\n            high_mid += 1;\n            low_mid -= 1;\n        } else {\n            digit_list[high_mid] += 1;\n            if (low_mid != high_mid) {\n                digit_list[low_mid] += 1;\n            }\n            return Arrays.toString(digit_list);\n        }\n    }\n    ArrayList<Integer> otherwise = new ArrayList<Integer>();\notherwise.add(1);\n</s>otherwise.addAll(Collections.nCopies(digit_list.length, 0));\n</s>otherwise.add(1);\n    return String.valueOf(otherwise);\n}\n",
+      "output": [
+        "<pad><s>   otherwise.addAll(Collections.nCopies(digit_list.length - 1, 0));\n</s></s></s>",
+        "<pad><s>       otherwise.addAll(Collections.nCopies(digit_list.length - 1, 0));\n</s></s></s>",
+        "<pad><s>           otherwise.addAll(Collections.nCopies(digit_list.length - 1, 0));\n</s></s></s>",
+        "<pad><s>   otherwise.addAll(Collections.nCopies(digit_list.length, 0));\n</s></s></s></s></s>",
+        "<pad><s>       otherwise.addAll(Collections.nCopies(digit_list.length, 0));\n</s></s></s></s></s>",
+        "<pad><s>   otherwise.addAll(Collections.nCopies(digit_list.length, 1));\n</s></s></s></s></s>",
+        "<pad><s>   otherwise.addAll(Collections.nCopies(digit_list.length - 1, 1));\n</s></s></s>",
+        "<pad><s>       otherwise.addAll(Collections.nCopies(digit_list.length - 1, 1));\n</s></s></s>",
+        "<pad><s>   otherwise.addAll(Collections.nCopies(digit_list.length - 1, 0, 0));\n</s>",
+        "<pad><s>       otherwise.addAll(Collections.nCopies(digit_list.length - 1, 0, 0));\n</s>"
+      ]
+    },
+    "NEXT_PERMUTATION": {
+      "loc": "19-20",
+      "input": "public static ArrayList<Integer> next_permutation(ArrayList<Integer> perm) {\n    for (int i=perm.size()-2; i!=-1; i--) {\n        if (perm.get(i) < perm.get(i+1)) {\n            for (int j=perm.size()-1; j!=i; j--) {\n</s>                if (perm.get(j) < perm.get(i)) {\n</s>                    ArrayList<Integer> next_perm = perm;\n                    int temp_j = perm.get(j);\n                    int temp_i = perm.get(i);\n                    next_perm.set(i,temp_j);\n                    next_perm.set(j,temp_i);\n                    ArrayList<Integer> reversed = new ArrayList<Integer>(100);\n                    for (int k=next_perm.size()-1; k!=i; k--) {\n                        reversed.add(next_perm.get(k));\n                    }\n                    int q = i + 1;\n                    for (Integer replace : reversed) {\n                        next_perm.set(q, replace);\n                        q++;\n                    }\n                    return next_perm;\n                }\n            }\n        }\n    }\n    return new ArrayList<Integer>();\n}\n",
+      "output": [
+        "<pad><s>                if (perm.get(j) < perm.get(i + 1)) {\n</s>",
+        "<pad><s>                if (perm.get(j) < perm.get(i)) {\n</s></s></s>",
+        "<pad><s>                if (perm.get(j) > perm.get(i)) {\n</s></s></s>",
+        "<pad><s>                if (perm.get(j) > perm.get(i + 1)) {\n</s>",
+        "<pad><s>                if (perm.get(i) < perm.get(j + 1)) {\n</s>",
+        "<pad><s>                if (perm.get(j) >= perm.get(i)) {\n</s></s></s>",
+        "<pad><s>                if (perm.get(j) <= perm.get(i)) {\n</s></s></s>",
+        "<pad><s>                if (perm.get(j) == perm.get(i)) {\n</s></s></s>",
+        "<pad><s>                if (perm.get(j) < 0) {\n</s></s></s></s></s></s></s>",
+        "<pad><s>                if (perm.get(j) < perm.get(i + 1))\n</s></s>"
+      ]
+    },
+    "PASCAL": {
+      "loc": "22-23",
+      "input": "public static ArrayList<ArrayList<Integer>> pascal(int n) {\n    ArrayList<ArrayList<Integer>> rows = new ArrayList<ArrayList<Integer>>();\n    ArrayList<Integer> init = new ArrayList<Integer>();\n    init.add(1);\n    rows.add(init);\n    for (int r=1; r<n; r++) {\n        ArrayList<Integer> row = new ArrayList<Integer>();\n</s>        for (int c=0; c<r; c++) {\n</s>            int upleft, upright;\n            if (c > 0) {\n                upleft = rows.get(r-1).get(c-1);\n            } else {\n                upleft = 0;\n            }\n            if (c < r) {\n                upright = rows.get(r-1).get(c);\n            } else {\n                upright = 0;\n            }\n            row.add(upleft+upright);\n        }\n        rows.add(row);\n    }\n    return rows;\n}\n",
+      "output": [
+        "<pad><s>        for (int c = 0; c < n; c++) {\n</s></s></s>",
+        "<pad><s>        for (int c = 0; c < r; c++) {\n</s></s></s>",
+        "<pad><s>        for (int c = 0; c < r - 1; c++) {\n</s>",
+        "<pad><s>        for (int c = 1; c <= r; c++) {\n</s></s></s>",
+        "<pad><s>        for (int c = 1; c < n; c++) {\n</s></s></s>",
+        "<pad><s>        for (int c = 0; c < rows.size(); c++) {\n</s>",
+        "<pad><s>        for (int c = 0; c < n - 1; c++) {\n</s>",
+        "<pad><s>        for (int c = 0; c <= r; c++) {\n</s></s></s>",
+        "<pad><s>        for (int c = 0; c<n; c++) {\n</s></s></s>",
+        "<pad><s>        for (int c = 1; c <= n; c++) {\n</s></s></s>"
+      ]
+    },
+    "POSSIBLE_CHANGE": {
+      "loc": "17-18",
+      "input": "public static int possible_change(int[] coins, int total) {\n    if (total == 0) {\n        return 1;\n    }\n</s>    if (total < 0) {\n</s>        return 0;\n    }\n    int first = coins[0];\n    int[] rest = Arrays.copyOfRange(coins, 1, coins.length);\n    return possible_change(coins, total-first) + possible_change(rest, total);\n}\n",
+      "output": [
+        "<pad><s>    if (total < 0) {\n</s></s></s></s></s></s></s></s>",
+        "<pad><s>    if (total < 0 || total > coins.length) {\n</s>",
+        "<pad><s>    if (total < 0 || total >= coins.length) {\n</s>",
+        "<pad><s>    if (total > coins.length) {\n</s></s></s></s></s>",
+        "<pad><s>    if (total < coins.length) {\n</s></s></s></s></s>",
+        "<pad><s>    if (total == 0 || total > coins.length) {\n</s>",
+        "<pad><s>    if (total == 0) {\n</s></s></s></s></s></s></s></s>",
+        "<pad><s>    if (total < 0 || coins.length == 0) {\n</s>",
+        "<pad><s>    if (total < 0 || coins.length < 1) {\n</s>",
+        "<pad><s>    if (total < 1) {\n</s></s></s></s></s></s></s></s>"
+      ]
+    },
+    "QUICKSORT": {
+      "loc": "26-27",
+      "input": "public static ArrayList<Integer> quicksort(ArrayList<Integer> arr) {\n    if (arr.isEmpty()) {\n        return new ArrayList<Integer>();\n    }\n    Integer pivot = arr.get(0);\n    ArrayList<Integer> lesser = new ArrayList<Integer>();\n    ArrayList<Integer> greater = new ArrayList<Integer>();\n    for (Integer x : arr.subList(1, arr.size())) {\n        if (x < pivot) {\n            lesser.add(x);\n</s>        } else if (x > pivot) {\n</s>            greater.add(x);\n        }\n    }\n    ArrayList<Integer> middle = new ArrayList<Integer>();\n    middle.add(pivot);\n    lesser = quicksort(lesser);\n    greater = quicksort(greater);\n    middle.addAll(greater);\n    lesser.addAll(middle);\n    return lesser;\n}\n",
+      "output": [
+        "<pad><s>        } else if (x > pivot) {\n</s></s></s>",
+        "<pad><s>        } else if (x > pivot + 1) {\n</s>",
+        "<pad><s>        } else if (x < pivot) {\n</s></s></s>",
+        "<pad><s>        } else if (x > pivot - 1) {\n</s>",
+        "<pad><s>        } else if (x >= pivot) {\n</s></s></s>",
+        "<pad><s>        } else if (x <= pivot) {\n</s></s></s>",
+        "<pad><s>        } else if (x == pivot) {\n</s></s></s>",
+        "<pad><s>        } else if (x < 0) {\n</s></s></s>",
+        "<pad><s>        } else {\n</s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        }\n</s></s></s></s></s></s></s></s></s></s></s>"
+      ]
+    },
+    "REVERSE_LINKED_LIST": {
+      "loc": "20-20",
+      "input": "public static Node reverse_linked_list(Node node) {\n    Node prevnode = null;\n    Node nextnode;\n    while (node != null) {\n        nextnode = node.getSuccessor();\n        node.setSuccessor(prevnode);\n</s>        node = nextnode;\n</s>    }\n    return prevnode;\n}\n",
+      "output": [
+        "<pad><s>        prevnode = nextnode;\n</s></s></s></s>",
+        "<pad><s>        prevnode = node;\n</s></s></s></s></s>",
+        "<pad><s>        prevnode = node.getSuccessor();\n</s>",
+        "<pad><s>        prevnode = prevnode;\n</s></s></s></s>",
+        "<pad><s>        prevnode = (Node) nextnode;\n</s>",
+        "<pad><s>        prevnode = nextnode.getNext();\n</s>",
+        "<pad><s>        node = nextnode;\n</s></s></s></s></s>",
+        "<pad><s>        prevnode = node.getNext();\n</s></s>",
+        "<pad><s>        prevnode = node.next;\n</s></s></s>",
+        "<pad><s>        prevnode = null;\n</s></s></s></s></s>"
+      ]
+    },
+    "RPN_EVAL": {
+      "loc": "34-35",
+      "input": "public static Double rpn_eval(ArrayList tokens) {\nMap<String, BinaryOperator<Double>> op = new HashMap<String, BinaryOperator<Double>>();\nop.put(\"+\", (a, b) -> a + b); \nop.put(\"-\", (a, b) -> a - b); \nop.put(\"*\", (a, b) -> a * b); \nop.put(\"/\", (a, b) -> a / b); \n    Stack stack = new Stack();\n    for (Object token : tokens) {\n        if (Double.class.isInstance(token)) {\n            stack.push((Double) token);\n        } else {\ntoken = (String) token;\n            Double a = (Double) stack.pop();\n            Double b = (Double) stack.pop();\nDouble c = 0.0;\nBinaryOperator<Double> bin_op = op.get(token);\n</s>c= bin_op.apply(a,b);\n</s>            stack.push(c);\n        }\n    }\n    return (Double) stack.pop();\n}\n",
+      "output": [
+        "<pad><s>            c = bin_op.apply(a, b);\n</s></s></s>",
+        "<pad><s>        c = bin_op.apply(a, b);\n</s></s></s>",
+        "<pad><s>            c = bin_op.apply(a, b, c);\n</s>",
+        "<pad><s>    c = bin_op.apply(a, b);\n</s></s></s>",
+        "<pad><s>        c = bin_op.apply(a, b, c);\n</s>",
+        "<pad><s>            c = bin_op.apply(a, b, true);\n</s>",
+        "<pad><s>                c = bin_op.apply(a, b);\n</s></s></s>",
+        "<pad><s>            c += bin_op.apply(a, b);\n</s></s></s>",
+        "<pad><s>            c = binary_op.apply(a, b);\n</s></s></s>",
+        "<pad><s>            c = bin_op.apply(a);\n</s></s></s></s></s>"
+      ]
+    },
+    "SHORTEST_PATH_LENGTH": {
+      "loc": "39-40",
+      "input": "public int shortest_path_length(Map<List<Node>, Integer> length_by_edge, Node startnode, Node goalnode) {\n    int n = length_by_edge.size();\n    Map<Node, Integer> unvisitedNodes = new HashMap<>();\n    Set<Node> visitedNodes = new HashSet<>();\n    unvisitedNodes.put(startnode, 0);\n    while (!unvisitedNodes.isEmpty()) {\n        Node node = getNodeWithMinDistance(unvisitedNodes);\n        int distance = unvisitedNodes.get(node);\n        unvisitedNodes.remove(node);\n        if (node.getValue() == goalnode.getValue()) {\n            return distance;\n        }\n        visitedNodes.add(node);\n        for (Node nextnode : node.getSuccessors()) {\n            if (visitedNodes.contains(nextnode)) {\n                continue;\n            }\n            if (unvisitedNodes.get(nextnode) == null) {\n                unvisitedNodes.put(nextnode, Integer.MAX_VALUE);\n            }\n            unvisitedNodes.put(nextnode, Math.min(unvisitedNodes.get(nextnode),\n</s>                    unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode))));\n</s>        }\n    }\n    return Integer.MAX_VALUE;\n}\n",
+      "output": [
+        "<pad><s>                    unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode)));\n</s></s></s></s></s></s>",
+        "<pad><s>                    unvisitedNodes.put(nextnode, Math.min(length_by_edge.get(Arrays.asList(node, nextnode))));\n</s></s></s>",
+        "<pad><s>                    return Math.min(unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode)));\n</s>",
+        "<pad><s>                    unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode));\n</s></s></s></s></s></s></s>",
+        "<pad><s>                    unvisitedNodes.put(nextnode, Math.min(length_by_edge.get(Arrays.asList(node, nextnode))));\n</s></s></s>",
+        "<pad><s>                    unvisitedNodes.put(nextnode, length_by_edge.get(Arrays.asList(node, nextnode)));\n</s></s></s></s></s></s></s>",
+        "<pad><s>                    unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode))));\n</s></s></s></s></s></s>",
+        "<pad><s>                    return Math.min(unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode))));\n</s>",
+        "<pad><s>                    return Math.min(unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode))));\n</s>",
+        "<pad><s>                    unvisitedNodes.put(nextnode, Math.min(length_by_edge.get(Arrays.asList(node, nextnode)))));\n</s></s></s>"
+      ]
+    },
+    "SHORTEST_PATH_LENGTHS": {
+      "loc": "38-39",
+      "input": "public static Map<List<Integer>,Integer> shortest_path_lengths(int numNodes, Map<List<Integer>,Integer> length_by_edge) {\n    Map<List<Integer>,Integer> length_by_path = new HashMap<>();\n    for (int i = 0; i < numNodes; i++) {\n        for (int j =0; j < numNodes; j++) {\n            List<Integer> edge = new ArrayList<>(Arrays.asList(i,j));\n            if (i == j) {\n                length_by_path.put(edge, 0);\n            }\n            else if (length_by_edge.containsKey(edge) ) {\n                length_by_path.put(edge, length_by_edge.get(edge));\n            } else {\n                length_by_path.put(edge, INF);\n            }\n        }\n    }\n    for (int k = 0; k < numNodes; k++) {\n        for (int i = 0; i < numNodes; i++) {\n            for (int j = 0; j < numNodes; j++) {\n                int update_length = Math.min(length_by_path.get(Arrays.asList(i,j)),\n</s>                        length_by_path.get(Arrays.asList(i,k)) + length_by_path.get(Arrays.asList(j,k)));\n</s>                length_by_path.put(Arrays.asList(i,j), update_length);\n            }\n        }\n    }\n    return length_by_path;\n}\n",
+      "output": [
+        "<pad><s>                        length_by_path.put(Arrays.asList(i, k), length_by_path.get(Arrays.asList(j, k)) + length_by_path.get(Arrays.asList(j, k)));\n</s>",
+        "<pad><s>                        length_by_path.put(Arrays.asList(i, j), length_by_path.get(Arrays.asList(j, k)) + length_by_path.get(Arrays.asList(j, k)));\n</s>",
+        "<pad><s>                        length_by_path.put(Arrays.asList(i, k), length_by_path.get(Arrays.asList(j, k)) + length_by_path.get(Arrays.asList(j, k));\n</s></s>",
+        "<pad><s>                        length_by_path.put(Arrays.asList(i, j), length_by_path.get(Arrays.asList(j, k)) + length_by_path.get(Arrays.asList(j, k));\n</s></s>",
+        "<pad><s>                        length_by_path.put(Arrays.asList(i, k)) + length_by_path.get(Arrays.asList(j, k));\n</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>                        length_by_path.get(Arrays.asList(i, k)) + length_by_path.get(Arrays.asList(j, k));\n</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>                        length_by_path.put(Arrays.asList(i, j)) + length_by_path.get(Arrays.asList(j, k));\n</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>                        length_by_path.put(Arrays.asList(i, j) + length_by_path.get(Arrays.asList(j, k)) + length_by_path.get(Arrays.asList(j, k));\n</s>",
+        "<pad><s>                        length_by_path.put(Arrays.asList(i, j), length_by_path.get(Arrays.asList(j, k));\n</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>                        length_by_path.put(Arrays.asList(i, k) + length_by_path.get(Arrays.asList(j, k)) + length_by_path.get(Arrays.asList(j, k));\n</s>"
+      ]
+    },
+    "SHORTEST_PATHS": {
+      "loc": "30-31",
+      "input": "public static Map<String, Integer> shortest_paths(String source, Map<List<String>,Integer> weight_by_edge) {\n    Map<String,Integer> weight_by_node = new HashMap<String,Integer>();\n    for (List<String> edge : weight_by_edge.keySet()) {\n            weight_by_node.put(edge.get(1), INF);\n            weight_by_node.put(edge.get(0), INF);\n    }\n    weight_by_node.put(source, 0);\n    for (int i = 0; i < weight_by_node.size(); i++) {\n        for (List<String> edge : weight_by_edge.keySet()) {\n            int update_weight = Math.min(\n                    weight_by_node.get(edge.get(0))\n                            + weight_by_edge.get(edge),\n                    weight_by_node.get(edge.get(1)));\n</s>            weight_by_edge.put(edge, update_weight);\n</s>        }\n    }\n    return weight_by_node;\n}\n",
+      "output": [
+        "<pad><s>            weight_by_edge.put(edge, update_weight);\n</s></s></s></s></s></s></s></s>",
+        "<pad><s>            weight_by_node.put(edge, update_weight);\n</s></s></s></s></s></s></s></s>",
+        "<pad><s>            weight_by_edge.put(edge.get(0), update_weight);\n</s></s></s></s>",
+        "<pad><s>            weight_by_node.put(edge.get(0), update_weight);\n</s></s></s></s>",
+        "<pad><s>            weight_by_edge.put(edge.get(0)) + update_weight;\n</s></s></s>",
+        "<pad><s>            weight_by_edge.put(edge, update_weight + 1);\n</s></s></s></s></s></s>",
+        "<pad><s>            weight_by_edge.put(edge.get(0) + 1, update_weight);\n</s>",
+        "<pad><s>            weight_by_node.put(edge.get(0)) + update_weight;\n</s></s></s>",
+        "<pad><s>            weight_by_edge.put(edge.get(0) + update_weight, 0);\n</s>",
+        "<pad><s>            weight_by_edge.put(edge.get(0)) + 1, update_weight);\n</s>"
+      ]
+    },
+    "SHUNTING_YARD": {
+      "loc": "34-34",
+      "input": "public static List shunting_yard(ArrayList tokens) {\n    Map<String, Integer> precedence = new HashMap<String, Integer>();\n    precedence.put(\"+\",1);\n    precedence.put(\"-\",1);\n    precedence.put(\"*\",2);\n    precedence.put(\"/\",2);\n    ArrayList rpntokens = new ArrayList(100);\n    ArrayDeque opstack = new ArrayDeque();\n    for (Object token: tokens) {\n        if (Integer.class.isInstance(token)) {\n            rpntokens.add((Integer) token);\n        } else {\n            String operator = (String) token;\n            while (!opstack.isEmpty() && precedence.get(operator) <= precedence.get(opstack.getLast())) {\n                rpntokens.add(opstack.pop());\n            }\n</s>        }\n</s>    }\n    while (!opstack.isEmpty()) {\n        rpntokens.add(opstack.pop());\n    }\n    return rpntokens;\n}\n",
+      "output": [
+        "<pad><s>        } else {\n            rpntokens.add((Integer) token);\n</s>",
+        "<pad><s>        } else {\n            rpntokens.add(token);\n</s></s></s>",
+        "<pad><s>        } else {\n            rpntokens.add(operator);\n</s></s></s>",
+        "<pad><s>        }\n</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        rpntokens.add(opstack.pop());\n</s></s></s></s></s>",
+        "<pad><s>        } else {\n            opstack.add(token);\n</s></s></s></s>",
+        "<pad><s>        } else {\n        rpntokens.add(token);\n</s></s></s>",
+        "<pad><s>        opstack.add(opstack.pop());\n</s></s></s></s></s></s>",
+        "<pad><s>        } else {\n            rpntokens.add(token.toString());\n</s>",
+        "<pad><s>        opstack.add(token);\n</s></s></s></s></s></s></s></s></s>"
+      ]
+    },
+    "SIEVE": {
+      "loc": "41-42",
+      "input": "public static ArrayList<Integer> sieve(Integer max) {\n    ArrayList<Integer> primes = new ArrayList<Integer>();\n    for (int n=2; n<max+1; n++) {\n</s>        if (any(list_comp(n, primes))) {\n</s>            primes.add(n);\n        }\n    }\n    return primes;\n}\n",
+      "output": [
+        "<pad><s>        if (any(list_comp(n, primes))) {\n</s></s></s></s></s></s>",
+        "<pad><s>        if (!any(list_comp(n, primes))) {\n</s></s></s></s></s></s>",
+        "<pad><s>        if (any(list_comp(n, primes)) {\n</s></s></s></s></s></s>",
+        "<pad><s>        if (any(list_comp(n, primes)) == null) {\n</s></s></s>",
+        "<pad><s>        if (any(list_comp(n, primes)) && n < max) {\n</s>",
+        "<pad><s>        if (list_comp(n, primes)) {\n</s></s></s></s></s></s></s></s>",
+        "<pad><s>        if (!any(list_comp(n, primes)) {\n</s></s></s></s></s></s>",
+        "<pad><s>        if (any(list_comp(n, primes)) || n == max) {\n</s>",
+        "<pad><s>        if (any(list_comp(n, primes));\n</s></s></s></s></s></s></s>",
+        "<pad><s>        if (any(list_comp(n, primes)) || n < max) {\n</s>"
+      ]
+    },
+    "SQRT": {
+      "loc": "16-17",
+      "input": "public static double sqrt(double x, double epsilon) {\n    double approx = x / 2f;\n</s>    while (Math.abs(x-approx) > epsilon) {\n</s>        approx = 0.5f * (approx + x / approx);\n    }\n    return approx;\n}\n",
+      "output": [
+        "<pad><s>    while (Math.abs(x - approx) > epsilon) {\n</s>",
+        "<pad><s>    while (Math.abs(x -approx) > epsilon) {\n</s>",
+        "<pad><s>    while (Math.abs(x-approx) > epsilon) {\n</s>",
+        "<pad><s>    while (Math.abs(x - approx) < epsilon) {\n</s>",
+        "<pad><s>    while (Math.abs(x) > epsilon) {\n</s></s></s>",
+        "<pad><s>    while (Math.abs(x -approx) < epsilon) {\n</s>",
+        "<pad><s>    while (Math.abs(x-approx) < epsilon) {\n</s>",
+        "<pad><s>    while (Math.abs(x - approx) >= epsilon) {\n</s>",
+        "<pad><s>    while (Math.abs(x - approx) <= epsilon) {\n</s>",
+        "<pad><s>    do {\n</s></s></s></s></s></s></s></s></s></s></s></s></s>"
+      ]
+    },
+    "SUBSEQUENCES": {
+      "loc": "16-17",
+      "input": "public static ArrayList<ArrayList> subsequences(int a, int b, int k) {\n    if (k == 0) {\n</s>        return new ArrayList();\n</s>    }\n    ArrayList ret = new ArrayList(50);\n    for (int i=a; i<b+1-k; i++) {\n        ArrayList base = new ArrayList(50);\n        for (ArrayList rest : subsequences(i+1, b, k-1)) {\n            rest.add(0,i);\n            base.add(rest);\n        }\n        ret.addAll(base);\n    }\n    return ret;\n}\n",
+      "output": [
+        "<pad><s>        return Collections.emptyList();\n</s></s></s>",
+        "<pad><s>        return new ArrayList<>();\n</s></s></s></s>",
+        "<pad><s>        return new ArrayList<ArrayList>();\n</s></s>",
+        "<pad><s>        return null;\n</s></s></s></s></s></s>",
+        "<pad><s>        return Collections.EMPTY_LIST;\n</s></s>",
+        "<pad><s>        return new ArrayList(50);\n</s></s></s>",
+        "<pad><s>        return new ArrayList();\n</s></s></s></s></s>",
+        "<pad><s>        return new ArrayList<>(50);\n</s></s>",
+        "<pad><s>        return new ArrayList(0);\n</s></s></s>",
+        "<pad><s>        return new ArrayList(0, 0);\n</s>"
+      ]
+    },
+    "TO_BASE": {
+      "loc": "21-22",
+      "input": "public static String to_base(int num, int b) {\n    String result = \"\";\n    String alphabet = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\";\n    int i;\n    while (num > 0) {\n        i = num % b;\n        num = num / b; \n</s>        result = result + String.valueOf(alphabet.charAt(i));\n</s>    }\n    return result;\n}\n",
+      "output": [
+        "<pad><s>        result = result + alphabet.charAt(i);\n</s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        result = result + String.valueOf(alphabet.charAt(i));\n</s></s></s>",
+        "<pad><s>        result = result.replace(\"String_Node_Str\", \"String_Node_Str\");\n</s>",
+        "<pad><s>        result += String.valueOf(alphabet.charAt(i));\n</s></s></s></s></s>",
+        "<pad><s>        result = result + \"String_Node_Str\" + alphabet.charAt(i);\n</s>",
+        "<pad><s>        result = result.replace(alphabet.charAt(i));\n</s></s></s></s></s></s>",
+        "<pad><s>        result = result + String.valueOf(alphabet.charAt(i + 1));\n</s>",
+        "<pad><s>        result = result + String.valueOf(alphabet.charAt(i - 1));\n</s>",
+        "<pad><s>        result = result + alphabet.charAt(i);\n</s></s></s></s></s></s></s></s>",
+        "<pad><s>        result = result + alphabet.charAt(i + 1);\n</s></s></s></s></s></s></s>"
+      ]
+    },
+    "TOPOLOGICAL_ORDERING": {
+      "loc": "17-18",
+      "input": "public static ArrayList<Node> topological_ordering (List<Node> directedGraph) {\n    ArrayList<Node> orderedNodes = new ArrayList<Node>();\n    for (Node node : directedGraph) {\n        if (node.getPredecessors().isEmpty()) {\n            orderedNodes.add(node);\n        }\n    }\n    int listSize = orderedNodes.size();\n    for (int i = 0; i < listSize; i++) {\n        Node node = orderedNodes.get(i);\n        for (Node nextNode : node.getSuccessors()) {\n</s>            if (orderedNodes.containsAll(nextNode.getSuccessors()) && !orderedNodes.contains(nextNode)) {\n</s>                orderedNodes.add(nextNode);\n                listSize++;\n            }\n        }\n    }\n    return orderedNodes;\n}\n",
+      "output": [
+        "<pad><s>            if (orderedNodes.containsAll(nextNode.getSuccessors()) &&!orderedNodes.contains(nextNode)) {\n</s>",
+        "<pad><s>            if (orderedNodes.containsAll(nextNode.getSuccessors())) {\n</s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>            if (!orderedNodes.containsAll(nextNode.getSuccessors()) &&!orderedNodes.contains(nextNode)) {\n</s>",
+        "<pad><s>            if (!orderedNodes.containsAll(nextNode.getSuccessors())) {\n</s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>            if (orderedNodes.containsAll(nextNode.getSuccessors()) && orderedNodes.contains(nextNode)) {\n</s></s>",
+        "<pad><s>            if (orderedNodes.contains(nextNode.getSuccessors()) &&!orderedNodes.contains(nextNode)) {\n</s></s>",
+        "<pad><s>            if (orderedNodes.containsAll(nextNode.getSuccessors()) &&!orderedNodes.contains(nextNode));\n</s></s>",
+        "<pad><s>            if (orderedNodes.containsAll(nextNode.getPredecessors())) {\n</s></s></s></s></s></s></s></s></s>",
+        "<pad><s>            if (orderedNodes.contains(nextNode.getSuccessors())) {\n</s></s></s></s></s></s></s></s></s></s></s>",
+        "<pad><s>            if (orderedNodes.contains(nextNode)) {\n</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>"
+      ]
+    },
+    "WRAP": {
+      "loc": "32-32",
+      "input": "public static ArrayList<String> wrap(String text, int cols) {\n    ArrayList<String> lines = new ArrayList<String>();\n    String line;\n    while (text.length() > cols) {\n        int end = text.lastIndexOf(\" \", cols); \n        if (end == -1) {\n            end = cols;\n        }\n        line = text.substring(0,end);\n        text = text.substring(end);\n        lines.add(line);\n    }\n</s>    return lines;\n</s>}\n",
+      "output": [
+        "<pad><s>    return new ArrayList<>(lines);\n</s>",
+        "<pad><s>    return lines;\n</s></s></s></s></s>",
+        "<pad><s>    return new ArrayList<String>();\n</s>",
+        "<pad><s>    return wrap(lines, cols);\n</s>",
+        "<pad><s>    return wrap(lines);\n</s></s></s>",
+        "<pad><s>    return new ArrayList<>();\n</s></s></s>",
+        "<pad><s>    return new ArrayList(lines);\n</s></s>",
+        "<pad><s>    return wrap(text, cols);\n</s>",
+        "<pad><s>    return wrapLines(lines);\n</s></s>",
+        "<pad><s>    return null;\n</s></s></s></s></s>"
+      ]
+    },
+    "POWERSET": {
+      "loc": "23-30",
+      "input": "public static ArrayList<ArrayList> powerset(ArrayList arr) {\n    if (!arr.isEmpty()) {\n        Object first = arr.get(0);\n        arr.remove(0);\n        ArrayList rest = arr;\n        ArrayList<ArrayList> rest_subsets = powerset(rest);\n        ArrayList<ArrayList> output = new ArrayList<ArrayList>(100);\n        ArrayList to_add = new ArrayList(100);\n</s>        to_add.add(first);\n        for (ArrayList subset : rest_subsets) {\n            to_add.addAll(subset);\n        }\n        output.add(to_add);\n        return output;\n</s>    } else {\n        ArrayList empty_set = new ArrayList<ArrayList>();\n        empty_set.add(new ArrayList());\n        return empty_set;\n    }\n}\n",
+      "output": [
+        "<pad><s>        output.addAll(rest_subsets);\n        return output;\n</s></s></s>",
+        "<pad><s>        to_add.addAll(rest_subsets);\n        return output;\n</s>",
+        "<pad><s>        return powerset(rest_subsets);\n</s></s></s></s></s></s></s></s></s>",
+        "<pad><s>        output.addAll(rest_subsets);\n        return to_add;\n</s>",
+        "<pad><s>        to_add.add(first);\n        return to_add;\n</s></s></s>",
+        "<pad><s>        output.addAll(rest_subsets);\n</s></s></s></s></s></s></s></s>",
+        "<pad><s>        return powerset(rest_subsets, first);\n</s></s></s></s></s></s></s>",
+        "<pad><s>        return powerset(first, rest_subsets);\n</s></s></s></s></s></s></s>",
+        "<pad><s>        return powerset(rest_subsets, output);\n</s></s></s></s></s></s></s>",
+        "<pad><s>        to_add.addAll(rest_subsets);\n</s></s></s></s></s></s>"
+      ]
+    }
+  },
+  "model": "codet5-small-finetune"
+}

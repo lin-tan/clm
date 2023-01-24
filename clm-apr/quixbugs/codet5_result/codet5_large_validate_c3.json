@@ -1,0 +1,1885 @@
+{
+  "config": "CODET5_BASE_CODEFORM_COMMENTFORM_NOCOMMENT",
+  "data": {
+    "BITCOUNT": {
+      "loc": "15-16",
+      "input": "public static int bitcount(int n) {\n    int count = 0;\n    while (n != 0) {\n// buggy line:        n = (n ^ (n - 1));\n        <extra_id_0>\n        count++;\n    }\n    return count;\n}",
+      "function range": "12,5-19,5",
+      "output": [
+        {
+          "patch": "// buggy line:        n = (n ^ (n - 2));\n\n\n   \n        n = (n ^ (n - 1));",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "// buggy line:        n = (n ^ (n + 1));\n\n\n   \n        n = (n ^ (n - 1));",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "// buggy line:        n = (n ^ (n - 2)); } else {\n\n   \n        n = (n ^ (n - 1));",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "// buggy line:        n = (n ^ (n + 1)); } else {\n\n   \n        n = (n ^ (n - 1));",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "// buggy line:        n = (n ^ (n - 2));\n\n\n   \n        n = (n ^ (n - 1));\n   \n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        n = (n ^ (n - 2));\n\n\n   \n        n = (n ^ (n - 1));\n// buggy line:",
+          "correctness": "timeout"
+        },
+        {
+          "patch": "// buggy line:        n = (n ^ (n + 1));\n\n\n   \n        n = (n ^ (n - 1));\n   \n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        n = (n ^ (n - 2)); } else {\n\n   \n }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        n = (n ^ (n + 1)); } else {\n\n   \n }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        n = (n ^ (n - 2));\n\n\n   \n }",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "BREADTH_FIRST_SEARCH": {
+      "loc": "26-27",
+      "input": "public static boolean breadth_first_search(Node startnode, Node goalnode) {\n    Deque<Node> queue = new ArrayDeque<>();\n    queue.addLast(startnode);\n    nodesvisited.add(startnode);\n// buggy line:    while (true) {\n    <extra_id_0>\n        Node node = queue.removeFirst();\n        if (node == goalnode) {\n            return true;\n        } else {\n            for (Node successor_node : node.getSuccessors()) {\n                if (!nodesvisited.contains(successor_node)) {\n                    queue.addFirst(successor_node);\n                    nodesvisited.add(successor_node);\n                }\n            }\n        }\n    }\n    return false;\n}",
+      "function range": "20,5-45,5",
+      "output": [
+        {
+          "patch": "while (!queue.isEmpty()) {\n       \n\n    while (!queue.isEmpty()) {\n       \n\n\n\n\n\n\n\n\n    Set<Node> nodesvisited = new HashSet<>();\n   \n    while (!queue.isEmpty()) {\n           \n\n    while (true) {\n\n        } else if (\n               \n\n           \n            //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!queue.isEmpty()) {\n       \n\n    while (!queue.isEmpty()) {\n       \n\n\n\n\n\n\n\n   \n    Set<Node> nodesvisited = new HashSet<>();\n    while (!queue.isEmpty()) {\n\n           \n\n    while (true) {\n\n        } else if (\n               \n\n           \n            //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!queue.isEmpty()) {\n       \n\n    while (!queue.isEmpty()) {\n       \n\n\n\n\n\n\n   \n\n    Set<Node> nodesvisited = new HashSet<>();\n   \n    while (!queue.isEmpty()) {\n           \n\n    while (true) {\n\n        } else if (",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!queue.isEmpty()) {\n       \n\n    while (!queue.isEmpty()) {\n       \n\n\n\n\n\n\n\n   \n    Set<Node> nodesvisited = new HashSet<>();\n   \n    while (!queue.isEmpty()) {\n           \n\n    while (true) {\n\n        } else if (",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!queue.isEmpty()) {\n       \n\n    while (!queue.isEmpty()) {\n       \n\n\n\n\n\n\n\n\n    Set<Node> nodesvisited = new HashSet<>();\n   \n    while (!queue.isEmpty()) {\n           \n\n    while (true) {\n\n        } else if (\n               \n\n           \n           //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!queue.isEmpty()) {\n       \n\n    while (!queue.isEmpty()) {\n       \n\n\n\n\n\n\n   \n   \n    Set<Node> nodesvisited = new HashSet<>();\n    while (!queue.isEmpty()) {\n\n           \n\n    while (true) {\n\n        } else if (",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!queue.isEmpty()) {\n       \n\n    while (!queue.isEmpty()) {\n       \n\n\n\n\n\n\n   \n\n    Set<Node> nodesvisited = new HashSet<>();\n   \n    while (!queue.isEmpty()) {\n           \n\n    while (true) {\n\n        } else if (\n               \n\n           \n           //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!queue.isEmpty()) {\n       \n\n    while (!queue.isEmpty()) {\n       \n\n\n\n\n\n\n\n   \n    Set<Node> nodesvisited = new HashSet<>();\n   \n    while (!queue.isEmpty()) {\n           \n\n    while (true) {\n\n        } else if (\n               \n\n           \n           //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!queue.isEmpty()) {\n       \n\n    while (!queue.isEmpty()) {\n       \n\n\n\n\n\n\n   \n   \n    Set<Node> nodesvisited = new HashSet<>();\n    while (!queue.isEmpty()) {\n\n           \n\n    while (true) {\n\n           \n           \n\n           \n       \n               \n\n            node",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!queue.isEmpty()) {\n       \n\n    while (!queue.isEmpty()) {\n       \n\n\n\n\n\n\n   \n\n    Set<Node> nodesvisited = new HashSet<>();\n   \n    while (!queue.isEmpty()) {\n           \n\n    while (true) {\n\n        } else if (\n               \n\n           \n            //",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "BUCKETSORT": {
+      "loc": "24-25",
+      "input": "public static ArrayList<Integer> bucketsort(ArrayList<Integer> arr, int k) {\n    ArrayList<Integer> counts = new ArrayList<Integer>(Collections.nCopies(k,0));\n    for (Integer x : arr) {\n        counts.set(x,counts.get(x)+1);\n    }\n    ArrayList<Integer> sorted_arr = new ArrayList<Integer>(100);\nint i = 0;\n// buggy line:    for (Integer count : arr) {\n    <extra_id_0>\n sorted_arr.addAll(Collections.nCopies(count, i));\n i++;\n    }\n    return sorted_arr;\n}",
+      "function range": "16,5-30,5",
+      "output": [
+        {
+          "patch": "int count = counts.get(count);\n\n\n    }\n\n   \n   \n   \n       \n    }\n    for (Integer x : arr) {\n        counts.set(x,counts.get(x)+1);\n        counts.set(x,0);\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "int count = counts.get(count);\n\n\n    }\n\npublic\n   \n   \n       \n    }\n    for (Integer x : arr) {\n        counts.set(x,counts.get(x)+1);\n        counts.set(x,0);\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "int count = counts.get(count);\n\n\n    }\n\n   \n   \n   \n       \n    }\n    for (Integer x : arr) {\n        counts.set(x,counts.get(x)+1);\n        counts.set(x,0);\n    }\n   \n\n\n\n\n\n\n\n\n\n\n\n\n\n[]\n int",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "int count = counts.get(count);\n\n\n    }\n\npublic\n   \n   \n       \n    }\n    for (Integer x : arr) {\n        counts.set(x,counts.get(x)+1);\n        counts.set(x,0);\n    }\n   \n\n\n\n\n\n\n\n\n\n\n\n\n\n[]\n int",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "int count = counts.get(count);\n\n\n    }\n\n   \n   \n   \n       \n    }\n    for (Integer x : arr) {\n        counts.set(x,counts.get(x)+1);\n        counts.set(x,0);\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "int count = counts.get(count);\n\n\n    }\n\n   \n   \n   \n       \n    }\n    for (Integer x : arr) {\n        counts.set(x,counts.get(x)+1);\n        counts.set(x,0);\n    }\n   \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n int",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "int count = counts.get(count);\n\n\n    }\n\n   \n   \n   \n       \n    }\n    for (Integer x : arr) {\n        counts.set(x,counts.get(x)+1);\n        counts.set(x,0);\n    }\n   \n\n\n\n\n\n\n\n\n\n\n\n\n\n \n int",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "int count = counts.get(count);\n\n\n    }\n\n   \n   \n   \n       \n    }\n    for (Integer x : arr) {\n        counts.set(x,counts.get(x)+1);\n        counts.set(x,0);\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "int count = counts.get(count);\n\n\n    }\n\n   \n   \n   \n       \n    }\n    for (Integer x : arr) {\n        counts.set(x,counts.get(x)+1);\n        counts.set(x,0);\n    }\n   \n\n\n\n\n\n\n\n\n\n\n\n   \n\n[]",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "int count = counts.get(count);\n\n\n    }\n\n   \n   \n   \n       \n    }\n    for (Integer x : arr) {\n        counts.set(x,counts.get(x)+1);\n        counts.set(x,counts.get(x)+1);\n    }\n   \n\n\n\n\n\n\n\n\n\n\n\n   \n   \n\n   \n\n   \n    for (Integer count : counts) {\n    }\n    return",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "DEPTH_FIRST_SEARCH": {
+      "loc": "23-23",
+      "input": "boolean search(Node node) {\n    if (nodesvisited.contains(node)) {\n        return false;\n    } else if (node == goalnode) {\n        return true;\n    } else {\n// buggy line:        for (Node successornodes : node.getSuccessors()) {\n        <extra_id_0>\n         if (search(successornodes)) { return true; }\n        }\n    }\n    return false;\n}",
+      "function range": "17,13-28,13",
+      "output": [
+        {
+          "patch": "}\n\n// buggy line:\n\n\n    for (Node successornodes : node.getPredecessors()) {\n }\n\n// buggy line: for (Node successornodes : node.getSuccessors()) {\n        for (Node\n\n\n for (\n\n\n\n\n\n\n if ( else if (\n else if ( }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n\n// buggy line:\n\n\n    for (Node successornodes : node.getPredecessors()) {\n }\n\n// buggy line: for (Node successornodes : node.getSuccessors()) {\n        for (\n\n\n for (\n\n\n\n\n\n\n if ( else if (\n else if ( }\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n\n// buggy line:\n\n\n    for (Node successornodes : node.getPredecessors()) {\n }\n\n// buggy line: for (Node successornodes : node.getSuccessors()) {\n        for (Node\n\n\n for (\n\n\n\n\n\n\n if ( else if (\n else if ( }\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n\n// buggy line:\n\n\n    for (Node successornodes : node.getPredecessors()) {\n }\n\n// buggy line: for (Node successornodes : node.getSuccessors()) {\n\n        for (Node\n\n\n for (\n\n\n\n\n\n\n if ( else if (\n if ( }\n   \n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n\n// buggy line:\n\n\n    for (Node successornodes : node.getPredecessors()) {\n }\n\n// buggy line: for (Node successornodes : node.getSuccessors()) {\n\n        for (Node\n\n\n for (\n\n\n\n\n\n\n if ( else if (\n if ( }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n\n// buggy line:\n\n\n    for (Node successornodes : node.getPredecessors()) {\n }\n\n// buggy line: for (Node successornodes : node.getSuccessors()) {\n        for (Node\n\n\n for (\n\n\n\n\n\n\n if ( else if (\n if (\n\n\n// buggy",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n\n// buggy line:\n\n\n    for (Node successornodes : node.getPredecessors()) {\n }\n\n// buggy line: for (Node successornodes : node.getSuccessors()) {\n        for (Node\n\n\n for (\n\n\n\n\n\n\n if ( else if (\n if ( }\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n\n// buggy line:\n\n\n    for (Node successornodes : node.getPredecessors()) {\n }\n\n// buggy line: for (Node successornodes : node.getSuccessors()) {\n        for (Node\n\n\n for (\n\n\n\n\n\n\n if ( else if (\n else if ( }\n   \n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n\n// buggy line:\n\n\n    for (Node successornodes : node.getPredecessors()) {\n }\n\n// buggy line: for (Node successornodes : node.getSuccessors()) {\n        for (Node\n\n\n\n    for (\n\n\n\n\n\n\n if ( else if (\n if ( }\n\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n\n// buggy line:\n\n\n    for (Node successornodes : node.getPredecessors()) {\n }\n\n// buggy line: for (Node successornodes : node.getSuccessors()) {\n        for (\n\n\n for (\n\n\n\n\n\n\n if ( else if (\n else if ( }\n}",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "DETECT_CYCLE": {
+      "loc": "18-19",
+      "input": "public static boolean detect_cycle(Node node) {\n    Node hare = node;\n    Node tortoise = node;\n    while (true) {\n// buggy line:        if (hare.getSuccessor() == null)\n        <extra_id_0>\n            return false;\n        tortoise = tortoise.getSuccessor();\n        hare = hare.getSuccessor().getSuccessor();\n        if (hare == tortoise)\n            return true;\n    }\n}",
+      "function range": "13,5-27,5",
+      "output": [
+        {
+          "patch": "{\n       \n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare.getSuccessor() == tortoise)\n            return true;\n       \n\n {\n    return false;\n    }\n    return false;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n       \n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare.getSuccessor() == tortoise)\n            return true;\n       \n\n    {\n    return false;\n   \n\n\n {\n        if (hare == null)\n       \n { { {        { { {               {        {        {\n            return false;\n        }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n       \n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare.getSuccessor() == tortoise)\n            return true;\n       \n\n {\n    return false;\n    }\n   \n\n\n {\n        if (hare == null)\n       \n { { {        { { {               {        {        }\n    }\n    }\n    //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n       \n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare.getSuccessor() == tortoise)\n            return true;\n       \n\n {\n    return false;\n    }\n   \n\n\n {\n        if (hare == null)\n       \n { { {        { { {               {        {        {\n            return false;\n        }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n       \n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare.getSuccessor() == tortoise)\n            return true;\n       \n\n    {\n    return false;\n   \n\n\n {\n        if (hare == null)\n       \n { { {        { { {               {        {        return\n        }\n        //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n       \n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare.getSuccessor() == tortoise)\n            return true;\n       \n\n {\n    return false;\n    }\n   \n\n\n {\n        if (hare == null)\n       \n { { {        { { {               {        {        {\n        return false;\n        }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n       \n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare.getSuccessor() == tortoise)\n            return true;\n       \n\n    {\n    return false;\n   \n\n   \n {\n        if (hare == null)\n       \n { { {        { { {               {        {        {\n        return false;\n        }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n       \n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare.getSuccessor() == tortoise)\n            return true;\n       \n\n {\n    return false;\n    }\n   \n\n\n {\n        if (hare == null)\n       \n { { {        { { {               {        {        }\n    }\n    }\n    return false;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n       \n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare.getSuccessor() == tortoise)\n            return true;\n       \n\n    {\n    return false;\n   \n\n\n {\n        if (hare == null)\n       \n { { {        { { {               {        {        { {\n        return",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n       \n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare == tortoise)\n            return true;\n        if (hare.getSuccessor() == tortoise)\n            return true;\n       \n\n {\n    return false;\n    }\n   \n\n\n {\n        if (hare == null)\n       \n { { {        { { {               {        {        }\n    }\n    return false;\n}",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "FIND_FIRST_IN_SORTED": {
+      "loc": "19-20",
+      "input": "public static int find_first_in_sorted(int[] arr, int x) {\n    int lo = 0;\n    int hi = arr.length;\n// buggy line:    while (lo <= hi) {\n    <extra_id_0>\n        int mid = (lo + hi) / 2;\n        if (x == arr[mid] && (mid == 0 || x != arr[mid-1])) {\n            return mid;\n        } else if (x <= arr[mid]) {\n            hi = mid;\n        } else {\n            lo = mid + 1;\n        }\n    }\n    return -1;\n}",
+      "function range": "15,5-32,5",
+      "output": [
+        {
+          "patch": "while (lo <= hi) {\n       \n// buggy line:\n    while (lo <= hi) {\n\n       \n    }\n   \n\n   \n\n\n   \n   \n    while (lo <= hi) {\n// buggy line:    while (lo <= hi) {\n\n\n\n -\n\n =\n       \n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (lo <= hi) {\n       \n// buggy line:\n    while (lo <= hi) {\n\n }\n\n   \n\n   \n\n\n   \n   \n    while (lo <= hi) {\n// buggy line:    while (lo <= hi) {\n\n\n\n -\n\n\n   \n   \n    return mid;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (lo <= hi) {\n       \n// buggy line:\n    while (lo <= hi) {\n\n }\n   \n\n   \n\n\n   \n   \n    while (lo <= hi) {\n// buggy line:    while (lo <= hi) {\n +\n\n\n -\n\n\n   \n   \n    return mid;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (lo <= hi) {\n       \n// buggy line:\n    while (lo <= hi) {\n\n }\n   \n\n   \n\n\n   \n   \n    while (lo <= hi) {\n// buggy line:    while (lo <= hi) {\n\n\n\n -\n\n\n   \n   \n    return mid;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (lo <= hi) {\n       \n// buggy line:\n    while (lo <= hi) {\n\n       \n    }\n   \n\n   \n\n\n   \n   \n    while (lo <= hi) {\n// buggy line:    while (lo <= hi) {\n +\n\n\n -\n\n =\n       \n//\n\n// b",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (lo <= hi) {\n       \n// buggy line:\n    while (lo <= hi) {\n\n       \n    }\n   \n\n   \n\n\n   \n   \n    while (lo <= hi) {\n// buggy line:    while (lo <= hi) {\n +\n\n\n -\n\n =\n       \n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (lo <= hi) {\n       \n// buggy line:\n    while (lo <= hi) {\n\n       \n    }\n   \n\n   \n\n\n   \n   \n    while (lo <= hi) {\n// buggy line:    while (lo <= hi) {\n\n\n\n -\n\n =\n       \n    }\n\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (lo <= hi) {\n       \n// buggy line:\n    while (lo <= hi) {\n\n }\n\n   \n\n   \n\n\n   \n   \n    while (lo <= hi) {\n// buggy line:    while (lo <= hi) {\n\n\n\n -",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (lo <= hi) {\n       \n// buggy line:\n    while (lo <= hi) {\n\n }\n   \n\n   \n\n\n   \n   \n    while (lo <= hi) {\n// buggy line:    while (lo <= hi) {\n +\n\n\n -",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (lo <= hi) {\n       \n// buggy line:\n    while (lo <= hi) {\n\n }\n\n   \n\n   \n\n\n   \n   \n    while (lo <= hi) {\n// buggy line:    while (lo <= hi) {\n\n\n\n -\n\n\n   \n   \n}",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "FIND_IN_SORTED": {
+      "loc": "20-21",
+      "input": "public static int binsearch(int[] arr, int x, int start, int end) {\n    if (start == end) {\n        return -1;\n    }\n    int mid = start + (end - start) / 2; \n    if (x < arr[mid]) {\n        return binsearch(arr, x, start, mid);\n    } else if (x > arr[mid]) {\n// buggy line:        return binsearch(arr, x, mid, end);\n        <extra_id_0>\n    } else {\n        return mid;\n    }\n}",
+      "function range": "12,5-24,5",
+      "output": [
+        {
+          "patch": "return mid;\n\n   \n\n   \n    } else if (x == arr[mid]) {\n        return mid;\n} else {\n   \n   \n\n   \n\n        return mid;\n    } else if (x == arr[mid]) {\n        return mid; else if (\n\n\n\n\n\n\n,,, int, int\n\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return mid;\n\n   \n\n   \n    } else if (x == arr[mid]) {\n        return mid;\n} else {\n   \n   \n\n   \n\n        return mid;\n    } else if (x == arr[mid]) {\n        return mid; else if (\n\n\n\n\n\n\n,,, int, int\n        return -",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return mid;\n\n   \n\n   \n    } else if (x == arr[mid]) {\n        return mid;\n} else {\n   \n   \n\n   \n\n        return mid;\n    } else if (x == arr[mid]) {\n        return mid; else if (\n\n\n\n\n\n\n,,, int, int\n        return mid",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return mid;\n\n   \n\n   \n    } else if (x == arr[mid]) {\n        return mid;\n} else {\n   \n   \n\n   \n\n        return mid;\n    } else if (x == arr[mid]) {\n        return mid;\n    } else if (\n\n\n\n\n\n //,, int, int,",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return mid;\n\n   \n\n   \n    } else if (x == arr[mid]) {\n        return mid;\n} else {\n   \n   \n\n   \n\n        return mid;\n    } else if (x == arr[mid]) {\n    } else if (x <\n\n\n\n\n\n\n,,, int, int\n\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return mid;\n\n   \n\n   \n    } else if (x == arr[mid]) {\n        return mid;\n} else {\n   \n   \n\n   \n\n        return mid;\n    } else if (x == arr[mid]) {\n        return mid;\n    } else if (\n\n\n\n\n\n\n,, int, int,",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return mid;\n\n   \n\n   \n    } else if (x == arr[mid]) {\n        return mid;\n} else {\n   \n   \n\n   \n\n        return mid;\n    } else if (x == arr[mid]) {\n    } else if (\n\n\n\n       \n\n\n,,, int, int\n        return mid;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return mid;\n\n   \n\n   \n    } else if (x == arr[mid]) {\n        return mid;\n} else {\n   \n   \n\n   \n\n        return mid;\n    } else if (x == arr[mid]) {\n    } else if (\n\n\n\n       \n\n\n,,, int, int\n        return -1",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return mid;\n\n   \n\n   \n    } else if (x == arr[mid]) {\n        return mid;\n} else {\n   \n   \n\n   \n\n        return mid;\n    } else if (x == arr[mid]) {\n        return mid; else if (\n        return mid;\n\n\n\n\n //,, int[], int",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return mid;\n\n   \n\n   \n    } else if (x == arr[mid]) {\n        return mid;\n} else {\n   \n   \n\n   \n\n        return mid;\n    } else if (x == arr[mid]) {\n        return mid;\n    } else if (\n\n\n\n\n\n //,, int, int,",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "FLATTEN": {
+      "loc": "22-28",
+      "input": "public static Object flatten(Object arr) {\nif(arr instanceof ArrayList) {\n        ArrayList narr = (ArrayList) arr;\n ArrayList result = new ArrayList(50);\n for (Object x : narr) {\n            if (x instanceof ArrayList) {\n                result.addAll((ArrayList) flatten(x));\n            } else {\n// buggy line:                result.add(flatten(x));\n// buggy line:}\n// buggy line:        }\n// buggy line:        return result;\n// buggy line:}else {\n// buggy line: return flatten(arr);\n                <extra_id_0>\n}\n}",
+      "function range": "14,5-29,5",
+      "output": [
+        {
+          "patch": "// buggy line:}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:}\n}\n}\n}\n}\n}\n}\n}\n\n\n\n\n\n            }\n        }\n        return result;\n}\n\n// buggy line:\n}\n}\n}\n\n}\n}\n}\n        }\n        return result;\n   \n   \n   \n   \n   \n\n            }\n        }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:}\n}\n}\n}\n}\n}\n\n\n\n\n\n}\n        }\n        return result;\n}\n\n// buggy line:\n// buggy line:}\n}\n}\n\n}\n}\n}\n}\n   \n   \n   \n   \n        }\n    }\n        return result;\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:}\n}\n}\n}\n}\n}\n}\n}\n\n\n\n\n\n            }\n        }\n        return result;\n}\n\n// buggy line:\n}\n}\n}\n\n}\n}\n}\n        }\n   \n   \n   \n   \n        }\n    }\n        return result;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:}\n}\n}\n}\n}\n}\n\n\n\n\n\n}\n        }\n        return result;\n}\n\n// buggy line:\n// buggy line:}\n}\n}\n\n}\n}\n}\n        }\n   \n   \n   \n   \n        }\n    }\n        return result;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:}\n}\n}\n}\n}\n}\n}\n}\n\n\n\n\n\n            }\n        }\n        return result;\n}\n\n// buggy line:\n}\n}\n}\n\n}\n}\n}\n        }\n        return result;\n\n   \n   \n   \n   \n\n            }\n        }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:}\n}\n}\n}\n}\n}\n}\n}\n\n\n\n\n\n            }\n        }\n        return result;\n}\n\n// buggy line:\n}\n}\n}\n\n}\n}\n}\n        }\n        return result;\n\n   \n   \n   \n   \n\n            }\n        }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:}\n}\n}\n}\n}\n}\n\n\n\n\n\n}\n        }\n        return result;\n}\n\n// buggy line:\n// buggy line:}\n}\n}\n\n}\n}\n}\n        }\n        return result;\n\n   \n   \n   \n   \n\n            }\n        }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:}\n}\n}\n}\n}\n}\n\n\n\n\n\n}\n        }\n        return result;\n}\n\n// buggy line:\n// buggy line:}\n}\n}\n\n}\n}\n}\n        }\n        return result;\n\n   \n   \n   \n   \n\n            }\n        }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:}\n}",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "GCD": {
+      "loc": "19-20",
+      "input": "public static int gcd(int a, int b) {\n    if (b == 0) {\n        return a;\n    } else {\n// buggy line:        return gcd(a % b, b);\n        <extra_id_0>\n    }\n}",
+      "function range": "15,5-21,5",
+      "output": [
+        {
+          "patch": "// buggy line:        return gcd(a / b, b);\nfunction() {\n\n    if (a == 0) {\n        return b;\n    } else {\n        return a % b;\n\n\n\n    if (a == b) {\n//\n        return b;\n\n\n\n\n\n\n\n }\n\n\n\n) { // //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return gcd(a / b, b);\nfunction() {\n\n    if (a == 0) {\n        return b;\n    } else {\n        return a % b;\n\n\n\n    if (a == b) {\n//\n        return b;\n\n\n\n\n\n\n\n }\n\n\n\n        return a;\n //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return a / b;\nfunction gcd(a, b) {\n\n// buggy line:        return a % b;\n\n\n    if (a == 0) {\n        return b;\n    } else {\n//\n\n\n\n\n\n\n\n\n }\n\n\n\n) { // //\n * *",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return gcd(a / b, b);\nfunction() {\n\n    if (a == 0) {\n        return b;\n    } else {\n        return a % b;\n\n\n\n    if (a == b) {\n//\n        return b;\n\n\n\n\n\n\n\n }\n\n\n\n        return b;\n //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return gcd(a / b, b);\nfunction() {\n\n    if (a == 0) {\n        return b;\n    } else {\n        return a % b;\n\n\n\n    if (a == b) {\n//\n        return b;\n\n\n\n\n\n\n\n }\n\n\n\n        return a;, //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return a / b;\nfunction gcd(a, b) {\n\n// buggy line:        return a % b;\n\n\n    if (a == 0) {\n        return b;\n    } else {\n//\n\n\n\n\n\n\n\n\n }\n\n\n\n) { // //\n * *",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return gcd(a / b, b);\nfunction() {\n\n    if (a == 0) {\n        return b;\n    } else {\n        return a % b;\n\n\n\n    if (a == b) {\n//\n        return b;\n\n\n\n\n\n\n\n }\n\n\n\n        return a;) { //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return a / b;\nfunction gcd(a, b) {\n\n// buggy line:        return a % b;\n\n\n    if (a == 0) {\n        return b;\n    } else {\n//\n\n\n\n\n\n\n\n\n }\n\n\n\n, //\n_,\n    //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return a / b;\nfunction gcd(a, b) {\n\n// buggy line:        return a % b;\n\n\n    if (a == 0) {\n        return b;\n    } else {\n//\n\n\n\n\n\n\n\n\n }\n\n\n\n\n //\n_,\n    //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return gcd(a / b, b);\nfunction() {\n\n    if (a == 0) {\n        return b;\n    } else {\n        return a % b;\n\n\n\n    if (a == b) {\n//\n        return b;\n\n\n\n\n\n\n\n }\n\n\n\n        return b;) { //",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "GET_FACTORS": {
+      "loc": "20-21",
+      "input": "public static ArrayList<Integer> get_factors(int n) {\n    if (n == 1) {\n        return new ArrayList<Integer>();\n    }\n    int max = (int)(Math.sqrt(n) + 1.0);\n    for (int i=2; i < max; i++) {\n        if (n % i == 0) {\n            ArrayList<Integer> prepend = new ArrayList<Integer>(0);\n            prepend.add(i);\n            prepend.addAll(get_factors(n / i));\n            return prepend;\n        }\n    }\n// buggy line:   \treturn new ArrayList<Integer>();\n    <extra_id_0>\n}",
+      "function range": "6,5-21,5",
+      "output": [
+        {
+          "patch": "// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:\n\n\npublic static ArrayList<Integer> get_factors(int n) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:\n\n\npublic ArrayList<Integer> get_factors(int n) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n\n// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:\n\n\npublic static ArrayList<Integer> get_factors(int n) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:   \t\n\n\npublic static ArrayList<Integer> get_factors(int n) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n\n// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:\n\n\npublic ArrayList<Integer> get_factors(int n) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:   \treturn get_factors(n);\n// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:\n\n\npublic static ArrayList<Integer> get_factors(int n) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:   \t\n\n\npublic ArrayList<Integer> get_factors(int n) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:\n\n\nprivate ArrayList<Integer> get_factors(int n) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:\n\n\npublic ArrayList<Integer> get_factors(int n) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:   \treturn get_factors(n);\n// buggy line:   \treturn new ArrayList<Integer>();\n// buggy line:\n\n\npublic ArrayList<Integer> get_factors(int n) {",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "HANOI": {
+      "loc": "29-30",
+      "input": "public static List<Pair<Integer,Integer>> hanoi(int height, int start, int end) {\n    ArrayList<Pair<Integer,Integer>> steps = new ArrayList<Pair<Integer,Integer>>();\n    if (height > 0) {\n        PriorityQueue<Integer> crap_set = new PriorityQueue<Integer>();\n        crap_set.add(1);\n        crap_set.add(2);\n        crap_set.add(3);\n        crap_set.remove(start);\n        crap_set.remove(end);\n        int helper = crap_set.poll();\n        steps.addAll(hanoi(height-1, start, helper));\n// buggy line:        steps.add(new Pair<Integer,Integer>(start, helper));\n        <extra_id_0>\n        steps.addAll(hanoi(height-1, helper, end));\n    }\n    return steps;\n}",
+      "function range": "17,5-34,5",
+      "output": [
+        {
+          "patch": "helper = crap_set.poll();",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "helper = crap_set.poll();\n       \n\n\n       \n       \n   \n   \n   \n    else {\n        int helper = crap_set.poll();\n       \n    if (height > 1) {\n       \n\n\n,\n\n\n        helper = crap_set.poll();",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "helper = crap_set.poll();\n       \n\n\n       \n       \n   \n   \n   \n    else {\n        int helper = crap_set.poll();\n       \n    if (height > 1) {\n       \n\n\n,\n\n\n        helper = crap_set.poll();\n   \n   \n   \n   \n   \n   \n:",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "helper = crap_set.poll();\n       \n\n\n       \n       \n   \n   \n   \n    else {\n        int helper = crap_set.poll();\n       \n    if (height > 1) {\n       \n\n\n,\n\n\n        helper = crap_set.poll();",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "helper = crap_set.poll();\n       \n\n\n       \n       \n   \n   \n   \n    else {\n        int helper = crap_set.poll();\n       \n    if (height > 1) {\n       \n\n\n,\n\n\n        helper = crap_set.poll();",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "helper = crap_set.poll();\n       \n\n\n       \n       \n   \n   \n   \n    else {\n        int helper = crap_set.poll();\n       \n\n\n\n        helper = crap_set.poll();,\n// buggy line:\n\n\n   \n   \n   \n   \n   \n    if ( > 0):",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "helper = crap_set.poll();\n// buggy line:",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "helper = crap_set.poll();\n       \n\n\n       \n       \n   \n   \n   \n    else {\n        int helper = crap_set.poll();\n       \n   \n\n\n        helper = crap_set.poll();,\n\n\n        helper = crap_set.poll();",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "helper = crap_set.poll();\n       \n\n\n       \n       \n   \n   \n   \n    else {\n        int helper = crap_set.poll();\n       \n   \n\n        helper = crap_set.poll();\n,\n\n\n        helper = crap_set.poll();",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "helper = crap_set.poll();\n       \n\n\n       \n       \n   \n   \n   \n    else {\n        int helper = crap_set.poll();\n       \n    if (height > 1) {\n       \n\n\n,\n\n\n        helper = crap_set.poll();\n   \n   \n   \n   \n       \n       \n:",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "IS_VALID_PARENTHESIZATION": {
+      "loc": "17-18",
+      "input": "public static Boolean is_valid_parenthesization(String parens) {\n    int depth = 0;\nfor (int i = 0; i < parens.length(); i++) {\n Character paren = parens.charAt(i);\n if (paren.equals('(')) {\n            depth++;\n } else {\ndepth--;\nif (depth < 0) { return false; }\n }\n}\n// buggy line:return true;\n<extra_id_0>\n}",
+      "function range": "6,5-18,5",
+      "output": [
+        {
+          "patch": "return true;\n// buggy line:return false;\n}\n// buggy line:return false;\n}\n}\n}\n}\n}\n}\n}\n}\n\n\n   \n}\n\n   \n}\n\n\n}\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return true;\n// buggy line:return false;\n}\n// buggy line:return false;\n}\n}\n}\n}\n}\n}\n}\n}\n\n\n   \n}\n\n//\n\n\n\n}\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return true;\n// buggy line:return false;\n}\n// buggy line:return false;\n}\n}\n}\n}\n}\n}\n}\n}\n\n\n   \n}\n}\n\n\n\n\n\n}\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return true;\n// buggy line:return false;\n}\n// buggy line:return false;\n}\n}\n}\n}\n}\n}\n}\n}\n\n\n   \n}\n\n//\n\n\n\n\n}\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return true;\n// buggy line:return false;\n}\n// buggy line:return false;\n}\n}\n}\n}\n}\n}\n}\n}\n\n\n   \n}\n\n   \n}\n\n\n}\n\n//\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return true;\n// buggy line:return false;\n}\n// buggy line:return false;\n}\n}\n}\n}\n}\n}\n}\n}\n\n\n   \n}\n\n\n\n\n\n}\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return true;\n// buggy line:return false;\n}\n// buggy line:return false;\n}\n}\n}\n}\n}\n}\n}\n}\n\n\n   \n}\n\n   \n}\n\n\n}\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return true;\n// buggy line:return false;\n}\n// buggy line:return false;\n}\n}\n}\n}\n}\n}\n}\n}\n\n\n   \n}\n\n//\n\n\n\n}\n\n//\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return true;\n// buggy line:return false;\n}\n// buggy line:return false;\n}\n}\n}\n}\n}\n}\n}\n}\n\n\n   \n}\n\n\n\n\n\n\n}\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return true;\n// buggy line:return false;\n}\n// buggy line:return false;\n}\n}\n}\n}\n}\n}\n}\n}\n\n\n   \n}\n\n   \n}\n\n\n}\n\n//\n\n}",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "KHEAPSORT": {
+      "loc": "28-29",
+      "input": "public static ArrayList<Integer> kheapsort(ArrayList<Integer> arr, int k) {\n    PriorityQueue<Integer> heap = new PriorityQueue<Integer>();\n    for (Integer v : arr.subList(0,k)) {\n        heap.add(v);\n    }\n    ArrayList<Integer> output = new ArrayList<Integer>();\n// buggy line:    for (Integer x : arr) {\n    <extra_id_0>\n        heap.add(x);\n        Integer popped = heap.poll();\n        output.add(popped);\n    }\n    while (!heap.isEmpty()) {\n        output.add(heap.poll());\n    }\n    return output;\n}",
+      "function range": "21,5-40,5",
+      "output": [
+        {
+          "patch": "while (!heap.isEmpty()) {\n       \n\n    while (!heap.isEmpty()) {\n        output.add(x);\n    }\n    while (!heap.isEmpty()) {\n}\n\n\n   \n\n\n\n   \n       \n\n\n\n       \n\n\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!heap.isEmpty()) {\n       \n\n    while (!heap.isEmpty()) {\n        output.add(x);\n    }\n    while (!heap.isEmpty()) {\n\n   \n\n\n\n   \n       \n    while (!heap.isEmpty()) {\n\n\n       \n\n\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!heap.isEmpty()) {\n       \n\n    while (!heap.isEmpty()) {\n        output.add(x);\n    }\n\n\n   \n\n\n\n   \n       \n    while (!heap.isEmpty()) {\n\n\n       \n\n\n\n    return output;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!heap.isEmpty()) {\n       \n\n    while (!heap.isEmpty()) {\n        output.add(x);\n    }\n    while (!heap.isEmpty()) {\n\n   \n\n\n\n   \n       \n\n    while (!heap.isEmpty()) {\n\n       \n\n\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!heap.isEmpty()) {\n       \n\n    while (!heap.isEmpty()) {\n        output.add(x);\n    }\n    while (!heap.isEmpty()) {\n}\n\n\n\n\n\n\n   \n       \n\n\n\n       \n\n\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!heap.isEmpty()) {\n       \n\n    while (!heap.isEmpty()) {\n        output.add(x);\n    }\n\n\n   \n\n\n\n   \n       \n    while (!heap.isEmpty()) {\n\n\n       \n\n\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!heap.isEmpty()) {\n       \n\n    while (!heap.isEmpty()) {\n        output.add(x);\n    }\n    while (!heap.isEmpty()) {\n\n   \n\n\n\n   \n       \n    while (!heap.isEmpty()) {\n\n\n       \n\n\n\n//\n\n public int\n   \n   \n\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!heap.isEmpty()) {\n       \n\n    while (!heap.isEmpty()) {\n        output.add(x);\n    }\n    while (!heap.isEmpty()) {\n}\n\n\n\n\n\n   \n       \n\n\n\n       \n\n\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!heap.isEmpty()) {\n       \n\n    while (!heap.isEmpty()) {\n        output.add(x);\n    }\n    while (!heap.isEmpty()) {\n\n   \n\n\n\n   \n       \n\n\n\n       \n\n\n\n    return output;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "while (!heap.isEmpty()) {\n       \n\n    while (!heap.isEmpty()) {\n        output.add(x);\n    }\n    while (!heap.isEmpty()) {\n}\n\n\n\n\n\n   \n       \n\n\n\n       \n\n\n\n    return output;\n}",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "KNAPSACK": {
+      "loc": "30-31",
+      "input": "public static int knapsack(int capacity, int [][] items) {\n    int weight = 0, value = 0;\n    int n = items.length;\n    int memo[][] = new int[n + 1][capacity + 1];\n    for (int i = 0; i <= n ; i++)\n    {\n        if (i - 1 >= 0) {\n            weight = items[i - 1][0];\n            value = items[i - 1][1];\n        }\n        for (int j = 0; j <= capacity; j++)\n        {\n            if (i == 0 || j == 0) {\n                memo[i][j] = 0;\n            }\n// buggy line:            else if (weight < j) {\n            <extra_id_0>\n                memo[i][j] = Math.max(memo[i - 1][j], value + memo[i - 1][j - weight]);\n            }\n            else {\n                memo[i][j] = memo [i-1][j];\n            }\n        }\n    }\n    return memo[n][capacity];\n}",
+      "function range": "14,5-40,5",
+      "output": [
+        {
+          "patch": "if (weight < i) {\n               \n        }\n       \n            if (i > 0) {\n   \n\n   \n   \n   \n   \n    for (int i = 0; i <= n ; i++) {\n        for (\n           \n               \n\n               \n\n\n[], int\n   [],;\n   \n   \n    for (int i =",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (weight < i) {\n               \n        }\n       \n            if (i > 0) {\n   \n\n   \n   \n   \n   \n    for (int i = 0; i <= n ; i++) {\n        for (\n           \n               \n\n               \n\n\n[], int\n   [],;\n   \n    for (int i = 0;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (weight < i) {\n               \n        }\n       \n            if (i > 0) {\n   \n\n   \n   \n   \n   \n    for (int i = 0; i <= n; i++) {\n        for (\n           \n               \n\n               \n\n\n[], int\n   [],;\n   \n   \n    for (int i =",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (weight < i) {\n               \n        }\n       \n            if (i > 0) {\n   \n\n   \n   \n   \n   \n    for (int i = 0; i <= n ; i++) {\n        for (\n           \n               \n\n               \n\n\n,, int\n   [],;\n   \n   \n    for (int i =",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (weight < i) {\n               \n        }\n       \n            if (i > 0) {\n   \n\n   \n   \n   \n   \n    for (int i = 0; i <= n ; i++) {\n        for (\n           \n               \n\n               \n\n\n[], int\n   [], int;\n   \n   \n    for (int i",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (i - 1 >= 0) {\n               \n        }\n\n            if (i - 1 >= 0) {\n   \n   \n   \n    int\n   \n   \n    for (; i <= n ; i++) {\n        for (\n           \n               \n\n               \n\n\n[], int\n   [],;\n   \n   \n    for (int i",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (weight < i) {\n               \n        }\n       \n            if (i > 0) {\n   \n\n   \n   \n   \n   \n    for (int i = 0; i <= n ; i++) {\n        for (\n           \n               \n\n               \n\n\n[],\n   [],;\n   \n   \n    for (int i = 0",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (i - 1 >= 0) {\n               \n        }\n\n            if (i - 1 >= 0) {\n   \n   \n   \n    int\n   \n   \n    for (; i <= n ; i++) {\n        for (\n           \n               \n if (\n\n\n[], int\n   [],;\n   \n   \n    for (int i",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (weight < i) {\n               \n        }\n       \n            if (i > 0) {\n   \n\n   \n   \n   \n   \n    for (int i = 0; i <= n; i++) {\n        for (\n           \n               \n\n               \n\n\n[],\n   [],;\n   \n   \n    for (int i = 0",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (weight < i) {\n               \n        }\n       \n            if (i > 0) {\n   \n\n   \n   \n   \n   \n    for (int i = 0; i <= n ; i++) {\n        for (\n           \n               \n\n               \n\n\n[],\n   [],;\n   \n   \n    for (int i = 1",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "KTH": {
+      "loc": "26-27",
+      "input": "public static Integer kth(ArrayList<Integer> arr, int k) {\n    int pivot = arr.get(0);\n    ArrayList<Integer> below, above;\n    below = new ArrayList<Integer>(arr.size());\n    above = new ArrayList<Integer>(arr.size());\n    for (Integer x : arr) {\n        if (x < pivot) {\n            below.add(x);\n        } else if (x > pivot) {\n            above.add(x);\n        }\n    }\n    int num_less = below.size();\n    int num_lessoreq = arr.size() - above.size();\n    if (k < num_less) {\n        return kth(below, k);\n    } else if (k >= num_lessoreq) {\n// buggy line:        return kth(above, k);\n        <extra_id_0>\n    } else {\n        return pivot;\n    }\n}",
+      "function range": "8,5-30,5",
+      "output": [
+        {
+          "patch": "return kth(arr, k);\n   public static int kth(ArrayList<Integer> arr, int k) {\n\n        return kth(arr, k);\n   \n\n   \n   \n   \n   \n\n   \n   \n        return pivot;\n\n\n       \n\n\n\n   \n   \n\n   \n   \n   \n\n    for (int",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return kth(arr, k);\n// buggy line:public static int\n        return kth(arr, k);\n   \n\n   \n   \n   \n   \n\n   \n   \n        return kth(arr, k);\n\n\n       \n\n        return pivot;\n\n   \n   \n   \n   \n   \n   \n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return kth(arr, k);\n// buggy line:        return pivot;\n   \n        return kth(arr, k);\n   \n\n   \n   \n   \n   \n\n   \n   \n        return kth(arr, k);\n\n\n       \n\n\n\n   \n   \n    return pivot;\n   \n   \n   \n\n    for",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return kth(arr, k);\n// buggy line:public static int\n        return kth(arr, k);\n   \n\n   \n   \n   \n   \n\n   \n   \n        return kth(arr, k);\n\n\n       \n\n        return pivot;\n\n   \n   \n   \n   \n   \n   \n\n    for (",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return kth(arr, k);\n// buggy line:        return pivot;\n   \n        return kth(arr, k);\n   \n\n   \n   \n   \n   \n\n   \n   \n        return kth(arr, k);\n\n\n       \n\n\n\n   \n   \n    return pivot;\n   \n   \n   \n\n    int",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return kth(arr, k);\n// buggy line:        return kth(arr, k);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return kth(arr, k);\n   public static int kth(ArrayList<Integer> arr, int k) {\n\n        return kth(arr, k);\n   \n\n   \n   \n   \n   \n\n   \n   \n        return pivot;\n\n\n       \n\n\n\n   \n   \n\n   \n   \n   \n\n    below.add",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return kth(arr, k);\n   public static int kth(ArrayList<Integer> arr, int k) {\n\n        return kth(arr, k);\n   \n\n   \n   \n   \n   \n\n   \n   \n        return pivot;\n\n\n       \n\n\n\n   \n   \n\n   \n   \n   \n    }\n    return",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return kth(arr, k);\n   public static int\n        return kth(arr, k);\n   \n\n   \n   \n   \n   \n\n   \n   \n        return kth(arr, k);\n\n        return kth(arr, k);\n       \n\n\n\n   \n   \n   \n   \n   \n   \n\n    for (",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return kth(arr, k);\n// buggy line:public static int\n        return kth(arr, k);\n   \n\n   \n   \n   \n   \n\n   \n   \n        return kth(arr, k);\n\n\n       \n\n        return pivot;\n\n   \n   \n   \n   \n   \n   \n\n    int[]",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "LCS_LENGTH": {
+      "loc": "35-37",
+      "input": "public static Integer lcs_length(String s, String t) {\n    Map<Integer, Map<Integer,Integer>> dp = new HashMap<Integer,Map<Integer,Integer>>();\n    for (int i=0; i < s.length(); i++) {\n        Map<Integer,Integer> initialize = new HashMap<Integer,Integer>();\n        dp.put(i, initialize);\n        for (int j=0; j < t.length(); j++) {\n            Map<Integer,Integer> internal_map = dp.get(i);\n            internal_map.put(j,0);\n            dp.put(i, internal_map);\n        }\n    }\n    for (int i=0; i < s.length(); i++) {\n        for (int j=0; j < t.length(); j++) {\n            if (s.charAt(i) == t.charAt(j)) {\n// buggy line:                if (dp.containsKey(i-1)) {\n// buggy line:                    Map<Integer, Integer> internal_map = dp.get(i);\n                <extra_id_0>\n                    int insert_value = dp.get(i-1).get(j) + 1;\n                    internal_map.put(j, insert_value);\n                    dp.put(i,internal_map);\n                } else {\n                    Map<Integer, Integer> internal_map = dp.get(i);\n                    internal_map.put(j,1);\n                    dp.put(i,internal_map);\n                }\n            }\n        }\n    }\n    if (!dp.isEmpty()) {\n        List<Integer> ret_list = new ArrayList<Integer>();\n        for (int i=0; i<s.length(); i++) {\n            ret_list.add(!dp.get(i).isEmpty() ? Collections.max(dp.get(i).values()) : 0);\n        }\n        return Collections.max(ret_list);\n    } else {\n        return 0;\n    }\n}",
+      "function range": "13,5-58,5",
+      "output": [
+        {
+          "patch": "// buggy line:\n                   \n                } else {\n// buggy line:\n                    internal_map.put(j,1);\n                } else {\n       () {\n       \n    }\n   \n   \n   \n       \n\n\n\n       \n\n\n\n                   \n    }\n    return 0;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n                   \n                } else {\n// buggy line:\n                    internal_map.put(j,0);\n                } else {\n       () {\n       \n    }\n   \n   \n   \n       \n\n\n\n       \n\n\n\n                   \n    }\n    return 0;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n                   \n                } else {\n// buggy line:\n                    internal_map.put(j,0);\n                } else {\n       () {\n       \n    }\n   \n   \n   \n       \n\n\n\n       \n\n\n\n                   \n    }\n    return\n\n   \n       \n       \n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n                   \n                } else {\n// buggy line:\n                    internal_map.put(j,1);\n                } else {\n       () {\n       \n    }\n   \n   \n   \n       \n\n\n\n       \n\n\n\n                   \n    }\n    return\n\n   \n       \n       \n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n                   \n                } else {\n// buggy line:\n                    internal_map.put(j,1);\n                } else {\n       () {\n       \n    }\n   \n   \n   \n       \n\n\n\n       \n\n\n\n                   \n    }\n    return null;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n                   \n                } else {\n// buggy line:\n                    internal_map.put(j,0);\n                } else {\n       () {\n       \n    }\n   \n   \n   \n       \n\n\n\n       \n\n\n\n                   \n    }\n    return null;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n                   \n                } else {\n// buggy line:\n                    internal_map.put(j,0);\n                } else {\n.\n       \n       \n    }\n   \n   \n   \n       \n\n\n\n       \n\n\n\n                   \n    }\n    return 0;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n                   \n                } else {\n// buggy line:\n                    internal_map.put(j,0);\n                } else {\n.\n       \n       \n    }\n   \n   \n   \n       \n\n\n\n       \n\n\n\n                   \n    }\n    return null;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n                   \n                } else {\n                   \n                    internal_map.put(j,1);\n                } else {\n().size();\n       \n    }\n   \n   \n   \n    {\n       \n\n\n\n       \n\n\n\n                   \n        }\n    }\n    return null;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n                   \n                } else {\n                   \n                    internal_map.put(j,0);\n                } else {\n().size();\n       \n    }\n   \n   \n   \n    {\n       \n\n\n\n       \n\n\n\n                   \n        }\n    }\n    return null;\n}",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "LEVENSHTEIN": {
+      "loc": "17-18",
+      "input": "public static int levenshtein(String source, String target) {\n    if (source.isEmpty() || target.isEmpty()) {\n        return source.isEmpty() ? target.length() : source.length();\n    } else if (source.charAt(0) == target.charAt(0)) {\n// buggy line:        return 1 + levenshtein(source.substring(1), target.substring(1));\n        <extra_id_0>\n    } else {\n        return 1 + Math.min(Math.min(\n                levenshtein(source,              target.substring(1)),\n                levenshtein(source.substring(1), target.substring(1))),\n                levenshtein(source.substring(1), target)\n    );\n    }\n}",
+      "function range": "13,5-25,5",
+      "output": [
+        {
+          "patch": "// buggy line:        return 1 + levenshtein(source, target);\n       \n    }\n\n   \n\n\n\n    if (source.length() == target.length()) {\n        return target.length();\n    } else if (source.length() == 1) {\n       \n\n\n\n\n\n\n\n\n\n\n\n\n),",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return 1 + levenshtein(source, target);\n       \n    }\n\n   \n\n\n\n    if (source.length() == target.length()) {\n        return target.length();\n    } else if (source.length() == 1) {\n       \n }\n\n\n\n\n\n\n\n\n\n\n),",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return 1 + levenshtein(source.substring(1), target.substring(1));\n        }\n\n   \n\n\n\n    if (source.length() == target.length()) {\n        return target.length();\n    } else if (\n\n\n\n\n\n\n\n\n\n\n\n\n),",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return 1 + levenshtein(source, target);\n       \n    }\n\n   \n\n\n\n    if (source.length() == target.length()) {\n        return target.length();\n    } else if (source.length() == 1) {\n       \n\n\n\n\n\n\n\n\n\n\n\n\n),",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return 1 + levenshtein(source, target);\n       \n    }\n\n   \n\n\n\n    if (source.length() == target.length()) {\n        return target.length();\n    } else if (source.length() == 1) {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return 1 + levenshtein(source.substring(1), target.substring(1));\n        }\n\n   \n\n\n\n    if (source.length() == target.length()) {\n        return target.length();\n    } else if (\n\n\n\n\n\n\n\n\n\n\n\n\n),\n\n\n   \n\n\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return 1 + levenshtein(source.substring(1), target.substring(1));\n        }\n\n   \n\n\n\n    if (source.length() == target.length()) {\n        return target.length();\n    } else if (\n\n\n\n\n\n\n\n\n\n\n\n\n),\n\n // return }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return 1 + levenshtein(source, target);\n       \n    }\n\n   \n\n\n\n    if (source.length() == target.length()) {\n        return target.length();\n    } else if (source.length() == 1) {\n       \n\n\n\n\n\n\n\n\n\n\n\n\n), //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return 1 + levenshtein(source.substring(1), target.substring(1));\n        }\n\n   \n\n\n\n    if (source.length() == target.length()) {\n        return target.length();\n    } else if (",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return 1 + levenshtein(source, target);\n       \n    }\n\n   \n\n\n\n    if (source.length() == target.length()) {\n        return target.length();\n    } else {",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "LIS": {
+      "loc": "31-32",
+      "input": "public static int lis(int[] arr) {\n    Map<Integer,Integer> ends = new HashMap<Integer, Integer>(100);\n    int longest = 0;\n    int i = 0;\n    for (int val : arr) {\n        ArrayList<Integer> prefix_lengths = new ArrayList<Integer>(100);\n        for (int j=1; j < longest+1; j++) {\n            if (arr[ends.get(j)] < val) {\n                prefix_lengths.add(j);\n            }\n        }\n        int length = !prefix_lengths.isEmpty() ? Collections.max(prefix_lengths) : 0;\n        if (length == longest || val < arr[ends.get(length+1)]) {\n            ends.put(length+1, i);\n// buggy line:            longest = length + 1;\n            <extra_id_0>\n        }\n        i++;\n    }\n    return longest;\n}",
+      "function range": "13,5-37,5",
+      "output": [
+        {
+          "patch": "// buggy line:            longest = length + 1;\n@Override\n\n// buggy line:            longest = length + 1;\n    }\n   \n\n   \n   \n   \n\n\n       \n       \n            break;\n\n            break;\n       \n\n            break;\n\n   \n//   \n   \n   \n   \n       \n\n        for",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            longest = length;\n@Override\n\n// buggy line:            longest = length;\n    }\n   \n\n   \n   \n   \n\n       \n       \n       \n            break;\n            break;\n            break;\n       \n            break;\n\n\n   \n//   \n   \n   \n   \n       \n\n        for",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            longest = length;\n@Override\n\n// buggy line:            longest = length + 1;\n   \n\n   \n   \n   \n\n       \n       \n       \n            break;\n            break;\n            break;\n       \n            break;\n            break;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            longest = length + 1;\n@Override\n\n// buggy line:            longest = length + 1;\n    }\n   \n\n   \n   \n   \n\n\n       \n       \n            break;\n\n            break;\n       \n            break;\n\n\n   \n   \n    public\n   \n   \n       \n\n        for",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            longest = length + 1;\n@Override\n\n// buggy line:            longest = length + 1;\n    }\n   \n\n   \n   \n   \n\n\n       \n       \n            break;\n\n            break;\n       \n\n            break;\n\n   \n   \n    public\n   \n   \n       \n\n        for",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            longest = length;\n@Override\n\n// buggy line:            longest = length;\n    }\n   \n\n   \n   \n   \n\n       \n       \n       \n            break;\n            break;\n            break;\n       \n            break;\n\n\n   \n//   \n   \n   \n   \n   \n\n        for",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            longest = length + 1;\n@Override\n\n// buggy line:            longest = length + 1;\n    }\n   \n\n   \n   \n   \n\n\n       \n       \n            break;\n\n            break;\n       \n\n            break;\n\n   \n//   \n   \n   \n   \n   \n\n        for",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            longest = length + 1;\n@Override\n\n// buggy line:            longest = length + 1;\n    }\n   \n\n   \n   \n   \n\n\n       \n       \n            break;\n\n            break;\n       \n            break;\n\n\n   \n   \n   \n   \n   \n   \n\n        for (",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            longest = length + 1;\n@Override\n\n// buggy line:            longest = length + 1;\n    }\n   \n\n   \n   \n   \n\n\n       \n       \n            break;\n\n            break;\n       \n\n            break;\n\n   \n//   \n   \n   \n   \n   \n\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            longest = length;\n@Override\n\n// buggy line:            longest = length;\n    }\n   \n\n   \n   \n   \n\n       \n       \n       \n            break;\n            break;\n            break;\n       \n            break;\n\n\n   \n//   \n   \n   \n   \n   \n\n    }",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "LONGEST_COMMON_SUBSEQUENCE": {
+      "loc": "18-19",
+      "input": "public static String longest_common_subsequence(String a, String b) {\n    if (a.isEmpty() || b.isEmpty()) {\n        return \"\";\n    } else if (a.charAt(0) == b.charAt(0)) {\n// buggy line:        return a.charAt(0) + longest_common_subsequence(a.substring(1), b);\n        <extra_id_0>\n    } else {\n        String fst = longest_common_subsequence(a, b.substring(1));\n        String snd = longest_common_subsequence(a.substring(1), b);\n        return fst.length() >= snd.length() ? fst : snd;\n    }\n}",
+      "function range": "14,5-25,5",
+      "output": [
+        {
+          "patch": "// buggy line:        return b.charAt(0) + a.substring(1);\n       \n    } else if (a.length() == b.length()) {\n       \n\n\n        String\n       \n       \n    } else if (\n\n\n       \n\n\n\n if (\n\n\n).\n   \n String\n           \n    return\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return b.charAt(0) + a.substring(1);\n       \n    } else if (a.length() == b.length()) {\n       \n\n\n        String\n       \n       \n    } else if (\n\n\n       \n\n\n\n if (\n\n\n).\n   \n String\n       \n    return\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return b.charAt(0) + a.substring(1);\n       \n    } else if (a.length() == b.length()) {\n       \n\n\n        String\n       \n       \n    } else if (\n\n\n       \n\n\n\n if (\n\n\n).\n   \n String\n       \n        return\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return b.charAt(0) + a.substring(1);\n       \n    } else if (a.length() == b.length()) {\n       \n\n\n        String\n       \n       \n    } else if (\n\n\n       \n\n\n\n if (\n\n\n).\n\n String\n       \n    return\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return b.charAt(0) + a.substring(1);\n       \n    } else if (a.length() == b.length()) {\n       \n\n\n        String\n       \n       \n    }\n\n\n       \n\n\n\n if (\n\n\n).\n   \n return\n//\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return b.charAt(0) + a.substring(1);\n       \n    } else if (a.length() == b.length()) {\n       \n\n\n        String\n       \n       \n    } else if (\n\n\n       \n\n\n\n if (\n\n\n).\n\n String\n           \n    return\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return b.charAt(0) + a.substring(1);\n       \n    } else if (a.length() == b.length()) {\n       \n\n\n        String\n       \n       \n    }\n\n\n       \n\n\n\n if (\n\n\n).\n   \n return\n// line:\n        return\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return b.charAt(0) + a.substring(1);\n       \n    } else if (a.length() == b.length()) {\n       \n\n\n        String\n       \n       \n    } else if (\n\n\n       \n\n\n\n if (\n\n\n).\n   \n String\n           \n    return\n\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return b.charAt(0) + a.substring(1);\n       \n    } else if (a.length() == b.length()) {\n       \n\n\n        String\n       \n       \n    } else if (\n\n\n       \n\n\n\n if (\n\n\n).\n   \n String\n       \n    return\n\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return b.charAt(0) + a.substring(1);\n       \n    } else if (a.length() == b.length()) {\n       \n\n\n        String\n       \n       \n    } else if (\n\n\n       \n\n\n\n if (\n\n\n).(\n String\n            +\n    }",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "MAX_SUBLIST_SUM": {
+      "loc": "19-20",
+      "input": "public static int max_sublist_sum(int[] arr) {\n    int max_ending_here = 0;\n    int max_so_far = 0;\n    for (int x : arr) {\n// buggy line:        max_ending_here = max_ending_here + x;\n        <extra_id_0>\n        max_so_far = Math.max(max_so_far, max_ending_here);\n    }\n    return max_so_far;\n}",
+      "function range": "14,5-24,5",
+      "output": [
+        {
+          "patch": "// buggy line:\n        max_ending_here = x;\n}\n\n\n\n\n\n\n\n\n\n   \n\n// buggy line:\n// buggy line:\n, max_\n// buggy line:\n// buggy line:\n// buggy line:__\n    }\n   \n    return\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n        max_ending_here = x;\n}\n\n\n\n\n\n\n\n\n\n   \n\n// buggy line:\n// buggy line:\n, max_\n// buggy line:\n// buggy line:\n// buggy line:__\n int\n   \n    return 0;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n        max_ending_here = x;\n}\n\n\n\n\n\n\n\n\n\n\n\n\n// buggy line:\n// buggy line:\n, max_\n// buggy line:\n// buggy line:\n// buggy line:__\n    }\n   \n    return\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n        max_ending_here = x;\n}\n\n\n\n\n\n\n\n\n\n\n   \n\n// buggy line:\n// buggy line:\n, max_\n// buggy line:\n// buggy line:\n__\n    }\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n        max_ending_here = x;\n}\n\n\n\n\n\n\n\n\n\n\n\n\n// buggy line:\n// buggy line:\n, max_\n// buggy line:\n// buggy line:\n// buggy line:__\n int\n   \n    return 0;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n        max_ending_here = x;\n}\n\n\n\n\n\n\n\n\n\n\n   \n\n// buggy line:\n// buggy line:\n, max_\n// buggy line:\n// buggy line:\n__\n    }\n\n   \n   \n    return 0;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n        max_ending_here = x;\n}\n\n\n\n\n\n\n\n\n\n\n   \n\n\n// buggy line:\n, max_\n// buggy line:\n// buggy line:\n// buggy line:__\n    }\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n        max_ending_here = x;\n}\n\n\n\n\n\n\n\n\n\n   \n\n// buggy line:\n// buggy line:\n, max_\n// buggy line:\n// buggy line:\n// buggy line:__\n    }\n   \n   \n    return\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n        max_ending_here = x;\n}\n\n\n\n\n\n\n\n\n\n\n\n\n// buggy line:\n// buggy line:\n, max_\n// buggy line:\n// buggy line:\n// buggy line:__\n    }\n   \n   \n    return\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:\n        max_ending_here = x;\n}\n\n\n\n\n\n\n\n\n\n   \n\n// buggy line:\n// buggy line:\n, max_\n// buggy line:\n// buggy line:\n// buggy line:__\n    }\n   \n   \n   \n\n    return",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "MERGESORT": {
+      "loc": "38-39",
+      "input": "public static ArrayList<Integer> mergesort(ArrayList<Integer> arr) {\n// buggy line:    if (arr.size() == 0) {\n    <extra_id_0>\n        return arr;\n    } else {\n        int middle = arr.size() / 2;\n        ArrayList<Integer> left = new ArrayList<Integer>(100);\n        left.addAll(arr.subList(0,middle));\n        left = mergesort(left);\n        ArrayList<Integer> right = new ArrayList<Integer>(100);\n        right.addAll(arr.subList(middle, arr.size()));\n        right = mergesort(right);\n        return merge(left, right);\n    }\n}",
+      "function range": "37,5-51,5",
+      "output": [
+        {
+          "patch": "if (arr.get(0) == 0) {    } else {\n   \n    if (arr.size() < 100) {\n        arr.sort();\n        }\n       \n       \n   \n        arr.sort();",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (arr.get(0) == 0) {    } else {\n   \n    if (arr.size() < 100) {\n        arr.sort();\n        }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (arr.size() < 100) {    } else {\n   \n    if (arr.size() < 100) {\n        // nothing to do\n        // nothing to do",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (arr.get(0) == 0) {    } else {\n   \n    if (arr.size() < 100) {\n        arr.sort();\n        }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (arr.get(0) == 0) {    } else {\n   \n    if (arr.size() < 100) {\n        arr.sort();\n        }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (arr.size() < 100) {    } else {\n   \n    if (arr.size() < 100) {\n        // nothing to do\n        // nothing to do\n       \n       \n       \n        // nothing to do",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (arr.size() < 100) {    } else {\n   \n    if (arr.size() < 100) {\n\n\n       \n       \n    } else {\n       \n\n\n       \n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (arr.size() < 100) {    } else {\n   \n    if (arr.size() < 100) {\n        // return arr;\n        // }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (arr.get(0) == 0) {    } else {\n   \n    if (arr.size() < 100) {\n        arr.sort();\n        }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (arr.get(0) == 0) {    } else {\n   \n    if (arr.size() < 100) {\n\n\n       \n       \n    } else {\n       \n\n\n       \n}",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "MINIMUM_SPANNING_TREE": {
+      "loc": "29-30",
+      "input": "public static Set<WeightedEdge> minimum_spanning_tree(List<WeightedEdge> weightedEdges) {\n    Map<Node,Set<Node>> groupByNode = new HashMap<>();\n    Set<WeightedEdge> minSpanningTree = new HashSet<>();\n    Collections.sort(weightedEdges);\n    for (WeightedEdge edge : weightedEdges) {\n        Node vertex_u = edge.node1;\n        Node vertex_v = edge.node2;\n        if (!groupByNode.containsKey(vertex_u)){\n            groupByNode.put(vertex_u, new HashSet<>(Arrays.asList(vertex_u)));\n        }\n        if (!groupByNode.containsKey(vertex_v)){\n            groupByNode.put(vertex_v, new HashSet<>(Arrays.asList(vertex_v)));\n        }\n        if (groupByNode.get(vertex_u) != groupByNode.get(vertex_v)) {\n            minSpanningTree.add(edge);\n            groupByNode = update(groupByNode, vertex_u, vertex_v);\n            for (Node node : groupByNode.get(vertex_v)) {\n// buggy line:                groupByNode = update(groupByNode, node, vertex_u);\n                <extra_id_0>\n            }\n        }\n    }\n    return minSpanningTree;\n}",
+      "function range": "8,5-34,5",
+      "output": [
+        {
+          "patch": "// buggy line:                groupByNode = update(groupByNode, node, vertex_v); }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                groupByNode = update(groupByNode, node, vertex_v); }\n   \n\n   \n// buggy line:\n\n   \n   \n   \n   \n       \n       \n       \n       \n        if (\n\n\n } else {\n\n\n\n\n   \n   \n   \n   \n   \n   \n\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                groupByNode = update(groupByNode, node, vertex_v); }\n   \n\n   \n// buggy line:\n\n   \n   \n   \n   \n       \n       \n       \n           \n        if (\n\n\n } else {\n\n\n\n\n   \n   \n   \n   \n   \n   \n\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                groupByNode = update(groupByNode, node, vertex_v); }\n   \n\n   \n\n\n   \n   \n   \n   \n       \n       \n       \n       \n        if (\n// buggy line:\n\n } else {\n\n\n\n\n   \n   \n   \n   \n   \n   \n\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                groupByNode = update(groupByNode, node, vertex_v); }\n   \n\n   \n// buggy line:\n   \n   \n   \n   \n       \n       \n       \n       \n        if (\n\n\n } else {\n\n\n\n\n   \n   \n\n   \n   \n   \n    }\n    return minSp",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                groupByNode = update(groupByNode, node, vertex_v); }\n   \n\n   \n// buggy line:\n\n   \n   \n   \n   \n       \n       \n       \n       \n        if (\n\n\n } else {\n\n\n\n\n   \n   \n\n   \n   \n   \n    }\n    return min",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                groupByNode = update(groupByNode, node, vertex_v); }\n   \n\n   \n// buggy line:\n\n   \n   \n   \n   \n       \n       \n       \n       \n        if (\n\n\n } else {\n\n\n\n\n   \n   \n\n   \n   \n   \n\n    }\n    return",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                groupByNode = update(groupByNode, node, vertex_v); }\n   \n\n   \n// buggy line:\n\n   \n   \n   \n   \n       \n       \n       \n       \n        if (\n\n\n } else {\n\n\n\n\n   \n   \n   \n   \n   \n   \n    }\n    return",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                groupByNode = update(groupByNode, node, vertex_v); }\n   \n\n   \n// buggy line:\n\n   \n   \n   \n   \n       \n       \n       \n       \n        if (\n\n\n } else {\n\n\n\n\n   \n   \n\n   \n   \n   \n\n    }\n    for",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                groupByNode = update(groupByNode, node, vertex_v); }\n   \n\n   \n\n\n   \n   \n   \n   \n       \n       \n       \n       \n        if (\n// buggy line:\n\n } else {\n\n\n\n\n   \n   \n\n   \n   \n   \n\n    }\n    return",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "NEXT_PALINDROME": {
+      "loc": "37-38",
+      "input": "public static String next_palindrome(int[] digit_list) {\n    int high_mid = Math.floorDiv(digit_list.length, 2);\n    int low_mid = Math.floorDiv(digit_list.length - 1, 2);\n    while (high_mid < digit_list.length && low_mid >= 0) {\n        if (digit_list[high_mid] == 9) {\n            digit_list[high_mid] = 0;\n            digit_list[low_mid] = 0;\n            high_mid += 1;\n            low_mid -= 1;\n        } else {\n            digit_list[high_mid] += 1;\n            if (low_mid != high_mid) {\n                digit_list[low_mid] += 1;\n            }\n            return Arrays.toString(digit_list);\n        }\n    }\n    ArrayList<Integer> otherwise = new ArrayList<Integer>();\notherwise.add(1);\n// buggy line:otherwise.addAll(Collections.nCopies(digit_list.length, 0));\n<extra_id_0>\notherwise.add(1);\n    return String.valueOf(otherwise);\n}",
+      "function range": "16,5-41,5",
+      "output": [
+        {
+          "patch": "}\n    ArrayList<Integer> otherwise = new ArrayList<Integer>();   public static String random() {\n\n\n\n\n   \n\n   \n    ArrayList<Integer> otherwise = new ArrayList<Integer>();\n// buggy line:\n   \n       \n    }\n\n\n\n\n\n\n   \n   \n   \n   \n   \n   \n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n    ArrayList<Integer> otherwise = new ArrayList<Integer>();   public static String random() {\n\n\n\n\n   \n\n   \n    ArrayList<Integer> otherwise = new ArrayList<Integer>();\n\n       \n        }\n       \n    }\n\n\n\n\n\n\n   \n   \n   \n   \n   \n    }\n    return \"\"; //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n    ArrayList<Integer> otherwise = new ArrayList<Integer>();   public static String random() {\n\n\n\n\n   \n\n   \n    ArrayList<Integer> otherwise = new ArrayList<Integer>();\n\n       \n        }\n       \n    }\n\n\n\n\n\n\n   \n   \n   \n   \n   \n    }\n    return \"\";//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n    ArrayList<Integer> otherwise = new ArrayList<Integer>();   public static String random() {\n\n\n\n\n   \n\n   \n    ArrayList<Integer> otherwise = new ArrayList<Integer>();\n\n       \n        }\n    }\n   \n\n\n\n\n\n\n\n   \n   \n   \n   \n   \n    }\n    return \"\" //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n    ArrayList<Integer> otherwise = new ArrayList<Integer>();   public static String random() {\n\n\n\n\n   \n\n   \n    ArrayList<Integer> otherwise = new ArrayList<Integer>();\n    // buggy line:\n   \n       \n    }\n\n\n\n\n\n\n   \n   \n   __\n   \n    }\n    return",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n    ArrayList<Integer> otherwise = new ArrayList<Integer>();   public static String random() {\n\n\n\n\n   \n\n   \n    ArrayList<Integer> otherwise = new ArrayList<Integer>();\n    // buggy line:\n   \n       \n    }\n\n\n\n\n\n\n   \n   \n   \n   \n   \n   \n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n    ArrayList<Integer> otherwise = new ArrayList<Integer>();   public static String random() {\n\n\n\n\n   \n\n   \n    ArrayList<Integer> otherwise = new ArrayList<Integer>();\n\n       \n        }\n    }\n   \n\n\n\n   \n\n\n\n   \n   \n   \n   \n   \n   \n    }\n    return",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n    ArrayList<Integer> otherwise = new ArrayList<Integer>();   public static String random() {\n\n\n\n\n   \n\n   \n    ArrayList<Integer> otherwise = new ArrayList<Integer>();\n// buggy line:\n   \n       \n    }\n\n\n\n\n\n\n   \n   \n   \n   \n   \n   \n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n    ArrayList<Integer> otherwise = new ArrayList<Integer>();   public static String random() {\n\n\n\n\n   \n\n   \n    ArrayList<Integer> otherwise = new ArrayList<Integer>();\n    // buggy line:\n   \n       \n    }\n\n\n\n\n\n\n   \n   ___\n   \n    }\n    return next",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n    ArrayList<Integer> otherwise = new ArrayList<Integer>();   public static String random() {\n\n\n\n\n   \n\n   \n    ArrayList<Integer> otherwise = new ArrayList<Integer>();\n    // buggy line:\n   \n       \n    }\n\n\n\n\n\n\n   \n   ___\n   \n    }\n    return new",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "NEXT_PERMUTATION": {
+      "loc": "19-20",
+      "input": "public static ArrayList<Integer> next_permutation(ArrayList<Integer> perm) {\n    for (int i=perm.size()-2; i!=-1; i--) {\n        if (perm.get(i) < perm.get(i+1)) {\n            for (int j=perm.size()-1; j!=i; j--) {\n// buggy line:                if (perm.get(j) < perm.get(i)) {\n                <extra_id_0>\n                    ArrayList<Integer> next_perm = perm;\n                    int temp_j = perm.get(j);\n                    int temp_i = perm.get(i);\n                    next_perm.set(i,temp_j);\n                    next_perm.set(j,temp_i);\n                    ArrayList<Integer> reversed = new ArrayList<Integer>(100);\n                    for (int k=next_perm.size()-1; k!=i; k--) {\n                        reversed.add(next_perm.get(k));\n                    }\n                    int q = i + 1;\n                    for (Integer replace : reversed) {\n                        next_perm.set(q, replace);\n                        q++;\n                    }\n                    return next_perm;\n                }\n            }\n        }\n    }\n    return new ArrayList<Integer>();\n}",
+      "function range": "15,5-44,5",
+      "output": [
+        {
+          "patch": "if (perm.get(j) == perm.get(i)) {\n                   \n\n                if (perm.get(j) == perm.get(i)) {\n                   \n                   \n                   \n                   \n                   \n                   \n                   \n                   \n                   \n\n                   \n\n\n\n\n\n                   \n                   \n\n                   \n                   \n                    for (int k=i; k",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (perm.get(j) == perm.get(i)) {\n                   \n\n                if (perm.get(j) == perm.get(i)) {\n                   \n\n                   \n                   \n                   \n                   \n                   \n                   \n            }\n           \n\n                   \n\n\n\n\n\n                   \n                   \n\n                   \n                    =;\n                       \n                    return next_",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (perm.get(j) == perm.get(i)) {\n                   \n\n                if (perm.get(j) == perm.get(i)) {\n                   \n                   \n                   \n                   \n                   \n                   \n                   \n                   \n//\n\n                   \n\n\n\n\n\n                   \n                   \n\n                   \n                   \n                    for (int k=i; k",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (perm.get(j) == perm.get(i)) {\n                   \n\n                if (perm.get(j) == perm.get(i)) {\n                   \n                   \n                   \n                   \n                   \n                   \n                   \n                   \n                   \n\n                   \n\n\n\n\n\n                   \n                   \n\n                   \n                   \n                    for (int k=0; k",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (perm.get(j) == perm.get(i)) {\n                   \n\n                if (perm.get(j) == perm.get(i)) {\n                   \n                   \n                   \n                   \n                   \n                   \n                   \n                   \n//\n\n                   \n\n\n\n\n\n                   \n                   \n\n                   \n                   \n                    for (int k=0; k",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (perm.get(j) == perm.get(i)) {\n                   \n\n                if (perm.get(j) == perm.get(i)) {\n                   \n\n                   \n                   \n                   \n                   \n                   \n                   \n                }\n                   \n\n                   \n\n\n\n\n\n                   \n                   \n\n                   \n                    =;\n                       \n                    return next_",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (perm.get(j) == perm.get(i)) {\n                   \n\n                if (perm.get(j) == perm.get(i)) {\n                   \n                   \n                   \n                   \n                   \n                   \n                   \n                   \n                   \n\n                   \n\n\n\n\n\n                   \n                   \n\n                   \n                    = i;\n                    for (; k--",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (perm.get(j) == perm.get(i)) {\n                   \n\n                if (perm.get(j) == perm.get(i)) {\n                   \n\n                   \n                   \n                   \n                   \n                   \n                   \n            }\n           \n\n                   \n\n\n\n\n\n                   \n                   \n\n                   \n                   \n                    for (int k=;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (perm.get(j) == perm.get(i)) {\n                   \n\n                if (perm.get(j) == perm.get(i)) {\n                   \n                   \n                   \n                   \n                   \n                   \n                   \n                   \n//\n\n                   \n\n\n\n\n\n                   \n                   \n\n                   \n                    = i;\n                    for (; k--",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (perm.get(j) == perm.get(i)) {\n                   \n\n                if (perm.get(j) == perm.get(i)) {\n                   \n\n                   \n                   \n                   \n                   \n                   \n                   \n            }\n           \n\n                   \n\n\n\n\n\n                   \n                   \n\n                   \n                    =;\n                       \n                    next_perm",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "PASCAL": {
+      "loc": "22-23",
+      "input": "public static ArrayList<ArrayList<Integer>> pascal(int n) {\n    ArrayList<ArrayList<Integer>> rows = new ArrayList<ArrayList<Integer>>();\n    ArrayList<Integer> init = new ArrayList<Integer>();\n    init.add(1);\n    rows.add(init);\n    for (int r=1; r<n; r++) {\n        ArrayList<Integer> row = new ArrayList<Integer>();\n// buggy line:        for (int c=0; c<r; c++) {\n        <extra_id_0>\n            int upleft, upright;\n            if (c > 0) {\n                upleft = rows.get(r-1).get(c-1);\n            } else {\n                upleft = 0;\n            }\n            if (c < r) {\n                upright = rows.get(r-1).get(c);\n            } else {\n                upright = 0;\n            }\n            row.add(upleft+upright);\n        }\n        rows.add(row);\n    }\n    return rows;\n}",
+      "function range": "14,5-40,5",
+      "output": [
+        {
+          "patch": "{\n           \n           \n\n           \n\n\n   \n   \n    for (int r=1; r<n; r++) {\n       \n   \n   \n        for (int dupleft=0; dupleft<r; dupleft++) {\n\n\n           \n\n\n\n               \n           \n\n   \n   \n   \n    return rows;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n           \n           \n\n           \n\n\n   \n   \n    for (int r=1; r<n; r++) {\n       \n   \n   \n        for (int dupleft=0; dupleft<r; dupleft++) {\n\n\n           \n\n\n\n               \n           \n\n    public ArrayList<ArrayList<Integer>>",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n           \n           \n\n           \n\n\n   \n   \n    for (int r=1; r<n; r++) {\n\n   \n   \n        for (int dupleft=0; dupleft<r; dupleft++) {\n\n\n           \n\n\n\n               \n           \n\n    public\n    {\n       \n       \n\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n           \n           \n\n           \n\n\n   \n   \n    for (int r=1; r<n; r++) {\n\n   \n   \n        for (int dupleft=0; dupleft<r; dupleft++) {\n\n\n           \n\n\n\n               \n           \n\n    public ArrayList<ArrayList<Integer>>\n\n\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n           \n           \n\n           \n\n\n   \n   \n    for (int r=1; r<n; r++) {\n\n   \n   \n        for (int dupleft=0; dupleft<r; dupleft++) {\n\n\n           \n\n\n\n               \n           \n\n    public ArrayList<ArrayList<Integer>>",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n           \n           \n\n           \n           \n   \n   \n   \n    for (int r=1; r<n; r++) {\n       \n   \n   \n        for (int dupleft=0; dupleft<r; dupleft++) {\n\n\n           \n\n\n\n               \n           \n\n   \n   \n   \n\n    return rows",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n           \n           \n\n           \n\n\n   \n   \n    for (int r=1; r<n; r++) {\n\n   \n   \n        for (int dupleft=0; dupleft<r; dupleft++) {\n\n\n           \n\n\n\n               \n           \n\n   \n   \n   \n    return rows;\n\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n           \n           \n\n           \n\n\n   \n   \n    for (int r=1; r<n; r++) {\n       \n   \n   \n        for (int dupleft=0; dupleft<r; dupleft++) {\n\n\n           \n\n\n\n               \n           \n\n   \n    return\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n           \n           \n\n           \n           \n   \n   \n   \n    for (int r=1; r<n; r++) {\n       \n   \n   \n        for (int dupleft=0; dupleft<r; dupleft++) {\n\n\n           \n\n\n\n               \n           \n\n   \n       \n//\n\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "{\n           \n           \n\n           \n\n\n   \n   \n    for (int r=1; r<n; r++) {\n\n   \n   \n        for (int dupleft=0; dupleft<r; dupleft++) {\n\n\n           \n\n\n\n               \n           \n\n   \n   \n   \n    return rows;\n}",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "POSSIBLE_CHANGE": {
+      "loc": "17-18",
+      "input": "public static int possible_change(int[] coins, int total) {\n    if (total == 0) {\n        return 1;\n    }\n// buggy line:    if (total < 0) {\n    <extra_id_0>\n        return 0;\n    }\n    int first = coins[0];\n    int[] rest = Arrays.copyOfRange(coins, 1, coins.length);\n    return possible_change(coins, total-first) + possible_change(rest, total);\n}",
+      "function range": "13,5-24,5",
+      "output": [
+        {
+          "patch": "if (coins.length == 0) { }\n\n   \n    if (coins.length == 0) {\n// buggy line:\n// buggy line: +\n    +\n\n_change(first, total) + +\n    else {\n\n =\n    else {\n\n =\n\n\n   \n    int =\n\n    if (total",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (coins.length == 0) {\n    } else {\n   \n    if (coins.length == 0) {\n        return 1;\n    } else {\n +\n    +\n\n_change(first, total) + +\n    else {\n\n =\n    else {\n\n =\n\n\n   \n    int =\n\n    if (total",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (coins.length == 0) {\n    } else {\n   \n    if (coins.length == 0) {\n        return 1;\n    } else {\n +\n    +\n\n_change(first, total) + +\n    else {\n\n =\n    else {\n\n =\n\n\n   \n   \n   \n\n    if (total",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (coins.length == 0) { }\n\n   \n    if (coins.length == 0) {\n// buggy line:\n// buggy line: +\n    +\n\n_change(first, total) + +\n    else {\n\n =\n    else {\n\n =\n\n\n   \n    int =\n\n    int last =",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (coins.length == 0) { }\n\n   \n    if (coins.length == 0) {\n// buggy line:\n// buggy line: +\n    +\n\n_change(first, total) + +\n    else {\n\n =\n    else {\n\n =\n\n\n   \n    int =\n\n    int first_",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (coins.length == 0) {\n    } else {\n   \n    if (coins.length == 0) {\n        return 1;\n    } else {\n +\n    +\n\n_change(first, total) + +\n    else {\n\n =\n    else {\n\n =\n\n\n   \n    int =\n\n    int first_",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (coins.length == 0) { }\n\n   \n    if (coins.length == 0) {\n// buggy line:\n// buggy line: +\n    +\n\n_change(first, total) + +\n    else {\n\n =\n    else {\n\n =\n\n\n   \n    int =\n\n    int[] first",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (coins.length == 0) { }\n\n   \n    if (coins.length == 0) {\n// buggy line:\n// buggy line: +\n    +\n\n_change(first, total) + +\n    else {\n\n =\n    else {\n\n =\n\n\n   \n   \n   \n\n    int first_",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (coins.length == 0) {\n    } else {\n   \n    if (coins.length == 0) {\n        return 1;\n    } else {\n +\n    +\n\n_change(first, total) + +\n    else {\n\n =\n    else {\n\n =\n\n\n   \n   \n   \n\n    int first =",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (coins.length == 0) {\n    } else {\n   \n    if (coins.length == 0) {\n        return 1;\n    } else {\n +\n    +\n\n_change(first, total) + +\n    else {\n\n =\n    else {\n\n =\n\n\n   \n   \n   \n\n    int first_",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "QUICKSORT": {
+      "loc": "26-27",
+      "input": "public static ArrayList<Integer> quicksort(ArrayList<Integer> arr) {\n    if (arr.isEmpty()) {\n        return new ArrayList<Integer>();\n    }\n    Integer pivot = arr.get(0);\n    ArrayList<Integer> lesser = new ArrayList<Integer>();\n    ArrayList<Integer> greater = new ArrayList<Integer>();\n    for (Integer x : arr.subList(1, arr.size())) {\n        if (x < pivot) {\n            lesser.add(x);\n// buggy line:        } else if (x > pivot) {\n        <extra_id_0>\n            greater.add(x);\n        }\n    }\n    ArrayList<Integer> middle = new ArrayList<Integer>();\n    middle.add(pivot);\n    lesser = quicksort(lesser);\n    greater = quicksort(greater);\n    middle.addAll(greater);\n    lesser.addAll(middle);\n    return lesser;\n}",
+      "function range": "14,5-38,5",
+      "output": [
+        {
+          "patch": "// buggy line:        } else {\n        } else {\n   \n        } else {\n    public\n   \n   \n   \n   \n   \n   \n   \n   \n// buggy line:        } else {\n        } else {\n        } else {\n   \n\n\n\n   \n    public\n   \n   \n   \n   \n\n    return",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "} else {\n           \n   \n// buggy line:        } else {\n    public\n   \n   \n   \n   \n   \n   \n   \n   \n// buggy line:        } else {\n        } else {\n        } else {\n   \n        } else {\n\n\n   \n    public",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        } else {\n        } else {\n   \n        } else {\n   \n    ArrayList<Integer>\n   \n   \n   \n   \n   \n   \n// buggy line:        } else {\n        } else {\n        } else {\n   \n\n\n\n   \n    public",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "} else {\n           \n   \n// buggy line:        } else {\n    public\n    ArrayList<Integer>\n   \n   \n   \n   \n   \n   \n// buggy line:        } else {\n        } else {\n        } else {\n   \n\n\n\n   \n    public\n   \n   \n   \n   \n\n    return middle",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        } else {\n        } else {\n   \n        } else {\n    public\n    ArrayList<Integer>\n   \n   \n   \n   \n   \n   \n// buggy line:        } else {\n        } else {\n        } else {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "} else {\n           \n   \n// buggy line:        } else {\n    public\n    ArrayList<Integer>\n   \n   \n   \n   \n   \n   \n// buggy line:        } else {\n        } else {\n        } else {\n   \n        } else {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        } else {\n        } else {\n   \n        } else {\n    public\n   \n   \n   \n   \n   \n   \n   \n   \n// buggy line:        } else {\n        } else {\n        } else {\n   \n\n\n\n   \n    public\n   <Integer>",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        } else {\n        } else {\n   \n        } else {\n   \n    ArrayList<Integer>\n   \n   \n   \n   \n   \n   \n// buggy line:        } else {\n        } else {\n        } else {\n   \n\n\n\n   \n    public\n   <Integer>",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "} else {\n           \n   \n// buggy line:        } else {\n    public\n   \n   \n   \n   \n   \n   \n   \n   \n// buggy line:        } else {\n        } else {\n        } else {\n   \n        } else {\n\n\n   \n    public\n   <Integer>",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        } else {\n        } else {\n   \n        } else {\n    public\n    ArrayList<Integer>\n   \n   \n   \n   \n   \n   \n// buggy line:        } else {\n        } else {\n\n       \n\n\n\n   \n}",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "REVERSE_LINKED_LIST": {
+      "loc": "20-20",
+      "input": "public static Node reverse_linked_list(Node node) {\n    Node prevnode = null;\n    Node nextnode;\n    while (node != null) {\n        nextnode = node.getSuccessor();\n        node.setSuccessor(prevnode);\n// buggy line:        node = nextnode;\n        <extra_id_0>\n    }\n    return prevnode;\n}",
+      "function range": "14,5-23,5",
+      "output": [
+        {
+          "patch": "prevnode = node; //\n        node = nextnode;\n// buggy line:\n        node = nextnode;\n   \n\n   \n        prevnode = node;\n        node = nextnode;\n\n\n        prevnode = node;\n        node = nextnode;\n\n\n        node = nextnode;________",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "prevnode = node;\n        node = nextnode; }\n\n        node = nextnode;\n   \n\n   \n\n   \n        prevnode = node;\n        node = nextnode;\n\n\n        prevnode = node;\n        node = nextnode;\n\n\n        node = nextnode;________(Node node)",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "prevnode = node; //\n        node = nextnode;\n// buggy line:\n        node = nextnode;\n\n\n   \n        prevnode = node;\n        node = nextnode;\n\n\n        prevnode = node;\n        node = nextnode;\n\n\n        node = nextnode;________(",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "prevnode = node; //\n        node = nextnode;\n// buggy line:\n        node = nextnode;\n\n\n   \n        prevnode = node;\n        node = nextnode;\n\n\n        prevnode = node;\n        node = nextnode;\n\n\n        node = nextnode;________\n        node",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "prevnode = node;\n        node = nextnode; }\n\n        node = nextnode;\n   \n\n   \n\n   \n        prevnode = node;\n        node = nextnode;\n\n\n        node = nextnode;\n        prevnode = node;\n        node = nextnode;\n\n\n   _______(Node",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "prevnode = node;\n        node = nextnode; }\n\n        node = nextnode;\n   \n\n   \n\n   \n        prevnode = node;\n        node = nextnode;\n\n\n        prevnode = node;\n        node = nextnode;\n\n\n        node = nextnode;_______(Node node) { }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "prevnode = node; //\n        node = nextnode;\n// buggy line:\n        node = nextnode;\n\n\n   \n        prevnode = node;\n        node = nextnode;\n// buggy line:\n\n        prevnode = node;\n        node = nextnode;\n\n\n\n   _______",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "prevnode = node;\n        node = nextnode; }\n\n        node = nextnode;\n   \n\n   \n\n   \n        prevnode = node;\n        node = nextnode;\n\n\n        prevnode = node;\n        node = nextnode;\n        prevnode = node;\n\n\n   _______(Node",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "prevnode = node; //\n        node = nextnode;\n// buggy line:\n        node = nextnode;\n   \n\n   \n        prevnode = node;\n        node = nextnode;\n// buggy line:\n\n        prevnode = node;\n        node = nextnode;\n // break;________",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "prevnode = node;\n        node = nextnode; }\n\n        node = nextnode;\n   \n\n   \n\n   \n        prevnode = node;\n        node = nextnode;\n\n\n        prevnode = node;\n        node = nextnode;\n        node = nextnode;\n\n\n   _______(Node",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "RPN_EVAL": {
+      "loc": "34-35",
+      "input": "public static Double rpn_eval(ArrayList tokens) {\nMap<String, BinaryOperator<Double>> op = new HashMap<String, BinaryOperator<Double>>();\nop.put(\"+\", (a, b) -> a + b); \nop.put(\"-\", (a, b) -> a - b); \nop.put(\"*\", (a, b) -> a * b); \nop.put(\"/\", (a, b) -> a / b); \n    Stack stack = new Stack();\n    for (Object token : tokens) {\n        if (Double.class.isInstance(token)) {\n            stack.push((Double) token);\n        } else {\ntoken = (String) token;\n            Double a = (Double) stack.pop();\n            Double b = (Double) stack.pop();\nDouble c = 0.0;\nBinaryOperator<Double> bin_op = op.get(token);\n// buggy line:c= bin_op.apply(a,b);\n<extra_id_0>\n            stack.push(c);\n        }\n    }\n    return (Double) stack.pop();\n}",
+      "function range": "15,5-40,5",
+      "output": [
+        {
+          "patch": "c = bin_op.apply(a,b);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "c = bin_op.apply(b,a);",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "c = bin_op.apply(a,b);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "c += bin_op.apply(a,b);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "c = c + bin_op.apply(a,b);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "c = bin_op.apply(c,a,b);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "c = bin_op.apply(b,a);",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "c = bin_op.apply(c,a,b);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "c += bin_op.apply(b,a);",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "c = bin_op.apply(a, b);",
+          "correctness": "wrong"
+        }
+      ]
+    },
+    "SHORTEST_PATH_LENGTH": {
+      "loc": "39-40",
+      "input": "public int shortest_path_length(Map<List<Node>, Integer> length_by_edge, Node startnode, Node goalnode) {\n    int n = length_by_edge.size();\n    Map<Node, Integer> unvisitedNodes = new HashMap<>();\n    Set<Node> visitedNodes = new HashSet<>();\n    unvisitedNodes.put(startnode, 0);\n    while (!unvisitedNodes.isEmpty()) {\n        Node node = getNodeWithMinDistance(unvisitedNodes);\n        int distance = unvisitedNodes.get(node);\n        unvisitedNodes.remove(node);\n        if (node.getValue() == goalnode.getValue()) {\n            return distance;\n        }\n        visitedNodes.add(node);\n        for (Node nextnode : node.getSuccessors()) {\n            if (visitedNodes.contains(nextnode)) {\n                continue;\n            }\n            if (unvisitedNodes.get(nextnode) == null) {\n                unvisitedNodes.put(nextnode, Integer.MAX_VALUE);\n            }\n            unvisitedNodes.put(nextnode, Math.min(unvisitedNodes.get(nextnode),\n// buggy line:                    unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode))));\n                    <extra_id_0>\n        }\n    }\n    return Integer.MAX_VALUE;\n}",
+      "function range": "11,5-44,5",
+      "output": [
+        {
+          "patch": "length_by_edge.put(node, nextnode); }\n   \n// buggy line:\n// buggy line:\n\n   \n\n   \n\n   \n\n\n       \n        for (Node nextnode : node.getSuccessors()) {\n           \n\n\n }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "length_by_edge.put(node, nextnode); }\n   \n// buggy line:\n\n   \n\n   \n\n    for (Node node : nodes) {\n        if (!visitedNodes.contains(node)) {\n           \n            }\n\n\n\n\n\n }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "length_by_edge.put(node, nextnode); }\n   \n// buggy line:\n// buggy line:\n\n   \n\n   \n\n   \n\n\n   \n        for (Node nextnode : node.getSuccessors()) {\n           \n\n\n }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "length_by_edge.put(node, nextnode); }\n   \n// buggy line:\n\n   \n\n   \n\n    for (Node node : nodes) {\n        if (!visitedNodes.contains(node)) {\n           \n            }\n\n\n\n\n\n }\n\n\n\n\n   \n   \n   _\n   \n   \n\n        if",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "length_by_edge.put(node, nextnode); }\n   \n// buggy line:\n\n   \n\n   \n\n    for (Node node : nodes) {\n        if (!visitedNodes.contains(node)) {\n           \n            }\n\n\n\n\n\n }\n\n\n\n   \n   \n   \n   \n   \n   \n\n        if",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "length_by_edge.put(node, nextnode); }\n   \n// buggy line:\n// buggy line:\n\n   \n\n   \n\n   \n\n\n       \n        for (Node nextnode : node.getChildren()) {\n           \n\n\n }\n\n\n\n\n   \n   \n   \n   \n   \n   \n\n        if",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "length_by_edge.put(node, nextnode); }\n   \n// buggy line:\n\n   \n\n   \n\n    for (Node node : nodes) {\n        if (!visitedNodes.contains(node)) {\n           \n            }\n\n\n\n\n\n }\n\n\n\n   \n   \n   _\n   \n   \n\n        if (",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "length_by_edge.put(node, nextnode); }\n   \n// buggy line:\n// buggy line:\n\n   \n\n   \n\n   \n\n\n       \n        for (Node nextnode : node.getSuccessors()) {\n           \n\n\n }\n\n\n\n\n   \n   \n   _\n   \n   \n\n        if",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "length_by_edge.put(node, nextnode); }\n   \n// buggy line:\n// buggy line:\n\n   \n\n   \n\n   \n\n\n   \n        for (Node nextnode : node.getSuccessors()) {\n           \n\n\n }\n\n\n\n\n   \n   \n   _\n   \n   \n\n        if",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "length_by_edge.put(node, nextnode); }\n   \n// buggy line:\n\n   \n\n   \n\n    for (Node node : nodes) {\n        if (!visitedNodes.contains(node)) {\n           \n            }\n\n\n\n\n }\n\n\n\n\n   \n   \n   _\n   \n   \n\n        if (",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "SHORTEST_PATH_LENGTHS": {
+      "loc": "38-39",
+      "input": "public static Map<List<Integer>,Integer> shortest_path_lengths(int numNodes, Map<List<Integer>,Integer> length_by_edge) {\n    Map<List<Integer>,Integer> length_by_path = new HashMap<>();\n    for (int i = 0; i < numNodes; i++) {\n        for (int j =0; j < numNodes; j++) {\n            List<Integer> edge = new ArrayList<>(Arrays.asList(i,j));\n            if (i == j) {\n                length_by_path.put(edge, 0);\n            }\n            else if (length_by_edge.containsKey(edge) ) {\n                length_by_path.put(edge, length_by_edge.get(edge));\n            } else {\n                length_by_path.put(edge, INF);\n            }\n        }\n    }\n    for (int k = 0; k < numNodes; k++) {\n        for (int i = 0; i < numNodes; i++) {\n            for (int j = 0; j < numNodes; j++) {\n                int update_length = Math.min(length_by_path.get(Arrays.asList(i,j)),\n// buggy line:                        length_by_path.get(Arrays.asList(i,k)) + length_by_path.get(Arrays.asList(j,k)));\n                        <extra_id_0>\n                length_by_path.put(Arrays.asList(i,j), update_length);\n            }\n        }\n    }\n    return length_by_path;\n}",
+      "function range": "19,5-44,5",
+      "output": [
+        {
+          "patch": "// buggy line:                        length_by_path.get(Arrays.asList(i,j)) + length_by_path.get(j,k));\n               \n   \n\n   \n   \n   \n   \n   \n   \n\n           \n           \n\n\n\n               \n\n\n\n   \n   \n\n   \n       \n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                        length_by_path.get(Arrays.asList(i,j)) + length_by_path.get(j,k));\n               \n\n\n   \n   \n   \n           \n           \n           \n           \n           \n           \n\n\n\n               \n\n\n\n   \n   \n\n   \n       \n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                        length_by_path.get(Arrays.asList(i,j)) + length_by_path.get(j,k));\n               \n   \n\n   \n   \n   \n           \n           \n       \n\n           \n           \n\n\n\n               \n\n\n\n   \n   \n\n   \n       \n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                        length_by_path.get(Arrays.asList(i,j)) + length_by_path.get(j,k));\n               \n\n\n   \n   \n   \n   \n   \n   \n\n           \n           \n\n\n\n               \n\n\n\n   \n   \n\n   \n       \n    }\n   \n\n    return",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                        length_by_path.get(Arrays.asList(i,j)) + length_by_path.get(j,k));\n               \n   \n\n   \n   \n   \n           \n           \n           \n           \n           \n           \n\n\n\n               \n\n\n\n   \n   \n   \n   \n       \n           \n\n        }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                        length_by_path.get(Arrays.asList(i,j)) + length_by_path.get(j,k));\n               \n\n\n   \n   \n   \n           \n           \n           \n           \n           \n           \n\n\n\n               \n\n\n\n   \n   \n\n   \n   \n   \n\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                        length_by_path.get(Arrays.asList(i,j)) + length_by_path.get(j,k));\n               \n   \n\n   \n   \n   \n           \n           \n           \n           \n           \n           \n\n\n\n               \n\n\n\n   \n   \n\n   \n       \n       \n\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                        length_by_path.get(Arrays.asList(i,j)) + length_by_path.get(j,k));\n               \n   \n\n   \n   \n   \n           \n           \n           \n           \n           \n           \n\n\n\n               \n\n\n\n   \n   \n\n   \n   \n   \n\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                        length_by_path.get(Arrays.asList(i,j)) + length_by_path.get(j,k));\n               \n   \n\n   \n   \n   \n   \n   \n   \n\n           \n           \n\n\n\n               \n\n\n\n   \n   \n\n   \n       \n       \n\n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                        length_by_path.get(Arrays.asList(i,j)) + length_by_path.get(j,k));\n               \n   \n\n   \n   \n   \n           \n           \n           \n           \n           \n           \n\n\n\n               \n\n\n\n   \n   \n\n   \n       \n           \n\n        }",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "SHORTEST_PATHS": {
+      "loc": "30-31",
+      "input": "public static Map<String, Integer> shortest_paths(String source, Map<List<String>,Integer> weight_by_edge) {\n    Map<String,Integer> weight_by_node = new HashMap<String,Integer>();\n    for (List<String> edge : weight_by_edge.keySet()) {\n            weight_by_node.put(edge.get(1), INF);\n            weight_by_node.put(edge.get(0), INF);\n    }\n    weight_by_node.put(source, 0);\n    for (int i = 0; i < weight_by_node.size(); i++) {\n        for (List<String> edge : weight_by_edge.keySet()) {\n            int update_weight = Math.min(\n                    weight_by_node.get(edge.get(0))\n                            + weight_by_edge.get(edge),\n                    weight_by_node.get(edge.get(1)));\n// buggy line:            weight_by_edge.put(edge, update_weight);\n            <extra_id_0>\n        }\n    }\n    return weight_by_node;\n}",
+      "function range": "16,5-34,5",
+      "output": [
+        {
+          "patch": "weight_by_node.put(edge.get(0), update_weight); }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "weight_by_node.put(edge, update_weight); }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "weight_by_node.put(edge, update_weight); }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "weight_by_node.put(edge.get(0), update_weight); }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            weight_by_node.put(edge, update_weight); }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            weight_by_node.put(edge, update_weight); }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            weight_by_node.put(edge.get(0), update_weight); }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "weight_by_node.put(edge, update_weight); }\n\n// buggy line:",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            weight_by_node.put(edge.get(0), update_weight); }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            weight_by_edge.put(edge.get(0), update_weight); }",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "SHUNTING_YARD": {
+      "loc": "34-34",
+      "input": "public static List shunting_yard(ArrayList tokens) {\n    Map<String, Integer> precedence = new HashMap<String, Integer>();\n    precedence.put(\"+\",1);\n    precedence.put(\"-\",1);\n    precedence.put(\"*\",2);\n    precedence.put(\"/\",2);\n    ArrayList rpntokens = new ArrayList(100);\n    ArrayDeque opstack = new ArrayDeque();\n    for (Object token: tokens) {\n        if (Integer.class.isInstance(token)) {\n            rpntokens.add((Integer) token);\n        } else {\n            String operator = (String) token;\n            while (!opstack.isEmpty() && precedence.get(operator) <= precedence.get(opstack.getLast())) {\n                rpntokens.add(opstack.pop());\n            }\n// buggy line:        }\n        <extra_id_0>\n    }\n    while (!opstack.isEmpty()) {\n        rpntokens.add(opstack.pop());\n    }\n    return rpntokens;\n}",
+      "function range": "15,5-42,5",
+      "output": [
+        {
+          "patch": "opstack.push(operator);\n        }",
+          "correctness": "plausible"
+        },
+        {
+          "patch": "}",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "opstack.push(operator);\n        }\n   \n\n// buggy line:        }\n\n\n   \n\n   \n\n\n   \n   \n            opstack.push(operator);\n        }\n        }\n        }\n   \n        opstack.push(token);\n\n        }\n   \n   \n_\n   \n   \n    return tokens;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "opstack.push(operator);\n        }\n   \n\n// buggy line:        }\n\n\n   \n\n   \n\n\n   \n   \n            opstack.push(operator);\n        }\n        }\n        }\n   \n        opstack.push(token);\n\n        }\n   \n   \n_\n   \n   \n\n    for (",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "opstack.push(operator);\n        }\n   \n\n// buggy line:        }\n\n\n   \n\n   \n\n\n   \n   \n            opstack.push(operator);\n        }\n        }\n        }\n   \n        opstack.push(token);\n\n        }\n   \n   \n_\n   \n   \n\n    int i",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "opstack.push(operator);\n        }\n   @SuppressWarnings(\"unchecked\")\n\n        }\n\n\n   \n\n   \n\n\n   \n   \n            opstack.push(operator);\n        }\n        }\n        }\n   \n        opstack.push(token);\n\n        }\n   \n   \n_\n   \n   \n\n    //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "opstack.push(operator);\n        }\n   @SuppressWarnings(\"unchecked\")\n\n        }\n\n\n   \n\n   \n\n\n   \n   \n            opstack.push(operator);\n        }\n        }\n        }\n   \n        opstack.push(token);\n\n        }\n   \n   \n_\n   \n   \n\n    for",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "opstack.push(operator);\n        }\n   \n\n// buggy line:        }\n\n\n   \n\n   \n\n\n   \n   \n            opstack.push(operator);\n        }\n        }\n        }\n   \n        opstack.push(token);\n        }\n\n   \n   \n_\n   \n   \n\n    int i",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "opstack.push(operator);\n        }\n   @SuppressWarnings(\"unchecked\")\n\n        }\n\n\n   \n\n   \n\n\n   \n   \n            opstack.push(operator);\n        }\n        }\n        }\n   \n        opstack.push(token);\n\n        }\n   \n   \n_\n   \n   \n\n    int",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "opstack.push(operator);\n        }\n   \n\n        }\n\n\n   \n\n\n   \n\n\n   \n   \n            opstack.push(operator);\n        }\n        }\n            opstack.push(operator);\n   \n        }\n        opstack.push(token);\n\n   \n   \n_\n   \n   \n\n    //",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "SIEVE": {
+      "loc": "41-42",
+      "input": "public static ArrayList<Integer> sieve(Integer max) {\n    ArrayList<Integer> primes = new ArrayList<Integer>();\n    for (int n=2; n<max+1; n++) {\n// buggy line:        if (any(list_comp(n, primes))) {\n        <extra_id_0>\n            primes.add(n);\n        }\n    }\n    return primes;\n}",
+      "function range": "38,5-46,5",
+      "output": [
+        {
+          "patch": "if (!primes.contains(n)) {\n// buggy line:        } else {\n// buggy line:\n        } else {\n\n\n\n\n\n        {\n        } else {\n   \n\n        {\n        } else {\n }\n\n        } else {\n\n<Integer>\n   \n<Integer>",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (!primes.contains(n)) {\n// buggy line:        } else {\n// buggy line:\n        } else {\n\n\n\n\n\n        {\n        } else {\n   \n\n        } else {\n        {\n }\n\n        } else {\n\n<Integer>\n   \n<Integer>",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (!primes.contains(n)) {\n// buggy line:        } else {\n// buggy line:\n        } else {\n\n\n\n\n\n        {\n        } else {\n    } else {\n\n\n        {\n        } else {\n }\n\n\n\n<Integer>\n   \n<Integer>",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (!primes.contains(n)) {\n// buggy line:        } else {\n// buggy line:\n        } else {\n\n\n\n\n\n        {\n        } else {\n    } else {\n\n\n        } else {\n        {\n }\n\n\n\n<Integer>\n   \n<Integer>",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (!primes.contains(n)) {\n// buggy line:        } else {\n// buggy line:\n        } else {\n\n\n\n\n\n        {\n        } else {\n   \n\n        {\n        } else {\n }\n\n        } else {\n\n<Integer>\n   \n<Integer>",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (!primes.contains(n)) {\n// buggy line:        } else {\n// buggy line:\n        } else {\n\n\n\n\n\n        {\n        } else {\n    } else {\n\n\n        } else {\n        {\n }\n\n\n\n<Integer>\n   \n<Integer>\n public ArrayList<Integer",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (!primes.contains(n)) {\n// buggy line:        } else {\n// buggy line:\n        } else {\n\n\n\n\n\n        {\n        } else {\n    } else {\n\n\n        {\n        } else {\n }\n\n\n\n<Integer>\n   \n<Integer>\n public ArrayList<Integer",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (!primes.contains(n)) {\n// buggy line:        } else {\n// buggy line:\n        } else {\n\n\n\n\n\n        {\n        } else {\n   \n\n        {\n        } else {\n }\n\n        } else {\n\n<Integer>\n   \n<Integer>",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (!primes.contains(n)) {\n// buggy line:        } else {\n// buggy line:\n        } else {\n\n\n\n\n\n        {\n        } else {\n   \n\n        } else {\n        {\n }\n\n        } else {\n\n<Integer>\n   \n<Integer>",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (!primes.contains(n)) {\n// buggy line:        } else {\n// buggy line:\n        } else {\n\n\n\n\n\n        {\n        } else {\n   \n\n        } else {\n        {\n }\n\n        } else {\n\n<Integer>\n   \n<Integer>",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "SQRT": {
+      "loc": "16-17",
+      "input": "public static double sqrt(double x, double epsilon) {\n    double approx = x / 2f;\n// buggy line:    while (Math.abs(x-approx) > epsilon) {\n    <extra_id_0>\n        approx = 0.5f * (approx + x / approx);\n    }\n    return approx;\n}",
+      "function range": "14,5-20,5",
+      "output": [
+        {
+          "patch": "if (x > approx) {\n        x = approx; }\n\n\n   \n        x = approx;\n        approx = x / approx;\n//\n\n   \n        approx = x / approx;\n    } else {\n   \n\n    {\n\n\n        x =\n\n\n\n//\n   \n\n   \n   \n    return approx;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (x > approx) {\n        x = approx; }\n\n\n   \n        x = approx;\n        approx = x / approx;\n//\n\n   \n        approx = x / approx;\n    } else {\n   \n   \n\n\n\n        x =\n\n\n\n//\n   \n\n   \n   \n    return approx;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (x > approx) {\n        x = approx; }\n\n\n   \n        x = approx;\n        approx = x / approx;\n//\n\n   \n        approx = x / approx;\n    } else {\n   \n   \n    {\n\n\n        x =\n\n\n\n//\n   \n\n   \n   \n    return approx;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (x > approx) {\n        x = approx; }\n\n\n   \n        x = approx;\n        approx = x / approx;\n// buggy line:   \n\n   \n\n\n   \n   \n    {\n        x = approx;\n\n        x =\n\n\n\n//\n   \n\n   \n   \n    return approx;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (x > approx) {\n        x = approx; }\n\n\n   \n        x = approx;\n        approx = x / approx;\n//\n\n   \n        approx = x / approx;\n    } else {\n   \n\n    {\n\n\n        x =\n\n\n\n//\n   \n\n   \n   \n    return approx;\n\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (x > approx) {\n        x = approx; }\n\n\n   \n        x = approx;\n        approx = x / approx;\n//\n\n   \n        approx = x / approx;\n    } else {\n   \n   \n    {\n\n\n        x =\n\n\n\n//\n   \n\n   \n   \n    return approx\n\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (x > approx) {\n        x = approx; }\n\n\n   \n        x = approx;\n\n\n\n   \n        x = approx;\n        approx = x / approx;\n   \n   \n    {\n        x = approx;\n\n        x =\n\n\n\n    return approx;\n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (x > approx) {\n        x = approx; }\n\n\n   \n        x = approx;\n        approx = x / approx;\n//\n\n   \n        approx = x / approx;\n    } else {\n   \n   \n\n\n\n        x =\n\n\n\n//\n   \n        x = approx;\n       \n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (x > approx) {\n        x = approx; }\n\n\n   \n        x = approx;\n        approx = x / approx;\n// buggy line:   \n\n   \n\n\n   \n   \n    {\n        x = approx;\n\n        x =\n\n\n\n//\n   \n\n   \n   \n    return approx\n\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "if (x > approx) {\n        x = approx; }\n\n\n   \n        x = approx;\n        approx = x / approx;\n//\n\n   \n        approx = x / approx;\n    } else {\n   \n   \n\n\n\n        x =\n\n\n\n//\n   \n\n   \n    return approx;\n}",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "SUBSEQUENCES": {
+      "loc": "16-17",
+      "input": "public static ArrayList<ArrayList> subsequences(int a, int b, int k) {\n    if (k == 0) {\n// buggy line:        return new ArrayList();\n        <extra_id_0>\n    }\n    ArrayList ret = new ArrayList(50);\n    for (int i=a; i<b+1-k; i++) {\n        ArrayList base = new ArrayList(50);\n        for (ArrayList rest : subsequences(i+1, b, k-1)) {\n            rest.add(0,i);\n            base.add(rest);\n        }\n        ret.addAll(base);\n    }\n    return ret;\n}",
+      "function range": "14,5-31,5",
+      "output": [
+        {
+          "patch": "return new ArrayList();\n    k--;\n   \n        return new ArrayList();\n// buggy line:        return new ArrayList();\n\n    for (int i=a; i<b; i++) {\n       \n    }\n   \n\n\n\n\n\n        return null;\n\n if (\n\n\n i<",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return new ArrayList();\n    k--;\n   \n        return new ArrayList();\n// buggy line:        return new ArrayList();\n\n    for (int i=a; i<b; i++) {\n       \n    }\n   \n\n\n\n\n\n        return null;\n\n\n   \n\n\n i<",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return new ArrayList();\n    k--;\n   \n        return new ArrayList();\n// buggy line:        return new ArrayList();\n\n    for (int i=a; i<b; i++) {\n       \n    }\n   \n}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return new ArrayList();\n    k--;\n   \n        return new ArrayList();\n// buggy line:        return new ArrayList();\n\n    for (int j=0; j<k; j++) {\n       \n    }\n   \n\n\n\n\n\n        return null;\n\n\n   \n\n\n i<",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return new ArrayList();\n    k--;\n   \n        return new ArrayList();\n// buggy line:        return new ArrayList();\n\n    for (int j=0; j<k; j++) {\n       \n    }\n   \n\n\n\n\n\n        return null;\n\n if (\n\n\n i<",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return new ArrayList();\n    k--;\n   \n        return new ArrayList();\n// buggy line:        return new ArrayList();\n\n    for (int i=a; i<b; i++) {\n       \n    }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return new ArrayList();\n    k--;\n   \n        return new ArrayList();\n// buggy line:        return new ArrayList();\n\n    for (int i=a; i<b; i++) {\n       \n    }\n   \n\n\n\n\n\n        return null;\n\n\n   \n\n\n i<",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return new ArrayList();\n    k--;\n   \n        return new ArrayList();\n// buggy line:        return new ArrayList();\n\n    for (int i=a; i<b; i++) {\n       \n    }\n   \n\n\n\n\n\n        return null;\n\n if (\n\n\n i< //",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return new ArrayList();\n    k--;\n   \n        return new ArrayList();\n// buggy line:        return new ArrayList();\n\n    for (int i=a; i<b; i++) {\n       \n    }\n   \n\n\n\n\n\n        return null;\n\n if (\n\n\n i<",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return new ArrayList();\n    k--;\n   \n        return new ArrayList();\n// buggy line:        return new ArrayList();\n\n    for (int j=0; j<k; j++) {\n       \n    }",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "TO_BASE": {
+      "loc": "21-22",
+      "input": "public static String to_base(int num, int b) {\n    String result = \"\";\n    String alphabet = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\";\n    int i;\n    while (num > 0) {\n        i = num % b;\n        num = num / b; \n// buggy line:        result = result + String.valueOf(alphabet.charAt(i));\n        <extra_id_0>\n    }\n    return result;\n}",
+      "function range": "14,5-25,5",
+      "output": [
+        {
+          "patch": "// buggy line:        result = result + String.valueOf(alphabet.charAt(i));  }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        result = result + String.valueOf(alphabet.charAt(i)); }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        result = result + String.valueOf(alphabet.charAt(i)); }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        result = result + String.valueOf(alphabet.charAt(i));  }\n }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        result = result + String.valueOf(alphabet.charAt(i));  }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        result = result + String.valueOf(alphabet.charAt(i));  }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        result = result + String.valueOf(alphabet.charAt(i)); }\n }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        result = result + String.valueOf(alphabet.charAt(i)); }\n }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        result = result + String.valueOf(alphabet.charAt(i)); }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        result = result + String.valueOf(alphabet.charAt(i-1)); }",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "TOPOLOGICAL_ORDERING": {
+      "loc": "17-18",
+      "input": "public static ArrayList<Node> topological_ordering (List<Node> directedGraph) {\n    ArrayList<Node> orderedNodes = new ArrayList<Node>();\n    for (Node node : directedGraph) {\n        if (node.getPredecessors().isEmpty()) {\n            orderedNodes.add(node);\n        }\n    }\n    int listSize = orderedNodes.size();\n    for (int i = 0; i < listSize; i++) {\n        Node node = orderedNodes.get(i);\n        for (Node nextNode : node.getSuccessors()) {\n// buggy line:            if (orderedNodes.containsAll(nextNode.getSuccessors()) && !orderedNodes.contains(nextNode)) {\n            <extra_id_0>\n                orderedNodes.add(nextNode);\n                listSize++;\n            }\n        }\n    }\n    return orderedNodes;\n}",
+      "function range": "5,5-24,5",
+      "output": [
+        {
+          "patch": "// buggy line:",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                orderedNodes.add(node);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            } else {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                orderedNodes.add(node);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:            } else {",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                orderedNodes.add(nextNode);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                orderedNodes.add(node);",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:                orderedNodes.remove(nextNode);",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "WRAP": {
+      "loc": "32-32",
+      "input": "public static ArrayList<String> wrap(String text, int cols) {\n    ArrayList<String> lines = new ArrayList<String>();\n    String line;\n    while (text.length() > cols) {\n        int end = text.lastIndexOf(\" \", cols); \n        if (end == -1) {\n            end = cols;\n        }\n        line = text.substring(0,end);\n        text = text.substring(end);\n        lines.add(line);\n    }\n// buggy line:    return lines;\n    <extra_id_0>\n}",
+      "function range": "18,5-33,5",
+      "output": [
+        {
+          "patch": "// buggy line:    return text;\n\n// buggy line:    return text;\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:    return text;\n\n// buggy line:",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:    return text;\n\n// buggy line:    return text;\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:    return text;\n\n// buggy line:    return text;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:    return text;\n\n// buggy line:    return lines;\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:    return text;\n\n// buggy line:    return lines;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:    return text;\n\n// buggy line:    return text.split(\"\\n\");\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:    return text;\n\n// buggy line:    return text;\n//\n    return text;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}\n\n// buggy line:    return text;\n\n//",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:    return text;\n\n//",
+          "correctness": "uncompilable"
+        }
+      ]
+    },
+    "POWERSET": {
+      "loc": "23-30",
+      "input": "public static ArrayList<ArrayList> powerset(ArrayList arr) {\n    if (!arr.isEmpty()) {\n        Object first = arr.get(0);\n        arr.remove(0);\n        ArrayList rest = arr;\n        ArrayList<ArrayList> rest_subsets = powerset(rest);\n        ArrayList<ArrayList> output = new ArrayList<ArrayList>(100);\n        ArrayList to_add = new ArrayList(100);\n// buggy line:        to_add.add(first);\n// buggy line:        for (ArrayList subset : rest_subsets) {\n// buggy line:            to_add.addAll(subset);\n// buggy line:        }\n// buggy line:        output.add(to_add);\n// buggy line:        return output;\n        <extra_id_0>\n    } else {\n        ArrayList empty_set = new ArrayList<ArrayList>();\n        empty_set.add(new ArrayList());\n        return empty_set;\n    }\n}",
+      "function range": "14,5-35,5",
+      "output": [
+        {
+          "patch": "return output;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return to_add;",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "// buggy line:        return to_add;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        }",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "}",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "// buggy line:        return output;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return empty_set;",
+          "correctness": "uncompilable"
+        },
+        {
+          "patch": "return output.get(0);",
+          "correctness": "wrong"
+        },
+        {
+          "patch": "return output;\n// buggy line:",
+          "correctness": "uncompilable"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "config": "finetune",
+  "data": {
+    "BITCOUNT": {
+      "loc": "15-16",
+      "input": "<s> public static int bitcount(int n) { int count = 0; while (n != 0) { </s> n = (n ^ (n - 1)); </s> count++; } return count; } </s> java"
+    },
+    "BREADTH_FIRST_SEARCH": {
+      "loc": "26-27",
+      "input": "<s> public static boolean breadth_first_search(Node startnode, Node goalnode) { Deque<Node> queue = new ArrayDeque<>(); queue.addLast(startnode); nodesvisited.add(startnode); </s> while (true) { </s> Node node = queue.removeFirst(); if (node == goalnode) { return true; } else { for (Node successor_node : node.getSuccessors()) { if (!nodesvisited.contains(successor_node)) { queue.addFirst(successor_node); nodesvisited.add(successor_node); } } } } } </s> java"
+    },
+    "BUCKETSORT": {
+      "loc": "24-25",
+      "input": "<s> public static ArrayList<Integer> bucketsort(ArrayList<Integer> arr, int k) { ArrayList<Integer> counts = new ArrayList<Integer>(Collections.nCopies(k,0)); for (Integer x : arr) { counts.set(x,counts.get(x)+1); } ArrayList<Integer> sorted_arr = new ArrayList<Integer>(100); int i = 0; </s> for (Integer count : arr) { </s> sorted_arr.addAll(Collections.nCopies(count, i)); i++; } return sorted_arr; } </s> java"
+    },
+    "DEPTH_FIRST_SEARCH": {
+      "loc": "23-23",
+      "input": "<s> boolean search(Node node) { if (nodesvisited.contains(node)) { return false; } else if (node == goalnode) { return true; } else { </s> for (Node successornodes : node.getSuccessors()) { </s> if (search(successornodes)) { return true; } } } return false; } </s> java"
+    },
+    "DETECT_CYCLE": {
+      "loc": "18-19",
+      "input": "<s> public static boolean detect_cycle(Node node) { Node hare = node; Node tortoise = node; while (true) { </s> if (hare.getSuccessor() == null) </s> return false; tortoise = tortoise.getSuccessor(); hare = hare.getSuccessor().getSuccessor(); if (hare == tortoise) return true; } } </s> java"
+    },
+    "FIND_FIRST_IN_SORTED": {
+      "loc": "19-20",
+      "input": "<s> public static int find_first_in_sorted(int[] arr, int x) { int lo = 0; int hi = arr.length; </s> while (lo <= hi) { </s> int mid = (lo + hi) / 2; if (x == arr[mid] && (mid == 0 || x != arr[mid-1])) { return mid; } else if (x <= arr[mid]) { hi = mid; } else { lo = mid + 1; } } return -1; } </s> java"
+    },
+    "FIND_IN_SORTED": {
+      "loc": "20-21",
+      "input": "<s> public static int binsearch(int[] arr, int x, int start, int end) { if (start == end) { return -1; } int mid = start + (end - start) / 2; if (x < arr[mid]) { return binsearch(arr, x, start, mid); } else if (x > arr[mid]) { </s> return binsearch(arr, x, mid, end); </s> } else { return mid; } } </s> java"
+    },
+    "FLATTEN": {
+      "loc": "22-28",
+      "input": "<s> public static Object flatten(Object arr) { if(arr instanceof ArrayList) { ArrayList narr = (ArrayList) arr; ArrayList result = new ArrayList(50); for (Object x : narr) { if (x instanceof ArrayList) { result.addAll((ArrayList) flatten(x)); } else { </s> result.add(flatten(x)); } } return result; }else { return flatten(arr); </s> } } </s> java"
+    },
+    "GCD": {
+      "loc": "19-20",
+      "input": "<s> public static int gcd(int a, int b) { if (b == 0) { return a; } else { </s> return gcd(a % b, b); </s> } } </s> java"
+    },
+    "GET_FACTORS": {
+      "loc": "20-21",
+      "input": "<s> public static ArrayList<Integer> get_factors(int n) { if (n == 1) { return new ArrayList<Integer>(); } int max = (int)(Math.sqrt(n) + 1.0); for (int i=2; i < max; i++) { if (n % i == 0) { ArrayList<Integer> prepend = new ArrayList<Integer>(0); prepend.add(i); prepend.addAll(get_factors(n / i)); return prepend; } } </s> return new ArrayList<Integer>(); </s> } </s> java"
+    },
+    "HANOI": {
+      "loc": "29-30",
+      "input": "<s> public static List<Pair<Integer,Integer>> hanoi(int height, int start, int end) { ArrayList<Pair<Integer,Integer>> steps = new ArrayList<Pair<Integer,Integer>>(); if (height > 0) { PriorityQueue<Integer> crap_set = new PriorityQueue<Integer>(); crap_set.add(1); crap_set.add(2); crap_set.add(3); crap_set.remove(start); crap_set.remove(end); int helper = crap_set.poll(); steps.addAll(hanoi(height-1, start, helper)); </s> steps.add(new Pair<Integer,Integer>(start, helper)); </s> steps.addAll(hanoi(height-1, helper, end)); } return steps; } </s> java"
+    },
+    "IS_VALID_PARENTHESIZATION": {
+      "loc": "17-18",
+      "input": "<s> public static Boolean is_valid_parenthesization(String parens) { int depth = 0; for (int i = 0; i < parens.length(); i++) { Character paren = parens.charAt(i); if (paren.equals('(')) { depth++; } else { depth--; if (depth < 0) { return false; } } } </s> return true; </s> } </s> java"
+    },
+    "KHEAPSORT": {
+      "loc": "28-29",
+      "input": "<s> public static ArrayList<Integer> kheapsort(ArrayList<Integer> arr, int k) { PriorityQueue<Integer> heap = new PriorityQueue<Integer>(); for (Integer v : arr.subList(0,k)) { heap.add(v); } ArrayList<Integer> output = new ArrayList<Integer>(); </s> for (Integer x : arr) { </s> heap.add(x); Integer popped = heap.poll(); output.add(popped); } while (!heap.isEmpty()) { output.add(heap.poll()); } return output; } </s> java"
+    },
+    "KNAPSACK": {
+      "loc": "30-31",
+      "input": "<s> public static int knapsack(int capacity, int [][] items) { int weight = 0, value = 0; int n = items.length; int memo[][] = new int[n + 1][capacity + 1]; for (int i = 0; i <= n ; i++) { if (i - 1 >= 0) { weight = items[i - 1][0]; value = items[i - 1][1]; } for (int j = 0; j <= capacity; j++) { if (i == 0 || j == 0) { memo[i][j] = 0; } </s> else if (weight < j) { </s> memo[i][j] = Math.max(memo[i - 1][j], value + memo[i - 1][j - weight]); } else { memo[i][j] = memo [i-1][j]; } } } return memo[n][capacity]; } </s> java"
+    },
+    "KTH": {
+      "loc": "26-27",
+      "input": "<s> public static Integer kth(ArrayList<Integer> arr, int k) { int pivot = arr.get(0); ArrayList<Integer> below, above; below = new ArrayList<Integer>(arr.size()); above = new ArrayList<Integer>(arr.size()); for (Integer x : arr) { if (x < pivot) { below.add(x); } else if (x > pivot) { above.add(x); } } int num_less = below.size(); int num_lessoreq = arr.size() - above.size(); if (k < num_less) { return kth(below, k); } else if (k >= num_lessoreq) { </s> return kth(above, k); </s> } else { return pivot; } } </s> java"
+    },
+    "LCS_LENGTH": {
+      "loc": "35-37",
+      "input": "<s> public static Integer lcs_length(String s, String t) { Map<Integer, Map<Integer,Integer>> dp = new HashMap<Integer,Map<Integer,Integer>>(); for (int i=0; i < s.length(); i++) { Map<Integer,Integer> initialize = new HashMap<Integer,Integer>(); dp.put(i, initialize); for (int j=0; j < t.length(); j++) { Map<Integer,Integer> internal_map = dp.get(i); internal_map.put(j,0); dp.put(i, internal_map); } } for (int i=0; i < s.length(); i++) { for (int j=0; j < t.length(); j++) { if (s.charAt(i) == t.charAt(j)) { </s> if (dp.containsKey(i-1)) { Map<Integer, Integer> internal_map = dp.get(i); </s> int insert_value = dp.get(i-1).get(j) + 1; internal_map.put(j, insert_value); dp.put(i,internal_map); } else { Map<Integer, Integer> internal_map = dp.get(i); internal_map.put(j,1); dp.put(i,internal_map); } } } } if (!dp.isEmpty()) { List<Integer> ret_list = new ArrayList<Integer>(); for (int i=0; i<s.length(); i++) { ret_list.add(!dp.get(i).isEmpty() ? Collections.max(dp.get(i).values()) : 0); } return Collections.max(ret_list); } else { return 0; } } </s> java"
+    },
+    "LEVENSHTEIN": {
+      "loc": "17-18",
+      "input": "<s> public static int levenshtein(String source, String target) { if (source.isEmpty() || target.isEmpty()) { return source.isEmpty() ? target.length() : source.length(); } else if (source.charAt(0) == target.charAt(0)) { </s> return 1 + levenshtein(source.substring(1), target.substring(1)); </s> } else { return 1 + Math.min(Math.min( levenshtein(source, target.substring(1)), levenshtein(source.substring(1), target.substring(1))), levenshtein(source.substring(1), target) ); } } </s> java"
+    },
+    "LIS": {
+      "loc": "31-32",
+      "input": "<s> public static int lis(int[] arr) { Map<Integer,Integer> ends = new HashMap<Integer, Integer>(100); int longest = 0; int i = 0; for (int val : arr) { ArrayList<Integer> prefix_lengths = new ArrayList<Integer>(100); for (int j=1; j < longest+1; j++) { if (arr[ends.get(j)] < val) { prefix_lengths.add(j); } } int length = !prefix_lengths.isEmpty() ? Collections.max(prefix_lengths) : 0; if (length == longest || val < arr[ends.get(length+1)]) { ends.put(length+1, i); </s> longest = length + 1; </s> } i++; } return longest; } </s> java"
+    },
+    "LONGEST_COMMON_SUBSEQUENCE": {
+      "loc": "18-19",
+      "input": "<s> public static String longest_common_subsequence(String a, String b) { if (a.isEmpty() || b.isEmpty()) { return \"\"; } else if (a.charAt(0) == b.charAt(0)) { </s> return a.charAt(0) + longest_common_subsequence(a.substring(1), b); </s> } else { String fst = longest_common_subsequence(a, b.substring(1)); String snd = longest_common_subsequence(a.substring(1), b); return fst.length() >= snd.length() ? fst : snd; } } </s> java"
+    },
+    "MAX_SUBLIST_SUM": {
+      "loc": "19-20",
+      "input": "<s> public static int max_sublist_sum(int[] arr) { int max_ending_here = 0; int max_so_far = 0; for (int x : arr) { </s> max_ending_here = max_ending_here + x; </s> max_so_far = Math.max(max_so_far, max_ending_here); } return max_so_far; } </s> java"
+    },
+    "MERGESORT": {
+      "loc": "38-39",
+      "input": "<s> public static ArrayList<Integer> mergesort(ArrayList<Integer> arr) { </s> if (arr.size() == 0) { </s> return arr; } else { int middle = arr.size() / 2; ArrayList<Integer> left = new ArrayList<Integer>(100); left.addAll(arr.subList(0,middle)); left = mergesort(left); ArrayList<Integer> right = new ArrayList<Integer>(100); right.addAll(arr.subList(middle, arr.size())); right = mergesort(right); return merge(left, right); } } </s> java"
+    },
+    "MINIMUM_SPANNING_TREE": {
+      "loc": "29-30",
+      "input": "<s> public static Set<WeightedEdge> minimum_spanning_tree(List<WeightedEdge> weightedEdges) { Map<Node,Set<Node>> groupByNode = new HashMap<>(); Set<WeightedEdge> minSpanningTree = new HashSet<>(); Collections.sort(weightedEdges); for (WeightedEdge edge : weightedEdges) { Node vertex_u = edge.node1; Node vertex_v = edge.node2; if (!groupByNode.containsKey(vertex_u)){ groupByNode.put(vertex_u, new HashSet<>(Arrays.asList(vertex_u))); } if (!groupByNode.containsKey(vertex_v)){ groupByNode.put(vertex_v, new HashSet<>(Arrays.asList(vertex_v))); } if (groupByNode.get(vertex_u) != groupByNode.get(vertex_v)) { minSpanningTree.add(edge); groupByNode = update(groupByNode, vertex_u, vertex_v); for (Node node : groupByNode.get(vertex_v)) { </s> groupByNode = update(groupByNode, node, vertex_u); </s> } } } return minSpanningTree; } </s> java"
+    },
+    "NEXT_PALINDROME": {
+      "loc": "37-38",
+      "input": "<s> public static String next_palindrome(int[] digit_list) { int high_mid = Math.floorDiv(digit_list.length, 2); int low_mid = Math.floorDiv(digit_list.length - 1, 2); while (high_mid < digit_list.length && low_mid >= 0) { if (digit_list[high_mid] == 9) { digit_list[high_mid] = 0; digit_list[low_mid] = 0; high_mid += 1; low_mid -= 1; } else { digit_list[high_mid] += 1; if (low_mid != high_mid) { digit_list[low_mid] += 1; } return Arrays.toString(digit_list); } } ArrayList<Integer> otherwise = new ArrayList<Integer>(); otherwise.add(1); </s> otherwise.addAll(Collections.nCopies(digit_list.length, 0)); </s> otherwise.add(1); return String.valueOf(otherwise); } </s> java"
+    },
+    "NEXT_PERMUTATION": {
+      "loc": "19-20",
+      "input": "<s> public static ArrayList<Integer> next_permutation(ArrayList<Integer> perm) { for (int i=perm.size()-2; i!=-1; i--) { if (perm.get(i) < perm.get(i+1)) { for (int j=perm.size()-1; j!=i; j--) { </s> if (perm.get(j) < perm.get(i)) { </s> ArrayList<Integer> next_perm = perm; int temp_j = perm.get(j); int temp_i = perm.get(i); next_perm.set(i,temp_j); next_perm.set(j,temp_i); ArrayList<Integer> reversed = new ArrayList<Integer>(100); for (int k=next_perm.size()-1; k!=i; k--) { reversed.add(next_perm.get(k)); } int q = i + 1; for (Integer replace : reversed) { next_perm.set(q, replace); q++; } return next_perm; } } } } return new ArrayList<Integer>(); } </s> java"
+    },
+    "PASCAL": {
+      "loc": "22-23",
+      "input": "<s> public static ArrayList<ArrayList<Integer>> pascal(int n) { ArrayList<ArrayList<Integer>> rows = new ArrayList<ArrayList<Integer>>(); ArrayList<Integer> init = new ArrayList<Integer>(); init.add(1); rows.add(init); for (int r=1; r<n; r++) { ArrayList<Integer> row = new ArrayList<Integer>(); </s> for (int c=0; c<r; c++) { </s> int upleft, upright; if (c > 0) { upleft = rows.get(r-1).get(c-1); } else { upleft = 0; } if (c < r) { upright = rows.get(r-1).get(c); } else { upright = 0; } row.add(upleft+upright); } rows.add(row); } return rows; } </s> java"
+    },
+    "POSSIBLE_CHANGE": {
+      "loc": "17-18",
+      "input": "<s> public static int possible_change(int[] coins, int total) { if (total == 0) { return 1; } </s> if (total < 0) { </s> return 0; } int first = coins[0]; int[] rest = Arrays.copyOfRange(coins, 1, coins.length); return possible_change(coins, total-first) + possible_change(rest, total); } </s> java"
+    },
+    "QUICKSORT": {
+      "loc": "26-27",
+      "input": "<s> public static ArrayList<Integer> quicksort(ArrayList<Integer> arr) { if (arr.isEmpty()) { return new ArrayList<Integer>(); } Integer pivot = arr.get(0); ArrayList<Integer> lesser = new ArrayList<Integer>(); ArrayList<Integer> greater = new ArrayList<Integer>(); for (Integer x : arr.subList(1, arr.size())) { if (x < pivot) { lesser.add(x); </s> } else if (x > pivot) { </s> greater.add(x); } } ArrayList<Integer> middle = new ArrayList<Integer>(); middle.add(pivot); lesser = quicksort(lesser); greater = quicksort(greater); middle.addAll(greater); lesser.addAll(middle); return lesser; } </s> java"
+    },
+    "REVERSE_LINKED_LIST": {
+      "loc": "20-20",
+      "input": "<s> public static Node reverse_linked_list(Node node) { Node prevnode = null; Node nextnode; while (node != null) { nextnode = node.getSuccessor(); node.setSuccessor(prevnode); </s> node = nextnode; </s> } return prevnode; } </s> java"
+    },
+    "RPN_EVAL": {
+      "loc": "34-35",
+      "input": "<s> public static Double rpn_eval(ArrayList tokens) { Map<String, BinaryOperator<Double>> op = new HashMap<String, BinaryOperator<Double>>(); op.put(\"+\", (a, b) -> a + b); op.put(\"-\", (a, b) -> a - b); op.put(\"*\", (a, b) -> a * b); op.put(\"/\", (a, b) -> a / b); Stack stack = new Stack(); for (Object token : tokens) { if (Double.class.isInstance(token)) { stack.push((Double) token); } else { token = (String) token; Double a = (Double) stack.pop(); Double b = (Double) stack.pop(); Double c = 0.0; BinaryOperator<Double> bin_op = op.get(token); </s> c= bin_op.apply(a,b); </s> stack.push(c); } } return (Double) stack.pop(); } </s> java"
+    },
+    "SHORTEST_PATH_LENGTH": {
+      "loc": "39-40",
+      "input": "<s> public int shortest_path_length(Map<List<Node>, Integer> length_by_edge, Node startnode, Node goalnode) { int n = length_by_edge.size(); Map<Node, Integer> unvisitedNodes = new HashMap<>(); Set<Node> visitedNodes = new HashSet<>(); unvisitedNodes.put(startnode, 0); while (!unvisitedNodes.isEmpty()) { Node node = getNodeWithMinDistance(unvisitedNodes); int distance = unvisitedNodes.get(node); unvisitedNodes.remove(node); if (node.getValue() == goalnode.getValue()) { return distance; } visitedNodes.add(node); for (Node nextnode : node.getSuccessors()) { if (visitedNodes.contains(nextnode)) { continue; } if (unvisitedNodes.get(nextnode) == null) { unvisitedNodes.put(nextnode, Integer.MAX_VALUE); } unvisitedNodes.put(nextnode, Math.min(unvisitedNodes.get(nextnode), </s> unvisitedNodes.get(nextnode) + length_by_edge.get(Arrays.asList(node, nextnode)))); </s> } } return Integer.MAX_VALUE; } </s> java"
+    },
+    "SHORTEST_PATH_LENGTHS": {
+      "loc": "38-39",
+      "input": "<s> public static Map<List<Integer>,Integer> shortest_path_lengths(int numNodes, Map<List<Integer>,Integer> length_by_edge) { Map<List<Integer>,Integer> length_by_path = new HashMap<>(); for (int i = 0; i < numNodes; i++) { for (int j =0; j < numNodes; j++) { List<Integer> edge = new ArrayList<>(Arrays.asList(i,j)); if (i == j) { length_by_path.put(edge, 0); } else if (length_by_edge.containsKey(edge) ) { length_by_path.put(edge, length_by_edge.get(edge)); } else { length_by_path.put(edge, INF); } } } for (int k = 0; k < numNodes; k++) { for (int i = 0; i < numNodes; i++) { for (int j = 0; j < numNodes; j++) { int update_length = Math.min(length_by_path.get(Arrays.asList(i,j)), </s> length_by_path.get(Arrays.asList(i,k)) + length_by_path.get(Arrays.asList(j,k))); </s> length_by_path.put(Arrays.asList(i,j), update_length); } } } return length_by_path; } </s> java"
+    },
+    "SHORTEST_PATHS": {
+      "loc": "30-31",
+      "input": "<s> public static Map<String, Integer> shortest_paths(String source, Map<List<String>,Integer> weight_by_edge) { Map<String,Integer> weight_by_node = new HashMap<String,Integer>(); for (List<String> edge : weight_by_edge.keySet()) { weight_by_node.put(edge.get(1), INF); weight_by_node.put(edge.get(0), INF); } weight_by_node.put(source, 0); for (int i = 0; i < weight_by_node.size(); i++) { for (List<String> edge : weight_by_edge.keySet()) { int update_weight = Math.min( weight_by_node.get(edge.get(0)) + weight_by_edge.get(edge), weight_by_node.get(edge.get(1))); </s> weight_by_edge.put(edge, update_weight); </s> } } return weight_by_node; } </s> java"
+    },
+    "SHUNTING_YARD": {
+      "loc": "34-34",
+      "input": "<s> public static List shunting_yard(ArrayList tokens) { Map<String, Integer> precedence = new HashMap<String, Integer>(); precedence.put(\"+\",1); precedence.put(\"-\",1); precedence.put(\"*\",2); precedence.put(\"/\",2); ArrayList rpntokens = new ArrayList(100); ArrayDeque opstack = new ArrayDeque(); for (Object token: tokens) { if (Integer.class.isInstance(token)) { rpntokens.add((Integer) token); } else { String operator = (String) token; while (!opstack.isEmpty() && precedence.get(operator) <= precedence.get(opstack.getLast())) { rpntokens.add(opstack.pop()); } </s> } </s> } while (!opstack.isEmpty()) { rpntokens.add(opstack.pop()); } return rpntokens; } </s> java"
+    },
+    "SIEVE": {
+      "loc": "41-42",
+      "input": "<s> public static ArrayList<Integer> sieve(Integer max) { ArrayList<Integer> primes = new ArrayList<Integer>(); for (int n=2; n<max+1; n++) { </s> if (any(list_comp(n, primes))) { </s> primes.add(n); } } return primes; } </s> java"
+    },
+    "SQRT": {
+      "loc": "16-17",
+      "input": "<s> public static double sqrt(double x, double epsilon) { double approx = x / 2f; </s> while (Math.abs(x-approx) > epsilon) { </s> approx = 0.5f * (approx + x / approx); } return approx; } </s> java"
+    },
+    "SUBSEQUENCES": {
+      "loc": "16-17",
+      "input": "<s> public static ArrayList<ArrayList> subsequences(int a, int b, int k) { if (k == 0) { </s> return new ArrayList(); </s> } ArrayList ret = new ArrayList(50); for (int i=a; i<b+1-k; i++) { ArrayList base = new ArrayList(50); for (ArrayList rest : subsequences(i+1, b, k-1)) { rest.add(0,i); base.add(rest); } ret.addAll(base); } return ret; } </s> java"
+    },
+    "TO_BASE": {
+      "loc": "21-22",
+      "input": "<s> public static String to_base(int num, int b) { String result = \"\"; String alphabet = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\"; int i; while (num > 0) { i = num % b; num = num / b; </s> result = result + String.valueOf(alphabet.charAt(i)); </s> } return result; } </s> java"
+    },
+    "TOPOLOGICAL_ORDERING": {
+      "loc": "17-18",
+      "input": "<s> public static ArrayList<Node> topological_ordering (List<Node> directedGraph) { ArrayList<Node> orderedNodes = new ArrayList<Node>(); for (Node node : directedGraph) { if (node.getPredecessors().isEmpty()) { orderedNodes.add(node); } } int listSize = orderedNodes.size(); for (int i = 0; i < listSize; i++) { Node node = orderedNodes.get(i); for (Node nextNode : node.getSuccessors()) { </s> if (orderedNodes.containsAll(nextNode.getSuccessors()) && !orderedNodes.contains(nextNode)) { </s> orderedNodes.add(nextNode); listSize++; } } } return orderedNodes; } </s> java"
+    },
+    "WRAP": {
+      "loc": "32-32",
+      "input": "<s> public static ArrayList<String> wrap(String text, int cols) { ArrayList<String> lines = new ArrayList<String>(); String line; while (text.length() > cols) { int end = text.lastIndexOf(\" \", cols); if (end == -1) { end = cols; } line = text.substring(0,end); text = text.substring(end); lines.add(line); } </s> return lines; </s> } </s> java"
+    },
+    "POWERSET": {
+      "loc": "23-30",
+      "input": "<s> public static ArrayList<ArrayList> powerset(ArrayList arr) { if (!arr.isEmpty()) { Object first = arr.get(0); arr.remove(0); ArrayList rest = arr; ArrayList<ArrayList> rest_subsets = powerset(rest); ArrayList<ArrayList> output = new ArrayList<ArrayList>(100); ArrayList to_add = new ArrayList(100); </s> to_add.add(first); for (ArrayList subset : rest_subsets) { to_add.addAll(subset); } output.add(to_add); return output; </s> } else { ArrayList empty_set = new ArrayList<ArrayList>(); empty_set.add(new ArrayList()); return empty_set; } } </s> java"
+    }
+  }
+}

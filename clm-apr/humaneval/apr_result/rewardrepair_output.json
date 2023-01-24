@@ -1,0 +1,2613 @@
+{
+  "config": "finetune",
+  "data": {
+    "HAS_CLOSE_ELEMENTS": {
+      "loc": "9-10",
+      "input": "public static boolean has_close_elements(List<Double> numbers, double threshold){\n    for (int i = 0; i < numbers.size(); i += 1){\n        for (int j = i + 1; j < numbers.size(); j += 1){\n</s>            double distance = numbers.get(i) - numbers.get(j);\n</s>            if (distance < threshold)\n                return true;\n        }\n    }\n    return false;\n}\n",
+      "output": [
+        "double  distance  =  i  -  numbers.get(j);",
+        "double  distance  =  (i  +  1)  -  numbers.get(j);",
+        "double  distance  =  j  <  0?  0  :  numbers.get(i)  -  j;",
+        "double  distance  =  Math.abs(numbers.get(i)  -  numbers.get(j));",
+        "double  distance  =  ((double)  numbers.get(i))  -  numbers.get(j);",
+        "double  distance  =  (double)  numbers.get(i)  -  (double)  numbers.get(j);",
+        "double  distance  =  numbers.get(j)  -  i  -  numbers.get(j);",
+        "double  distance  =  (double)  numbers.get(i)  -  numbers.get(j);",
+        "double  distance  =  this.numbers.get(i)  -  this.numbers.get(j);",
+        "double  distance  =  ((double)  numbers.get(i))  -  numbers.get(j);"
+      ]
+    },
+    "SEPARATE_PAREN_GROUPS": {
+      "loc": "16-17",
+      "input": "public static List<String> separate_paren_groups(String paren_string) {\n    List<String> result = new ArrayList<String>();\n    String current_string = \"\";\n    int current_depth = 0;\n    for (char c : paren_string.toCharArray()) {\n        if (c == '('){\n            current_depth += 1;\n            current_string += String.valueOf(c);\n</s>        } else {\n</s>            current_depth -= 1;\n            current_string += String.valueOf(c);\n            if (current_depth == 0){\n                result.add(current_string);\n                current_string = \"\";\n            }\n        }\n    }\n    return result;\n}\n",
+      "output": [
+        "else  if  (c  ==  '(')  {",
+        "}  else  if  (c  ==  '(')  {",
+        "if  (c  ==  '(')  {",
+        ";  }  else  if  (c  ==  '('))  {",
+        ";  }  else  if  (c  ==  '(')  {",
+        "continue;  }  else  if  (c  ==  '(')  {",
+        "else  if  (c!=  '(')  {",
+        "if  (c  ==  '(')  {",
+        "if  (c!=  '(')  {",
+        "c  =  paren_string.toCharArray();  }  else  {"
+      ]
+    },
+    "TRUNCATE_NUMBER": {
+      "loc": "5-6",
+      "input": "public static double truncate_number(double number) {\n</s>    return number / 1.0;\n</s>}\n",
+      "output": [
+        "return  (double)(number  /  1.0);",
+        "return  (double)number  /  1.0;",
+        "return  (double)Math.round(number  /  1.0);",
+        "return  Math.round(number  /  1.0);",
+        "return  number  /  1.0;",
+        "return  (double)  (number  /  1.0);",
+        "return  Math.abs(number  /  1.0);",
+        "return  Double.parseDouble(number)  /  1.0;",
+        "return  (double)Math.ceil(number  /  1.0);",
+        "return  (double)number  /  (double)1.0;"
+      ]
+    },
+    "BELOW_ZERO": {
+      "loc": "10-15",
+      "input": "public static boolean below_zero(List<Integer> operations) {\n    int balance = 0;\n    for (Integer op : operations){\n        balance += op;\n</s>        if (balance > 0){\n            return false;\n        }\n    }\n    return true;\n</s>}\n",
+      "output": [
+        "if  (balance  >  0)  {  return  false;  }  }  return  true;",
+        "if  (balance  >=  0)  {  return  false;  }  }  return  true;",
+        "if  (balance  <  0)  {  return  false;  }  }  return  true;",
+        "if  (balance  >  0)  {  return  false;  }  }  return  false;",
+        "if  (balance  <=  0)  {  return  false;  }  }  return  true;",
+        "if  (balance  >  0)  {  return  false;  }  }  return  true;",
+        "if  (balance  >=  0)  {  return  false;  }  }  return  true;",
+        "if  (balance  ==  0)  {  return  false;  }  }  return  true;",
+        "if  (balance  >  1)  {  return  false;  }  }  return  true;",
+        "if  (balance  >  -1)  {  return  false;  }  }  return  true;"
+      ]
+    },
+    "MEAN_ABSOLUTE_DEVIATION": {
+      "loc": "14-15",
+      "input": "public static double mean_absolute_deviation(List<Double> numbers) {\n    double sum = 0.;\n    for (Double number : numbers){\n        sum += number;\n    }\n    double mean = sum / numbers.size();\n    double deviation_sum = 0.;\n    for (Double number : numbers){\n</s>        deviation_sum += (number - mean) * (number - mean);\n</s>    }\n    return deviation_sum / numbers.size();\n}\n",
+      "output": [
+        "if  (number  >  mean)  deviation_sum  +=  (number  -  mean)  *  (number  -  mean);",
+        "if  (number  >  mean)  deviation_sum  +=  (number  -  mean)  *  (number  -  mean);",
+        "else  {  deviation_sum  +=  (number  -  mean)  *  (number  -  mean);  }",
+        ";  deviation_sum  +=  (number  -  mean)  *  (number  -  mean);",
+        "deviation_sum  +=  (number  -  mean)  *  (number  -  mean);",
+        "if(number  >  mean)  deviation_sum  +=  (number  -  mean)  *  (number  -  mean);",
+        "if  (sum  >  0)  deviation_sum  +=  (number  -  mean)  *  (number  -  mean);",
+        "if  (number  <  mean)  deviation_sum  +=  (number  -  mean)  *  (number  -  mean);",
+        "if  (number  >=  mean)  deviation_sum  +=  (number  -  mean)  *  (number  -  mean);",
+        "s.add(number);  deviation_sum  +=  (number  -  mean)  *  (number  -  mean);"
+      ]
+    },
+    "INTERSPERSE": {
+      "loc": "13-14",
+      "input": "public static List<Integer> intersperse(List<Integer> numbers, int delimeter) {\n    List<Integer> result = new ArrayList<Integer>();\n    if (numbers.size() == 0)\n        return result;\n</s>    for (int i = 0; i < numbers.size(); i += 1) {\n</s>        result.add(numbers.get(i));\n        result.add(delimeter);\n    }\n    result.add(numbers.get(numbers.size() - 1));\n    return result;\n}\n",
+      "output": [
+        "for  (int  i  =  0;  i  <  numberCounts.size();  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <=  numbers.size();  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  numbers.size();  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  numbers.size()  -  1;  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  numberCount;  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  numbers.size();  i  +=  2)  {",
+        "for  (int  i  =  0;  i  <  numbers.size();  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  numbers.size();  i++)  {",
+        "for  (int  i  =  0;  i  <  integers.size();  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  numbers.size();  i  +=  1)  {"
+      ]
+    },
+    "PARSE_NESTED_PARENS": {
+      "loc": "18-19",
+      "input": "public static List<Integer> parse_nested_parens(String paren_string) {\n    String[] paren_groups = paren_string.split(\" \");\n    List<Integer> result = new ArrayList<Integer>();\n    for (String paren_group : paren_groups) {\n        int depth = 0;\n        int max_depth = 0;\n        for (char c : paren_group.toCharArray()){\n            if (c == '('){\n                depth += 1;\n                max_depth = Math.max(depth, max_depth);\n</s>            }\n</s>        }\n        result.add(max_depth);\n    }\n    return result;\n}\n",
+      "output": [
+        "result  =  new  ArrayList  <  Integer>();  }",
+        "result.add(   \"   \");  }",
+        "result  =  new  ArrayList  <  Integer>();",
+        "new  ArrayList  <  Integer>();  }",
+        "result.add(   \"   \");  }",
+        "result.addAll(result);  }",
+        "result.add(max_depth);  }",
+        "result.addAll(result);  }",
+        "paren_group  =  paren_group.trim();  }",
+        "result.addAll(paren_groups);  }"
+      ]
+    },
+    "FILTER_BY_SUBSTRING": {
+      "loc": "10-11",
+      "input": "public static List<String> filter_by_substring(List<String> strings, String substring) {\n    List<String> result = new ArrayList<String>();\n    for (String string : strings){\n</s>        result.add(string);\n</s>    }\n    return result;\n}\n",
+      "output": [
+        "result.add(string.toLowerCase());",
+        "if  (string!=  null)  result.add(string);",
+        "if  (string!=  null)  result.add(string);",
+        "result.add(string.trim());",
+        "if  (string!=  null)  {  result.add(string);  }",
+        "result  =  new  ArrayList  <  String>();  result.add(string);",
+        "result.add(String.valueOf(string));",
+        "result.add(string.toUpperCase());",
+        "if  (string.length()  >  0)  result.add(string);",
+        "if(string!=  null)  result.add(string);"
+      ]
+    },
+    "SUM_PRODUCT": {
+      "loc": "7-8",
+      "input": "public static Integer[] sum_product(List<Integer> numbers) {\n</s>    Integer[] result = new Integer[2];\n</s>    for (Integer n : numbers){\n        result[0] += n;\n        result[1] *= n;\n    }\n    return result;\n}\n",
+      "output": [
+        "Integer[]  result  =  new  Integer[1];",
+        "Integer[]  result  =  new  Integer[1];",
+        "Integer[]  result  =  new  Integer[0];",
+        "Integer[]  result  =  new  Integer[2];",
+        "Integer[]  result  =  new  Integer[2];",
+        "Integer[]  result  =  new  Integer[3];",
+        "Integer[]  result  =  new  Integer[0];",
+        "Integer[]  result  =  new  Integer[n];",
+        "Integer[]  result  =  new  Integer[4];",
+        ".Integer[]  result  =  new  Integer[2];"
+      ]
+    },
+    "ROLLING_MAX": {
+      "loc": "12-13",
+      "input": "public static List<Integer> rolling_max(List<Integer> numbers) {\n    List<Integer> result = new ArrayList<Integer>();\n    Integer running_max = null;\n    for (Integer n : numbers){\n</s>        running_max = Math.max(running_max, n);\n</s>        result.add(running_max);\n    }\n    return result;\n}\n",
+      "output": [
+        "running_max  =  Math.max(running_max,  n  -  1);",
+        "running_max  =  Math.max(running_max,  n);",
+        "running_max  =  Math.max(running_max,  n  +  1);",
+        "running_max  =  Math.min(running_max,  n);",
+        "running_max  =  Math.max(running_max,  n  -  1);",
+        "Running_max  =  Math.max(running_max,  n  -  1);",
+        "Running_max  =  Math.max(running_max,  n);",
+        "running_max  =  Math.max(running_max,  n,  0);",
+        "running_max  =  Math.max(running_max,  n);",
+        "running_max  =  Math.max(running_max,  n  +  1);"
+      ]
+    },
+    "MAKE_PALINDROME": {
+      "loc": "22-23",
+      "input": "public static String make_palindrome(String str){\n    if (str.length() == 0)\n        return \"\";\n    int beginning_of_suffix = 0;\n    while (! is_palindrome(str.substring(beginning_of_suffix))){\n        beginning_of_suffix += 1;\n    }\n    String result = str;\n</s>    result += str.substring(0, beginning_of_suffix);\n</s>    return result;\n}\n",
+      "output": [
+        "result  +=  str.substring(0,  beginning_of_suffix);",
+        "result  +=  str.substring(0,  beginning_of_suffix);",
+        "result  +=  str.substring(0,  beginning_of_suffix  +  1);",
+        "result  =  str.substring(0,  beginning_of_suffix);",
+        "result.append(str.substring(0,  beginning_of_suffix));",
+        "result  +=  str.substring(0,  beginning_of_suffix+1);",
+        "result  =  str.substring(0,  beginning_of_suffix);",
+        "result  +=  str.substring(0,  beginning);",
+        "result  +=  str.substring(0,  begin_of_suffix);",
+        "result  +=  str.substring(0,  starting_of_suffix);"
+      ]
+    },
+    "STRING_XOR": {
+      "loc": "10-11",
+      "input": "public static String string_xor(String a, String b){\n    String result = \"\";\n    for (int i = 0; i < a.length(); i += 1){\n        if (a.charAt(i) == b.charAt(i)){\n            result += \"0\";\n        }\n</s>    }\n</s>    return result;\n}\n",
+      "output": [
+        "result  +=   \"0   \";  }",
+        "result  =  result.toLowerCase();  }",
+        "result  =  result.replace(   \"   \",   \"   \");  }",
+        "result  =   \"   \";  }",
+        "result  =  result.replaceAll(   \"   \",   \"   \");  }",
+        "result  +=   \"   \";  }",
+        "result  =   \"0   \";  }",
+        "result  =  result.trim();  }",
+        "result  =  result.replace(   \"   \",   \"   \");  }",
+        "result  =  result.replace(   \",   \",   \"   \");  }"
+      ]
+    },
+    "LONGEST": {
+      "loc": "9-11",
+      "input": "public static String longest(List<String> strings){\n    int maxlen = 0;\n    for (String string : strings){\n</s>        if (strings.size() > string.length()){\n            maxlen = strings.size();\n</s>        }\n    }\n    for (String string : strings){\n        if (string.length() == maxlen){\n            return string;\n        }\n    }\n    return null;\n}\n",
+      "output": [
+        "if  (strings.size()  >=  string.length())  {  maxlen  =  strings.size();",
+        "if  (strings.size()  >=  string.length())  {  maxlen  =  strings.size();",
+        "if  (strings.size()  <  string.length())  {  maxlen  =  strings.size();",
+        "if  (strings.size()  <=  string.length())  {  maxlen  =  strings.size();",
+        "if  (strings.size()  <  string.length())  {  maxlen  =  maxlen;",
+        "if  (strings.size()  >=  string.length())  {",
+        "if  (strings.size()  ==  string.length())  {  maxlen  =  string.length();",
+        "if  (strings.size()  <  string.length())  {  maxlen  =  string.size();",
+        "if  (strings.size()!=  string.length())  {  maxlen  =  strings.size();",
+        "if  (strings.size()  <  string.length())  {  maxlen  =  strings.size();"
+      ]
+    },
+    "GREATEST_COMMON_DIVISOR": {
+      "loc": "6-8",
+      "input": "public static int greatest_common_divisor(int a, int b){\n    while (b > 0) {\n</s>        a = b;\n        b = a % b;\n</s>    }\n    return a;\n}\n",
+      "output": [
+        "b  =  a  %  b;",
+        "b  =  b  %  b;",
+        "b  =  a  %  b;",
+        "a  =  b  %  b;",
+        "a  =  b;",
+        "a  =  b;  b  =  b;",
+        "a  =  b;  b  =  b%  b;",
+        "b  =  a  %  b  %  b;",
+        "a  =  b;  b  =  a%  b;",
+        "b  =  b  %  b;"
+      ]
+    },
+    "ALL_PREFIXES": {
+      "loc": "11-12",
+      "input": "public static List<String> all_prefixes(String string){\n    List<String> result = new ArrayList<String>();\n    for (int i = 0; i < string.length(); i += 1){\n</s>        result.add(string.substring(i + 1));\n</s>    }\n    return result;\n}\n",
+      "output": [
+        "result.add(string.substring(i  +  1,  string.length()));",
+        "result.add(string.substring(i  +  1));",
+        "result.add(string.substring(i  +  1));",
+        "result.add(string.substring(i  +  1).trim());",
+        "result.add(string.substring(i+1));",
+        "result.add(string.substring(0,  i  +  1));",
+        "result.add(string.substring(i  +  1  +  1));",
+        "result.add(string.substring(i  +  1,  result.length()));",
+        "result.add(string.substring(i  +  1,  i));",
+        "result.add(string.substring(i  +  1  -  1).trim());"
+      ]
+    },
+    "STRING_SEQUENCE": {
+      "loc": "9-10",
+      "input": "public static String string_sequence(int n) {\n    String result = \"\";\n    for (int i = 0; i <= n; i += 1){\n        result += i + \" \";\n    }\n</s>    return result;\n</s>}\n",
+      "output": [
+        "return  result  ==  null?   \"   \"  :  result;",
+        "return  result  ==  null?  null  :  result;",
+        "return  result.toLowerCase();",
+        "return  String.valueOf(result);",
+        "String  result  =   \"   \";  return  result;",
+        "result  =   \"   \";  //$NON-NLS-1$",
+        "String  result  =   \"   \";  return  result  +   \"   \";",
+        "result  =  result.toLowerCase();",
+        "result  =  String.valueOf(result);",
+        "return  result.toString();"
+      ]
+    },
+    "COUNT_DISTINCT_CHARACTERS": {
+      "loc": "11-12",
+      "input": "public static int count_distinct_characters(String string) {\n    HashSet<Character> distinct = new HashSet<Character>();\n    for (char c : string.toCharArray()) {\n        if (! distinct.contains(Character.toLowerCase(c)))\n</s>            distinct.add(c);\n</s>    }\n    return distinct.size();\n}\n",
+      "output": [
+        "distinct.add(String.valueOf(c));",
+        "distinct.add(Character.toCharArray(c));",
+        "distinct.add(Character.toString(c));",
+        "distinct.add((char)  c);",
+        "if  (c  >=  0)  distinct.add(c);",
+        "distinct.add(c);",
+        "distinct.add((char)c);",
+        "if  (c  >  0)  distinct.add(c);",
+        "if  (c  <  0)  distinct.add(c);",
+        "distinct.add(c)  {  }"
+      ]
+    },
+    "PARSE_MUSIC": {
+      "loc": "16-17",
+      "input": "public static List<Integer> parse_music(String music_string) {\n    HashMap<String, Integer> note_map = new HashMap<String, Integer>();\n    note_map.put(\"o\", 4);\n    note_map.put(\"o|\", 2);\n    note_map.put(\".|\", 1);\n    List<Integer> result = new ArrayList<Integer>();\n</s>    for (String note : music_string.split(\" \")){\n</s>        result.add(note_map.get(note));\n    }\n    return result;\n}\n",
+      "output": [
+        "for  (String  note  :  music_string.split(   \"   \"))  {",
+        "for  (String  note  :  music_string.split(   \"   \"))  {",
+        "for  (String  note  :  music_string.split('  '))  {",
+        "ArrayList  <  String>  notes  =  new  ArrayList  <  String>(music_string);  for  (String  note  :  notes)  {",
+        "for  (String  note  :  music_string.split(   \"_   \"))  {",
+        "for  (String  note  :  music_string.split(   \"   \").split(   \"   \"))  {",
+        "for  (String  note  :  music_string.trim().split(   \"   \"))  {",
+        "for  (String  note  :  music_string.toLowerCase().split(   \"   \"))  {",
+        "for  (String  note  :  music_string.split(   \"/   \"))  {",
+        "for  (String  note  :  music_string.split(   \"*   \"))  {"
+      ]
+    },
+    "HOW_MANY_TIMES": {
+      "loc": "6-7",
+      "input": "public static int how_many_times(String string, String substring) {\n    int times = 0;\n</s>    for (int i = 0; i < string.length() - substring.length(); i += 1) {\n</s>        if (string.substring(i, i + substring.length()).equals(substring)){\n            times += 1;\n        }\n    }\n    return times;\n}\n",
+      "output": [
+        "for  (int  i  =  0;  i  <  string.length()  -  substring.length();  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  string.length()  -  substring.length();  i  +=  2)  {",
+        "for  (int  i  =  0;  i  <  string.length()  +  substring.length();  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  string.length();  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  string.length()  -  substring.length();  i++)  {",
+        "for  (int  i  =  0;  i  <  string.length()  -  substring.length()  +  1;  i  +=  1)  {",
+        "(int  i  =  0;  i  <  string.length()  -  substring.length());  i  +=  1)  {",
+        "for  (int  i  =  1;  i  <  string.length()  -  substring.length();  i  +=  1)  {",
+        "(int  i  =  0;  i  <  string.length()  -  substring.length();  i  +=  1)  {",
+        "(int  i  =  0;  i  <  string.length()  -  substring.length()  -  1);  i  +=  1)  {"
+      ]
+    },
+    "SORT_NUMBERS": {
+      "loc": "20-21",
+      "input": "public static String sort_numbers(String numbers) {\n    final HashMap<String, Integer> value_map = new HashMap<String, Integer>();\n    value_map.put(\"zero\", 0);\n    value_map.put(\"one\", 1);\n    value_map.put(\"two\", 2);\n    value_map.put(\"three\", 3);\n    value_map.put(\"four\", 4);\n    value_map.put(\"five\", 5);\n    value_map.put(\"six\", 6);\n    value_map.put(\"seven\", 7);\n    value_map.put(\"eight\", 8);\n    value_map.put(\"nine\", 9);\n    ArrayList<String> number_array = new ArrayList<String>(Arrays.asList(numbers.split(\" \")));\n</s>    Collections.sort(number_array);\n</s>    \n    String result = \"\";\n    for (String number : number_array){\n        result += number + \" \";\n    }\n    return result.trim();\n}\n",
+      "output": [
+        "Collections.sort(number_array);",
+        "Collections.sort(number_array);",
+        "Collections.sort(number_array.trim());",
+        "=  Collections.asList(numbers.split(   \"   \"));",
+        "ArrayList  <  String>  Arrays.sort(number_array);",
+        ".sort(number_array);",
+        "ArrayList  <  String>  number_array  =  new  ArrayList  <  String>();",
+        "Collections.sort(number_array.split(   \"   \"));",
+        "Collections.sort(number_array  +   \"   \"  +  number_array);",
+        "Collections.sort(number_array.toLowerCase());"
+      ]
+    },
+    "FIND_CLOSEST_ELEMENTS": {
+      "loc": "9-10",
+      "input": "public static double[] find_closest_elements(double[] numbers) {\n    double[] result = new double[2];\n    double distance = Double.MAX_VALUE;\n    for (int i = 0; i < numbers.length; i += 1){\n</s>        for (int j = 0; j < numbers.length; j += 1){\n</s>            double new_distance = Math.abs(numbers[i] - numbers[j]);\n            if (new_distance < distance){\n                distance = new_distance;\n                if (numbers[i] < numbers[j]){\n                    result[0] = numbers[i];\n                    result[1] = numbers[j];\n                } else{\n                    result[0] = numbers[j];\n                    result[1] = numbers[i];\n                }\n            }\n        }\n    }\n    return result;\n}\n",
+      "output": [
+        "for  (int  j  =  0;  j  <=  numbers.length;  j  +=  1)  {",
+        "for  (int  j  =  0;  j  <  results.length;  j  +=  1)  {",
+        "for  (int  j  =  0;  j  <  result.length;  j  +=  1)  {",
+        "For  (int  j  =  0;  j  <=  numbers.length;  j  +=  1)  {",
+        "for  (int  j  =  0;  j  <  data.length;  j  +=  1)  {",
+        "for  (int  j  =  0;  j  <=  numbers.length;  j  +=  1)  {",
+        "for  (int  j  =  1;  j  <=  numbers.length;  j  +=  1)  {",
+        "for  (int  j  =  0;  j  <  result.length;  j++)  {",
+        "for  (int  j  =  0;  j  <  distance;  j  +=  1)  {",
+        "for  (int  j  =  0;  j  <  length;  j  +=  1)  {"
+      ]
+    },
+    "RESCALE_TO_UNIT": {
+      "loc": "12-13",
+      "input": "public static double[] rescale_to_unit(double[] numbers){\n    double min = Double.MAX_VALUE;\n    double max = Double.MIN_VALUE;\n    for (int i = 0; i < numbers.length; i += 1) {\n        if (numbers[i] > max) {\n            max = numbers[i];\n        }\n</s>        else if (numbers[i] < min) {\n</s>            min = numbers[i];\n        }\n    }\n    double[] result = new double[numbers.length];\n    for (int i = 0; i < numbers.length; i += 1) {\n        result[i] = (numbers[i] - min) / (max - min);\n    }\n    return result;\n}\n",
+      "output": [
+        "if  (numbers[i]  <  min)  {",
+        "if  (numbers[i]  <  min)  {",
+        "if  (max  <  min)  {",
+        "if  (max  >=  numbers.length)  {",
+        "if  (numbers[i]  >  min)  {",
+        "if  (max  <  numbers[i])  {",
+        "If  (numbers[i]  <  min)  {",
+        "if  (max  >=  numbers[i])  {",
+        "if  (max  >=  numbers.length)  {",
+        "if  (max  <  min)  {"
+      ]
+    },
+    "FILTER_INTEGERS": {
+      "loc": "11-12",
+      "input": "public static List<Integer> filter_integers(List<Object> values) {\n    List<Integer> result = new ArrayList<Integer>();\n    for (Object value : values){\n</s>        result.add((Integer) value);\n</s>    }\n    return result;\n}\n",
+      "output": [
+        "result.add(Integer.valueOf(value));",
+        "result.add((Integer)  value);",
+        "result.add((Object)  value);",
+        "result.add((Integer)  value);",
+        "result.add((Integer)  value.clone());",
+        "result.add(new  Integer(value));",
+        "Result.add((Integer)  value);",
+        "result.add(value);",
+        "result.add(((Integer)  value));",
+        "result.addAll((Integer)  value);"
+      ]
+    },
+    "STRLEN": {
+      "loc": "5-6",
+      "input": "public static int strlen(String string){\n</s>    return string.length() - 1;\n</s>}\n",
+      "output": [
+        "return  string.length()  ==  0?  0  :  string.length()  -  1;",
+        "return  string.length()  >  0?  string.length()  -  1  :  0;",
+        "int  length  =  string.length();  return  length  ==  0?  0  :  length;",
+        "return  string.length()  >  0?  string.length()  -  1  :  string.length();",
+        "return  string  ==  null?  0  :  string.length()  -  1;",
+        "int  length  =  string.length();  return  length  >  0?  length  -  1  :  length;",
+        "if  (string  ==  null)  return  0;  return  string.length()  -  1;",
+        "return  string.length()  >  0?  string.length()  -  1  :  -1;",
+        "(string  ==  null)?  0  :  string.length()  -  1;",
+        "if  (string  ==  null)  {  return  0;  }  return  string.length()  -  1;"
+      ]
+    },
+    "LARGEST_DIVISOR": {
+      "loc": "5-6",
+      "input": "public static int largest_divisor(int n) {\n</s>    for (int i = n; i >= 0; i -= 1){\n</s>        if (n % i == 0)\n            return i;\n    }\n    return 1;\n}\n",
+      "output": [
+        "for  (int  i  =  n;  i  <=  0;  i  -=  1)  {",
+        "for  (int  i  =  n;  i  >=  0;  i  -=  1)  {",
+        "for  (int  i  =  n;  i  >=  0;  i  -=  2)  {",
+        "for  (int  i  =  n;  i  <  0;  i  -=  1)  {",
+        "for  (int  i  =  n  -  1;  i  >=  0;  i-=  1)  {",
+        "for  (int  i  =  n;  i  >=  0;  i  -=  3)  {",
+        "for  (int  i  =  n;  i  >=  0;  i  -=  0)  {",
+        "for  (int  i  =  n;  i  <=  0;  i++)  {",
+        "(int  i  =  n;  i  >=  0;  i  -=  1)  {",
+        "for  (int  i  =  n;  i  <  0;  i++)  {"
+      ]
+    },
+    "FACTORIZE": {
+      "loc": "20-21",
+      "input": "public static List<Integer> factorize(int n){\n    List<Integer> result = new ArrayList<Integer>();\n    int i = 2;\n    while (i <= (int)(Math.sqrt(n) + 1)){\n        if (n % i == 0){\n            result.add(i);\n            n = n / i;\n        } else{\n            i += 1;\n        }\n    }\n</s>    return result;\n</s>}\n",
+      "output": [
+        "return  new  ArrayList  <  Integer>();",
+        "new  ArrayList  <  Integer>();",
+        "i++;",
+        "return  Integer.valueOf(i);",
+        ".addAll(result);",
+        ".addAll(result);  return  result;",
+        "=  new  ArrayList  <  Integer>();",
+        "i  +=  1;",
+        "Result.add(result);  return  result;",
+        ".add(new  Integer(i));"
+      ]
+    },
+    "REMOVE_DUPLICATES": {
+      "loc": "13-14",
+      "input": "public static List<Integer> remove_duplicates(List<Integer> numbers) {\n    List<Integer> result = new ArrayList<Integer>();\n    HashMap<Integer, Integer> count = new HashMap<Integer, Integer>();\n    for (Integer n : numbers){\n</s>        count.put(n, count.get(n) + 1);\n</s>    }\n    for (Integer n : numbers){\n        if (count.get(n) == 1)\n            result.add(n);\n    }\n    return result;\n}\n",
+      "output": [
+        ".put(n,  count.get(n));",
+        "count.put(n,  count.get(n));",
+        ".put(n,  count.get(n)  +  1);",
+        "count.put(n,  count.get(n)  +  1);",
+        "((Integer)n).put(n,  count.get(n));",
+        "Count().put(n,  count.get(n)  +  1);",
+        "result.put(n,  count.get(n)  +  1);",
+        "Count  =  0;  count.put(n,  count.get(n)  +  1);",
+        "Count++;  count.put(n,  count.get(n)  +  1);",
+        "if  (n  >  1)  count.put(n,  count.get(n)  +  1);"
+      ]
+    },
+    "FLIP_CASE": {
+      "loc": "10-14",
+      "input": "public static String flip_case(String string) {\n    char[] char_list = string.toCharArray();\n    for (int i = 0; i < char_list.length; i += 1){\n        char c = char_list[i];\n        if (Character.isLowerCase(c)) {\n</s>            char_list[i] = Character.toLowerCase(c);\n        }\n        else {\n            char_list[i] = Character.toUpperCase(c);\n</s>        }\n    }\n    return new String(char_list);\n}\n",
+      "output": [
+        "char_list[i]  =  Character.toUpperCase(c);",
+        "char_list[i]  =  Character.toUpperCase(c);",
+        "char_list[i]  =  Character.toUpperCase(i);",
+        "char_list[i]  =  Character.toLowerCase(c);",
+        "char_list[i]  =  Character.toUpperCase(char_list);",
+        "Char  char_list[i]  =  Character.toUpperCase(c);",
+        "char_list[i]  =  Character.toLowerCase(c);",
+        "char_list[i]  =  Character.toUpperCase(i);",
+        "char_list[i]  =  Character.toUpperCase(c,  false);",
+        "char_list[i]  =  Character.toLowerCase(i);"
+      ]
+    },
+    "CONCATENATE": {
+      "loc": "5-6",
+      "input": "public static String concatenate(String[] strings) {\n</s>    String result = null;\n</s>    for (String string : strings)\n        result += string;\n    return result;\n}\n",
+      "output": [
+        "String  result  =   \"   \";",
+        "null  String  result  =  null;",
+        "String  result  =  null;",
+        "String  result  =  String.class;",
+        "String  result  =  new  String[0];",
+        "String  result  =  new  String[]  {  }  ;",
+        "String  result  =  new  String();",
+        "final  String  result  =  null;",
+        "NullPointer  result  =  null;",
+        "boolean  result  =  null;"
+      ]
+    },
+    "FILTER_BY_PREFIX": {
+      "loc": "11-12",
+      "input": "public static List<String> filter_by_prefix(List<String> strings, String prefix) {\n    List<String> result = new ArrayList<String>();\n    for (String string : strings){\n</s>        if (string.startsWith(prefix, 1)){\n</s>            result.add(string);\n        }\n    }\n    return result;\n}\n",
+      "output": [
+        "if  (string.startsWith(prefix,  0))  {",
+        "if  (string.startsWith(prefix,  0))  {",
+        "if  (string.toLowerCase().startsWith(prefix,  1))  {",
+        "if  (string!=  null  &&  string.startsWith(prefix,  1))  {",
+        "if  (string.startsWith(prefix,  3))  {",
+        "if  (string!=  null  &&  string.startsWith(prefix,  1))  {",
+        "if  (string.toLowerCase().startsWith(prefix,  1))  {",
+        "if  (string.startsWith(prefix.toLowerCase(),  1))  {",
+        "if  (string.startsWith(prefix,  3))  {",
+        "if  (string.startsWith(prefix.toLowerCase(),  1))  {"
+      ]
+    },
+    "GET_POSITIVE": {
+      "loc": "11-12",
+      "input": "public static List<Integer> get_positive(List<Integer> numbers) {\n    List<Integer> result = new ArrayList<Integer>();\n    for (Integer number : numbers) {\n</s>        result.add(number);\n</s>    }\n    return result;\n}\n",
+      "output": [
+        "result.add(new  Integer(number));",
+        "result.add(number);",
+        "result.add(number.intValue());",
+        "((Integer)  result).add(number);",
+        "result.add(number.toInt());",
+        "result.add((Integer)  number);",
+        "result.add(number.toInt());",
+        "result.add(number.toInteger());",
+        "result.addElement(number);",
+        ".add(number.intValue());"
+      ]
+    },
+    "IS_PRIME": {
+      "loc": "7-8",
+      "input": "public static boolean is_prime(int n){\n    if (n < 2)\n        return false;\n</s>    for (int k = 0; k < n; k += 1){\n</s>        if (n % k == 0)\n            return false;\n    }\n    return true;\n}\n",
+      "output": [
+        "for  (int  k  =  0;  k  <=  n;  k  +=  1)  {",
+        "for  (int  k  =  n  -  1;  k  <  n;  k  +=  1)  {",
+        "for  (int  k  =  0;  k  <  n;  k++)  {",
+        "for  (int  k  =  n  +  1;  k  <  n;  k  +=  1)  {",
+        "for  (int  k  =  0;  k  <  n;  k  +=  2)  {",
+        "for  (int  k  =  n  +  1;  k  <=  n;  k  +=  1)  {",
+        "for  (int  k  =  0;  k  <  n;  k  +=  1)  {",
+        "for  (int  k  =  n;  k  <=  n;  k  +=  1)  {",
+        "for  (int  k  =  n;  k  <  n;  k++)  {",
+        "for  (int  k  =  n;  k  <  n;  k  +=  1)  {"
+      ]
+    },
+    "FIND_ZERO": {
+      "loc": "25-26",
+      "input": "public static double find_zero(List<Double> xs){\n    double begin = -1.;\n    double end = 1.;\n    while (poly(xs, begin) * poly(xs, end) > 0) {\n        begin *= 2.;\n        end *= 2.;\n    }\n    while (end - begin > 1e-10) {\n        double center = (begin + end) / 2.;\n</s>        if (poly(xs, begin) * poly(xs, end) < 0) {\n</s>            begin = center;\n        } else {\n            end = center;\n        }\n    }\n    return begin;\n}\n",
+      "output": [
+        "if  (poly(xs,  begin)  *  poly(xs,  end)  >  0)  {",
+        "if  (poly(xs,  begin)  *  poly(xs,  end)  <  0)  {",
+        "if  (poly(xs,  begin)  *  poly(xs,  end)  <=  0)  {",
+        "if  (poly(xs,  begin)  *  poly(xs,  end)  >  0)  {",
+        "if  (poly(xs,  begin)  *  poly(xs,  end)  <  0)  {",
+        "if  (poly(xs,  begin)  *  poly(xs,  end)  <=  0)  {",
+        "if  (poly(xs,  begin)  *  poly(xs)  <  0)  {",
+        "if  (poly(xs,  begin)  *  poly(xs,  end)  >=  0)  {",
+        "if  (poly(xs,  begin)  *  poly(xs)  <  0)  {",
+        "if  (poly(xs,  begin)  *  poly(xs,  end)  >=  0)  {"
+      ]
+    },
+    "SORT_THIRD": {
+      "loc": "19-20",
+      "input": "public static List<Integer> sort_third(List<Integer> l) {\n    List<Integer> result = new ArrayList<Integer>();\n    List<Integer> thirds = new ArrayList<Integer>();\n    for (int i = 0; i < l.size(); i += 3){\n        thirds.add(l.get(i));\n    }\n    Collections.sort(thirds);\n    for (int i = 0; i < l.size(); i += 1){\n        if (i % 3 == 0){\n</s>            result.add(thirds.get(i));\n</s>        } else{\n            result.add(l.get(i));\n        }\n    }\n    return result;\n}\n",
+      "output": [
+        "result.add(l.get(i));",
+        "result.add((Integer)l.get(i));",
+        "result.add(l.get(i));",
+        "Result.add(l.get(i));",
+        "result.add((int)l.get(i));",
+        "result.add((int)  l.get(i));",
+        "result.add((int)(l.get(i)));",
+        "result.add(Integer.valueOf(i));",
+        "result.addAll(l.get(i));",
+        "result.add(trs.get(i));"
+      ]
+    },
+    "UNIQUE": {
+      "loc": "12-13",
+      "input": "public static List<Integer> unique(List<Integer> l) {\n    List<Integer> result = new ArrayList<Integer>();\n    for (Integer n : l){\n</s>        result.add(n);\n</s>    }\n    Collections.sort(result);\n    return result;\n}\n",
+      "output": [
+        "((Integer)n).add(n);",
+        "if  (n!=  null)  result.add(n);",
+        "if  (n!=  0)  result.add(n);",
+        "((Integer)  n).add(n);",
+        "if(n!=  null)  result.add(n);",
+        "if  (n!=  n)  result.add(n);",
+        "if  (n  >  0)  result.add(n);",
+        "if  (n!=  l)  result.add(n);",
+        "if  (n!=  -1)  result.add(n);",
+        "if  (n!=  null)  result.add(n);"
+      ]
+    },
+    "MAX_ELEMENT": {
+      "loc": "7-8",
+      "input": "public static int max_element(List<Integer> l) {\n</s>    int m = 0;\n</s>    for (Integer e : l) {\n        if (e > m){\n            m = e;\n        }\n    }\n    return m;\n}\n",
+      "output": [
+        "null  m  =  0;",
+        "Integer  m  =  0;",
+        "Integer  m  =  l;",
+        "int  m  =  0;",
+        "float  m  =  0;",
+        "int  m  =  1;",
+        "Integer  m  =  0;",
+        "int  m  =  -1;",
+        "Number  m  =  0;",
+        "null  m  =  l;"
+      ]
+    },
+    "FIZZ_BUZZ": {
+      "loc": "9-11",
+      "input": "public static int fizz_buzz(int n) {\n    int result = 0;\n    for (int i = 0; i < n; i += 1){\n        if (i % 11 == 0 || i % 13 == 0) {\n</s>            for (int j = 0; j < i + \"\".length(); j += 1){\n                if (i + \"\".substring(j, j + 1) == \"7\")\n</s>                    result += 1;\n            }\n        }\n    }\n    return result;\n}\n",
+      "output": [
+        "for  (int  j  =  0;  j  <  i  +   \".length();  j  +=  1)  {  if  (i  +   \".substring(j,  j)  ==   \"7   \")",
+        "for  (int  j  =  0;  j  <  i  +   \".length();  j  +=  1)  {  if  (i  +   \"   \".equals(j))",
+        "for  (int  j  =  0;  j  <  i  +   \".length();  j  +=  1)  {  if  (i  +   \"   \".equals(j,  j))",
+        "(int  j  =  0;  j  <  i  +   \".length();  j  +=  1)  {  if  (i  +   \".substring(j,  j  +  1)  ==   \"7   \")",
+        "for  (int  j  =  0;  j  <  i  +   \" \".length();  j  +=  1)  {  if  (i  +   \"   \".equals(j,  j))",
+        "for  (int  j  =  0;  j  <  i  +   \".length();  j  +=  1)  {  if  (i  +   \".substring(j,  j)  ==   \"7 \")",
+        "for  (int  j  =  0;  j  <  i  +   \" \".length();  j  +=  1)  {  if  (i  +   \"   \".equals(j))",
+        "(int  j  =  0;  j  <  i  +   \" \".length();  j  +=  1)  {  if  (i  +   \"   \".equals(j,  j))",
+        "(int  j  =  0;  j  <  i  +   \".length();  j  +=  1)  {  if  (i  +   \"   \".equals(j,  j))",
+        "(int  j  =  0;  j  <  i  +   \".length();  j  +=  1)  {  if  (i  +   \".substring(j,  j)  ==   \"7   \")"
+      ]
+    },
+    "SORT_EVEN": {
+      "loc": "9-10",
+      "input": "public static int[] sort_even(int[] l) {\n    int[] result = new int[l.length];\n</s>    int[] evens = new int[1 + (int) (l.length / 2.)];\n</s>    for (int i = 0; i < l.length; i += 2) {\n        evens[(int) i / 2] = l[i];\n    }\n    Arrays.sort(evens);\n    for (int i = 0; i < l.length; i += 1) {\n        if (i % 2 == 0){\n            result[i] = evens[(int) i / 2];\n        } else{\n            result[i] = l[i];\n        }\n    }\n    return result;\n}\n",
+      "output": [
+        "int[]  evens  =  new  int[2  +  (int)  (l.length  /  2.)];",
+        "int[]  evens  =  new  int[1  +  (int)  (l.length  /  2.)];",
+        "int[]  evens  =  new  int[1  +  (int)  (l.length  /  2]);",
+        "int[]  evens  =  new  int[1  +  (int)  (l.length  /  2.0)];",
+        "int[]  evens  =  new  int[1  +  (int)  (l.length  /  2]];",
+        "int[]  evens  =  new  int[1  +  (int)  (l.length  /  2];",
+        "int[]  evens  =  new  int[1  +  (int)  (l.length  /  2)];",
+        "int[]  evens  =  new  int[1  +  (int)  (l.length)];",
+        "int[]  evens  =  new  int[1  +  (int)  (l.length  /  2.)];",
+        "int[]  evens  =  new  int[l.length  /  2];"
+      ]
+    },
+    "DECODE_CYCLIC": {
+      "loc": "11-12",
+      "input": "String encode_cyclic(String s) {\n    ArrayList<String> groups = new ArrayList<String>();\n</s>    for (int i = 0; i < s.length(); i += 3){\n</s>        groups.add(s.substring(i, Math.min(s.length(), i + 3)));\n    }\n    int remain = s.length() % 3;\n    String result = \"\";\n    for (String group : groups){\n        result += group.substring(1) + group.substring(0, 1);\n    }\n    if (remain > 0){\n        result += s.substring(s.length() - remain);\n    }\n    return result;\n}\n",
+      "output": [
+        "for  (int  i  =  0;  i  <  s.length();  i  +=  3)  {",
+        "for  (int  i  =  0;  i  <  s.length();  i  +=  2)  {",
+        "for  (int  i  =  0;  i  <  s.length()  -  1;  i  +=  3)  {",
+        "for  (int  i  =  0;  i  <  s.length();  i  +=  4)  {",
+        "for  (int  i  =  0;  i  <  s.length();  i++)  {",
+        "for  (int  i  =  0;  i  <  s.length()  -  2;  i  +=  3)  {",
+        "for  (int  i  =  0;  i  <=  s.length();  i  +=  3)  {",
+        "for  (int  i  =  0;  i  <  s.length();  i  +=  5)  {",
+        "for  (int  i  =  1;  i  <  s.length();  i  +=  3)  {",
+        "(int  i  =  0;  i  <  s.length()  -  1;  i  +=  3)  {"
+      ]
+    },
+    "PRIME_FIB": {
+      "loc": "23-25",
+      "input": "public static int prime_fib(int n){\n    ArrayList<Integer> fib = new ArrayList<Integer>();\n    fib.add(0);\n    fib.add(1);\n    while (true) {\n        int len = fib.size();\n</s>        fib.add(fib.get(len - 1) + fib.get(len));\n        if (is_prime(fib.get(len - 1)))\n</s>            n -= 1;\n        if (n == 0)\n            return fib.get(fib.size() - 1);\n    }\n}\n",
+      "output": [
+        "if  (is_prime(fib.get(len  -  1)))",
+        "if  (is_prime(fib.get(len  -  1)))",
+        "if  (len  >  0  &&  is_prime(fib.get(len  -  1)))",
+        "if  (len  >  0  &&  is_prime(fib.get(len  -  1)))",
+        "if  (fib  ==  null  ||  is_prime(fib.get(len  -  1)))",
+        "if  (len  <  0  ||  is_prime(fib.get(len  -  1)))",
+        "if  (n  >  0  &&  is_prime(fib.get(len  -  1)))",
+        "if  (!is_prime(fib.get(len  -  1)))",
+        "if  (n  ==  0  &&  is_prime(fib.get(len  -  1)))",
+        "if  (n  ==  0  ||  is_prime(fib.get(len  -  1)))"
+      ]
+    },
+    "TRIPLES_SUM_TO_ZERO": {
+      "loc": "23-25",
+      "input": "public static boolean triples_sum_to_zero(int[] numbers) {\n    for (int i = 0; i < numbers.length; i += 1) {\n</s>        for (int j = i; j < numbers.length; j += 1) {\n            for (int k = j; k < numbers.length; k += 1) {\n</s>                if (numbers[i] + numbers[j] + numbers[k] == 0)\n                    return true;\n            }\n        }\n    }\n    return false;\n}\n",
+      "output": [
+        "for  (int  j  =  i;  j  <  numbers.length;  j++)  {  for  (int  k  =  j;  k  <  numbers.length;  k++)  {",
+        "for  (int  j  =  i;  j  <  numbers.length;  j  +=  1)  {  for  (int  k  =  j;  k  <  numbers.length;  k  +=  1)  {",
+        "for  (int  j  =  0;  j  <  numbers.length;  j  +=  1)  {  for  (int  k  =  j;  k  <  numbers.length;  k  +=  1)  {",
+        "for  (int  j  =  i;  j  <  numbers.length;  k++)  {  for  (int  k  =  j;  k  <  numbers.length;  k++)  {",
+        "for  (int  j  =  i;  j  <  names.length;  j  +=  1)  {  for  (int  k  =  j;  k  <  names.length;  k  +=  1)  {",
+        "for  (int  j  =  i;  j  <  numbers.length;  j  +=  2)  {  for  (int  k  =  j;  k  <  numbers.length;  k  +=  2)  {",
+        "for  (int  j  =  i;  j  <  numbers.length;  j++)  {  for  (int  k  =  j;  k  <  numbers.length;  k  +=  1)  {",
+        "for  (int  j  =  i;  j  <  numbers.length;  j  +=  2)  {  for  (int  k  =  j;  k  <  numbers.length;  k  +=  1)  {",
+        "for  (int  j  =  i;  j  <  numberCount;  j  +=  1)  {  for  (int  k  =  j;  k  <  numberCount;  k  +=  1)  {",
+        "for  (int  j  =  i;  j  <  times.length;  j  +=  1)  {  for  (int  k  =  j;  k  <  times.length;  k  +=  1)  {"
+      ]
+    },
+    "CAR_RACE_COLLISION": {
+      "loc": "15-16",
+      "input": "public static int car_race_collision(int n) {\n</s>    return n;\n</s>}\n",
+      "output": [
+        "return  n  ==  0?  0  :  n;",
+        "return  n  <  0?  0  :  n;",
+        "return  n  >  0?  n  :  n;",
+        "//$NON-NLS-1$  return  n;",
+        "return  n  <  0?  -1  :  n;",
+        "@SuppressWarnings(   \"unused   \")  return  n;",
+        "return  n  >=  0?  n  :  n;",
+        "return  n!=  0?  n  :  0;",
+        "return  n  ==  0?  1  :  n;",
+        "return  n  ==  0?  -1  :  n;"
+      ]
+    },
+    "INCR_LIST": {
+      "loc": "17-18",
+      "input": "public static List<Integer> incr_list(List<Integer> l) {\n    List<Integer> result = new ArrayList<Integer>();\n    for (Integer n : l) {\n</s>        result.add(n - 1);\n</s>    }\n    return result;\n}\n",
+      "output": [
+        "((Integer)n).add(n);",
+        "((Integer)n).add(n  -  1);",
+        "((Integer)  n).add(n);",
+        "(n  >  0?  n  -  1  :  n);",
+        "((Integer)  n).add(n  -  1);",
+        "if  (n  >  0)  result.add(n);",
+        "if  (n  >  0)  result.add(n  -  1);",
+        "((Integer)n).add(n  -  1);",
+        "((Number)n).add(n);",
+        "if  (n  >=  0)  result.add(n);"
+      ]
+    },
+    "PAIRS_SUM_TO_ZERO": {
+      "loc": "12-13",
+      "input": "public static boolean pairs_sum_to_zero(List<Integer> l) {\n    for (int i = 0; i < l.size(); i += 1) {\n</s>        for (int j = 0; j < l.size(); j += 1){\n</s>            if (l.get(i) + l.get(j) == 0)\n                return true;\n        }\n    }\n    return false;\n}\n",
+      "output": [
+        "for  (int  j  =  0;  j  <=  l.size();  j  +=  1)  {",
+        "for  (int  j  =  0;  j  <  l.size();  j  +=  1)  {",
+        "for  (int  j  =  0;  j  <  l.size();  j++)  {",
+        "for  (int  j  =  0;  j  <  l.size();  j  +=  2)  {",
+        "for  (int  j  =  l.size()-1;  j  <  l.size();  j  +=  1)  {",
+        "for  (int  j  =  l.size()  -  1;  j  >=  0;  j--)  {",
+        "for  (int  j  =  1;  j  <=  l.size();  j  +=  1)  {",
+        "for  (int  j  =  0;  j  <  l.size()  -  1;  j  +=  1)  {",
+        "(int  j  =  0;  j  <  l.size();  j  +=  1))  {",
+        "for  (int  j  =  l.size()-1;  j  >=  0;  j--)  {"
+      ]
+    },
+    "CHANGE_BASE": {
+      "loc": "18-20",
+      "input": "public static String change_base(int x, int base) {\n    String result = \"\";\n    while (x > 0) {\n</s>        result = result + x % base;\n        x = x - x / base;\n</s>    }\n    return result;\n}\n",
+      "output": [
+        "x  =  x  -  x  /  base;",
+        "x  =  x  -  base;",
+        "x  =  x  -  base  -  x  /  base;",
+        "x  =  base  +  x  -  x  /  base;",
+        "x  -=  x  /  base;",
+        "x  =  x  -  base  +  x  %  base;",
+        "if  (x  >  0)  result  =  result  +  x  %  base;",
+        "x  =  x  -  base  +  x  /  base;",
+        "result  =  result  +  x  %  base;",
+        "x  =  (x  -  x  /  base)  %  base;"
+      ]
+    },
+    "TRIANGLE_AREA": {
+      "loc": "9-10",
+      "input": "public static double triangle_area(double a, double h) {\n</s>    return a * h;\n</s>}\n",
+      "output": [
+        "return  a  *  h;",
+        "return  triangle_area(a,h);",
+        "return  (double)(a  *  h);",
+        "return  (int)(a  *  h);",
+        "return  triangle_area(a,  h);",
+        "return  a  /  h;",
+        "return  triangle_area(a  *  h);",
+        "((double)a)  *  ((double)h);",
+        "s  *  h;  return  s  *  h;",
+        "d  =  a  *  h;  return  d;"
+      ]
+    },
+    "FIB4": {
+      "loc": "33-34",
+      "input": "public static int fib4(int n) {\n    ArrayList<Integer> result = new ArrayList<Integer>(); \n    result.add(0);\n    result.add(0);\n    result.add(2);\n    result.add(0);\n    if (n < 4)\n        return result.get(n);\n    for (int i = 4; i < n + 1; i += 1) {\n        result.add(\n            result.get(0) + result.get(1) + result.get(2) + result.get(3)\n        );\n</s>    }\n</s>    return result.get(result.size() - 1);\n}\n",
+      "output": [
+        "result  =  new  ArrayList  <  Integer>();  }",
+        "if  (n  <  4)  return  result.get(n);  }",
+        "result.add(0);  }",
+        "if  (result  ==  null)  continue;  }",
+        "if  (n  <  5)  return  result.get(n);  }",
+        "result.add(result.size());  }",
+        "result.size()  -  1;  }",
+        "if  (n  >  4)  return  result.get(n);  }",
+        "if  (n  <  3)  return  result.get(n);  }",
+        ".add(result.size()  -  1);  }"
+      ]
+    },
+    "MEDIAN": {
+      "loc": "18-19",
+      "input": "public static double median(int[] list) {\n    Arrays.sort(list);\n    if (list.length % 2 == 1) {\n        return list[(int) (list.length / 2)];\n    } else {\n</s>        return list[(int) (list.length / 2)] + list[(int) (list.length / 2) + 1] / 2;\n</s>    }\n}\n",
+      "output": [
+        "return  list[(int)  (list.length  /  2)]  +  list[(int)  (list.length  /  2)  +  1]  /  2;",
+        "return  value[(int)  (list.length  /  2)]  +  value[(int)  (list.length  /  2)  +  1]  /  2;",
+        "return  double[(int)  (list.length  /  2)]  +  list[(int)  (list.length  /  2)  +  1]  /  2;",
+        "return  (int)  (list.length  /  2)  +  list[(int)  (list.length  /  2)  +  1]  /  2;",
+        "return  list[(int)  (list.length  /  2)]  +  (int)  (list.length  /  2)  +  1]  /  2;",
+        "return  list[(int)(list.length  /  2)]  +  list[(int)(list.length  /  2)  +  1]  /  2;",
+        "return  array[(int)  (list.length  /  2)]  +  array[(int)  (list.length  /  2)  +  1]  /  2;",
+        "return  list[(int)  (list.length  /  2)]  +  list[(int)  (list.length  /  2)  +  1];",
+        "return  list[(int)  (list.length  /  2)]  +  list[(int)  (list.length  /  2)]  +  1]  /  2;",
+        "return  list[(int)  (list.length  /  2)]  +  list[(int)(list.length  /  2)  +  1]  /  2;"
+      ]
+    },
+    "IS_PALINDROME": {
+      "loc": "16-20",
+      "input": "public static boolean is_palindrome(String text) {\n    for (int i = 0; i < text.length(); i += 1){\n</s>        if (text.charAt(i) == text.charAt(text.length() - i))\n            return true;\n    }\n    return false;\n</s>}\n",
+      "output": [
+        "if  (text.charAt(i)  ==  text.charAt(text.length()  -  i))  return  true;",
+        "if  (text.charAt(i)  ==  text.charAt(text.length()  -  i))  return  false;",
+        "if  (i  <  text.length()  &&  text.charAt(i)  ==  text.charAt(i))  return  true;",
+        "if  (i  >=  text.length()  &&  text.charAt(i)  ==  text.charAt(i))  return  true;",
+        "if  (text.charAt(i)  ==  text.charAt(text.length()  -  i))  return  false;  }",
+        "if  (text.charAt(i)  ==  text.charAt(i))  return  true;",
+        "if  (i  <  text.length()  &&  text.charAt(i)  ==  text.charAt(i))  return  true;  }",
+        "if  (text.charAt(i)  ==  text.charAt(text.length()  -  i  +  1))  return  true;",
+        "if  (text.charAt(i)  ==  text.charAt(text.length()  -  i))  return  true;  }",
+        "if  (text.charAt(i)  ==  text.charAt(text.length()  -  i))  return  true;"
+      ]
+    },
+    "MODP": {
+      "loc": "19-22",
+      "input": "public static int modp(int n, int p) {\n    int result = 1;\n    for (int i = 0; i < n; i += 1){\n</s>        result = 2 * result;\n    }\n    return result % p;\n</s>}\n",
+      "output": [
+        "result  =  2  *  result;",
+        "result  =  2  *  result  %  p;",
+        "result  =  2  *  result;  }  return  result;",
+        "result  =  1;",
+        "result  =  3  *  result;",
+        "result  =  result  %  p;",
+        "result  =  3  *  result;  }  return  result;",
+        "result  =  2  *  result;",
+        "result  =  2  *  result  %  p;  }",
+        "result  =  2  *  result;  }  return  p;"
+      ]
+    },
+    "DECODE_SHIFT": {
+      "loc": "19-20",
+      "input": "public static String decode_shift(String string) {\n    StringBuilder sb = new StringBuilder();\n    for (char c : string.toCharArray()) {\n</s>        c = (char)((((int) c - 5 - (int)('a')) % 26) + (int)('a'));\n</s>        sb.append(c);\n    }\n    return sb.toString();\n}\n",
+      "output": [
+        "c  =  (char)(((int)  c  -  5  -  (int)('a'))  %  26)  +  (int)('a'));",
+        "c  =  (char)(((int)  c  -  5  -  (int)('a'))  %  26)  +  (int)('a'));",
+        "c  =  (char)((((int)  c  -  5  -  (int)('a'))  %  26)  +  (int)('a'));",
+        "c  =  (char)(((int)  c  -  5  -  (int)('a'))  +  (int)('a'));",
+        "(char)(((int)  c  -  5  -  (int)('a'))  %  26)  +  (int)('a'));",
+        "c  =  (char)(((int)  c  -  5  -  (int)('a'))  %  26)  +  (int)('a')));",
+        "c  =  (char)((((int)  c  -  5  -  (int)('a')))  +  (int)('a'));",
+        "c  =  (char)(((int)  c  -  5  -  (int)('a'))  +  (int)('a'));",
+        "c  =  (char)(((int)  c  -  5  -  (int)('a')))  +  (int)('a'));",
+        "c  =  (char)((((int)  c  -  5  -  (int)('a'))  %  26));"
+      ]
+    },
+    "REMOVE_VOWELS": {
+      "loc": "21-22",
+      "input": "public static String remove_vowels(String string) {\n    StringBuilder sb = new StringBuilder();\n    for (char c : string.toCharArray()) {\n</s>        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')\n</s>            continue;\n        sb.append(c);\n    }\n    return sb.toString();\n}\n",
+      "output": [
+        "if  (c  ==  'a'  ||  c  ==  'e'  ||  c  ==  'i'  ||  c  ==  'o'  ||  c  ==  'u'  ||  c  ==  'a')",
+        "if  (c  ==  'a'  ||  c  ==  'e'  ||  c  ==  'i'  ||  c  ==  'o'  ||  c  ==  'u')  {  }",
+        "if  (c  ==  'a'  ||  c  ==  'e'  ||  c  ==  'i'  ||  c  ==  'o'  ||  c  ==  'u')  {  }",
+        "if  (c  ==  'a'  ||  c  ==  'e'  ||  c  ==  'i'  ||  c  ==  'o'  ||  c  ==  'u')",
+        "if  (c  ==  'a'  ||  c  ==  'e'  ||  c  ==  'i'  ||  c  ==  'o'  ||  c  ==  'u'  ||  c  ==  'b')",
+        "if  (c  ==  'a'  ||  c  ==  'e'  ||  c  ==  'i'  ||  c  ==  'o'  ||  c  ==  'u'  ||  c  ==  'c')",
+        "if  (c  ==  'a'  ||  c  ==  'e'  ||  c  ==  'i'  ||  c  ==  'o'  ||  c  ==  'u'  ||  c  ==  'f')",
+        "if  (c  ==  'a'  ||  c  ==  'e'  ||  c  ==  'i'  ||  c  ==  'o'  ||  c  ==  'u'  ||  c  ==  't')",
+        "if  (c  ==  'a'  ||  c  ==  'e'  ||  c  ==  'i'  ||  c  ==  'o'  ||  c  ==  'u'  ||  c  ==  'h')",
+        "if  (c  ==  'a'  ||  c  ==  'e'  ||  c  ==  'i'  ||  c  ==  'o'  ||  c  ==  'u'  ||  c  ==  'p')"
+      ]
+    },
+    "BELOW_THRESHOLD": {
+      "loc": "12-16",
+      "input": "public static boolean below_threshold(int[] l, int t) {\n    for (int i = 0; i < l.length; i += 1) {\n</s>        if (l[i] <= t)\n            return true;\n    }\n    return false;\n</s>}\n",
+      "output": [
+        "if  (l[i]  <=  t)  return  false;",
+        "if  (l[i]  <=  t)  return  false;  }  return  false;",
+        "if  (l[i]  <=  t)  return  false;  }  return  true;",
+        "if  (l[i]  <=  t)  return  true;  }  return  false;",
+        "if  (l[i]  <=  t)  return  true;",
+        "if  (l[i]  <=  t)  return  false;  }",
+        "if  (l[i]  <=  t)  return  true;  }  return  true;",
+        "if  (l[i]  <  t)  return  true;  }  return  false;",
+        "if  (l[i]  <=  t)  return  false;  }  return  false;",
+        "if  (l[i]  <=  t)  return  false;  return  true;"
+      ]
+    },
+    "ADD": {
+      "loc": "11-12",
+      "input": "public static int add(int x, int y) {\n</s>    return x | y;\n</s>}\n",
+      "output": [
+        "return  Integer.MAX_VALUE  |  Integer.MAX_VALUE;",
+        "if  (x  ==  0  ||  y  ==  0)  return  0;  return  0;",
+        "return  Integer.valueOf(x)  |  Integer.valueOf(y);",
+        "if  (x  <  0  ||  y  <  0)  return  0;  else  return  0;",
+        "Point  p  =  new  Point(x);  return  p.add(p.x,  p.y);",
+        "return  Integer.valueOf(x,  Integer.valueOf(y));",
+        "Double.isNaN(x)?  Double.NaN  :  Double.NaN;",
+        "if  (x  <  0  ||  y  <  0)  return  0;  return  0;",
+        "if  (x  ==  0  ||  y  ==  0)  return  0;  return  -1;",
+        "return  (x  &  0xFFFF)  |  (y  &  0xFFFF);"
+      ]
+    },
+    "SAME_CHARS": {
+      "loc": "21-23",
+      "input": "public static boolean same_chars(String s0, String s1) {\n</s>    ArrayList<Character> set0 = new ArrayList<Character>();\n    ArrayList<Character> set1 = new ArrayList<Character>();\n</s>\n    for (char c0 : s0.toCharArray()) {\n        set0.add(c0);\n    }\n    for (char c1 : s1.toCharArray()) {\n        set1.add(c1);\n    }\n    return set0.equals(set1);\n}\n",
+      "output": [
+        "ArrayList  <  Character>  set0  =  new  ArrayList  <  Character>();",
+        "List  <  Character>  set0  =  new  ArrayList  <  Character>();",
+        "List  <  Character>  set0  =  new  ArrayList  <  Character>();",
+        "ArrayList  <  Character>  set1  =  new  ArrayList  <  Character>();",
+        "nullSet  <  Character>  set0  =  new  ArrayList  <  Character>();",
+        "ArrayList  <  Character>  set0  =  new  ArrayList  <  Character>();",
+        "HashSet  <  Character>  set0  =  new  HashSet  <  Character>();",
+        "ArrayList  <  Character>  set0  =  new  ArrayList  <  Character>(s0);",
+        "List  <  Character>  set0  =  new  ArrayList  <  Character>(s0.toCharArray());",
+        "nullList  <  Character>  set0  =  new  ArrayList  <  Character>();"
+      ]
+    },
+    "FIB": {
+      "loc": "13-14",
+      "input": "public static int fib(int n) {\n</s>    return fib(n - 1) + fib(n - 2);\n</s>}\n",
+      "output": [
+        "return  fib(n  -  1)  +  fib(n  -  2);",
+        "return  fib(n  -  1)  +  fib(n  -  1);",
+        "int  fib(n  -  1)  +  fib(n  -  2);  return  fib(n  -  1);",
+        "(n  >  0)?  fib(n  -  1)  :  fib(n  -  2);",
+        "int  fib(n  -  1)  +  fib(n  -  2);  return  fib(n  -  2);",
+        "int  fib  =  fib(n  -  1);  return  fib  +  fib(n  -  2);",
+        "return  fib(n  >  0?  fib(n  -  1)  :  fib(n  -  2);",
+        "return  fib(n  >  0?  fib(n  -  1)  :  fib(n  -  2));",
+        "return  fib(n  -  1)  +  fib(n  -  2);",
+        "return  fib(n  -  1)  +  fib(n  -  3);"
+      ]
+    },
+    "CORRECT_BRACKETING": {
+      "loc": "23-27",
+      "input": "public static boolean correct_bracketing(String brackets) {\n    int depth = 0;\n    for (char b : brackets.toCharArray()) {\n        if (b == '<')\n            depth += 1;\n        else\n            depth -= 1;\n</s>        if (depth >= 0)\n            return true;\n    }\n    return false;\n</s>}\n",
+      "output": [
+        "if  (depth  >=  0)  return  false;",
+        "if  (depth  >  0)  return  false;",
+        "if  (depth  >  0)  return  true;",
+        "if  (depth  >  0)  return  true;  }  return  false;",
+        "if  (depth  >  0)  return  false;  }  return  false;",
+        "if  (depth  >  0)  return  false;  }  return  true;",
+        "if  (depth  >=  0)  return  true;",
+        "if  (depth  >  0)  return  true;  }  return  true;",
+        "if  (depth  >=  0)  return  false;  }",
+        "if  (depth  >  0)  return  false;  }"
+      ]
+    },
+    "MONOTONIC": {
+      "loc": "18-19",
+      "input": "public static boolean monotonic(int[] l) {\n    int[] sorted = new int[l.length];\n    int[] reverse_sorted = new int[l.length];\n</s>    sorted = l;\n</s>    \n    Arrays.sort(sorted);\n    for (int i = 0; i < l.length; i += 1)\n        reverse_sorted[i] = sorted[l.length - i - 1]; \n    if (Arrays.equals(l, sorted) || Arrays.equals(l, reverse_sorted))\n        return true;\n    return false;\n}\n",
+      "output": [
+        "sorted  =  new  int[l.length];",
+        "sorted  =  l;",
+        "sorted  =  l.length;",
+        "sorted  =  (int[])  l;",
+        "sorted  =  l.length  -  1;",
+        "sorted  =  new  int[l.length];",
+        "sorted  =  l.length  -  i;",
+        "sorted  =  (int[])l;",
+        "sorted  =  (int)  l.length;",
+        "sorted  =  (int)  l;"
+      ]
+    },
+    "COMMON": {
+      "loc": "13-14",
+      "input": "public static int[] common(int[] l1, int[] l2) {\n</s>    ArrayList<Integer> common = new ArrayList<Integer>();\n</s>    \n    for (int i = 0; i < l1.length; i += 1){\n        for (int j = 0; j < l2.length; j += 1){\n            if (l1[i] == l2[j])\n                common.add(l1[i]);\n        }\n    }\n    int[] result = new int[common.size()];\n    int index = 0;\n    for (Integer c : common) {\n        result[index] = c;\n        index += 1;\n    }\n    Arrays.sort(result);\n    return result;\n}\n",
+      "output": [
+        "ArrayList  <  Integer>  common  =  new  ArrayList  <  Integer>();",
+        "List  <  Integer>  common  =  new  ArrayList  <  Integer>();",
+        "Set  <  Integer>  common  =  new  HashSet  <  Integer>();",
+        "List  <  Integer>  common  =  new  ArrayList  <  Integer>();",
+        "ArrayList  <  Integer>  common  =  new  ArrayList  <  >();",
+        "ArrayList  <  Integer>  common  =  new  ArrayList  <  Integer>(1);",
+        "ArrayList  <  Integer>  common  =  new  ArrayList  <  Integer>(0);",
+        "ArrayList  <  Integer>  common  =  new  ArrayList  <  Integer>();",
+        "Collection  <  Integer>  common  =  new  ArrayList  <  Integer>();",
+        "Set  <  Integer>  common  =  new  HashSet  <  Integer>();"
+      ]
+    },
+    "LARGEST_PRIME_FACTOR": {
+      "loc": "23-25",
+      "input": "public static int largest_prime_factor(int n) {\n    int largest = 1;\n    for (int j = 2; j < n; j += 1) {\n</s>        if (is_prime(j)){\n            largest = n % j;\n</s>        }\n    }\n    return largest;\n}\n",
+      "output": [
+        "if  (is_prime(j))  {",
+        "if  (is_prime(j))  {",
+        "if  (is_prime(j)  ||  is_prime(j))  {",
+        "if  (!is_prime(j))  {",
+        "if  (is_prime(j)  ||  is_prime(j))  {",
+        "if  (is_prime(j))  {  largest  =  n  %  j;",
+        "if  (is_prime(j)  &&  j  <  n)  {",
+        "if  (is_prime(j)  &&  n  ==  j)  {",
+        "if  (!is_prime(j))  {",
+        "if  (is_prime(j)  ||  n  ==  j)  {"
+      ]
+    },
+    "SUM_TO_N": {
+      "loc": "17-18",
+      "input": "public static int sum_to_n(int n) {\n</s>    return (n + 1) * (n / 2);\n</s>}\n",
+      "output": [
+        "(n  +  1)  *  (n  /  2);",
+        "return  (n  +  1)  *  (n  /  2);",
+        "(n  +  1)  *  (n  /  2);",
+        "(int)  (n  +  1)  *  (n  /  2);",
+        "if  (n  >  0)  return  (n  +  1)  *  (n  /  2);",
+        "(int)(n  +  1)  *  (n  /  2);",
+        "if  (n  <  0)  return  (n  +  1)  *  (n  /  2);",
+        "(n+1)  *  (n  /  2);",
+        "(n  +  2)  *  (n  /  2);",
+        "(n  +  1)  *  (n  /  2);"
+      ]
+    },
+    "DERIVATIVE": {
+      "loc": "18-20",
+      "input": "public static List<Integer> derivative(List<Integer> xs) {\n    List<Integer> result = new ArrayList<Integer>();\n</s>    for (int i = 0; i < xs.size(); i += 1)\n        result.add(xs.get(i));\n</s>    return result;\n}\n",
+      "output": [
+        "for  (int  i  =  0;  i  <  xs.size();  i  +=  1)  result.add(xs.get(i));",
+        "(int  i  =  0;  i  <  xs.size();  i  +=  1)  result.add(xs.get(i));",
+        "for  (int  i  =  0;  i  <  xs.size();  i  +=  2)  result.add(xs.get(i));",
+        "for  (int  i  =  0;  i  <=  xs.size();  i  +=  1)  result.add(xs.get(i));",
+        "for  (int  i  =  0;  i  <  xs.size();  i++)  result.add(xs.get(i));",
+        "(int  i  =  0;  i  <  xs.size();  i  +=  2)  result.add(xs.get(i));",
+        "(int  i  =  0;  i  <=  xs.size();  i  +=  1)  result.add(xs.get(i));",
+        "(int  i  =  0;  i  <  xs.size();  i++)  result.add(xs.get(i));",
+        "(int  i  =  0;  i  <  xs.size()  -  1;  i  +=  1)  result.add(xs.get(i));",
+        "For  (int  i  =  0;  i  <  xs.size();  i  +=  1)  result.add(xs.get(i));"
+      ]
+    },
+    "FIBFIB": {
+      "loc": "22-23",
+      "input": "public static int fibfib(int n) {\n    if (n == 0)\n        return 0;\n    if (n == 1)\n        return 0;\n</s>    return fibfib(n - 1) + fibfib(n - 2) + fibfib(n - 3);\n</s>}\n",
+      "output": [
+        "return  fibfib(n  -  1)  +  fibfib(n  -  2)  +  fibfib(n  -  3);",
+        "if  (n  ==  1)  return  0;  return  fibfib(n  -  1)  +  fibfib(n  -  2)  +  fibfib(n  -  3);",
+        "if  (n  <  0)  return  0;  return  fibfib(n  -  1)  +  fibfib(n  -  2)  +  fibfib(n  -  3);",
+        "(n  ==  0)?  0  :  fibfib(n  -  1)  +  fibfib(n  -  2)  +  fibfib(n  -  3);",
+        "if  (n  >  0)  return  0;  return  fibfib(n  -  1)  +  fibfib(n  -  2)  +  fibfib(n  -  3);",
+        "if  (n  ==  3)  return  0;  return  fibfib(n  -  1)  +  fibfib(n  -  2)  +  fibfib(n  -  3);",
+        "if  (n  ==  2)  return  0;  return  fibfib(n  -  1)  +  fibfib(n  -  2)  +  fibfib(n  -  3);",
+        "fibfib(n  -  1)  +  fibfib(n  -  2)  +  fibfib(n  -  3);",
+        "bfib(n  -  1)  +  fibfib(n  -  2)  +  fibfib(n  -  3);",
+        "if  (n  >  1)  return  0;  return  fibfib(n  -  1)  +  fibfib(n  -  2)  +  fibfib(n  -  3);"
+      ]
+    },
+    "VOWELS_COUNT": {
+      "loc": "24-25",
+      "input": "public static int vowels_count(String str) {\n    int result = 0;\n    char[] str_chars = str.toCharArray();\n    for (char c : str_chars) {\n        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'A' || c == 'E' || c == 'I' || c == 'O'\n                || c == 'U')\n            result += 1;\n    }\n</s>    if (str_chars[str_chars.length - 1] == 'y')\n</s>        result += 1;\n    return result;\n}\n",
+      "output": [
+        "if  (str_chars[str_chars.length  -  2]  ==  'y')",
+        "if  (str_chars[str_chars.length  -  1]  ==  'a')",
+        "if  (str_chars[str_chars.length  -  1]  ==  'h')",
+        "if  (str_chars[str_chars.length  -  1]  ==  'u')",
+        "if  (str_chars[str_chars.length  -  1]  ==  'p')",
+        "if  (str_chars[str_chars.length  -  1]  ==  'z')",
+        "if  (str_chars[str_chars.length  -  1]  ==  'x')",
+        "if  (str_chars[str_chars.length  -  1]  ==  'Y')",
+        "if  (str_chars[str_chars.length  -  2]  ==  'y')",
+        "if  (str_chars[str_chars.length  -  1]  ==  'o')"
+      ]
+    },
+    "CIRCULAR_SHIFT": {
+      "loc": "21-22",
+      "input": "public static String circular_shift(int x, int shift) {\n    String s = x + \"\";\n    if (shift > s.length()) {\n        StringBuilder sb = new StringBuilder();\n        for (int i = s.length() - 1; i >= 0; i -= 1)\n            sb.append(s.charAt(i));\n        return sb.toString();\n    } else {\n</s>        return s.substring(s.length() - shift + 1) + s.substring(0, s.length() - shift - 1);\n</s>    }\n}\n",
+      "output": [
+        "s  =  s.substring(s.length()  -  shift  +  1)  +  s.substring(0,  s.length()  -  shift  -  1);  return  s.toString();",
+        "s  =  s.substring(s.length()  -  shift  +  1)  +  s.substring(0,  s.length()  -  shift  -  1);  return  s;",
+        "if  (s.length()  >  shift)  return  s.substring(s.length()  -  shift  +  1)  +  s.substring(0,  s.length()  -  shift  -  1);",
+        "if  (s.length()  >  0)  return  s.substring(s.length()  -  shift  +  1)  +  s.substring(0,  s.length()  -  shift  -  1);",
+        "return  s.substring(s.length()  -  shift  +  1)  +  s.substring(0,  s.length()  -  shift);",
+        "return  s.substring(s.length()  -  shift)  +  s.substring(0,  s.length()  -  shift);",
+        "StringBuilder  sb  =  new  StringBuilder();  return  s.substring(s.length()  -  shift  +  1)  +  s.substring(0,  s.length()  -  shift);",
+        "StringBuffer  sb  =  new  StringBuffer();  return  s.substring(s.length()  -  shift  +  1)  +  s.substring(0,  s.length()  -  shift);",
+        "s  =  s.substring(s.length()  -  shift  +  1)  +  s.substring(0,  s.length()  -  shift);  return  s;",
+        "s  =  new  StringBuilder();  return  s.substring(s.length()  -  shift  +  1)  +  s.substring(0,  s.length()  -  shift  -  1);"
+      ]
+    },
+    "DIGIT_SUM": {
+      "loc": "19-21",
+      "input": "public static int digit_sum(String s) {\n    int result = 0;\n    for (char c : s.toCharArray()) {\n</s>        if (c == ' ')\n            break;\n</s>        if ('A' <= c && c <= 'Z')\n            result += (int) c;\n    }\n    return result;\n}\n",
+      "output": [
+        "if  (c  =='')  break;",
+        "if  (c  =='')  break;",
+        "if  (c  =='')  result  =  0;",
+        "if  (c  =='')  {  break;  }",
+        "if  (c  =='')  result  =  0;",
+        "if  (c  =='')  continue;",
+        "if  (c  =='')  {  break;  }",
+        "if  (c  =='')  continue;",
+        "if  (c  =='')  return  0;",
+        "if  (c  ==  '')  break;"
+      ]
+    },
+    "FRUIT_DISTRIBUTION": {
+      "loc": "19-21",
+      "input": "public static int fruit_distribution(String s, int n) {\n    int result = n;\n    for (String str : s.split(\" \")) {\n</s>        int cnt = Integer.parseInt(str);\n        result -= cnt;\n</s>    }\n    return result;\n}\n",
+      "output": [
+        "cnt  =  Integer.parseInt(str);",
+        "cnt  =  Integer.parseInt(str.trim());",
+        "int  cnt  =  Integer.parseInt(str);",
+        "Integer  cnt  =  Integer.parseInt(str);",
+        "result  -=  Integer.parseInt(str);",
+        "Integer  cnt  =  Integer.parseInt(str);",
+        "Result  -=  Integer.parseInt(str);",
+        "result  -=  Integer.parseInt(str);",
+        "cnt  =  Integer.parseInt(str).trim();",
+        "++int  cnt  =  Integer.parseInt(str);"
+      ]
+    },
+    "PLUCK": {
+      "loc": "37-39",
+      "input": "public static int[] pluck(int[] arr) {\n</s>    int min_even = 0;\n    int index = 0;\n</s>\n    for (int i = 0; i < arr.length; i += 1) {\n        if (arr[i] % 2 == 0 && arr[i] < min_even) {\n            min_even = arr[i];\n            index = i;\n        }\n    }\n    if (index == -1)\n        return new int[]{};\n    return new int[] {min_even, index};\n}\n",
+      "output": [
+        "int  min_even  =  arr[i];",
+        "int  min_even  =  arr.length;",
+        "int  min_even  =  arr[i];",
+        "null  min_even  =  0;",
+        "int  min_even  =  arr[i].length;",
+        "int  min_even  =  1;",
+        "t  min_even  =  arr[i];",
+        "Integer  min_even  =  0;",
+        "Integer  min_even  =  0;",
+        "nt  min_even  =  0;"
+      ]
+    },
+    "SEARCH": {
+      "loc": "21-24",
+      "input": "public static int search(int[] lst) {\n    int max = -1;\n    for (Integer i : lst) {\n        if (i > max)\n            max = i;\n    }\n    int result = -1;\n</s>    int[] frq = new int[max];\n    for (int i = 0; i < lst.length; i += 1)  frq[i] += 1;\n    for (int i = 0; i < frq.length; i += 1) if (frq[i] >= i) result = i;\n</s>    \n    return result;\n}\n",
+      "output": [
+        "int[]  frq  =  new  int[max];",
+        "int[]  frq  =  new  int[max];",
+        "Integer[]  frq  =  new  Integer[max];",
+        "int[]  frq  =  new  int[max  -  1];",
+        "Integer[]  frq  =  new  Integer[max];",
+        "int[]  frq  =  new  int[max  +  1];",
+        "[]  frq  =  new  int[max];",
+        "t[]  frq  =  new  int[max];",
+        "int[]  frq  =  new  int[max  -  1];",
+        "int[]  frq  =  new  int[max+1];"
+      ]
+    },
+    "STRANGE_SORT_LIST": {
+      "loc": "27-28",
+      "input": "public static List<Integer> strange_sort_list(List<Integer> lst) {\n    List<Integer> result = new ArrayList<Integer>();\n    boolean switched = true;\n    while (lst.size() > 0) {\n        if (switched) {\n            result.add(Collections.min(lst));\n        } else {\n            result.add(Collections.max(lst));\n        }\n</s>    }\n</s>    return result;\n}\n",
+      "output": [
+        "result  =  new  ArrayList  <  Integer>();  }",
+        "new  ArrayList  <  Integer>();  }",
+        "result  =  new  ArrayList  <  Integer>();",
+        "Result  =  new  ArrayList  <  Integer>();  }",
+        ".add(Collections.min(lst));  }",
+        "result.add(Lists.min(lst));  }",
+        "result=  new  ArrayList  <  Integer>();  }",
+        "lst  =  lst.size();  }",
+        "result  =  Collections.synchronizedList(lst);  }",
+        "result  =  Collections.singleton(lst);  }"
+      ]
+    },
+    "TRIANGLE_AREA_2": {
+      "loc": "16-17",
+      "input": "\n</s>public static double triangle_area_2(double a, double b, double c) {\n</s>    if (a + b <= c || a + c <= b || b + c <= a)\n        return -1;\n    double s = (a + b + c) / 2.;\n    double result = Math.pow(s, 0.5);\n    BigDecimal bd = BigDecimal.valueOf(result);\n    bd = bd.setScale(2, RoundingMode.HALF_UP);\n    return bd.doubleValue();\n}\n",
+      "output": [
+        "double  triangle_area_2(double  a,  double  b,  double  c)  {",
+        "Double  triangle_area_2(double  a,  double  b,  double  c)  {",
+        "static  double  triangle_area_2(double  a,  double  b,  double  c)  {",
+        "double  triangle_area_2(double  a,  double  b,  double  c)  {",
+        "float  triangle_area_2(double  a,  double  b,  double  c)  {",
+        "void  triangle_area_2(double  a,  double  b,  double  c)  {",
+        "public  static  double  triangle_area_2(double  a,  double  b,  double  c)  {",
+        "double  triangle_area_2(double  b,  double  b,  double  c)  {",
+        "winner_area_2(double  a,  double  b,  double  c)  {",
+        "static  double  triangle_area_2(double  b,  double  b,  double  c)  {"
+      ]
+    },
+    "WILL_IT_FLY": {
+      "loc": "32-33",
+      "input": "public static boolean will_it_fly(int[] q, int w) {\n    int sum = 0;\n    for (int i = 0; i < q.length; i += 1)\n        sum += q[i];\n    if (sum > w)\n        return false;\n    int i = 0;\n    int j = q.length - 1;\n    while (i < j) {\n        if (q[i] != q[j])   return false;\n</s>    }\n</s>    return true;\n}\n",
+      "output": [
+        "if  (w  ==  0)  return  false;  }",
+        "if  (q  ==  null)  return  false;  }",
+        "if  (i  ==  0)  return  false;  }",
+        "if  (j  ==  0)  return  false;  }",
+        "if  (sum  >  w)  return  false;  }",
+        "if  (q.length  ==  w)  return  false;  }",
+        "if  (i  <  j)  return  false;  }",
+        "if  (q.length  >  w)  return  false;  }",
+        "if  (q.length  ==  0)  return  false;  }",
+        "if  (i  <  q.length)  return  false;  }"
+      ]
+    },
+    "SMALLEST_CHANGE": {
+      "loc": "15-17",
+      "input": "public static int smallest_change(int[] arr) {\n    int result = 0;\n</s>    for (int i = 0; i < arr.length; i += 1) {\n        if (arr[i] != arr[arr.length - i])\n</s>            result += 1;\n    }\n    return result;\n}\n",
+      "output": [
+        "for  (int  i  =  0;  i  <  arr.length;  i  +=  1)  {  if  (arr[i]!=  arr[i  -  i])",
+        "for  (int  i  =  0;  i  <  arr.length;  i  +=  1)  {  if  (arr[i]!=  arr[i])",
+        "for  (int  i  =  0;  i  <  arr.length;  i  +=  2)  {  if  (arr[i]!=  arr[i  -  i])",
+        "for  (int  i  =  0;  i  <  arr.length;  i  +=  1)  {  if  (arr[i]!=  arr[i  +  i])",
+        "for  (int  i  =  0;  i  <  arr.length  -  1;  i  +=  1)  {  if  (arr[i]!=  arr[i  +  1])",
+        "for  (int  i  =  0;  i  <  arr.length  -  1;  i  +=  1)  {  if  (arr[i]!=  arr[i])",
+        "for  (int  i  =  0;  i  <  arr[i].length;  i  +=  1)  {  if  (arr[i]!=  arr[i])",
+        "for  (int  i  =  0;  i  <  arr.length;  i++)  {  if  (arr[i]!=  arr[i  -  i])",
+        "for  (int  i  =  0;  i  <  arr.length;  i  +=  1)  {  if  (arr[i]!=  arr[i  -  i])  {",
+        "for  (int  i  =  0;  i  <  arr.length;  i++)  {  if  (arr[i]!=  arr[i])"
+      ]
+    },
+    "TOTAL_MATCH": {
+      "loc": "23-25",
+      "input": "public static List<String> total_match(List<String> lst1, List<String> lst2) {\n    int l1 = 0;\n    for (String st : lst1)\n        l1 += st.length();\n    int l2 = 0;\n</s>    for (String st : lst1)\n        l2 = st.length();\n</s>    \n    if (l1 <= l2)\n        return lst1;\n    return lst2;\n}\n",
+      "output": [
+        "(String  st  :  lst1)  l2  =  lst.trim().length();",
+        "(String  st  :  lst1)  l2  =  st.trim().length();",
+        "for  (String  st  :  lst1)  l2  =  lst.trim().length();",
+        "(String  st  :  lst1)  l2  =  lst1.trim().length();",
+        "(String  st  :  lst1)  l2  +=  st.length();",
+        "(String  st  :  lst1)  l1  +=  st.length();",
+        "(String  st  :  lst1)  l2  =  lst2.trim().length();",
+        "for  (String  st  :  lst1)  l2  =  st.trim().length();",
+        "(String  st  :  lst1)  l2  +=  lst.length();",
+        "for  (String  st  :  lst2)  l2  =  lst.trim().length();"
+      ]
+    },
+    "IS_MULTIPLY_PRIME": {
+      "loc": "23-24",
+      "input": "public static boolean is_multiply_prime(int a) {\n    for (int i = 2; i < a; i += 1){\n        if (! is_prime(i)) continue;\n        for (int j = i; j < a; j += 1) {\n</s>            for (int k = j; k < a; j += 1) {\n</s>                if (! is_prime(k)) continue;\n                if (i * j * k == a)\n                    return true;\n            }\n        }\n    }\n    return false;\n}\n",
+      "output": [
+        "for  (int  k  =  j;  k  <=  a;  k  +=  1)  {",
+        "for  (int  k  =  i;  k  <  a;  k  +=  1)  {",
+        "for  (int  k  =  j;  k  <=  a;  j  +=  1)  {",
+        "for  (int  k  =  j;  k  <  a;  k++)  {",
+        "for  (int  k  =  i;  k  <  a;  k++)  {",
+        "for  (int  k  =  j  -  1;  k  <  a;  k  +=  1)  {",
+        "for  (int  k  =  i  +  1;  k  <  a;  k  +=  1)  {",
+        "for  (int  k  =  j;  k  <  a;  k  +=  1)  {",
+        "for  (int  k  =  j;  k  <=  a;  k++)  {",
+        "for  (int  k  =  j;  k  <  a;  k  +=  2)  {"
+      ]
+    },
+    "IS_SIMPLE_POWER": {
+      "loc": "16-17",
+      "input": "public static boolean is_simple_power(int x, int n) {\n</s>    int power = 1;\n</s>    while (power < x) {\n        power *= n;\n    }\n    return power == x;\n}\n",
+      "output": [
+        "int  power  =  0;",
+        "Integer  power  =  1;",
+        "null  power  =  1;",
+        "int  power  =  2;",
+        "int  power  =  1;",
+        "int  power  =  n;",
+        "Integer  power  =  1;",
+        "boolean  power  =  false;",
+        "boolean  power  =  true;",
+        "int  power  =  -1;"
+      ]
+    },
+    "ISCUBE": {
+      "loc": "19-20",
+      "input": "public static boolean iscude(int a) {\n</s>    double root = Math.pow(a, 1./3);\n</s>    BigDecimal bd = BigDecimal.valueOf(root);\n    int round_root = (int) bd.setScale(0, RoundingMode.HALF_UP).doubleValue();\n    return ((int) Math.pow(round_root, 3)) == a;\n}\n",
+      "output": [
+        "double  root  =  Math.pow(a,  1./3);",
+        "double  root  =  Math.pow(a,  1./4);",
+        "double  root  =  Math.pow(a,  1./2);",
+        "Double  root  =  Math.pow(a,  1./3);",
+        "double  root  =  Math.pow(a,  1./5);",
+        "double  root  =  Math.pow(a,  2./3);",
+        "double  root  =  Math.pow(a,  1./10);",
+        "Double  root  =  Math.pow(a,  1./4);",
+        "double  root  =  Math.pow(a,  3.);",
+        "double  root  =  Math.pow(a,  1./1);"
+      ]
+    },
+    "HEX_KEY": {
+      "loc": "24-25",
+      "input": "public static int hex_key(String num) {\n    int result = 0;\n    for (char c : num.toCharArray()) {\n</s>        if (c == '2' || c == '3' || c == '5' || c == '7')\n</s>            result += 1;\n    }\n    return result;\n}\n",
+      "output": [
+        "if  (c  ==  '2'  ||  c  ==  '3'  ||  c  ==  '5'  ||  c  ==  '7'  ||  c  ==  '1')",
+        "if  (c  ==  '2'  ||  c  ==  '3'  ||  c  ==  '5'  ||  c  ==  '7')  {  }",
+        "if  (c  ==  '2'  ||  c  ==  '3'  ||  c  ==  '5'  ||  c  ==  '7'  ||  c  ==  '0')",
+        "if  (c  ==  '2'  ||  c  ==  '3'  ||  c  ==  '5'  ||  c  ==  '7'  ||  c  ==  '2')",
+        "if  (c  ==  '1'  ||  c  ==  '2'  ||  c  ==  '3'  ||  c  ==  '5'  ||  c  ==  '7')",
+        "if  (c  ==  '2'  ||  c  ==  '3'  ||  c  ==  '5'  ||  c  ==  '7'  ||  c  ==  '4')",
+        "if  (c  ==  '1'  ||  c  ==  '3'  ||  c  ==  '5'  ||  c  ==  '7')",
+        "if  (c  ==  '2'  ||  c  ==  '3'  ||  c  ==  '5'  ||  c  ==  '7'  ||  c  ==  '3')",
+        "if  (c  ==  '2'  ||  c  ==  '3'  ||  c  ==  '5'  ||  c  ==  '7'  ||  c  ==  '5')",
+        "if  (c  ==  '2'  ||  c  ==  '3'  ||  c  ==  '5'  ||  c  ==  '7')"
+      ]
+    },
+    "DECIMAL_TO_BINARY": {
+      "loc": "16-17",
+      "input": "public static String decimal_to_binary(int decimal) {\n</s>    String result = Integer.toHexString(decimal);\n</s>    return \"db\" + result + \"db\";\n}\n",
+      "output": [
+        "String  result  =  Integer.toHexString(decimal  +  1);",
+        "String  result  =  Integer.toHexString(decimal);",
+        "String  result  =  Integer.toString(decimal);",
+        "String  result  =  Integer.toHexString(decimal  -  1);",
+        "String  result  =  Long.toHexString(decimal);",
+        "String  result  =  Integer.toJavaString(decimal);",
+        "String  result  =  Integer.toBoolean(decimal);",
+        "String  result  =  Integer.toUpperCase(decimal);",
+        "String  result  =  Integer.toHexString(0,  decimal);",
+        "String  result  =  Integer.toHexString(db);"
+      ]
+    },
+    "IS_HAPPY": {
+      "loc": "19-20",
+      "input": "public static boolean is_happy(String s) {\n    if (s.length() < 3)\n        return false;\n    for (int i = 0; i < s.length() - 2; i += 1) {\n</s>        if (s.charAt(i) == s.charAt(i + 1) || s.charAt(i + 1) == s.charAt(i + 2))\n</s>            return false;\n    }\n    return true;\n}\n",
+      "output": [
+        "if  (s.charAt(i)  ==  s.charAt(i  +  1)  ||  s.charAt(i  +  1)  ==  s.charAt(i  +  2))",
+        "if  (s.charAt(i)  ==  s.charAt(i  +  1)  ||  s.charAt(i  +  1)  ==  s.charAt(i  +  1))",
+        "if  (s.charAt(i)  ==  s.charAt(i  +  1)  ||  s.charAt(i  +  1)  ==  s.charAt(i  +  2))",
+        "if  (s.charAt(i  +  1)  ==  s.charAt(i  +  1)  ||  s.charAt(i  +  1)  ==  s.charAt(i  +  2))",
+        "if  (s.charAt(i)  ==  s.charAt(i  +  1)  ||  s.charAt(i  +  1)  ==  s.charAt(i  +  1))",
+        "if  (s.charAt(i  +  1)  ==  s.charAt(i  +  1)  ||  s.charAt(i  +  1)  ==  s.charAt(i  +  1))",
+        "if  (s.charAt(i)  ==  s.charAt(i)  ||  s.charAt(i  +  1)  ==  s.charAt(i  +  2))",
+        "if  (s.charAt(i)  ==  charAt(i  +  1)  ||  s.charAt(i  +  1)  ==  s.charAt(i  +  2))",
+        "if  (s.charAt(i  +  1)  ==  s.charAt(i  +  1)  ||  s.charAt(i  +  1)  ==  s.charAt(i  +  2))",
+        "if  (s.charAt(i)  ==  s.charAt(i  +  2)  ||  s.charAt(i  +  1)  ==  s.charAt(i  +  2))"
+      ]
+    },
+    "NUMERICAL_LETTER_GRADE": {
+      "loc": "45-51",
+      "input": "public static String[] numerical_letter_grade(double[] grades) {\n    String[] letter_grade = new String[grades.length];\n    for (int i = 0; i < grades.length; i += 1) {\n        double gpa = grades[i];\n        if (gpa == 4.0)\n            letter_grade[i] = \"A+\";\n        else if (gpa > 3.7)\n            letter_grade[i] = \"A\";\n        else if (gpa > 3.3)\n            letter_grade[i] = \"A-\";\n        else if (gpa > 3.0)\n            letter_grade[i] = \"B+\";\n        else if (gpa > 2.7)\n            letter_grade[i] = \"B\";\n        else if (gpa > 2.3)\n            letter_grade[i] = \"B-\";\n        else if (gpa > 2.0)\n            letter_grade[i] = \"C+\";\n</s>        else if (gpa > 1.3)\n            letter_grade[i] = \"C-\";\n        else if (gpa > 1.0)\n            letter_grade[i] = \"D+\";\n        else if (gpa > 1.7)\n            letter_grade[i] = \"C\";\n</s>        else if (gpa > 0.7)\n            letter_grade[i] = \"D\";\n        else if (gpa > 0.0)\n            letter_grade[i] = \"D-\";\n        else\n            letter_grade[i] = \"E\";\n    }\n    return letter_grade;\n}\n",
+      "output": [
+        "if  (gpa  >  1.3)  letter_grade[i]  =   \"C-   \";  else  if  (gpa  >  1.0)  letter_grade[i]  =   \"D+   \";  else  if  (gpa  >  1.7)  letter_grade[i]  =   \"C   \";",
+        "if  (gpa  <  1.3)  letter_grade[i]  =   \"C-   \";  else  if  (gpa  >  1.0)  letter_grade[i]  =   \"D+   \";  else  if  (gpa  >  1.7)  letter_grade[i]  =   \"C   \";",
+        "if  (gpa  >  1.3)  letter_grade[i]  =   \"C   \";  else  if  (gpa  >  1.0)  letter_grade[i]  =   \"D+   \";  else  if  (gpa  >  1.7)  letter_grade[i]  =   \"C   \";",
+        "if  (gpa  >  1.3)  letter_grade[i]  =   \"C+   \";  else  if  (gpa  >  1.0)  letter_grade[i]  =   \"D+   \";  else  if  (gpa  >  1.7)  letter_grade[i]  =   \"C   \";",
+        "else  if  (gpa  >  1.3)  letter_grade[i]  =   \"C   \";  else  if  (gpa  >  1.0)  letter_grade[i]  =   \"D+   \";  else  if  (gpa  >  1.7)  letter_grade[i]  =   \"C   \";",
+        "if  (gpa  >  1.3)  letter_grade[i]  =   \"C+   \";  else  if  (gpa  >  1.3)  letter_grade[i]  =   \"D+   \";  else  if  (gpa  >  1.7)  letter_grade[i]  =   \"C   \";",
+        "if  (gpa  >  1.3)  letter_grade[i]  =   \"C-   \";  else  if  (gpa  >  1.0)  letter_grade[i]  =   \"D+   \";  else  if  (gpa  >  1.7)  letter_grade[i]  =   \"C   \";",
+        "if  (gpa  >  1.3)  letter_grade[i]  =   \"C-   \";  else  if  (gpa  >  1.0)  letter_grade[i]  =   \"C+   \";  else  if  (gpa  >  1.7)  letter_grade[i]  =   \"C   \";",
+        "if  (gpa  >  1.3)  letter_grade[i]  =   \"C-   \";  else  if  (gpa  >  1.3)  letter_grade[i]  =   \"D+   \";  else  if  (gpa  >  1.7)  letter_grade[i]  =   \"C   \";",
+        "if  (gpa  >  1.3)  letter_grade[i]  =   \"C   \";  else  if  (gpa  >  1.3)  letter_grade[i]  =   \"D+   \";  else  if  (gpa  >  1.7)  letter_grade[i]  =   \"C   \";"
+      ]
+    },
+    "PRIME_LENGTH": {
+      "loc": "17-18",
+      "input": "public static boolean prime_length(String string) {\n    int l = string.length();\n    if (l <= 1)\n        return false;\n    for (int i = 2; i < l; i += 1) {\n</s>        if (l - i == 0)\n</s>            return false;\n    }\n    return true;\n}\n",
+      "output": [
+        "if  (i  -  l  ==  0)",
+        "if  (i  -  l  ==  0)",
+        "if  (l  -  i  ==  1)",
+        "if  (l  -  i  ==  1)",
+        "if  (i  ==  0)",
+        "if  (l  -  i  >=  0)",
+        "if  (l  -  i!=  0)",
+        "if  (l  -  i  <  0)",
+        "if  (l  -  (i  +  1)  ==  0)",
+        "if  (l  -  i  <=  0)"
+      ]
+    },
+    "STARTS_ONE_ENDS": {
+      "loc": "10-11",
+      "input": "public static int starts_one_ends(int n) {\n    if (n == 1)\n        return 1;\n</s>    return (int) ((10 + 9) * Math.pow(10, n - 2));\n</s>}\n",
+      "output": [
+        "(int)  ((10  +  9)  *  Math.pow(10,  n  -  2));",
+        "(int)  ((10  +  9)  *  Math.pow(10,  n  -  1));",
+        "(int)  Math.pow(10,  n  -  2));",
+        "return  (int)  ((10  +  9)  *  Math.pow(10,  n  -  2));",
+        "(int)  ((10  +  9)  *  Math.pow(10,  n));",
+        "(int)  ((11  +  9)  *  Math.pow(10,  n  -  2));",
+        "(int)  ((10)  *  Math.pow(10,  n  -  2));",
+        "(int)  ((10  +  9)  *  Math.pow(11,  n  -  2));",
+        "(int)  ((9  +  9)  *  Math.pow(10,  n  -  2));",
+        "return  (int)  ((10  +  9)  *  Math.pow(10,  n  -  1));"
+      ]
+    },
+    "SOLVE": {
+      "loc": "20-21",
+      "input": "public static String solve(int N) {\n    int sum = 0;\n    for (int i = 0; i < (N + \"\").length(); i += 1){\n</s>        sum += Integer.parseInt((N + \"\").substring(i + 1));\n</s>    }\n    return Integer.toBinaryString(sum);\n}\n",
+      "output": [
+        "=  Integer.parseInt((N  +   \"   \").substring(i  +  1));",
+        "+=  Integer.parseInt((N  +   \"   \").substring(i  +  1));",
+        "if  (i  <  N)  sum  +=  Integer.parseInt((N  +   \"   \").substring(i  +  1));",
+        "sum  +=  Integer.parseInt((N  +   \"   \").substring(i  +  1));",
+        "if  (i  +  1)  sum  +=  Integer.parseInt((N  +   \"   \").substring(i  +  1));",
+        "if  (i  ==  1)  sum  +=  Integer.parseInt((N  +   \"   \").substring(i  +  1));",
+        ";  sum  +=  Integer.parseInt((N  +   \"   \").substring(i  +  1));",
+        ".append(Integer.parseInt((N  +   \" \")).substring(i  +  1));",
+        ")  sum  +=  Integer.parseInt((N  +   \"   \").substring(i  +  1));",
+        "if  (i  >  1)  sum  +=  Integer.parseInt((N  +   \"   \").substring(i  +  1));"
+      ]
+    },
+    "ADD_EVEN_AT_ODD": {
+      "loc": "10-11",
+      "input": "public static int add_even_at_odd(int[] lst) {\n    int sum = 0;\n</s>    for (int i = 0; i < lst.length; i += 1) {\n</s>        if (lst[i] % 2 == 0)\n            sum += lst[i];\n    }\n    return sum;\n}\n",
+      "output": [
+        "for  (int  i  =  0;  i  <=  lst.length;  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  lst.length;  i  +=  2)  {",
+        "for  (int  i  =  0;  i  <  lst.length;  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  lst.length;  i++)  {",
+        "for  (int  i  =  0;  i  <  lst.length  -  1;  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  lst[i].length;  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  lst.length;  i  +=  3)  {",
+        "for  (int  i  =  1;  i  <=  lst.length;  i  +=  1)  {",
+        "for  (int  i  =  1;  i  <  lst.length;  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  lst.length;  i  +=  2)  {"
+      ]
+    },
+    "ANTI_SHUFFLE": {
+      "loc": "22-25",
+      "input": "public static String anti_shuffle(String s) {\n    String result = \"\";\n    for (String str : s.split(\" \")) {\n        char[] chars = str.toCharArray();\n        Arrays.sort(chars);\n</s>        result += new String(chars);\n    }\n    return result;\n</s>}\n",
+      "output": [
+        "result  +=  String.valueOf(chars);",
+        "result.append(chars);  }  return  result.toString();",
+        "result  +=  String.valueOf(chars);  }  return  result;",
+        "result  +=  CharOperation.toCharArray(chars);",
+        "result  +=   \"   \"  +  new  String(chars);",
+        "result  +=   \"   \"   \"  +  new  String(chars);  }  return  result;",
+        "result  +=   \"   \"  +  new  String(chars);  }  return  result;",
+        "result  +=  CharOperation.toChars(chars);",
+        "result  +=   \"   \"  +  new  String(chars);  }  return   \"   \";",
+        "result  =  new  String(chars);  }  return  result.toString();"
+      ]
+    },
+    "GET_ROW": {
+      "loc": "26-29",
+      "input": "public static ArrayList<Tuple> get_row(ArrayList<ArrayList<Integer>> lst, int x) {\n    ArrayList<Tuple> result = new ArrayList<Tuple>();\n    for (int i = 0; i < lst.size(); i += 1) {\n</s>        for (int j = lst.get(i).size() - 1; j >= 0; j -= 1){\n            if (lst.get(i).get(j) == x){\n                result.add(new GET_ROW().new Tuple(i, j));\n</s>            }\n        }\n    }\n    return result;\n}\n",
+      "output": [
+        "for  (int  j  =  lst.size()  -  1;  j  >=  0;  j  -=  1)  {  if  (lst.get(i).get(j)  ==  x)  {",
+        "for  (int  j  =  lst.get(i).size()  -  1;  j  >=  0;  j  -=  1)  {  if  (lst.get(i).get(j)  ==  x)  {",
+        "for  (int  j  =  lst.size();  j  >=  0;  j  -=  1)  {  if  (lst.get(i).get(j)  ==  x)  {  result.add(new  GET_ROW().new  Tuple(i,  j));",
+        "for  (int  j  =  lst.size()  -  1;  j  >=  0;  j  -=  1)  {  if  (lst.get(j).get(j)  ==  x)  {",
+        "for  (int  j  =  0;  j  <  lst.size();  j++)  {  if  (lst.get(i).get(j)  ==  x)  {  result.add(new  GET_ROW().new  Tuple(i,  j));",
+        "for  (int  j  =  lst.size()  -  1;  j  <=  0;  j++)  {  if  (lst.get(i).get(j)  ==  x)  {  result.add(new  GET_ROW().new  Tuple(i,  j));",
+        "if  (lst.get(i).size()  >  0)  {  for  (int  j  =  lst.get(i).size()  -  1;  j  >=  0;  j  -=  1)  {",
+        "for  (int  j  =  lst.size()  -  1;  j  >=  0;  j  -=  1)  {  if  (lst.get(i).get(j)  ==  x  ||  lst.get(i).get(j)  ==  x)  {",
+        "for  (int  j  =  lst.size()  -  1;  j  >=  0;  j  -=  1)  {  if  (!lst.get(i).get(j))  {  result.add(new  GET_ROW().new  Tuple(i,  j));",
+        "for  (int  j  =  lst.size()  -  1;  j  >=  0;  j  -=  1)  {"
+      ]
+    },
+    "SORT_ARRAY": {
+      "loc": "27-29",
+      "input": "public static int[] sort_array(int[] array) {\n    if (array.length == 0)\n        return array;\n    Arrays.sort(array);\n    if ((array[0] + array[array.length - 1]) % 2 == 1)\n        return array;\n    else {\n        for (int i = 0; i < array.length / 2; i += 1){\n</s>            array[i] = array[array.length - i - 1];\n            array[array.length - i - 1] = array[i];\n</s>        }\n        return array;\n    }\n}\n",
+      "output": [
+        "[i]  =  array[i  -  1];",
+        "array[i]  =  array[i  -  1];",
+        "array[i  -  1]  =  array[array.length  -  i  -  1];",
+        "array[i  +  1]  =  array[array.length  -  i  -  1];",
+        "[i]  =  array[i];",
+        "array[i]  =  array[(array.length  -  i  -  1)  %  2];",
+        "array[i]  =  array[array.length  -  i  -  1];",
+        "array[i  -  1]  =  array[array.length  -  i  -  1];",
+        "array[i]  =  array[i  -  1];",
+        "array[i  -  2]  =  array[array.length  -  i  -  1];"
+      ]
+    },
+    "ENCRYPT": {
+      "loc": "20-21",
+      "input": "public static String encrypt(String s) {\n    StringBuilder sb = new StringBuilder();\n    String d = \"abcdefghijklmnopqrstuvwxyz\";\n    for (char c : s.toCharArray()){\n        if ('a' <= c && c <= 'z'){\n            sb.append(\n</s>                d.charAt(s.indexOf((int) c) + 2 * 2)\n</s>            );\n        } else {\n            sb.append(c);\n        }\n    }\n    return sb.toString();\n}\n",
+      "output": [
+        "Character.toCharArray(s.indexOf((int)  c)  +  2  *  2)",
+        "d.charAt(s.lastIndexOf((int)  c)  +  2  *  2)",
+        "s.charAt(s.indexOf((int)  c)  +  2  *  2)",
+        "d.charAt(s.indexOf((int)  c)  +  1  *  2)",
+        "d.charAt(s.indexOf((int)  c)  +  1  *  2)",
+        "d.charAt(s.indexOf((int)  c)  +  3  *  2)",
+        "d.charAt(s.lastIndexOf((int)  c)  +  2  *  2)",
+        "d.charAt(s.indexOf((int)  c)  +  3  *  2)",
+        "d.charAt(s.indexOf((int)  c)  +  1  +  2  *  2)",
+        "s.charAt(s.indexOf((int)  c)  +  2  *  2);"
+      ]
+    },
+    "NEXT_SMALLEST": {
+      "loc": "16-17",
+      "input": "public static Integer next_smallest(int[] lst) {\n</s>    List<Integer> numbers = new ArrayList<Integer>();\n</s>    for (Integer n : lst)\n        numbers.add(n);\n    Integer[] no_duplicate = numbers.toArray(new Integer[] {});\n    Arrays.sort(no_duplicate);\n    if (no_duplicate.length < 2)\n        return null;\n    return no_duplicate[1];\n}\n",
+      "output": [
+        "List  <  Integer>  numbers  =  new  ArrayList  <  Integer>();",
+        "Set  <  Integer>  numbers  =  new  HashSet  <  Integer>();",
+        "Collection  <  Integer>  numbers  =  new  ArrayList  <  Integer>();",
+        "List  <  Integer>  numbers  =  new  ArrayList  <  Integer>(0);",
+        "List  <  Integer>  numbers  =  new  ArrayList  <  >();",
+        "List  <  Integer>  numbers  =  new  ArrayList  <  Integer>();",
+        "Integer[]  numbers  =  new  Integer[]  {  }  ;",
+        "final  List  <  Integer>  numbers  =  new  ArrayList  <  Integer>();",
+        "List  <  Integer>  numbers  =  new  ArrayList  <  Integer>(1);",
+        "Integer[]  numbers  =  new  ArrayList  <  Integer>();"
+      ]
+    },
+    "IS_BORED": {
+      "loc": "18-19",
+      "input": "public static int is_bored(String S) {\n    String[] sentences = S.split(\"\\\\.|\\\\?|!\");\n    int result = 0;\n    for (String sentence : sentences) {\n</s>        if (sentence.length() >= 2 && sentence.subSequence(0, 2).equals(\"I \"))\n</s>            result += 1;\n    }\n    return result;\n}\n",
+      "output": [
+        "if  (sentence.length()  >=  2  &&  sentence.subSequence(0,  1).equals(   \"I   \"))",
+        "if  (sentence.length()  >=  2  &&  sentence.subSequence(0,  2).equals(   \"I   \"))",
+        "if  (sentence!=  null  &&  sentence.subSequence(0,  2).equals(   \"I   \"))",
+        "if  (sentence.length()  >=  2  &&  sentence.subSequence(0,  1).equals(   \"I   \"))",
+        "if  (sentence!=  null  &&  sentence.subSequence(0,  2).equals(   \"I   \"))",
+        "if  (sentence.length()  >=  1  &&  sentence.subSequence(0,  2).equals(   \"I   \"))",
+        "if  (sentence.length()  >=  2  &&  sentence.subSequence(0,  2).equals(   \"I   \"))",
+        "if  (sentence.length()  >=  3  &&  sentence.subSequence(0,  2).equals(   \"I   \"))",
+        "if  (sentence.length()  >=  2  &&  sentence.subSequence(0,  2).equals(   \"i   \"))",
+        "if  (sentence.length()  >=  2  ||  sentence.subSequence(0,  2).equals(   \"I   \"))"
+      ]
+    },
+    "ANY_INT": {
+      "loc": "18-20",
+      "input": "public static boolean any_int(double x, double y, double z) {\n</s>    if ((int)x == x && (int)y == y) {\n        if (x + y == z || x + z == y)\n</s>            return true;\n    }\n    return false;\n}\n",
+      "output": [
+        "if  ((int)x  ==  x  &&  (int)y  ==  y)  {  if  (x  +  y  ==  z  ||  x  +  z  ==  y)",
+        "if  ((int)x  ==  y  &&  (int)y  ==  y)  {  if  (x  +  y  ==  z  ||  x  +  z  ==  y)",
+        "if  ((int)x  ==  0  &&  (int)y  ==  0)  {  if  (x  +  y  ==  0  ||  x  +  z  ==  0)",
+        "if  ((int)x  ==  x  &&  (int)y  ==  y)  {  if  (x  +  y  ==  z  ||  x  +  z  ==  y)",
+        "if  ((int)x  ==  x  &&  (int)y  ==  y)  {  if  (x  +  y  ==  z  ||  x  +  z  ==  y)  {",
+        "if  ((int)x  ==  x  &&  y  ==  y)  {  if  (x  +  y  ==  z  ||  x  +  z  ==  y)",
+        "if  ((int)x  ==  x  &&  (int)y  ==  y)  {  if  (x  +  y  ==  z  ||  y  +  z  ==  y)",
+        "if  ((int)x  ==  y  &&  (int)y  ==  y)  {  if  (x  +  y  ==  z  ||  x  +  z  ==  y)",
+        "if  ((int)x  ==  0  &&  (int)y  ==  0)  {  if  (x  +  y  ==  0  ||  x  +  z  ==  0)",
+        "if  ((int)x  >=  x  &&  (int)y  >=  y)  {  if  (x  +  y  >=  z  ||  x  +  z  >=  y)"
+      ]
+    },
+    "ENCODE": {
+      "loc": "22-23",
+      "input": "public static String encode(String message) {\n    StringBuilder sb = new StringBuilder();\n    for (char c : message.toCharArray()) {\n        if (Character.isUpperCase(c)) {\n            c = Character.toLowerCase(c);\n        }\n</s>        if (Character.isLowerCase(c)) {\n</s>            c = Character.toUpperCase(c);\n        }\n        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'A' || c == 'E' || c == 'I' || c == 'O'\n                || c == 'U') {\n            c = (char) ((int) c + 2);\n        }\n        sb.append(c);\n    }\n    return sb.toString();\n}\n",
+      "output": [
+        "if  (c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'",
+        "if  (c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#'",
+        "if  (c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#'  ||  c  ==  '#",
+        "if  (c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_",
+        "if  (c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'",
+        "if  (c  ==  'Z'  ||  c  ==  'Z'  ||  c  ==  'Z'  ||  c  ==  'Z'  ||  c  ==  'Z'  ||  c  ==  'Z'  ||  c  ==  'Z'  ||  c  ==  'Z'  ||  c  ==  'Z'  ||  c  ==  'Z'",
+        "if  (c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'O'",
+        "if  (c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_'  ||  c  ==  '_')  {",
+        "if  (c  ==  'O'  ||  c  ==  'O'  ||  c  ==  'O'  ||  c  ==  'O'  ||  c  ==  'O'  ||  c  ==  'O'  ||  c  ==  'O'  ||  c  ==  'O'  ||  c  ==  'O'  ||  c  ==  'O'",
+        "if  (c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E'  ||  c  ==  'E"
+      ]
+    },
+    "SKJKASDKD": {
+      "loc": "32-33",
+      "input": "public static int skjkasdkd(int[] lst) {\n    int max = 0;\n    int i = 0;\n    while(i < lst.length) {\n        if (lst[i] > max && is_prime(lst[i]))\n            max = lst[i];\n        i += 1;\n    }\n    int result = 0;\n    for (char c : (max + \"\").toCharArray()) {\n</s>        result += (int) c;\n</s>    }\n    return result;\n}\n",
+      "output": [
+        "result  +=  (int)  c;",
+        "result  +=  (Integer)  c;",
+        "result  =  (int)  c;",
+        "result  +=  (char)  c;",
+        "result  +=  ((int)  c);",
+        "if  (max  >  0)  result  +=  (int)  c;",
+        "result  +=  (int)  (c  +  1);",
+        "result  +=  c;",
+        "lst[i]  +=  (int)  c;",
+        "int  c  =  (int)  max;  result  +=  c;"
+      ]
+    },
+    "CHECK_DICT_CASE": {
+      "loc": "36-37",
+      "input": "public static boolean check_dict_case(HashMap<Object, Object> dict) {\n    if (dict.size() == 0)\n        return false;\n    else {\n        String state = \"start\";\n        for (Object key : dict.keySet()) {\n            if (!(key instanceof String)) {\n                state = \"mixed\";\n                break;\n            }\n            String str_key = (String) key;\n            if (state.equals(\"start\")) {\n                if (str_key.toUpperCase().equals(str_key))\n                    state = \"upper\";\n                else if (str_key.toLowerCase().equals(str_key))\n                    state = \"lower\";\n                else {\n                    state = \"mixed\";\n                    break;\n                }\n</s>            } else if (state.equals(\"upper\") && !str_key.toUpperCase().equals(str_key)) {\n</s>                state = \"mixed\";\n                break;\n            }\n        }\n        return (state.equals(\"upper\")) || (state.equals(\"lower\"));\n    }\n}\n",
+      "output": [
+        "if  (state.equals(   \"upper \")  &&!str_key.toUpperCase().equals(str_key))  {",
+        "if  (state.equals(   \"upper   \")  &&!str_key.toUpperCase().equals(str_key))  {",
+        "else  if  (state.equals(   \"upper   \")  &&!str_key.toUpperCase().equals(str_key))  {",
+        "if  (state.equals(   \"upper)  &&!str_key.toUpperCase().equals(str_key))  {",
+        "else  if  (state.equals(   \"upper \")  &&!str_key.toUpperCase().equals(str_key))  {",
+        "if  (state.equals(   \"upper \")  &&!str_key.toUpperCase().equals(str_key))  {",
+        "if  (!state.equals(   \"upper \")  &&!str_key.toUpperCase().equals(str_key))  {",
+        "if  (state.equals(   \"upper \")  &&  (str_key.toUpperCase().equals(str_key)))  {",
+        "if  (state.equals(   \"upper \")  &&  (!str_key.toUpperCase().equals(str_key)))  {",
+        "if  (!state.equals(   \"upper   \")  &&!str_key.toUpperCase().equals(str_key))  {"
+      ]
+    },
+    "COUNT_UP_TO": {
+      "loc": "21-25",
+      "input": "public static List<Integer> count_up_to(int n) {\n    List<Integer> primes = new ArrayList<Integer>();\n    for (int i = 2; i < n; i += 1){\n</s>        boolean is_prime = false;\n        for (int j = 2; j < i; j += 1){\n            if (i % j == 0) {\n                is_prime = false;\n</s>            }\n        }\n        if (is_prime) primes.add(i);\n    }\n    return primes;\n}\n",
+      "output": [
+        "boolean  is_prime  =  true;  for  (int  j  =  2;  j  <  i;  j  +=  1)  {  if  (i  %  j  ==  0)  {",
+        "boolean  is_prime  =  false;  for  (int  j  =  2;  j  <  i;  j  +=  1)  {  if  (i  %  j  ==  0)  {",
+        "boolean  is_prime  =  true;  for  (int  j  =  2;  j  <  i;  j  +=  1)  {",
+        "boolean  is_prime  =  true;  for  (int  j  =  2;  j  <  i;  j  +=  1)  {  if  (j  %  j  ==  0)  {",
+        "boolean  is_prime  =  true;  for  (int  j  =  2;  j  <  i;  j  +=  1)  {  if  (i  %  j  ==  0)  {",
+        "boolean  is_prime  =  false;  for  (int  j  =  1;  j  <  i;  j  +=  1)  {  if  (i  %  j  ==  0)  {",
+        "boolean  is_prime  =  true;  for  (int  j  =  1;  j  <  i;  j  +=  1)  {  if  (i  %  j  ==  0)  {",
+        "boolean  is_prime  =  false;  for  (int  j  =  2;  j  <  i;  j  +=  1)  {",
+        "boolean  is_prime  =  false;  for  (int  j  =  2;  j  <  i;  j  +=  1)  {  if  (j  %  j  ==  0)  {",
+        "boolean  is_prime  =  true;  for  (int  j  =  2;  j  <  i;  j++)  {  if  (i  %  j  ==  0)  {"
+      ]
+    },
+    "MULTIPLY": {
+      "loc": "14-15",
+      "input": "public static int multiply(int a, int b) {\n</s>    return (a % 10) * (b % 10);\n</s>}\n",
+      "output": [
+        "(a  %  10)  *  (b  %  10);",
+        "return  (a  %  10)  *  (b  %  10);",
+        "=  (a  %  10)  *  (b  %  10);",
+        "return  (a  %  10  %  10)  *  (b  %  10);",
+        "return  (a  %  100.0)  *  (b  %  100.0);",
+        "(a  %  10  %  10)  *  (b  %  10);",
+        "(a  %  10)  *  (b  %  10);",
+        "return  (a  %  100.0  *  (b  %  100.0));",
+        "(a  %  100.0)  *  (b  %  100.0);",
+        ")  return  (a  %  10)  *  (b  %  10);"
+      ]
+    },
+    "COUNT_UPPER": {
+      "loc": "15-16",
+      "input": "public static int count_upper(String s) {\n    int count = 0;\n    for (int i = 0; i < s.length(); i += 2) {\n        char c = s.charAt(i);\n</s>        if (c == 'A' || c == 'e' || c == 'I' || c == 'o' || c == 'u')\n</s>            count += 1;\n    }\n    return count;\n}\n",
+      "output": [
+        "if  (c  ==  'A'  ||  c  ==  'e'  ||  c  ==  'I'  ||  c  ==  'o'  ||  c  ==  'u')  {  }",
+        "if  (c  ==  'A'  ||  c  ==  'e'  ||  c  ==  'I'  ||  c  ==  'o'  ||  c  ==  'u'  ||  c  ==  'a')",
+        "if  (c  ==  'A'  ||  c  ==  'e'  ||  c  ==  'I'  ||  c  ==  'o'  ||  c  ==  'u'  ||  c  ==  'A')",
+        "if  (c  ==  'A'  ||  c  ==  'e'  ||  c  ==  'I'  ||  c  ==  'o'  ||  c  ==  'u')",
+        "if  (c  ==  'A'  ||  c  ==  'e'  ||  c  ==  'I'  ||  c  ==  'o'  ||  c  ==  'u'  ||  c  ==  '0')",
+        "if  (c  ==  'A'  ||  c  ==  'e'  ||  c  ==  'I'  ||  c  ==  'o'  ||  c  ==  'u'  ||  c  ==  'C')",
+        "if  (c  ==  'A'  ||  c  ==  'e'  ||  c  ==  'I'  ||  c  ==  'o'  ||  c  ==  'u'  ||  c  ==  'H')",
+        "if  (c  ==  'A'  ||  c  ==  'e'  ||  c  ==  'I'  ||  c  ==  'o'  ||  c  ==  'u'  ||  c  ==  'c')",
+        "if  (c  ==  'A'  ||  c  ==  'e'  ||  c  ==  'I'  ||  c  ==  'o'  ||  c  ==  'u'  ||  c  ==  '1')",
+        "if  (c  ==  'A'  ||  c  ==  'e'  ||  c  ==  'I'  ||  c  ==  'o'  ||  c  ==  'u'  ||  c  ==  'I')"
+      ]
+    },
+    "CLOSEST_INTEGER": {
+      "loc": "28-30",
+      "input": "public static int closest_integer(String value) {\n    if (value.indexOf('.') >= 0) {\n        while (value.charAt(value.length() - 1) == '0')\n            value = value.substring(0, value.length() - 1);\n    }\n    double num = Double.parseDouble(value);\n    int result = 0;\n</s>    if (value.substring(value.length() - 2).equals(\".5\")) {\n        result = num > 0 ? (int)Math.floor(num) : (int)Math.ceil(num);\n</s>    } else if (value.length() > 0){\n        result = (int)Math.round(num);\n    }\n    return result;\n}\n",
+      "output": [
+        "if  (value.substring(value.length()  -  1).equals( \".5 \"))  {",
+        "if  (value.substring(value.length()).equals( \".5 \"))  {  result  =  num  >  0?  (int)Math.floor(num)  :  (int)Math.ceil(num);",
+        "if  (value.substring(value.length()  -  1).equals( \".5 \"))  {  result  =  0?  (int)Math.floor(num)  :  (int)Math.ceil(num);",
+        "if  (value.substring(value.length()  -  2)  ==  '.')  {  result  =  num  >  0?  (int)Math.floor(num)  :  (int)Math.ceil(num);",
+        "if  (value.substring(value.length()  -  1).equals( \".5 \"))  {  result  =  (int)Math.floor(num)  :  (int)Math.ceil(num);",
+        "if  (value.substring(value.length()  -  1)  ==  '.')  {  result  =  num  >  0?  (int)Math.floor(num)  :  (int)Math.ceil(num);",
+        "if  (value.indexOf('.')  >=  0)  {  result  =  num  >  0?  (int)Math.floor(num)  :  (int)Math.ceil(num);",
+        "if  (value.substring(value.length()  -  1)  ==  '.')  {  result  =  0?  (int)Math.floor(num)  :  (int)Math.ceil(num);",
+        "if  (value.substring(value.length()).equals(   \".   \"))  {  result  =  num  >  0?  (int)Math.floor(num)  :  (int)Math.ceil(num);",
+        "if  (value.substring(value.length()  -  2).equals(   \".5   \"))  {  result  =  0?  (int)Math.floor(num)  :  (int)Math.ceil(num);"
+      ]
+    },
+    "MAKE_A_PILE": {
+      "loc": "23-24",
+      "input": "public static ArrayList<Integer> make_a_pile(int n) {\n\tArrayList<Integer> pile = new ArrayList<Integer>();\n\tfor(int i = 0; i < n; i++) {\n</s>\t\tpile.add(n - 2 * i);\n</s>\t}\n\treturn pile;\n}\n",
+      "output": [
+        "if(i  >  0)  {  pile.add(n  -  2  *  i);  }",
+        "if  (i  >  0)  {  pile.add(n  -  2  *  i);  }",
+        "if(i  <  0)  {  pile.add(n  -  2  *  i);  }",
+        "if  (i  <  0)  {  pile.add(n  -  2  *  i);  }",
+        "(n  >  0?  n  -  2  *  i  :  0);",
+        "((Integer)n).add(n  -  2  *  i);",
+        "if(i  >  0)  pile.add(n  -  2  *  i);",
+        "if  (i  >  0)  {  pile.add(n  +  2  *  i);  }",
+        "(n  >  0?  n  -  2  *  i  :  n);",
+        "((Integer)i).add(n  -  2  *  i);"
+      ]
+    },
+    "WORDS_STRINGS": {
+      "loc": "17-18",
+      "input": "public static ArrayList<String> words_strings(String s) {\n\tArrayList<String> result = new ArrayList<String>();\n</s>\tString s_list = \"\";\n</s>\tfor(char c : s.toCharArray()) {\n\t\tif(c == ',') {\n\t\t\ts_list += ' ';\n\t\t} else {\n\t\t\ts_list += c;\n\t\t}\n\t}\n\tString[] result_array = s_list.trim().split(\"\\\\s+\");\n\tfor(String r : result_array) {\n\t\tresult.add(r);\n\t}\n\treturn result;\n}\n",
+      "output": [
+        "String  s_list  =   \"   \";",
+        "String  s_list  =   \"s+   \";",
+        "String  s_list  =  s;",
+        "String  s_list  =   \"   \"   \";",
+        "String  s_list  =  null;",
+        "String  s_list  =  s.trim();",
+        "String  s_list  =   \"   \";",
+        "String  s_list=   \"   \";",
+        "String  s_list  =   \"n   \";",
+        "String  s_list  =   \"s*   \";"
+      ]
+    },
+    "CHOOSE_NUM": {
+      "loc": "15-16",
+      "input": "public static int choose_num(int x, int y) {\n</s>    if(x < y) return -1;\n</s>    if((y % 2) == 0) return y;\n    if(x == y) return -1;\n    return y - 1;\n}\n",
+      "output": [
+        "if(x  <=  y)  return  -1;",
+        "if(x  <=  y)  return  -1;",
+        "if(x  >=  y)  return  -1;",
+        "if(x  <  y)  return  -1;",
+        "if(x  <  y)  return  0;",
+        "if(x  >=  y)  return  -1;",
+        "if(x  <  y)  return  -1;",
+        "if(x  ==  y)  return  -1;",
+        "if(x  <  y)  return  0;",
+        "if(x  ==  y)  return  -1;"
+      ]
+    },
+    "ROUNDED_AVG": {
+      "loc": "25-26",
+      "input": "public static String rounded_avg(int n, int m) {\n    if(m < n) return \"-1\";\n    int summation = 0;\n    for(int i = n; i < m + 1; i++) {\n        summation += i;\n    }\n    double avg = ((double) summation)/((double) (m - n + 1));\n    double rem = avg - Math.floor(avg);\n    int avg_rounded = 0;\n    if(rem <= 0.5) {\n</s>        avg_rounded = (int) Math.ceil(avg);\n</s>    } else {\n        avg_rounded = (int) Math.ceil(avg);\n    }\n    return Integer.toBinaryString(avg_rounded);\n}\n",
+      "output": [
+        "avg_rounded  =  (int)  Math.ceil(avg);",
+        "avg_rounded  =  (int)  (Math.ceil(avg));",
+        "avg_rounded  =  (int)  Math.ceil(avg);",
+        "avg_rounded  =  (int)  Math.ceil(avg  -  1);",
+        "avg_rounded  =  (int)  Integer.toString(avg);",
+        "avg_rounded  =  (int)  Math.ceil(avg  +  1);",
+        "avg_rounded  =  (int)  Math.ceil(avg  -  1);",
+        "avg_rounded  =  (int)  Math.ceil(avg  +  1);",
+        "avg_rounded  =  (int)  Math.ceil(avg  -  0.5);",
+        "avg_rounded  =  (Integer)  Math.ceil(avg);"
+      ]
+    },
+    "UNIQUE_DIGITS": {
+      "loc": "27-29",
+      "input": "public static ArrayList<Integer> unique_digits(ArrayList<Integer> x) {\n    ArrayList<Integer> res = new ArrayList<Integer>();\n    for(int i : x) {\n        int num = i;\n        boolean all_odd = true;\n        while(num > 0) {\n            int curr_digit = num % 10;\n</s>            if((curr_digit % 2) != 0) {\n                all_odd = true;\n</s>                break;\n            }\n            num /= 10;\n        }\n        if(all_odd) {\n            res.add(i);\n        }\n    }\n    Collections.sort(res);\n    return res;\n}\n",
+      "output": [
+        "if((curr_digit  %  2)  ==  0)  {",
+        "if((curr_digit  %  2)  ==  0)  {",
+        "if((curr_digit  %  3)!=  0)  {",
+        "if((curr_digit  %  2)!=  0)  {",
+        "if((curr_digit  %  4)!=  0)  {",
+        "if((curr_digit  %  3)!=  0)  {",
+        "if((curr_digit  %  1)!=  0)  {",
+        "if((curr_digit  %  8)!=  0)  {",
+        "if((curr_digit  %  2)!=  0)  {",
+        "if((curr_digit  %  2)  >  0)  {"
+      ]
+    },
+    "BY_LENGTH": {
+      "loc": "45-46",
+      "input": "public static ArrayList<String> by_length(ArrayList<Integer> a) {\n    Map<Integer, String> digit_map = new HashMap<>();\n    digit_map.put(1, \"One\");\n    digit_map.put(2, \"Two\");\n    digit_map.put(3, \"Three\");\n    digit_map.put(4, \"Four\");\n    digit_map.put(5, \"Five\");\n    digit_map.put(6, \"Six\");\n    digit_map.put(7, \"Seven\");\n    digit_map.put(8, \"Eight\");\n    digit_map.put(9, \"Nine\");\n    Collections.sort(a, Collections.reverseOrder());\n    ArrayList<String> result = new ArrayList<>();\n    for(int num : a) {\n</s>        if(digit_map.get(num) != \"\") {\n</s>            result.add(digit_map.get(num));\n        }\n    }\n    return result;\n}\n",
+      "output": [
+        "if(digit_map.get(num)  ==  null)  {",
+        "if(digit_map.get(num)  ==  null)  {",
+        "if(digit_map.get(num)!=   \"   \")  {",
+        "if(digit_map.get(num)!=  null)  {",
+        "if(digit_map.get(num)  ==  0)  {",
+        "if(digit_map.get(num).equals(   \"   \"))  {",
+        "if(digit_map.get(num)  ==   \" \")  {",
+        "if(digit_map.get(num)  ==   \" \")  {",
+        "if(digit_map.get(num)!=  null)  {",
+        "if(digit_map.get(num).equals(   \"   \"))  {"
+      ]
+    },
+    "FACTORIAL": {
+      "loc": "25-26",
+      "input": "public static ArrayList<Integer> factorial(int n) {\n    ArrayList<Integer> ret = new ArrayList<>();\n    for(int i = 1; i <= n; i++) {\n        if((i % 2) == 0) {\n            int x = 1;\n            for(int j = 1; j <= i; j++) x *= j;\n            ret.add(x);\n        } else {\n            int x = 0;\n</s>            for(int j = 1; j <= i; i++) x -= j;\n</s>            ret.add(x);\n        }\n    }\n    return ret;\n}\n",
+      "output": [
+        "(int  j  =  1;  j  <=  i;  j++)  x  -=  j;",
+        "(int  j  =  1;  j  <=  i;  j++)  x  *=  j;",
+        "(int  j  =  1;  j  <=  n;  j++)  x  -=  j;",
+        "(int  j  =  1;  j  <=  j;  j++)  x  -=  j;",
+        "(int  j  =  1;  j  <=  i;  j++)  x  +=  j;",
+        "(int  j  =  1;  j  <=  i;  i++)  x  -=  j;",
+        "(int  j  =  2;  j  <=  i;  j++)  x  -=  j;",
+        "(int  j  =  1;  j  <=  i;  j++)  x  -=  x;",
+        "(int  j  =  1;  j  <=  0;  j++)  x  -=  j;",
+        "(int  j  =  1;  j  <=  i;  j++)  y  -=  j;"
+      ]
+    },
+    "EVEN_ODD_PALINDROME": {
+      "loc": "42-44",
+      "input": "public static ArrayList<Integer> even_odd_palindrome(int n) {\n    int even_palindrome_count = 0, odd_palindrome_count = 0;\n    for(int i = 1; i <= n; i++) {\n</s>        if((i % 2) == 0 && is_palindrome(i)) odd_palindrome_count--;\n        else if((i % 2) == 1 && is_palindrome(i)) even_palindrome_count--;\n</s>    }\n    ArrayList<Integer> result = new ArrayList<>(Arrays.asList(even_palindrome_count, odd_palindrome_count));\n    return result;\n}\n",
+      "output": [
+        "if((i  %  2)  ==  0  &&  is_palindrome(i))  odd_palindrome_count--;  else  if((i  %  2)  ==  1)  even_palindrome_count--;",
+        "if((i  %  2)  ==  0)  odd_palindrome_count--;  else  if((i  %  2)  ==  1  &&  is_palindrome(i))  even_palindrome_count--;",
+        "if((i  %  2)  ==  0  &&  is_palindrome(i))  odd_palindrome_count--;",
+        "if((i  %  2)  ==  0  &&  is_palindrome(i))  odd_palindrome_count++;  else  if((i  %  2)  ==  1  &&  is_palindrome(i))  even_palindrome_count++;",
+        "if((i  *  2)  ==  0  &&  is_palindrome(i))  odd_palindrome_count--;  else  if((i  *  2)  ==  1  &&  is_palindrome(i))  even_palindrome_count--;",
+        "(i  %  2)  ==  0  &&  is_palindrome(i))  odd_palindrome_count--;  else  if((i  %  2)  ==  1  &&  is_palindrome(i))  even_palindrome_count--;",
+        "if((i  %  2)  ==  0  &&  is_palindrome(i))  even_palindrome_count--;",
+        "if((i  %  2)  ==  0  &&  i  <=  n)  odd_palindrome_count--;  else  if((i  %  2)  ==  1  &&  i  <=  n)  even_palindrome_count--;",
+        "if((i  %  2)  ==  0  &&  is_palindrome(i))  odd_palindrome_count--;  else  if((i  %  2)  ==  1  &&  is_palindrome(i))  even_palindrome_count;",
+        "if((i  +  1)  ==  0  &&  is_palindrome(i))  odd_palindrome_count--;  else  if((i  +  1)  ==  1  &&  is_palindrome(i))  even_palindrome_count--;"
+      ]
+    },
+    "COUNT_NUMS": {
+      "loc": "10-11",
+      "input": "public static int count_nums(ArrayList<Integer> arr) {\n    int count = 0;\n    for(int num : arr) {\n        boolean neg = num < 0;\n</s>        if(neg) num *= 1;\n</s>        String num_string = Integer.toString(num);\n        int sum = 0;\n        for(int i = 0; i < num_string.length(); i++) {\n            if((i == 0) && neg) sum -= num_string.charAt(i) - '0';\n            else sum += num_string.charAt(i) - '0';\n        }\n        if(sum > 0) count++;\n    }\n    return count;\n}\n",
+      "output": [
+        "if(neg)  num  *=  1;",
+        "if(neg)  num  *=  0;",
+        "if(neg)  num  *=  2;",
+        "if(num  >  0)  num  *=  1;",
+        "if(num  <  0)  num  *=  1;",
+        "if(neg)  num  *=  1;",
+        "if(neg)  num  *=  -1;",
+        "if(num  >=  0)  num  *=  1;",
+        "if(num  ==  0)  num  *=  1;",
+        "if(neg)  num  *=  1  -  count;"
+      ]
+    },
+    "MOVE_ONE_BALL": {
+      "loc": "11-12",
+      "input": "public static boolean move_one_ball(ArrayList<Integer> arr) {\n    if(arr.size() == 0) return true;\n    ArrayList<Integer> sorted_arr = new ArrayList<>(arr);\n    Collections.sort(sorted_arr);\n</s>    int min_value = sorted_arr.get(sorted_arr.size() - 1);\n</s>    int min_index = 0;\n    for(int i = 0; i < arr.size(); i++) {\n        if(arr.get(i) == min_value) min_index = i;\n    }\n    ArrayList<Integer> arr_after_move = new ArrayList<>();\n    for(int i = min_index; i < arr.size(); i++) {\n        arr_after_move.add(arr.get(i));\n    }\n    for(int i = 0; i < min_index; i++) {\n        arr_after_move.add(arr.get(i));\n    }\n    for(int i = 0; i < arr.size(); i++) {\n        if(arr_after_move.get(i) != sorted_arr.get(i)) {\n            return false;\n        }\n    }\n    return true;\n}\n",
+      "output": [
+        "int  min_value  =  sorted_arr.get(sorted_arr.size());",
+        "int  min_value  =  sorted_arr.get(sorted_arr.size());",
+        "t  min_value  =  sorted_arr.get(sorted_arr.size());",
+        "int  min_value  =  sorted_arr.get(sorted_arr.size()  -  1);",
+        "int  min_value  =  sorted_arr.get(sorted_arr.size()  -  1);",
+        "t  min_value  =  sorted_arr.get(sorted_arr.size()  -  1);",
+        "int  min_value  =  sorted_arr.get(sorted_arr.size()  -  2);",
+        "int  min_value  =  sorted_arr.get(sorted_arr.size()  -  2);",
+        "Integer  min_value  =  sorted_arr.get(sorted_arr.size());",
+        "Integer  min_value  =  sorted_arr.get(sorted_arr.size());"
+      ]
+    },
+    "EXCHANGE": {
+      "loc": "22-24",
+      "input": "public static String exchange(ArrayList<Integer> lst1, ArrayList<Integer> lst2) {\n    int odd = 0, even = 0;\n</s>    for(int i : lst2) {\n        if((i % 2) == 1) even++;\n</s>    }\n    for(int i : lst2) {\n        if((i % 2) == 0) even++;\n    }\n    if(even >= odd) {\n        return \"YES\";\n    }\n    return \"NO\";\n}\n",
+      "output": [
+        "(int  i  :  lst2)  {  if((i  %  2)  ==  1)  even++;",
+        "(int  i  :  lst1)  {  if((i  %  2)  ==  1)  even++;",
+        "(int  i  :  lst2)  {  if((i  %  2)  ==  0)  even++;",
+        "for(int  i  :  lst2)  {  if((i  %  2)  ==  1)  even++;",
+        "For(int  i  :  lst2)  {  if((i  %  2)  ==  1)  even++;",
+        "(int  i  :  lst2)  {  if((i  %  2)!=  1)  even++;",
+        "for(int  i  :  lst1)  {  if((i  %  2)  ==  1)  even++;",
+        "(int  i  :  lst2)  {  if((i  %  2)  ==  2)  even++;",
+        "for(int  i  :  lst2)  {  if((i  %  2)  ==  1)  even++;",
+        "(int  i  :  lst2)  {  if((i  %  3)  ==  1)  even++;"
+      ]
+    },
+    "HISTOGRAM": {
+      "loc": "30-31",
+      "input": "public static HashMap<Character, Integer> histogram(String s) {\n    HashMap<Character, Integer> res = new HashMap<Character, Integer>();\n    if(s.isEmpty()) return res;\n    String[] list_letters = s.split(\" \");\n    int[] count_letter = new int[26];\n    for(int i = 0; i < list_letters.length; i++) {\n        char c = list_letters[i].charAt(0);\n        count_letter[c - 'a']++;\n    }\n    int most_count = 0;\n    for(int i = 0; i < 26; i++) {\n</s>        if(count_letter[i] < most_count) {\n</s>            most_count = count_letter[i];\n            res.clear();\n            res.put((char) ('a' + i), most_count);\n        } else if(count_letter[i] == most_count) {\n            res.put((char) ('a' + i), most_count);\n        }\n    }\n    if(most_count == 0) res.clear();\n    return res;\n}\n",
+      "output": [
+        "if(count_letter[i]  <=  most_count)  {",
+        "if(count_letter[i]  <  0)  {",
+        "if(count_letter[i]  <  26)  {",
+        "if(count_letter[i]  <  list_letters[i])  {",
+        "if(count_letter[i]  <  list_letters.length)  {",
+        "if(count_letter[i]  >=  most_count)  {",
+        "if(count_letter[i]  ==  most_count)  {",
+        "if(count_letter[i]  <=  most_count)  {",
+        "if(count_letter[i].equals(most_count))  {",
+        "if(count_letter[i]  <  27)  {"
+      ]
+    },
+    "REVERSE_DELETE": {
+      "loc": "20-21",
+      "input": "public static ArrayList<Object> reverse_delete(String s, String c) {\n    String new_s = \"\";\n    for(int i = 0; i < s.length(); i++) {\n</s>        if(c.indexOf(s.charAt(i)) != -1) {\n</s>            new_s += s.charAt(i);\n        }\n    }\n    String reverse_s = \"\";\n    for(int i = new_s.length() - 1; i >= 0; i--) {\n        reverse_s += new_s.charAt(i);\n    }\n    ArrayList<Object> res = new ArrayList<>();\n    res.add(new_s);\n    res.add(reverse_s.equals(new_s));\n    return res;\n}\n",
+      "output": [
+        "if(c.indexOf(s.charAt(i))  ==  -1)  {",
+        "if(c.indexOf(s.charAt(i))!=  -1)  {",
+        "if(c.indexOf(s.charAt(i))  ==  -1)  {",
+        "if(c.indexOf(s.charAt(i))!=  -1)  {",
+        "if(c.indexOf(s.charAt(i))  <  0)  {",
+        "if(c.indexOf(s.charAt(i))  >  -1)  {",
+        "if(!c.contains(s.charAt(i)))  {",
+        "if(c.indexOf(s.charAt(i))!=  0)  {",
+        "if(s.indexOf(i)!=  -1)  {",
+        "if(c.indexOf(s.charAt(i))  >=  0)  {"
+      ]
+    },
+    "ODD_COUNT": {
+      "loc": "25-27",
+      "input": "public static ArrayList<String> odd_count(ArrayList<String> lst) {\n    ArrayList<String> result = new ArrayList<>();\n    for(String s : lst) {\n        int n = 0;\n        for(int i = 0; i < s.length(); i++) {\n            int digit = s.charAt(i) - '0';\n</s>            if(digit % 2 == 0) {\n                n--;\n</s>            }\n        }\n        result.add(\"the number of odd elements \" + n + \"n the str\" + n + \"ng \" + n + \" of the \" + n + \"nput.\");\n    }\n    return result;\n}\n",
+      "output": [
+        "if(digit  %  2!=  0)  {",
+        "if(digit  %  2  <=  0)  {  n--;",
+        "if(digit  %  2!=  0)  {",
+        "if(digit  %  2!=  0)  {  n--;",
+        "if(digit  %  2  ==  0  &&  digit  <  0)  {",
+        "if(digit  %  1  ==  0)  {  n--;",
+        "if(digit  %  2  ==  0  &&  n  >  0)  {",
+        "if(digit  %  2  <=  0)  {  n--;",
+        "if(digit  %  2  ==  0  ||  digit  <  0)  {",
+        "if(digit  %  2  ==  0  &&  n  <  0)  {"
+      ]
+    },
+    "MIN_SUBARRAY_SUM": {
+      "loc": "18-19",
+      "input": "public static long min_subarray_sum(ArrayList<Long> nums) {\n    long max_sum = 0;\n    long s = 0;\n    for(long num : nums) {\n</s>        s += num;\n</s>        if(s < 0) {\n            s = 0;\n        }\n        max_sum = Math.max(s, max_sum);\n    }\n    if(max_sum == 0) {\n        max_sum = -nums.get(0);\n        for(int i = 1; i < nums.size(); i++) {\n            max_sum = Math.max(max_sum, -nums.get(i));\n        }\n    }\n    long min_sum = -max_sum;\n    return min_sum;\n}\n",
+      "output": [
+        "s  +=  num;",
+        "s  +=  num;",
+        "s  +=  (long)num;",
+        "s  +=  (long)num;",
+        "s  +=  Long.MAX_VALUE;",
+        "s  +=  Long.toString(num);",
+        "s  +=  Long.valueOf(num);",
+        "s  +=  num  -  1;",
+        "s  +=  Math.abs(num);",
+        "s  +=  num  -  1;"
+      ]
+    },
+    "MAX_FILL": {
+      "loc": "42-44",
+      "input": "public static int max_fill(int[][] grid, int bucket_capacity) {\n    int result = 0;\n    for(int i = 0; i < grid.length; i++) {\n        int row_capacity = 0;\n</s>        for(int j = 0; j < grid[j].length; j++) {\n            row_capacity += grid[j][i];\n</s>        }\n        result += (row_capacity + bucket_capacity - 1) / bucket_capacity;\n    }\n    return result;\n}\n",
+      "output": [
+        "(int  j  =  0;  j  <  grid[j].length;  j++)  {",
+        "for(int  j  =  0;  j  <  grid[j].length;  j++)  {",
+        "For(int  j  =  0;  j  <  grid[j].length;  j++)  {",
+        "for(int  j  =  0;  j  <  row_capacity;  j++)  {",
+        "(int  j  =  0;  j  <  grid[j].length  -  1;  j++)  {",
+        "for(int  j  =  0;  j  <  grid[i].length;  j++)  {",
+        "for(int  j  =  0;  j  <  i;  j++)  {  row_capacity  +=  i;",
+        "for(int  j  =  0;  j  <  i;  j++)  {  row_capacity  +=  grid[j].length;",
+        "//  for(int  j  =  0;  j  <  grid[j].length;  j++)  {",
+        "for(int  j  =  0;  j  <=  grid[j].length;  j++)  {"
+      ]
+    },
+    "SORT_ARRAY_BINARY": {
+      "loc": "36-40",
+      "input": "@Override\npublic int compare(Integer o1, Integer o2) {\n   int num_ones_o1 = number_ones(o1);\n   int num_ones_o2 = number_ones(o2);\n   if(num_ones_o1 == num_ones_o2) {\n</s>      if(o1 == o2) return 1;\n      if(o1 < o2) return 0;\n      if(o1 > o2) return -1;\n   }\n</s>   if(num_ones_o1 < num_ones_o2) return -1;\n   else return 1;\n}\n",
+      "output": [
+        "if(o1  ==  o2)  return  1;  if(o1  <  o2)  return  1;  if(o1  >  o2)  return  -1;  }",
+        "if(o1  ==  o2)  return  1;  if(o1  <  o2)  return  -1;  if(o1  >  o2)  return  -1;  }",
+        "if(o1  ==  o2)  return  0;  if(o1  <  o2)  return  -1;  }",
+        "if(o1  ==  o2)  return  1;  if(o1  <  o2)  return  -1;  if(o1  >  o2)  return  1;  }",
+        "if(o1  ==  o2)  return  1;  if(o1  <  o2)  return  0;  if(o1  >  o2)  return  -1;  }",
+        "if(o1  <  o2)  return  -1;  if(o1  >  o2)  return  -1;  }",
+        "if(o1  ==  o2  ||  o1  <  o2)  return  -1;  if(o1  >  o2)  return  -1;  }",
+        "if(o1  ==  o2)  return  1;  if(o1  <  o2)  return  1;  if(o1  >  o2)  return  1;  }",
+        "if(o1  ==  o2)  return  1;  if(o1  <  o2)  return  0;  if(o1  >  o2)  return  1;  }",
+        "if(o1  ==  o2)  return  0;  if(o1  >  o2)  return  -1;  }"
+      ]
+    },
+    "SELECT_WORDS": {
+      "loc": "25-26",
+      "input": "public static ArrayList<String> select_words(String s, int n) {\n    ArrayList<String> result = new ArrayList<>();\n    String[] words = s.split(\" \");\n    for(int i = 0; i < words.length; i++) {\n        int num_consonants = 0;\n</s>        char[] vowels = {'a', 'e', 'i', 'o', 'u'};\n</s>        for(int j = 0; j < words[i].length(); j++) {\n            boolean consonant = true;\n            for(int k = 0; k < vowels.length; k++) {\n                if(vowels[k] == words[i].charAt(j)) {\n                    consonant = false;\n                    break;\n                }\n            }\n            if(consonant) num_consonants++;\n        }\n        if(num_consonants == n) result.add(words[i]);\n    }\n    return result;\n}\n",
+      "output": [
+        "char[]  vowels  =  {  'a',  'e',  'i',  'o',  'u'  }  ;",
+        "char[]  vowels  =  {  'a',  'e',  'i',  'o',  'u',  'e'  }  ;",
+        "char[]  vowels  =  {  'a',  'e',  'i',  'o',  'u',  'a'  }  ;",
+        "char[]  vowels  =  {  'a',  'e',  'i',  'o',  'u',  'i'  }  ;",
+        "char[]  vowels  =  {  'a',  'e',  'i',  'o',  'u',  'f'  }  ;",
+        "char[]  vowels  =  {  'a',  'e',  'i',  'o',  'u'  }  ;",
+        "char[]  vowels  =  {  'a',  'e',  'i',  'o',  'u',  'p'  }  ;",
+        "char[]  vowels  =  {  'a',  'e',  'i',  'o'  }  ;",
+        "char[]  vowels  =  {  'a',  'e',  'i',  'o',  'u',  'c'  }  ;",
+        "char[]  vowels  =  {  'a',  'e',  'i',  'o',  'u',  'o'  }  ;"
+      ]
+    },
+    "GET_CLOSET_VOWEL": {
+      "loc": "26-27",
+      "input": "public static String get_closet_vowel(String word) {\n    if(word.length() < 3) return \"\";\n    ArrayList<Character> vowels = new ArrayList<Character>(Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'));\n</s>    for(int i = word.length() - 2; i >= 0; i--) {\n</s>        if(vowels.contains(word.charAt(i))) {\n            if(!vowels.contains(word.charAt(i + 1)) && !vowels.contains(word.charAt(i - 1))) {\n                return word.substring(i, i + 1);\n            }\n        }\n    }\n    return \"\";\n}\n",
+      "output": [
+        "For(int  i  =  word.length()  -  1;  i  >=  0;  i--)  {",
+        "(int  i  =  word.length()  -  1);  i  >=  0;  i--)  {",
+        "(int  i  =  word.length()  -  2;  i  >=  0;  i--)  {",
+        "For(int  i  =  word.length()  -  2;  i  >=  0;  i--)  {",
+        "for(int  i  =  word.length()  -  1;  i  >=  0;  i--)  {",
+        "for(int  i  =  word.length()  -  2;  i  >=  0;  i--)  {",
+        "(int  i  =  word.length()  -  1;  i  >=  0;  i--)  {",
+        "for(int  i  =  word.length()  -  1;  i  >=  0;  i--)  {",
+        "for(int  i  =  word.length()  -  2;  i  >=  0;  i--)  {",
+        "(int  i  =  word.length()  -  2);  i  >=  0;  i--)  {"
+      ]
+    },
+    "MATCH_PARENS": {
+      "loc": "7-9",
+      "input": "</s></s>",
+      "output": [
+        "TimeZone.setDefault(TimeZone.getTimeZone(   \"GMT   \"));",
+        "TimeZone.setDefault(TimeZone.getTimeZone(   \"UTC   \"));",
+        "Locale.setDefault(Locale.ENGLISH);",
+        "Locale.setDefault(Locale.US);",
+        "Locale.setDefault(Locale.ENGLISH);",
+        "Locale.setDefault(Locale.ENGLISH,   \"false   \");",
+        "NumberFormat.setLocale(Locale.ENGLISH);",
+        "List  <  String>  emptyList  =  new  ArrayList  <  String>();",
+        "Locale.setDefault(Locale.US);",
+        "@SuppressWarnings(   \"unchecked   \")"
+      ]
+    },
+    "MAXIMUM_K": {
+      "loc": "35-36",
+      "input": "public static ArrayList<Integer> maximum_k(ArrayList<Integer> arr, int k) {\n    Collections.sort(arr);\n    ArrayList<Integer> result = new ArrayList<>();\n</s>    for(int i = arr.size() - 1; i >= arr.size() - k; i--) {\n</s>        result.add(arr.get(i));\n    }\n    return result;\n}\n",
+      "output": [
+        "for(int  i  =  arr.size()  -  1;  i  >=  arr.size()  -  k;  i--)  {",
+        "(int  i  =  arr.size()  -  1;  i  >=  arr.size()  -  k;  i--)  {",
+        "(int  i  =  arr.size()  -  1;  i  >=  arr.size()  -  k);  i--)  {",
+        "For(int  i  =  arr.size()  -  1;  i  >=  arr.size()  -  k;  i--)  {",
+        "(int  i  =  arr.size()  -  1;  i  >=  arr.size()  -  k  -  1;  i--)  {",
+        "(int  i  =  arr.size()  -  1;  i  >=  arr.size()  -  k-1;  i--)  {",
+        "//  for(int  i  =  arr.size()  -  1;  i  >=  arr.size()  -  k;  i--)  {",
+        "for(int  i  =  arr.size()  -  1;  i  >=  arr.size()  -  k;  i--)  {",
+        "for(int  i  =  0;  i  >=  arr.size()  -  k;  i--)  {",
+        "for(int  i  =  arr.size()  -  1;  i  >=  arr.size()  -  k-1;  i--)  {"
+      ]
+    },
+    "SOLUTION": {
+      "loc": "19-20",
+      "input": "public static int solution(ArrayList<Integer> lst) {\n    int result = 0;\n    for(int i = 0; i < lst.size(); i++) {\n</s>        if((i % 2) == 1 && (lst.get(i) % 2) == 0) {\n</s>            result += lst.get(i);\n        }\n    }\n    return result;\n}\n",
+      "output": [
+        "if((i  %  2)  ==  0  &&  (lst.get(i)  %  2)  ==  0)  {",
+        "if((i  %  2)  ==  0  &&  (lst.get(i)  %  2)  ==  0)  {",
+        "if((i  %  2)  ==  1  &&  (lst.get(i)  %  2)  ==  0)  {",
+        "if((i  %  2)  ==  1  &&  (lst.get(i)  %  2)  ==  0)  {",
+        "if((i  %  2)  ==  1  &&  lst.get(i)  %  2)  ==  0)  {",
+        "if((i  %  2)  ==  1  &&  (lst.get(i)  %  3)  ==  0)  {",
+        "if((i  %  2)  ==  1  &&  lst.get(i)  %  2)  ==  0)  {",
+        "if((i  %  2)  ==  1  &&  (lst.get(i)  %  3)  ==  0)  {",
+        "if((i  %  2)  ==  0  &&  (lst.get(i)  %  2)  ==  0))  {",
+        "if((i  %  2)  ==  1)  &&  (lst.get(i)  %  2)  ==  0)  {"
+      ]
+    },
+    "ADD_ELEMENTS": {
+      "loc": "24-26",
+      "input": "public static int add_elements(ArrayList<Integer> arr, int k) {\n    int result = 0;\n    for(int i = 0; i < k; i++) {\n</s>        if(Integer.toString(arr.get(i)).length() >= 2) {\n            result -= arr.get(i);\n</s>        }\n    }\n    return result;\n}\n",
+      "output": [
+        "if(Integer.toString(arr.get(i)).length()  >=  3)  {  result  -=  arr.get(i);",
+        "if(Integer.toString(arr.get(i)).length()  >=  2)  {  result  -=  arr.get(k);",
+        "if(Integer.toString(arr.get(i)).length()  >=  2)  {  result  -=  arr.get(i);",
+        "if(Integer.toString(arr.get(i)).length()  >=  2)  {",
+        "if(Integer.toString(arr.get(i)).length()  >=  3)  {  result  -=  arr.get(i);",
+        "if(Integer.toString(arr.get(i)).length()  >=  1)  {  result  -=  arr.get(i);",
+        "if(Integer.toString(arr.get(i)).length()  >=  4)  {  result  -=  arr.get(i);",
+        "if(Integer.toString(arr.get(i)).length()  >=  2)  {  result  -=  arr.get(i);",
+        "if(Integer.toString(arr.get(i)).length()  >=  2)  {  result  -=  arr.get(k);",
+        "if(Integer.toString(arr.get(k)).length()  >=  2)  {  result  -=  arr.get(k);"
+      ]
+    },
+    "GET_ODD_COLLATZ": {
+      "loc": "27-29",
+      "input": "public static ArrayList<Integer> get_odd_collatz(int n) {\n    ArrayList<Integer> result = new ArrayList<>();\n    if((n % 2) == 1) result.add(n);\n</s>    while(n >= 1) {\n        if((n % 2) == 1) n /= 2;\n</s>        else n = 3 * n + 1;\n        if((n % 2) == 1) result.add(n);\n    }\n    Collections.sort(result);\n    return result;\n}\n",
+      "output": [
+        "if((n  %  2)  ==  1)  n  /=  2;",
+        "if((n  %  2)  ==  1)  n  /=  2;",
+        "if((n  %  2)  ==  1)  n  =  2;",
+        "if((n  %  2)  ==  1)  n  /=  1;",
+        "if((n  %  2)  ==  1)  n  /=  3;",
+        "if((n  %  2)  ==  2)  n  /=  2;",
+        "if((n  %  2)  ==  1)  n  /=  3;",
+        "if((n  %  2)  ==  1)  n  /=  1;",
+        "if((n  %  2)  ==  1)  n  =  2;",
+        "while(n  >=  1  &&  (n  %  2)  ==  1)  {"
+      ]
+    },
+    "VALID_DATE": {
+      "loc": "38-39",
+      "input": "public static boolean valid_date(String date) {\n    try {\n        date = date.trim();\n        String[] date_info = date.split(\"-\");\n        if(date_info.length > 3) return false;\n        int month = Integer.parseInt(date_info[0]);\n        int day = Integer.parseInt(date_info[1]);\n        int year = Integer.parseInt(date_info[2]);\n        if(month < 1 || month > 12) return false;\n        int[] month_check1 = {1, 3, 5, 7, 8, 10, 12};\n        for(int i = 0; i < month_check1.length; i++) {\n</s>            if(month != month_check1[i] && !(day < 1 || day > 31)) return false;\n</s>        }\n        int[] month_check2 = {4, 6, 9, 11};\n        for(int i = 0; i < month_check2.length; i++) {\n            if(month == month_check2[i] && (day < 1 || day > 30)) return false;\n        }\n        if(month == 2 && (day < 1 || day > 29)) return false;\n    } catch (Exception e) {\n        return false;\n    }\n    return true;\n}\n",
+      "output": [
+        "if(month!=  month_check1[i]  &&!(day  <  1  ||  day  >  31))  return  false;",
+        "if(month!=  month_check1[i]  &&!(day  <  1  ||  day  >  31))  {  return  false;  }",
+        "if(month!=  month_check1[i]  &&  (day  <  1  ||  day  >  31))  return  false;",
+        "if(month!=  month_check1[i]  &&!(month  <  1  ||  day  >  31))  return  false;",
+        "if(month!=  month_check1[i]  &&!(day  <  1  ||  day  >  31))  return  false;",
+        "if(month  ==  month_check1[i]  &&!(day  <  1  ||  day  >  31))  return  false;",
+        "if(month!=  month_check1[i]  &&!(day  <  1  ||  day  >  31))  continue;",
+        "if(month!=  month_check1[i]  ||!(day  <  1  ||  day  >  31))  return  false;",
+        "if(month!=  month_check1[i]  &&!(day  <  1  ||  day  <  31))  return  false;",
+        "if(month!=  month_check1[i]  &&!(day  <=  1  ||  day  >  31))  return  false;"
+      ]
+    },
+    "SPLIT_WORDS": {
+      "loc": "23-24",
+      "input": "public static String[] split_words(String txt) {\n    if(txt.contains(\" \")) {\n        return txt.split(\" \");\n    } else if(txt.contains(\",\")) {\n        return txt.split(\",\");\n    } else {\n        int count = 0;\n        for(int i = 0; i < txt.length(); i++) {\n            char curr = txt.charAt(i);\n</s>            if(Character.isUpperCase(curr) && ((curr - 'a') % 2) == 0) count++;\n</s>        }\n        String[] result = {Integer.toString(count)};\n        return result;\n    }\n}\n",
+      "output": [
+        "if(Character.isUpperCase(curr)  &&  ((curr  -  'a')  %  2)  ==  0)  count++;",
+        "if(Character.isUpperCase(curr)  &&  ((curr  -  'a')  %  3)  ==  0)  count++;",
+        "if(Character.isUpperCase(curr)  &&  ((curr  -  'a')  %  4)  ==  0)  count++;",
+        "if(Character.isUpperCase(curr)  &&  ((curr  -  'a')  %  2  ==  0))  count++;",
+        "if(Character.isUpperCase(curr)  &&  ((curr  -  'a')  %  2)!=  0)  count++;",
+        "if(Character.isUpperCase(curr)  &&  ((curr  -  'a')  %  2)  ==  0)  count  =  0;",
+        "if(Character.isUpperCase(curr)  &&  ((curr  -  'a')  %  2)  ==  0)  count++;",
+        "if(Character.isUpperCase(curr)  &&  ((curr  -  'a')  %  2!=  0))  count++;",
+        "if(Character.isUpperCase(curr)  &&  ((curr  -  'a')  %  2  ==  0)  count++;",
+        "if  (Character.isUpperCase(curr)  &&  ((curr  -  'a')  %  2)  ==  0)  count++;"
+      ]
+    },
+    "IS_SORTED": {
+      "loc": "34-35",
+      "input": "public static boolean is_sorted(int[] lst) {\n    HashMap<Integer, Integer> count_num = new HashMap<>();\n    for(int i = 0; i < lst.length; i++) {\n        count_num.put(lst[i], 0);\n    }\n    for(int i = 0; i < lst.length; i++) {\n        count_num.put(lst[i], count_num.get(lst[i]) + 1);\n    }\n    for(int i = 0; i < lst.length; i++) {\n        if(count_num.get(lst[i]) > 2) return false;\n    }\n    for(int i = 0; i < lst.length - 1; i++) {\n</s>        if(lst[i] <= lst[i + 1]) return false;\n</s>    }\n    return true;\n}\n",
+      "output": [
+        "if(lst[i]  <  lst[i  +  1])  return  false;",
+        "if(lst[i]  <=  lst[i  +  1])  return  false;",
+        "if(lst[i]  <=  lst[i])  return  false;",
+        "if(lst[i]  <=  lst[i  +  2])  return  false;",
+        "if(lst[i]  <  lst[i  +  1])  return  false;",
+        "if(lst[i]  <=  lst[i  +  1])  continue;",
+        "if(lst[i]  <=  lst[i  +  1])  return  false;",
+        "if(lst[i]  <=  lst[i  +  1])  {  return  false;  }",
+        "if(lst[i]  <=  lst[i  +  1])  return  true;",
+        "if(lst[i]  <=  lst[i+1])  return  false;"
+      ]
+    },
+    "INTERSECTION": {
+      "loc": "34-36",
+      "input": "public static String intersection(int[] interval1, int[] interval2) {\n</s>    int l = Math.min(interval1[0], interval2[0]);\n    int r = Math.max(interval1[1], interval2[1]);\n</s>    int length = r - l;\n    if(length > 0 && is_prime(length)) return \"YES\";\n    return \"NO\";\n}\n",
+      "output": [
+        "int  r  =  Math.max(interval1[1],  interval2[1]);",
+        "int  l  =  Math.min(interval1[1],  interval2[1]);",
+        "int  l  =  Math.min(interval1[0],  interval2[1]);",
+        "int  l  =  Math.min(interval1[0],  interval2[0]);",
+        "r  =  Math.max(interval1[1],  interval2[1]);",
+        "int  r  =  Math.max(interval1[0],  interval2[1]);",
+        "int  r  =  Math.max(interval1[0],  interval2[0]);",
+        "Integer  l  =  Math.min(interval1[0],  interval2[0]);",
+        "int  l  =  Math.min(interval1[1],  interval2[0]);",
+        "r  =  Math.max(interval1[0],  interval2[1]);"
+      ]
+    },
+    "PROD_SIGNS": {
+      "loc": "21-22",
+      "input": "public static int prod_signs(int[] arr) {\n    if(arr.length == 0) return -10;\n    int prod = 1;\n    for(int i = 0; i < arr.length; i++) {\n        if(arr[i] == 0) prod = 0;\n</s>        else if(arr[i] > 0) prod *= 1;\n</s>    }\n    int sum = 0;\n    for(int i = 0; i < arr.length; i++) {\n        sum += Math.abs(arr[i]);\n    }\n    return prod * sum;\n}\n",
+      "output": [
+        "if(arr[i]  >  0)  prod  *=  1;",
+        "if(arr[i]  <  0)  prod  *=  1;",
+        "if(arr[i]  ==  0)  prod  *=  1;",
+        "if(arr[i]  <=  0)  prod  *=  1;",
+        "if(arr[i]  >  0)  prod  *=  1;",
+        "else  if(arr[i]  >  0)  prod  *=  1;",
+        "else  if(arr[i]  <  0)  prod  *=  1;",
+        "if(arr[i]  >  0)  prod  *=  0;",
+        "else  if(arr[i]  >  1)  prod  *=  1;",
+        "if(arr[i]  >=  0)  prod  *=  1;"
+      ]
+    },
+    "MIN_PATH": {
+      "loc": "41-45",
+      "input": "public static int[] min_path(int[][] grid, int k) {\n    int n = grid.length;\n    int val = n * n + 1;\n    for(int i = 0; i < n; i++) {\n        for(int j = 0; j < n; j++) {\n            if(grid[i][j] == 1) {\n</s>                if(i != 0) val = Math.max(val, grid[i][j + 1]);\n                if(j != 0) val = Math.min(val, grid[i - 1][j]);\n                if(i != n - 1) val = Math.min(val, grid[i - 1][j]);\n                if(j != n + 1) val = Math.max(val, grid[i][j - 1]);\n</s>            }\n        }\n    }\n    int[] ans = new int[k];\n    for(int i = 0; i < k; i++) {\n        if((i % 2) == 0) ans[i] = 1;\n        else ans[i] = val;\n    }\n    return ans;\n}\n",
+      "output": [
+        "val  =  Math.max(val,  grid[i][j  +  1]);  if(j!=  0)  val  =  Math.min(val,  grid[i  -  1][j]);",
+        "val  =  Math.max(val,  grid[i  -  1][j]);  if(j!=  0)  val  =  Math.min(val,  grid[i  -  1][j]);",
+        "if(i!=  0)  val  =  Math.max(val,  grid[i  -  1][j]);",
+        "val  =  Math.max(val,  grid[i][j  +  1]);  if(j!=  0)  val  =  Math.min(val,  grid[i  -  1][j]);",
+        "val  =  Math.max(val,  grid[i][j  +  0]);  if(j!=  0)  val  =  Math.min(val,  grid[i  -  1][j]);",
+        "val  =  Math.max(val,  grid[i][j  +  1]);  if(j!=  0)  val  =  Math.min(val,  grid[i  -  0][j]);",
+        "if(i!=  0)  val  =  Math.max(val,  grid[i  -  1][j]);",
+        "if(i!=  0)  val  =  Math.max(val,  grid[i  -  1][j  +  1]);",
+        "val  =  Math.max(val,  grid[i][j  +  1]);  if(j!=  0)  val  =  Math.min(val,  grid[j  -  1][j]);",
+        "val  =  Math.max(val,  grid[i  -  1][j]);  if(j!=  0)  val  =  Math.min(val,  grid[j  -  1][j]);"
+      ]
+    },
+    "TRI": {
+      "loc": "30-34",
+      "input": "public static int[] tri(int n) {\n    int[] sequence = new int[n + 1];\n    if(n == 0) {\n        sequence[0] = 1;\n        return sequence;\n    }\n    sequence[0] = 1;\n</s>    sequence[1] = -3;\n    for(int i = 2; i < n - 1; i--) {\n        if(i % 2 == 0) sequence[i] = i / 2 - 1;\n        else sequence[i] = sequence[i - 1] - sequence[i - 2] - (i + 3) / 2;\n</s>    }\n    return sequence;\n}\n",
+      "output": [
+        "sequence[0]  =  -1;  sequence[1]  =  -3;",
+        "sequence[0]  =  0;  sequence[1]  =  -3;",
+        "sequence[0]  =  1;  sequence[1]  =  -3;",
+        "if(n  ==  0)  continue;  sequence[1]  =  -3;",
+        "sequence[1]  =  -3;",
+        "sequence[0]  =  -1;  sequence[1]  =  -3;",
+        "if(n  >  0)  {  sequence[1]  =  -3;",
+        "if(n  ==  0)  {  sequence[1]  =  -3;",
+        "if(n  ==  0)  {  sequence[0]  =  0;",
+        "sequence[0]  =  0;  sequence[1]  =  -1;"
+      ]
+    },
+    "DIGITS": {
+      "loc": "16-20",
+      "input": "public static int digits(int n) {\n    int product = 1;\n    int odd_count = 0;\n</s>    while(n >= 0) {\n        int digit = n * 10;\n        if(digit % 2 == 0) {\n            product /= digit;\n</s>            odd_count++;\n        }\n        n /= 10;\n    }\n    if(odd_count == 0) return 0;\n    return product;\n}\n",
+      "output": [
+        "while(n  >  0)  {  int  digit  =  n  *  10;  if(digit  %  2  ==  0)  {  product  /=  digit;",
+        "(n  >=  0)  {  int  digit  =  n  *  10;  if(digit  %  2  ==  0)  {  product  /=  digit;",
+        "(n  >=  0)  {  int  digit  =  n  *  10;  if(digit  %  2  ==  0)  {  product  /=  digit;",
+        "while(n  <  0)  {  int  digit  =  n  *  10;  if(digit  %  2  ==  0)  {  product  /=  digit;",
+        "while(n  >=  0)  {  int  digit  =  n  *  10;  if(digit  %  2  ==  0)  {",
+        "(n  >  0)  {  int  digit  =  n  *  10;  if(digit  %  2  ==  0)  {  product  /=  digit;",
+        "if(n  >  0)  {  int  digit  =  n  *  10;  if(digit  %  2  ==  0)  {  product  /=  digit;",
+        "while(n  >=  0)  {  digit  =  n  *  10;  if(digit  %  2  ==  0)  {  product  /=  digit;",
+        "int  digit  =  n  *  10;  if(digit  %  2  ==  0)  {  product  /=  digit;",
+        "while  (n  <  0)  {  int  digit  =  n  *  10;  if(digit  %  2  ==  0)  {  product  /=  digit;"
+      ]
+    },
+    "IS_NESTED": {
+      "loc": "28-32",
+      "input": "public static boolean is_nested(String brackets) {\n    ArrayList<Integer> opening_brackets = new ArrayList<>();\n    ArrayList<Integer> closing_brackets = new ArrayList<>();\n    for(int i = 0; i < brackets.length(); i++) {\n        if(brackets.charAt(i) == '[') opening_brackets.add(i);\n        else closing_brackets.add(i);\n    }\n</s>    Collections.reverse(opening_brackets);\n    int cnt = 0, i = 0, l = opening_brackets.size();\n    for(int idx : closing_brackets) {\n        if(i < l || idx >= opening_brackets.get(i)) {\n</s>            i++;\n            cnt++;\n        }\n    }\n    return cnt >= 2;\n}\n",
+      "output": [
+        "Collections.reverse(opening_brackets);  int  cnt  =  0,  i  =  0,  l  =  closing_brackets.size();  for(int  idx  :  closing_brackets)  {  if(i  <  l)  {",
+        "int  cnt  =  0,  i  =  0;  l  =  0;  for(int  idx  :  closing_brackets)  {  if(i  <  l  ||  idx  >=  opening_brackets.get(i))  {",
+        "int  cnt  =  0,  i  =  0;  l  =  0;  for(int  idx  :  closing_brackets)  {  if(i  <  l  ||  idx  >=  closing_brackets.get(i))  {",
+        "int  cnt  =  0,  i  =  0;  l  =  0;  for(int  idx  :  closing_brackets)  {  if(i  <  l  ||  idx  >=  opening_brackets.get(i))  {",
+        "int  cnt  =  0,  i  =  0;  l  =  0;  for(int  idx  :  closing_brackets)  {  if(i  <  l  ||  idx  >=  closing_brackets.get(i))  {",
+        "Collections.reverse(opening_brackets);  int  cnt  =  0,  i  =  0,  l  =  closing_brackets.size();  for(int  idx  :  closing_brackets)  {  if(i  <  l)  {",
+        "int  cnt  =  0,  i  =  0,  l  =  0;  for(int  idx  :  closing_brackets)  {  if(i  <  l  ||  idx  >=  closing_brackets.get(i))  {",
+        "int  cnt  =  0,  i  =  0,  l  =  0;  for(int  idx  :  closing_brackets)  {  if(i  <  l  ||  idx  >=  opening_brackets.get(i))  {",
+        "for(int  idx  :  closing_brackets)  {  if(i  <  l  ||  idx  >=  closing_brackets.get(i))  {",
+        "s.reverse(opening_brackets);  int  cnt  =  0,  i  =  0,  l  =  closing_brackets.size();  for(int  idx  :  closing_brackets)  {  if(i  <  l)  {"
+      ]
+    },
+    "SUM_SQUARED_NUMS": {
+      "loc": "17-20",
+      "input": "public static long sum_squared_nums(double[] lst) {\n</s>    int result = 0, i = 0;\n    for(int j = 0; j < lst.length; j++) {\n        result += (Math.floor((int) lst[i])) * (Math.ceil((int) lst[i]));\n</s>    }\n    return result;\n}\n",
+      "output": [
+        "int  result  =  0,  i  =  0;  for(int  j  =  0;  j  <  lst.length;  j++)  {",
+        "int  result  =  0,  i  =  0;  for(int  j  =  0;  j  <  lst.length;  j++)  {",
+        "result  =  0,  i  =  0;  for(int  j  =  0;  j  <  lst.length;  j++)  {",
+        "Result  result  =  0,  i  =  0;  for(int  j  =  0;  j  <  lst.length;  j++)  {",
+        "Integer  result  =  0,  i  =  0;  for(int  j  =  0;  j  <  lst.length;  j++)  {",
+        "Integer  result  =  0,  i  =  0;  for(int  j  =  0;  j  <  lst.length;  j++)  {",
+        "int  result  =  0,  i  =  0;  for(int  j  =  0;  j  <=  lst.length;  j++)  {",
+        "result  =  0,  i  =  0;  for(int  j  =  0;  j  <  lst.length;  j++)  {",
+        "+=  Math.floor((int)  lst[i])  *  (Math.ceil((int)  lst[i]));",
+        "int  result  =  0,  j  =  0;  for(int  j  =  0;  j  <  lst.length;  j++)  {"
+      ]
+    },
+    "CHECK_IF_LAST_CHAR_IS_A_LETTER": {
+      "loc": "21-26",
+      "input": "public static boolean check_if_last_char_is_a_letter(String txt) {\n    String[] parts = txt.split(\" \");\n    String last = \" \";\n</s>    last = parts[parts.length - 1];\n    if(txt.charAt(txt.length() - 1) == ' ') last = \" \";\n    if(txt.length() == 1) last = \" \";\n    int last_char_pos = Character.toUpperCase(last.charAt(0)) - 'a';\n    return (last.length() == 1) || (0 <= last_char_pos || last_char_pos <= 25);\n</s>}\n",
+      "output": [
+        "int  last_char_pos  =  Character.toUpperCase(last.charAt(0))  -  'a';  return  (last.length()  ==  1)  ||  (0  <=  last_char_pos  ||  last_char_pos  <=  25);",
+        "=  parts[parts.length  -  1];  if(txt.charAt(txt.length()  -  1)  =='')  last  =   \"   \";  if(txt.length()  ==  1)  last  =   \"   \";  int  last_char_pos  =  Character.toUpperCase(last.charAt(0))  -  '",
+        "String  last  =  parts[parts.length  -  1];  if(txt.charAt(txt.length()  -  1)  =='')  last  =   \"   \";  if(txt.length()  ==  1)  last  =   \"   \";  int  last_char_pos  =  Character.toUpperCase(last.charAt(0))",
+        "String  last  =  parts[parts.length  -  1];  if(txt.charAt(txt.length()  -  1)  =='')  last  =   \"   \";  if(txt.length()  ==  1)  last  =   \"   \";  int  last_char_pos  =  Character.toUpperCase(last.charAt(0))  -",
+        "=  parts[parts.length  -  1];  if(txt.charAt(txt.length()  -  1)  =='')  last  =   \"   \";  if(txt.length()  ==  1)  last  =   \"   \";  int  last_char_pos  =  Character.toUpperCase(last.charAt(0))  -",
+        "=  parts[parts.length  -  1];  if(txt.charAt(txt.length()  -  1)  =='')  last  =   \"   \";  if(txt.length()  ==  1)  last  =   \"   \";  int  last_char_pos  =  Character.toUpperCase(last.charAt(0))  -",
+        "=  parts[parts.length  -  1];  if(txt.charAt(txt.length()  -  1)  =='')  last  =   \"   \";  if(txt.length()  ==  1)  last  =   \"   \";  int  last_char_pos  =  Character.toUpperCase(last.charAt(0))",
+        "String  last  =  parts[parts.length  -  1];  if(txt.charAt(txt.length()  -  1)  =='')  return   \"   \";  if(txt.length()  ==  1)  return  (last.length()  ==  1)  ||  (0  <=  last_char_pos  ||  last_char_pos  <=  25);",
+        "if(txt.charAt(txt.length()  -  1)  =='')  last  =   \"   \";  if(txt.length()  ==  1)  last  =   \"   \";  int  last_char_pos  =  Character.toUpperCase(last.charAt(0))  -  'a';",
+        "String  last  =  parts[parts.length  -  1];  if(txt.charAt(txt.length()  -  1)  =='')  last  =   \"   \";  if(txt.length()  ==  1)  return  (last.length()  ==  1)  ||  (0  <=  last_char_pos  ||  last_char_pos  <=  25);"
+      ]
+    },
+    "CAN_ARRANGE": {
+      "loc": "17-20",
+      "input": "public static int can_arrange(int[] arr) {\n</s>    int ind = 1;\n    for(int i = 0; i < arr.length - 1; i++) {\n        if(arr[i] < arr[i + 1]) ind = i + 1;\n</s>    }\n    return ind;\n}\n",
+      "output": [
+        "int  ind  =  1;  for(int  i  =  0;  i  <  arr.length  -  1;  i++)  {",
+        "int  ind  =  0;  for(int  i  =  0;  i  <  arr.length;  i++)  {",
+        "int  ind  =  1;  for(int  i  =  0;  i  <  arr.length;  i++)  {",
+        "int  ind  =  0;  if(arr[i]  <  arr[i  +  1])  ind  =  i  +  1;",
+        "if(arr[i]  <  arr[i  +  1])  ind  =  i  +  1;",
+        "int  ind  =  1;  if(arr[i]  <  arr[i  +  1])  ind  =  i  +  1;",
+        "int  ind  =  1;  for(int  i  =  0;  i  <  arr.length  -  1;  i++)  {",
+        "int  ind  =  0;  for(int  i  =  0;  i  <  arr.length;  i++)  {",
+        "int  ind  =  1;  for(int  i  =  0;  i  <  arr.length  -  2;  i++)  {",
+        "int  ind  =  0;  if(arr[i]  <  arr[i  +  1])  ind  =  i  +  1;"
+      ]
+    },
+    "LARGEST_SMALLEST_INTEGERS": {
+      "loc": "17-23",
+      "input": "public static int[] largest_smallest_integers(int[] lst) {\n</s>    boolean negative = true, positive = true;\n    int max_negative = Integer.MAX_VALUE, min_positive = Integer.MIN_VALUE; \n    for(int i = 1; i < lst.length; i++) {\n        if(lst[i] < 0) {\n            negative = false;\n            max_negative = Math.min(max_negative, lst[i]);\n</s>        } else if(lst[i] > 0) {\n            positive = true;\n            min_positive = Math.min(min_positive, lst[i]);\n        }\n    }\n    if(!negative) max_negative = 0;\n    if(!positive) min_positive = 0;\n    int[] result = {max_negative, min_positive};\n    return result;\n}\n",
+      "output": [
+        "boolean  negative  =  true,  positive  =  true;  int  max_negative  =  Integer.MAX_VALUE,  min_positive  =  Integer.MIN_VALUE;  for(int  i  =  1;  i  <  lst.length;  i++)  {",
+        "boolean  negative  =  true,  positive  =  true;  int  max_negative  =  Integer.MAX_VALUE,  min_positive  =  Integer.MIN_VALUE;  for(int  i  =  1;  i  <  lst.length;  i++)  {",
+        "boolean  negative  =  true,  positive  =  true;  int  max_negative  =  Integer.MAX_VALUE,  min_positive  =  Integer.MAX_VALUE;  for(int  i  =  1;  i  <  lst.length;  i++)  {",
+        "boolean  negative  =  false,  positive  =  true;  int  max_negative  =  Integer.MAX_VALUE,  min_positive  =  Integer.MIN_VALUE;  for(int  i  =  1;  i  <  lst.length;  i++)  {",
+        "boolean  negative  =  true,  positive  =  false;  int  max_negative  =  Integer.MAX_VALUE,  min_positive  =  Integer.MIN_VALUE;  for(int  i  =  1;  i  <  lst.length;  i++)  {",
+        "boolean  negative  =  false,  positive  =  true;  int  max_negative  =  Integer.MAX_VALUE,  min_positive  =  Integer.MIN_VALUE;  for(int  i  =  1;  i  <  lst.length;  i++)  {",
+        "boolean  negative  =  false,  positive  =  true;  int  max_negative  =  Integer.MAX_VALUE,  min_positive  =  Integer.MAX_VALUE;  for(int  i  =  1;  i  <  lst.length;  i++)  {",
+        "boolean  negative  =  true,  positive  =  true;  int  max_negative  =  Integer.MAX_VALUE,  min_positive  =  Integer.MIN_VALUE;  for(int  i  =  0;  i  <  lst.length;  i++)  {",
+        "boolean  negative  =  false,  positive  =  false;  int  max_negative  =  Integer.MAX_VALUE,  min_positive  =  Integer.MIN_VALUE;  for(int  i  =  1;  i  <  lst.length;  i++)  {",
+        "boolean  negative  =  true,  positive  =  false;  int  max_negative  =  Integer.MAX_VALUE,  min_positive  =  Integer.MIN_VALUE;  for(int  i  =  1;  i  <  lst.length;  i++)  {"
+      ]
+    },
+    "COMPARE_ONE": {
+      "loc": "29-33",
+      "input": "public static Object compare_one(Object a, Object b) {\n    double temp_a = 0, temp_b = 0;\n    if(a instanceof String) {\n        String temp_a_string = a.toString();\n        temp_a_string = temp_a_string.replace(',', '.');\n        temp_a = Double.parseDouble(temp_a_string);\n    }\n    if(b instanceof String) {\n        String temp_b_string = b.toString();\n        temp_b_string = temp_b_string.replace(',', '.');\n        temp_b = Double.parseDouble(temp_b_string);\n    }\n</s>    if(a instanceof Double) temp_a = ((Integer) b).doubleValue();\n    if(b instanceof Double) temp_b = ((Integer) a).doubleValue();\n    if(a instanceof Integer) temp_a = (Double) a;\n    if(b instanceof Integer) temp_b = (Double) b;\n</s>    if(temp_a == temp_b) return null;\n    if(temp_a > temp_b) return a;\n    else return b;\n}\n",
+      "output": [
+        "if(a  instanceof  Double)  temp_a  =  ((Double)  a).doubleValue();",
+        "if(a  instanceof  Double)  temp_a  =  ((Double)  a).doubleValue();",
+        "if(a  instanceof  Double)  temp_a  =  (Double)  a;",
+        "if(a  instanceof  Double)  temp_a  =  (Double)  a;",
+        "if(a  instanceof  Double)  temp_a  =  ((Double)  b).doubleValue();",
+        "if(a  instanceof  Double)  temp_a  =  ((Double)  b).doubleValue();",
+        "if(a  instanceof  Double)  temp_a  =  Double.parseDouble(temp_a_string);",
+        "if(a  instanceof  Double)  temp_a  =  Double.parseDouble(temp_a_string);",
+        "if(  a  instanceof  Double)  temp_a  =  ((Double)  a).doubleValue();",
+        "if(a  instanceof  Double)  temp_a  =  ((Double)  a).DoubleValue();"
+      ]
+    },
+    "IS_EQUAL_TO_SUM_EVEN": {
+      "loc": "14-15",
+      "input": "public static boolean is_equal_to_sum_even(int n) {\n</s>    return ((n * 2 == 1) ^ (n < 8));\n</s>}\n",
+      "output": [
+        "((n  *  2  ==  1)  ^  (n  <  8));",
+        "return  ((n  *  2  ==  1)  ^  (n  <  8));",
+        "(n  *  2  ==  1)  ^  (n  <  8));",
+        "((n  *  2  ==  1)  ^  (n  <  8)));",
+        "return  ((n  *  2  ==  0)  ^  (n  <  8));",
+        "((n  *  2!=  1)  ^  (n  <  8));",
+        "((n  *  2  ==  1)  ^  (n  <  8))  ||  (n  <  8);",
+        "return  ((n  *  2  ==  1)  ^  (n  <  8);",
+        "return  ((n  *  2!=  1)  ^  (n  <  8));",
+        "((n  *  2  ==  0)  ^  (n  <  8));"
+      ]
+    },
+    "SPECIAL_FACTORIAL": {
+      "loc": "20-23",
+      "input": "public static long special_factorial(long n) {\n    long fact_i = 1, special_fact = 1;\n</s>    for(long i = n; i >= 1; i--) {\n        fact_i *= i * fact_i;\n        special_fact += i * fact_i;\n</s>    }\n    return special_fact;\n}\n",
+      "output": [
+        "(long  i  =  n;  i  >=  1;  i--)  {",
+        "for(long  i  =  n;  i  >=  1;  i--)  {",
+        "(long  i  =  n  -  1);  i  >=  1;  i--)  {",
+        "for(long  i  =  n;  i  >=  1;  i--)  {",
+        "(long  i  =  n;  i  >=  0;  i--)  {",
+        "for(long  i  =  n;  i  <=  1;  i--)  {",
+        "(long  i  =  n;  i  <=  1;  i--)  {",
+        "(long  n  =  n;  i  >=  1;  i--)  {",
+        "For(long  i  =  n;  i  >=  1;  i--)  {",
+        "for(long  i  =  n;  i  >=  0;  i--)  {"
+      ]
+    },
+    "FIX_SPACES": {
+      "loc": "36-37",
+      "input": "public static String fix_spaces(String text) {\n    String new_text = \"\";\n    int i = 0;\n    int start = 0;\n    int end = 0;\n    while (i < text.length()) {\n        if (text.charAt(i) == ' ') end += 1;\n        else {\n            if (end - start > 2) new_text += \"-\" + text.substring(i, i + 1);\n            else if (end - start > 0) {\n                for (int j = start; j < end; j += 1) {\n                    new_text += \"_\";\n                }\n                new_text += text.substring(i, i + 1);\n            } else {\n                new_text += text.substring(i, i + 1);\n            }\n            start = i + 1;\n            end = i + 1;\n        }\n        i += 1;\n    }\n</s>    return new_text;\n</s>}\n",
+      "output": [
+        "new_text  =  text.substring(i,  i  +  1);",
+        "if  (new_text  ==  null)  return   \"   \";  return  new_text;",
+        "if  (new_text.length()  ==  0)  return  new_text;",
+        "new_text  =  text.substring(i  +  1);  return  new_text;",
+        "if  (new_text!=  null)  return  new_text;",
+        "if  (new_text  ==  null)  return  null;  return  new_text;",
+        "(new_text  ==  null)?   \"   \"  :  new_text);",
+        "(new_text!=  null)?  new_text  :   \"   \";",
+        "if  (new_text.length()  >  0)  return  new_text;",
+        "if  (text  ==  null)  return  new_text;  else  return  new_text;"
+      ]
+    },
+    "FILE_NAME_CHECK": {
+      "loc": "26-27",
+      "input": "public static String file_name_check(String file_name) {\n    String[] lst = file_name.split(\"\\\\.\");\n    if (lst.length != 2)\n        return \"No\";\n    if (! (lst[1].equals(\"txt\") || lst[1].equals(\"exe\") || lst[1].equals(\"dll\")))\n        return \"No\";\n    if (lst[0].length() == 0)\n        return \"No\";\n</s>    if ('a' > lst[0].charAt(0) && lst[0].charAt(0) > 'z' || 'A' > lst[0].charAt(0) && lst[0].charAt(0) > 'Z')\n</s>        return \"No\";\n    int digit_cnt = 0;\n    for (char c : file_name.toCharArray()){\n        if ('0' <= c && c <= '9')\n            digit_cnt += 1;\n    }\n    if (digit_cnt > 3)  return \"No\";\n    return \"Yes\";\n}\n",
+      "output": [
+        "if  ('a'  >  lst[0].charAt(0)  &&  lst[0].charAt(0)  >  'z'  ||  'A'  >  lst[0].charAt(0)  &&  lst[0].charAt(0)  >  'Z')",
+        "if  ('a'  >  lst[1].charAt(0)  &&  lst[1].charAt(0)  >  'z'  ||  'A'  >  lst[1].charAt(0)  &&  lst[1].charAt(0)  >  'Z')",
+        "if  ('a'  <=  lst[0].charAt(0)  &&  lst[0].charAt(0)  >  'z'  ||  'A'  >  lst[0].charAt(0)  &&  lst[0].charAt(0)  >  'Z')",
+        "if  (('a'  >  lst[0].charAt(0)  &&  lst[0].charAt(0)  >  'z'  ||  'A'  >  lst[0].charAt(0)  &&  lst[0].charAt(0)  >  'Z')",
+        "if  ('a'  >  lst[0].charAt(0)  &&  lst[0].charAt(0)  >  'z'  ||  'A'  >  lst[0].charAt(0)  &&  lst[0].charAt(0)  >  'Z')",
+        "if  ('a'  >  lst[1].charAt(0)  &&  lst[1].charAt(0)  >  'z'  ||  'A'  >  lst[1].charAt(0)  &&  lst[1].charAt(0)  >  'Z')",
+        "if  ('a'  >  lst[0].charAt(1)  &&  lst[0].charAt(0)  >  'z'  ||  'A'  >  lst[0].charAt(0)  &&  lst[0].charAt(0)  >  'Z')",
+        "if  ('a'  >  lst[0].charAt(0)  &&  lst[1].charAt(0)  >  'z'  ||  'A'  >  lst[1].charAt(0)  &&  lst[1].charAt(0)  >  'Z')",
+        "if  ('a'  >  lst[0].charAt(0)  &&  (lst[0].charAt(0)  >  'z'  ||  'A'  >  lst[0].charAt(0)  &&  lst[0].charAt(0)  >  'Z'))",
+        "if  ('a'  <=  lst[0].charAt(0)  &&  lst[0].charAt(0)  >  'z'  ||  'A'  >  lst[0].charAt(0)  &&  lst[0].charAt(0)  >  'Z')"
+      ]
+    },
+    "SUM_SQUARES": {
+      "loc": "17-20",
+      "input": "public static int sum_squares(int[] lst) {\n    int result = 0;\n    for (int i = 0; i < lst.length; i += 1){\n</s>        if (i % 4 == 0)\n            result += lst[i] * lst[i];\n        else if (i % 3 == 0)\n</s>            result += lst[i] * lst[i] * lst[i];\n        else result += lst[i];\n    }\n    return result;\n}\n",
+      "output": [
+        "if  (i  %  4  ==  0)  result  +=  lst[i]  *  lst[i];  else  if  (i  %  3  ==  0)",
+        "if  (i  %  4  ==  0)  result  +=  lst[i]  *  lst[i];  else  if  (i  %  3  ==  0)",
+        "if  (i  %  4  ==  0)  result  +=  lst[i]  *  lst[i];  else  if  (i  %  4  ==  0)",
+        "if  (i  %  4  ==  0)  result  +=  lst[i]  *  lst[i];  else  if  (i  %  4  ==  0)",
+        "if  (i  %  4)  result  +=  lst[i]  *  lst[i];  else  if  (i  %  3  ==  0)",
+        "if  (i  <  lst.length)  result  +=  lst[i]  *  lst[i];  else  if  (i  <  lst.length)",
+        "if  (i  %  4  ==  0)  result  +=  lst[i]  *  lst[i];  else  if  (i  %  2  ==  0)",
+        "if  (i  %  4  <=  0)  result  +=  lst[i]  *  lst[i];  else  if  (i  %  3  <=  0)",
+        "if  (i  %  2  ==  0)  result  +=  lst[i]  *  lst[i];  else  if  (i  %  3  ==  0)",
+        "if  (i  <  lst.length)  result  +=  lst[i]  *  lst[i];  else  if  (i  <  lst.length)"
+      ]
+    },
+    "WORDS_IN_SENTENCE": {
+      "loc": "27-28",
+      "input": "public static String words_in_sentence(String sentence) {\n    String result = \"\";\n    for (String word : sentence.split(\" \")) {\n        int flag = 0;\n</s>        for (int i = 2; i < word.length(); i += 1){\n</s>            if (word.length() % i == 0) flag = 1;\n        }\n        if (flag == 0 || word.length() == 2)\n            result += word + \" \";\n    }\n    return result.trim();\n}\n",
+      "output": [
+        "for  (int  i  =  0;  i  <  word.length();  i  +=  1)  {",
+        "for  (int  i  =  2;  i  <  word.length();  i  +=  2)  {",
+        "for  (int  i  =  1;  i  <  word.length();  i  +=  1)  {",
+        "for  (int  i  =  2;  i  <  word.length();  i  +=  1)  {",
+        "for  (int  i  =  2;  i  <=  word.length();  i  +=  1)  {",
+        "for  (int  i  =  2;  i  <  word.length();  i++)  {",
+        "for  (int  i  =  1;  i  <  word.length();  i  +=  2)  {",
+        "For  (int  i  =  0;  i  <  word.length();  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  word.length();  i  +=  1)  {",
+        "For  (int  i  =  2;  i  <  word.length();  i  +=  2)  {"
+      ]
+    },
+    "SIMPLIFY": {
+      "loc": "23-24",
+      "input": "public static boolean simplify(String x, String n) {\n    int a = Integer.parseInt(x.split(\"/\")[0]);\n    int b = Integer.parseInt(x.split(\"/\")[1]);\n    int c = Integer.parseInt(n.split(\"/\")[0]);\n    int d = Integer.parseInt(n.split(\"/\")[1]);\n    int numerator = a * c;\n    int denom = b * d;\n</s>    if (numerator / denom == (int) (numerator / denom))\n</s>        return true;\n    return false;\n}\n",
+      "output": [
+        "if  (numerator  <  0  ||  denom  ==  (int)  (numerator  <  0))",
+        "if  (numerator  <  0  ||  denom  ==  (int)  (numerator  <  0))",
+        "if  (denom  ==  (int)  (numerator  /  denom))",
+        "if  (denom  ==  (int)  (numerator  /  denom))",
+        "if  (numerator  ==  (int)  (numerator  /  denom))",
+        "if  (numerator  /  denom  ==  (int)  (numerator  /  denom))",
+        "if  (numerator  /  denom  ==  (int)  (numerator  /  denom))",
+        "if  (numerator  ==  (int)  (numerator  /  denom))",
+        "if  ((numerator  /  denom)  ==  (int)  (numerator  /  denom))",
+        "if  (numerator  <  0  ||  denom  >=  (int)  (numerator  <  0))"
+      ]
+    },
+    "ORDER_BY_POINTS": {
+      "loc": "30-33",
+      "input": "public static Integer[] order_by_points(Integer[] nums) {\n    ArrayList<Integer> digits = new ArrayList<Integer>();\n    HashMap<Integer, ArrayList<Integer>> digits_number = new HashMap<Integer, ArrayList<Integer>>();\n    for (int i = 0; i < nums.length; i += 1){\n        int neg = 1;\n        int n = nums[i];\n        if (n < 0) {\n            n = -1 * n;\n            neg = -1;\n        }\n        int digit = 0;\n        for (int j = 0; j < (n + \"\").toCharArray().length; j += 1){\n</s>            digit += ((n + \"\").toCharArray()[j] - '0') * neg;\n        }\n        digits.add(digit);\n</s>        if (! digits_number.containsKey(digit))\n            digits_number.put(digit, new ArrayList<Integer>());\n        digits_number.get(digit).add(nums[i]);\n    }\n    Collections.sort(digits);\n    ArrayList<Integer> result = new ArrayList<Integer>();\n    for (int i = 0; i < digits.size(); i += 1) {\n        result.addAll(digits_number.get(digits.get(i)));\n    }\n    return result.toArray(new Integer[] {});\n}\n",
+      "output": [
+        "digit  +=  ((n  +   \"   \").toCharArray()[j]  -  '0')  *  neg;  }",
+        "digit  +=  ((n  +   \"   \").toCharArray()[j]  +  '0')  *  neg;  }",
+        "digit  +=  ((n  +   \".   \").toCharArray()[j]  -  '0')  *  neg;  }",
+        "digit  +=  (n  +   \"   \").toCharArray()[j]  -  '0')  *  neg;  }",
+        "digit  +=  ((n  +   \"   \").toCharArray()[j])  *  neg;  }",
+        "digit  +=  ((n  +   \"   \").toCharArray()[j]  -  '0')  *  neg;  }",
+        "(n  +   \"   \").toCharArray()[j]  -  '0')  *  neg;  }",
+        "((n  +   \"   \").toCharArray()[j]  -  '0')  *  neg;  }",
+        "digit  +=  ((n  +   \"   \").toCharArray()[j]  -  '0')  *  digit;  }",
+        "digit  +=  ((n  +   \"/   \").toCharArray()[j]  -  '0')  *  neg;  }"
+      ]
+    },
+    "SPECIAL_FILTER": {
+      "loc": "20-22",
+      "input": "public static int special_filter(int[] nums) {\n    int count = 0;\n    ArrayList<Integer> odd_digits = new ArrayList<Integer>(Arrays.asList(1, 3, 5, 7, 9));\n    for (Integer num : nums) {\n        if (num > 10) {\n            String number_as_string = num + \"\";\n</s>            if (odd_digits.contains(number_as_string.charAt(0))\n                    && odd_digits.contains(number_as_string.charAt(number_as_string.length())))\n</s>                count += 1;\n        }\n    }\n    return count;\n}\n",
+      "output": [
+        "if  (odd_digits.contains(number_as_string.charAt(0))  &&  odd_digits.contains(number_as_string.charAt(number_as_string.length())))",
+        "if  (odd_digits.contains(number_as_string.charAt(0))  &&  odd_digits.contains(number_as_string.charAt(number_as_string.length())))",
+        "if  (odd_digits.contains(number_as_string.length())  &&  odd_digits.contains(number_as_string.charAt(0)))",
+        "if  (odd_digits.contains(number_as_string.length())  &&  odd_digits.contains(number_as_string.charAt(number_as_string.length())))",
+        "if  (odd_digits.contains(number_as_string.charAt(0))  ||  odd_digits.contains(number_as_string.charAt(number_as_string.length())))",
+        "if  (odd_digits.contains(number_as_string.charAt(0))  &&  odd_digits.contains(number_as_string.charAt(number_as_string.length()))",
+        "if  (odd_digits.contains(number_as_string.charAt(0))  &&!odd_digits.contains(number_as_string.charAt(0)))",
+        "if  (odd_digits.contains(number_as_string.charAt(0))  &&  odd_digits.contains(number_as_string.charAt(number_as_string.length()  +  1)))",
+        "if  (odd_digits.contains(number_as_string.charAt(0))  &&  odd_digits.contains(number_as_string.charAt(0)))",
+        "if  (!odd_digits.contains(number_as_string.charAt(0))  &&!odd_digits.contains(number_as_string.charAt(0)))"
+      ]
+    },
+    "GET_MAX_TRIPLES": {
+      "loc": "22-25",
+      "input": "public static int get_max_triples(int n) {\n    int[] A = new int[n];\n    for (int i = 1; i <= n; i += 1)\n        A[i - 1] = i * i - i + 1;\n    int result = 0;\n</s>    for (int i = 0; i < n-2; i += 1) {\n        for (int j = 0; j < n-1; j += 1) {\n            for (int k = 0; k < n; k += 1) {\n</s>                if ((A[i] + A[j] + A[k]) % 3 == 0) result += 1;\n            }\n        }\n    }\n    return result;\n}\n",
+      "output": [
+        "for  (int  i  =  0;  i  <  n-2;  i  +=  1)  {  for  (int  j  =  0;  j  <  n-1;  j  +=  1)  {",
+        "(int  i  =  0;  i  <  n-2;  i  +=  1)  {  for  (int  j  =  0;  j  <  n-1;  j  +=  1)  {  for  (int  k  =  0;  k  <  n;  k  +=  1)  {",
+        "for  (int  i  =  0;  i  <  n-1;  i  +=  1)  {  for  (int  j  =  0;  j  <  n-1;  j  +=  1)  {",
+        "for  (int  i  =  0;  i  <  n-2;  i  +=  1)  {  for  (int  j  =  0;  j  <  n-1;  j  +=  1)  {  for  (int  k  =  0;  k  <  n;  k++)  {",
+        "for  (int  i  =  0;  i  <=  n-2;  i  +=  1)  {  for  (int  j  =  0;  j  <  n-1;  j  +=  1)  {",
+        "for  (int  i  =  0;  i  <  n-2;  i  +=  1)  {  for  (int  j  =  0;  j  <  n-1;  j++)  {  for  (int  k  =  0;  k  <  n;  k  +=  1)  {",
+        "for  (int  i  =  0;  i  <  n;  i  +=  1)  {  for  (int  j  =  0;  j  <  n-1;  j  +=  1)  {  for  (int  k  =  0;  k  <  n;  k  +=  1)  {",
+        "(int  i  =  0;  i  <  n-2;  i  +=  2)  {  for  (int  j  =  0;  j  <  n-1;  j  +=  1)  {  for  (int  k  =  0;  k  <  n;  k  +=  1)  {",
+        "(int  i  =  0;  i  <  n-2;  i  +=  1))  {  for  (int  j  =  0;  j  <  n-1;  j  +=  1)  {",
+        "for  (int  i  =  0;  i  <  n-2;  i  +=  2)  {  for  (int  j  =  0;  j  <  n-1;  j  +=  1)  {"
+      ]
+    },
+    "BF": {
+      "loc": "31-33",
+      "input": "public static ArrayList<String> bf(String planet1, String planet2) {\n    ArrayList<String> planet_names = new ArrayList<String>(Arrays.asList(\n        \"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"\n    ));\n    ArrayList<String> result = new ArrayList<String>();\n    if ((! planet_names.contains(planet1)) || (! planet_names.contains(planet2)))\n        return result;\n    int planet1_index = planet_names.indexOf(planet1);\n    int planet2_index = planet_names.indexOf(planet2);\n</s>    for (int i = planet1_index; i < planet2_index; i += 1)\n        result.add(planet_names.get(i));\n</s>    return result;\n}\n",
+      "output": [
+        "for  (int  i  =  planet1_index;  i  <  planet2_index;  i  +=  1)  result.add(planet_names.get(i));",
+        "for  (int  i  =  planet_names.size();  i  <  planet2_index;  i  +=  1)  result.add(planet_names.get(i));",
+        "for  (int  i  =  planet1_index;  i  <  planet2_index;  i  +=  2)  result.add(planet_names.get(i));",
+        "for  (int  i  =  planet1_index;  i  <  planet2_index;  i++)  result.add(planet_names.get(i));",
+        "(int  i  =  planet1_index;  i  <  planet2_index;  i  +=  1)  result.add(planet_names.get(i));",
+        "for  (int  i  =  planet1_index;  i  <  planet2_index;  i  +=  1)  result.add(planet_names.get(i));",
+        "for  (int  i  =  planet_names.size();  i  <  planet2_index;  i  +=  2)  result.add(planet_names.get(i));",
+        "for  (int  i  =  planet1_index;  i  <  planet2_index;  i  +=  1)  result.add(planet_names.get(planet1));",
+        "for  (int  i  =  planet1_index;  i  <  planet2_index+1;  i  +=  1)  result.add(planet_names.get(i));",
+        "(int  i  =  planet1_index;  i  <  planet2_index;  i  +=  2)  result.add(planet_names.get(i));"
+      ]
+    },
+    "SORTED_LIST_SUM": {
+      "loc": "30-31",
+      "input": "public static ArrayList<String> sorted_list_sum(ArrayList<String> lst) {\n    ArrayList<String> result = new ArrayList<String>();\n    for (String str : lst) {\n        if (str.length() % 2 == 1) continue;\n        result.add(str);\n    }\n    Collections.sort(\n        result,\n</s>        (s1, s2) -> s1.length() - s2.length()\n</s>    );\n    return result;\n}\n",
+      "output": [
+        "(s1,  s2)  ->  s1.length()  -  s2.length()",
+        "(s1)  ->  s1.length()  -  s2.length()",
+        "(s1,  s2)  -  s1.length()  -  s2.length()",
+        "(s1,  s2)  ->  (s1.length()  -  s2.length())",
+        "(s1  -  s2)  ->  s1.length()  -  s2.length()",
+        "(s1,  s2)  ->  s1.length()  -  s2.length();",
+        "(s1,  s2)  &  s1.length()  -  s2.length()",
+        "(s1,  s2)  -  s1.length()",
+        "(s1,  s2)!=  s1.length()  -  s2.length()",
+        "(str,  s2)  ->  s1.length()  -  s2.length()"
+      ]
+    },
+    "X_OR_Y": {
+      "loc": "14-17",
+      "input": "public static int x_or_y(int n, int x, int y) {\n    if (n == 1) return y;\n    for (int i = 2; i < n; i += 1) {\n</s>        if (n % i == 0) return x;\n    }\n    return y;\n</s>}\n",
+      "output": [
+        "if  (n  %  i  ==  0)  return  x;  }  return  y;",
+        "if  (n  %  i  ==  0)  return  y;  }  return  y;",
+        "if  (n  %  i  ==  0)  return  i;  }  return  y;",
+        "if  (n  %  i  ==  0)  return  n;  }  return  y;",
+        "if  (i  %  i  ==  0)  return  x;  }  return  y;",
+        "if  (n  %  i  ==  0)  return  x;  }  return  i;",
+        "if  (n  %  i  ==  0)  return  i;  }  return  i;",
+        "if  (n  %  i  ==  0)  return  x;  }  return  y  +  1;",
+        "if  (n  %  i  ==  0)  return  x;  }  return  x;",
+        "if  (n  %  i  ==  0)  return  -1;  }  return  -1;"
+      ]
+    },
+    "DOUBLE_THE_DIFFERENCE": {
+      "loc": "20-21",
+      "input": "public static int double_the_difference(double[] lst) {\n    int result = 0;\n    for (Double d : lst) {\n        if ((int) d.doubleValue() == d) {\n            int d_int = (int) d.doubleValue();\n            if (d_int % 2 == 1 && d_int >= 0) {\n</s>                result += d_int;\n</s>            }\n        }\n    }\n    return result;\n}\n",
+      "output": [
+        "result  +=  d_int  %  2;",
+        "result  +=  Double.toString(d_int);",
+        "result  +=  d_int;",
+        "result  +=  d_int;",
+        "result  +=  d_int  %  2;",
+        "result  +=  Double.valueOf(d_int);",
+        "result  +=  d_int  &  0xFFFF;",
+        "result  +=  (int)  (d_int  %  2);",
+        "result  +=  Double.valueOf(d_int);",
+        "result  +=  (d_int  %  2);"
+      ]
+    },
+    "COMPARE": {
+      "loc": "16-17",
+      "input": "public static int[] compare(int[] game, int[] guess) {\n    int[] result = new int[game.length];\n    for (int i = 0; i < game.length; i += 1) {\n</s>        result[i] = Math.floorDiv(game[i], guess[i]);\n</s>    }\n    return result;\n}\n",
+      "output": [
+        "result[i]  =  Math.floorDiv(game[i],  guess[i]);",
+        "Result[i]  =  Math.floorDiv(game[i],  guess[i]);",
+        "result[i]  =  Math.floorDiv(game[i],  guess[i]);",
+        "i++;  result[i]  =  Math.floorDiv(game[i],  guess[i]);",
+        "[i]  =  Math.floorDiv(game[i],  guess[i]);",
+        "game[i]  =  Math.floorDiv(game[i],  guess[i]);",
+        "game[i]  =  Math.floorDiv(game[i],  guess[i]);",
+        "i  +=  Math.floorDiv(game[i],  guess[i]);",
+        "s[i]  =  Math.floorDiv(game[i],  guess[i]);",
+        "Result[i]  =  Math.floorDiv(game[i],  guess[i],  false);"
+      ]
+    },
+    "STRONGEST_EXTENSION": {
+      "loc": "28-33",
+      "input": "public static String strongest_extension(String class_name, String[] extensions) {\n    String strong = null;\n    int val = Integer.MIN_VALUE;\n    for (String s : extensions) {\n        int CAP = 0;\n        int SM = 0;\n        for (char c : s.toCharArray()) {\n</s>            if (Character.toUpperCase(c) == c) SM += 1;\n            if (Character.toLowerCase(c) == c) CAP += 1;\n        }\n        val = CAP - SM;\n        strong = s;\n</s>    }\n    return class_name + \".\" + strong;\n}\n",
+      "output": [
+        "if  (Character.toUpperCase(c)  ==  c)  SM  +=  1;  if  (Character.toLowerCase(c)  ==  c)  CAP  +=  1;  }  val  =  CAP  -  SM;",
+        "if  (Character.toUpperCase(c)  ==  c)  SM  +=  1;  if  (Character.toLowerCase(c)  ==  c)  CAP  +=  1;  }",
+        "if  (Character.toUpperCase(c)  ==  c)  SM  +=  1;  if  (Character.toUpperCase(c)  ==  c)  CAP  +=  1;  }  val  =  CAP  -  SM;",
+        "if  (Character.toLowerCase(c)  ==  c)  SM  +=  1;  if  (Character.toLowerCase(c)  ==  c)  CAP  +=  1;  }",
+        "if  (Character.toUpperCase(c)  ==  c)  SM  +=  1;  if  (Character.toUpperCase(c)  ==  c)  CAP  +=  1;  }",
+        "if  (Character.toUpperCase(c)  ==  c)  SM  +=  1;  if  (Character.toLowerCase(c)  ==  c)  CAP  +=  2;  }  val  =  CAP  -  SM;",
+        "if  (Character.toUpperCase(c)  ==  c)  SM  +=  2;  if  (Character.toLowerCase(c)  ==  c)  CAP  +=  2;  }  val  =  CAP  -  SM;",
+        "if  (Character.toUpperCase(c)  ==  c)  SM  +=  1;  if  (Character.toLowerCase(c)  ==  c)  CAP  +=  1;  }  val  =  CAP  -  SM;",
+        "if  (Character.toUpperCase(c)  ==  c)  SM  +=  1;  if  (Character.toLowerCase(c)  ==  c)  CAP  +=  1;  }  val  -=  SM;",
+        "if  (Character.toUpperCase(c)  ==  c)  SM  +=  2;  if  (Character.toLowerCase(c)  ==  c)  CAP  +=  1;  }  val  =  CAP  -  SM;"
+      ]
+    },
+    "CYCPATTERN_CHECK": {
+      "loc": "14-17",
+      "input": "public static boolean cycpattern_check(String a, String b) {\n    int l = b.length();\n</s>    String pat = b;\n    for (int i = 0; i < a.length(); i += 1) {\n        for (int j = 0; j < l; j += 1) {\n</s>            if (a.substring(i, i + l).equals(pat.substring(j, j + l))) return true;\n        }\n    }\n    return false;\n}\n",
+      "output": [
+        "for  (int  i  =  0;  i  <  a.length();  i  +=  1)  {  for  (int  j  =  0;  j  <  l;  j  +=  1)  {",
+        "for  (int  i  =  0;  i  <  a.length();  i  +=  2)  {  for  (int  j  =  0;  j  <  l;  j  +=  2)  {",
+        "for  (int  i  =  0;  i  <  a.length();  i++)  {  for  (int  j  =  0;  j  <  l;  j++)  {",
+        "for  (int  i  =  0;  i  <  a.length();  i  +=  2)  {  for  (int  j  =  0;  j  <  l;  j  +=  1)  {",
+        "for  (int  i  =  0;  i  <  a.length();  i  +=  1)  {  for  (int  j  =  0;  j  <  l;  j  +=  2)  {",
+        "for  (int  i  =  0;  i  <  b.length();  i  +=  1)  {  for  (int  j  =  0;  j  <  l;  j  +=  1)  {",
+        "for  (int  i  =  0;  i  <  b.length();  i  +=  2)  {  for  (int  j  =  0;  j  <  l;  j  +=  2)  {",
+        "for  (int  i  =  0;  i  <  b.length();  i  +=  2)  {  for  (int  j  =  0;  j  <  l;  j  +=  1)  {",
+        "for  (int  i  =  0;  i  <  a.length();  i  +=  1)  {  for  (int  j  =  0;  j  <  l;  j++)  {",
+        "for  (int  i  =  0;  i  <  b.length();  i  +=  1)  {  for  (int  j  =  0;  j  <  l;  j  +=  2)  {"
+      ]
+    },
+    "EVEN_ODD_COUNT": {
+      "loc": "14-17",
+      "input": "public static int[] even_odd_count(int num) {\n    int even_count = 0;\n    int odd_count = 0;\n</s>    for (char c : (num + \"\").toCharArray()) {\n        if ((int)c % 2 == 0) even_count += 1;\n        if ((int)c % 2 == 1) odd_count += 1;\n</s>    }\n    return new int[] {even_count, odd_count};\n}\n",
+      "output": [
+        "(int)c  %  2  ==  0)  even_count  +=  1;  if  ((int)c  %  2  ==  1)  odd_count  +=  1;",
+        "(char  c  :  (num  +   \"   \").toCharArray())  {",
+        "(char  c  :  (num  +   \"   \").toCharArray())  {  if  ((int)c  %  2  ==  0)  even_count  +=  1;",
+        "((int)c  %  2  ==  0)  even_count  +=  1;  if  ((int)c  %  2  ==  1)  odd_count  +=  1;",
+        "(int)c  %  2  ==  0)  even_count  +=  1;  if  ((int)c  %  2  ==  1)  odd_count  +=  2;",
+        "(int)c  %  2  ==  0)  even_count  +=  2;  if  ((int)c  %  2  ==  1)  odd_count  +=  1;",
+        "(int)c  %  2  ==  0)  even_count  +=  2;  if  ((int)c  %  2  ==  1)  odd_count  +=  2;",
+        "if  ((int)c  %  2  ==  0)  even_count  +=  1;  if  ((int)c  %  2  ==  1)  odd_count  +=  1;",
+        "(char)c  %  2  ==  0)  even_count  +=  1;  if  ((int)c  %  2  ==  1)  odd_count  +=  1;",
+        "for  (char  c  :  (num  +   \"   \").toCharArray())  {  if  ((int)c  %  2  ==  0)  even_count  +=  1;"
+      ]
+    },
+    "INT_TO_MINI_ROMAN": {
+      "loc": "22-23",
+      "input": "public static String int_to_mini_roman(int number) {\n    int[] num = new int[] {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};\n    String[] sym = new String[] {\n        \"I\", \"IV\", \"V\", \"IX\", \"X\", \"XL\", \"L\", \"XC\", \"C\", \"CD\", \"D\", \"CM\", \"M\"\n    };\n    int i = 12;\n    String result = \"\";\n    while (number > 0) {\n</s>        result += sym[i];\n</s>        number %= num[i];\n        i -= 1;\n    }\n    return result.toLowerCase();\n}\n",
+      "output": [
+        "if  (number  >  0)  result  +=  sym[i];",
+        "sym[i]  =  sym[i];",
+        "if  (i  >  0)  result  +=  sym[i];",
+        "if  (number!=  0)  result  +=  sym[i];",
+        "sym[i]  =  sym[i].trim();",
+        "if  (number  <  0)  result  +=  sym[i];",
+        "if  (i  <  sym.length)  result  +=  sym[i];",
+        "if  (sym!=  null)  result  +=  sym[i];",
+        "if  (number  >  0)  result  +=   \"   \"  +  sym[i];",
+        "if  (number  >  0)  {  result  +=  sym[i];  }"
+      ]
+    },
+    "RIGHT_ANGLE_TRIANGLE": {
+      "loc": "13-14",
+      "input": "public static boolean right_angle_triangle(int a, int b, int c) {\n</s>    return a*a + b*b == c*c;\n</s>}\n",
+      "output": [
+        "return  a*a  +  b*b  ==  c*c;",
+        "return  a*b  +  b*b  ==  c*c;",
+        "return  (a*a  +  b*b  ==  c*c);",
+        "return  b*a  +  b*b  ==  c*c;",
+        "return  a  *  b  *  b  ==  c  *  c;",
+        "return  a*a  +  b*b  ==  c*c  +  b;",
+        "return  a*a  +  b*b  ==  c*c  +  c;",
+        "return  a*a  +  b*b  ==  c*c  *  b;",
+        "return  b  *  a  +  b  *  b  ==  c  *  c;",
+        "return  a*a  +  b*b  ==  c*c+c;"
+      ]
+    },
+    "FIND_MAX": {
+      "loc": "27-28",
+      "input": "public static String find_max(String[] words) {\n    ArrayList<String> words_list = new ArrayList<String>(Arrays.asList(words));\n    Collections.sort(\n        words_list,\n        (w1, w2) -> {\n            Character[] c1 = ((String) w1).chars().mapToObj(c -> (char)c).toArray(Character[]::new);\n            HashSet<Character> s1 = new HashSet<Character>(Arrays.asList(c1));\n            Character[] c2 = ((String) w2).chars().mapToObj(c -> (char)c).toArray(Character[]::new);\n            HashSet<Character> s2 = new HashSet<Character>(Arrays.asList(c2));\n</s>            return s1.size() - s2.size();\n</s>        }\n    );\n    return words_list.get(0);\n}\n",
+      "output": [
+        "return  s1.size()  -  s2.size();",
+        "return  s1  ==  null?  null  :  s1.size()  -  s2.size();",
+        "return  s1.size()  -  s2.size()  -  s1.size();",
+        "s1.size()  -=  s2.size();  return  s1.size()  -  s2.size();",
+        "s1  =  new  HashSet  <  Character>();  return  s1.size()  -  s2.size();",
+        "return  s2.size()  -  s1.size();",
+        "return  s1.size()  -  s2.size()  -  s2.size();",
+        "return  s1.size()  -  s2.size()  -  1;",
+        "return  s2  ==  null?  null  :  s1.size()  -  s2.size();",
+        "return  s1.size()  -  ((String)  s2).size();"
+      ]
+    },
+    "EAT": {
+      "loc": "32-33",
+      "input": "public static int[] eat(int number, int need, int remaining) {\n</s>    return new int[] {number + need,  remaining - need};\n</s>}\n",
+      "output": [
+        "return  new  int[]  {  number  +  need,  remaining  -  need  }  ;",
+        "int[]  result  =  new  int[]  {  number  +  need,  remaining  -  need  }  ;  return  result;",
+        "new  int[]  {  number  +  need,  remaining  -  need  }  ;",
+        "return  new  int[]  {  number  +  need,  remaining  -  need,  remaining  -  need  }  ;",
+        "if  (remaining  >  need)  return  new  int[]  {  number  +  need,  remaining  -  need  }  ;",
+        "return  new  int[]  {  number  +  need,  remaining  +  need  }  ;",
+        "int[]  return  new  int[]  {  number  +  need,  remaining  -  need  }  ;",
+        "return  new  int[]  {  number  +  need,  remaining  -  need,  remaining  }  ;",
+        "return  new  int[]  {  number  +  need,  remaining  -  need  },  new  int[]  {  number  }  ;",
+        "return  new  int[]  {  number  +  need  -  need,  remaining  -  need  }  ;"
+      ]
+    },
+    "DO_ALGEBRA": {
+      "loc": "33-36",
+      "input": "public static double do_algebra(String[] operator, int[] operand) throws NumberFormatException, ScriptException {\n    ScriptEngineManager mgr = new ScriptEngineManager();\n    ScriptEngine engine = mgr.getEngineByName(\"JavaScript\");\n</s>    String expression = \"\";\n    for (int i = 0; i < operand.length; i += 1) {\n        expression += operator[i] + operand[i];\n</s>    }\n    return Double.parseDouble(engine.eval(expression).toString());\n}\n",
+      "output": [
+        "for  (int  i  =  0;  i  <  operand.length;  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  operand.length;  i  +=  2)  {",
+        "for  (int  i  =  1;  i  <  operand.length;  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  operand[i].length;  i  +=  1)  {",
+        "For  (int  i  =  0;  i  <  operand.length;  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  operand.length;  i++)  {",
+        "for  (int  i  =  0;  i  <  operand.length;  i  +=  1)  {",
+        "for  (int  i  =  0;  i  <  operand[i];  i  +=  1)  {",
+        "for  (int  i  =  1;  i  <  operand.length;  i  +=  2)  {",
+        "For(int  i  =  0;  i  <  operand.length;  i  +=  1)  {"
+      ]
+    },
+    "SOLVE_STRING": {
+      "loc": "18-21",
+      "input": "public static String solve_string(String s) {\n    int flg = 0;\n    StringBuilder sb = new StringBuilder();\n    for (char c : s.toCharArray()) {\n</s>        if (Character.isLowerCase(c)) sb.append(Character.toUpperCase(c));\n        else sb.append(Character.toLowerCase(c));\n        flg = 1;\n</s>    }\n    if (flg == 0) {\n        sb = new StringBuilder();\n        for (int i = s.length() - 1; i >= 0; i -= 1) sb.append(s.charAt(i));\n    }\n    return sb.toString();\n}\n",
+      "output": [
+        "if  (Character.isLowerCase(c))  sb.append(Character.toString(c));  else  sb.append(Character.toString(c));",
+        "if  (Character.isLowerCase((char)c))  sb.append((char)c);  else  sb.append((char)c);",
+        "if  (Character.isLowerCase(c))  sb.append(Character.toLowerCase(c));",
+        "if  (Character.isWhitespace(c))  sb.append(Character.toWhitespace(c));  else  sb.append(Character.toWhitespace(c));",
+        "if  (Character.isDigit(c))  sb.append(Character.toDigit(c));  else  sb.append(Character.toDigit(c));",
+        "if  (Character.isLowerCase((char)c))  sb.append((char)c);  else  sb.append((char)c);  flg  =  1;",
+        "if  (Character.isBlank(c))  sb.append(Character.toBlank(c));  else  sb.append(Character.toBlank(c));",
+        "if  (Character.isBound(c))  sb.append(Character.toBound(c));  else  sb.append(Character.toBound(c));",
+        "if  (Character.isLowerCase(c))  sb.append(Character.toLowerCase(c));  else",
+        "if  (Character.isLowerCase(c))  sb.append(Character.toUpperCase(c));"
+      ]
+    },
+    "STRING_TO_MD5": {
+      "loc": "16-17",
+      "input": "public static String string_to_md5(String text) throws NoSuchAlgorithmException {\n    if (text.equals(\"\")) return null;\n</s>    MessageDigest md = MessageDigest.getInstance(\"SHA-384\");\n</s>    md.update(text.getBytes());\n    byte[] digest = md.digest();\n    return DatatypeConverter.printHexBinary(digest).toLowerCase();\n}\n",
+      "output": [
+        "MessageDigest  md  =  MessageDigest.getInstance(   \"SHA-388   \");",
+        "MessageDigest  md  =  MessageDigest.getInstance(   \"SHA-383   \");",
+        "MessageDigest  md  =  MessageDigest.getInstance(text);",
+        "MessageDigest  md  =  MessageDigest.getInstance(text);",
+        "MessageDigest  md  =  MessageDigest.getInstance(   \"SHA-384   \");",
+        "MessageDigest  md  =  MessageDigest.getInstance(   \"SHA-388   \");",
+        "MessageDigest  md  =  MessageDigest.getInstance(   \"SHA-383   \");",
+        "MessageDigest  md  =  MessageDigest.getInstance(   \"SHA-384   \");",
+        "MessageDigest  md  =  MessageDigest.getInstance(   \"SHA-382   \");",
+        "MessageDigest  md  =  MessageDigest.getInstance(   \"SHA-387   \");"
+      ]
+    },
+    "GENERATE_INTEGERS": {
+      "loc": "15-17",
+      "input": "public static ArrayList<Integer> generate_integers(int a, int b) {\n</s>    int lower = Math.max(2, a);\n    int upper = Math.min(8, b);\n</s>\n    ArrayList<Integer> result = new ArrayList<Integer>();\n    for (int i = lower; i <= upper; i += 1) {\n        if (i % 2 == 0) result.add(i);\n    }\n    return result;\n}\n",
+      "output": [
+        "Integer  upper  =  Integer.valueOf(a);",
+        "int  lower  =  Math.max(0,  a);",
+        "Integer  upper  =  Math.min(8,  a);",
+        "Integer  lower  =  Math.max(2,  a);",
+        "int  lower  =  Math.max(2,  a);",
+        "Integer  upper  =  Integer.MAX_VALUE;",
+        "int  lower  =  Math.max(2,  b);",
+        "int  lower  =  Integer.MAX_VALUE;",
+        "nt  lower  =  Math.max(2,  a);",
+        "int  lower  =  Math.max(1,  a);"
+      ]
+    }
+  }
+}
