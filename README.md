@@ -5,6 +5,10 @@ This is the artifact of paper "Impact of Code Language Models on Automated Progr
 * Python 3.10.4
 * PyTorch 1.12.0
 * Huggingface transformers 4.21.0
+* Java 8
+* Docker
+* nvidia-docker
+* Defects4J
 
 ## To Run in Docker
 * To run this artifact in docker, you need to have [docker](https://docs.docker.com/desktop/install/linux-install/) installed on the host system first.
@@ -17,6 +21,7 @@ docker pull jiang719/clm-apr:latest
 ```
 docker run -it --name clm --gpus all jiang719/clm-apr:latest
 cd /home/CLM
+bash setup.sh
 ```
 
 ## Content
