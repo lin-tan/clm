@@ -105,3 +105,14 @@ You may want to modify several paths in the ```finetune.py```, ```training_file`
 
 ## Size, time, and memory efficiency of CLMs
 <img src="figures/model_size.png" width="1500" height="200" />
+
+## Citation
+If you find this code to be useful for your research, please consider citing:
+```
+@inproceedings{clm,
+  title={Impact of Code Language Models on Automated Program Repair},
+  author={Nan Jiang, Thibaud Lutellier, Lin Tan},
+  booktitle={2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE)},
+  year={2023}
+}
+```
